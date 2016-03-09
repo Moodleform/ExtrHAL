@@ -1,0 +1,9 @@
+Articles avec comité de lecture de revues internationales
+  docType_s:ART
+  audience_s:2
+  peerReviewing_s:1
+  
+Articles avec comité de lecture de revues nationales
+  docType_s:ART
+  audience_s:3 OR audience_s:0 OR audience_s:1
+  peerReviewing_s:1
