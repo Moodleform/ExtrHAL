@@ -312,6 +312,7 @@ if (isset($_GET['detail']) && ($_GET['detail'] != "")) {
 }
 
 //mise en forme spéciale (ISCR par exemple)
+$mef = "";
 if (isset($_GET['mef']) && ($_GET['mef'] != "")) {
   $mef = $_GET['mef'];
 }

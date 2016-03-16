@@ -9,8 +9,8 @@
   <meta name="Description" content="ExtrHAL : outil d’extraction des publications HAL d’une unité ou équipe de recherche">  
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <link rel="icon" type="type/ico" href="HAL_favicon.ico" />
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <link rel="icon" type="type/ico" href="HAL_favicon.ico">
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script type='text/x-mathjax-config'>
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['$$','$$']]}});
@@ -34,7 +34,7 @@
   border:1px solid #6699cc;
   background-color:#eeeeee; color:#6699cc;
   text-align: justify;
-  font-weight:none;
+  font-weight: normal;
   padding:1px;
   }
   
@@ -64,8 +64,8 @@
       color:#FFFFFF;
       text-align:center;
       border-bottom:1px solid #666;
-      margin:none;
-      padding:none;
+      margin:0px;
+      padding:0px;
       padding-bottom:2px;
       margin-top:0px;
       margin-bottom:0px;
