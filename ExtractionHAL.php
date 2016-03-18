@@ -3754,8 +3754,8 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
     /* Render the picture (choose the best way) */
     //$myPicture->autoOutput("test.png");
     //$myPicture->stroke();
-    $myPicture->render("mypic1_".$team.".png");
-    echo('<center><img src="mypic1_'.$team.'.png"></center><br>');
+    $myPicture->render("img/mypic1_".$team.".png");
+    echo('<center><img src="img/mypic1_'.$team.'.png"></center><br>');
     
 
     // Données type de publication par année
@@ -3813,8 +3813,8 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
     /* Render the picture (choose the best way) */
     //$myPicture->autoOutput("test.png");
     //$myPicture->stroke();
-    $myPicture->render("mypic2_".$team.".png");
-    echo('<center><img src="mypic2_'.$team.'.png"></center><br>');  
+    $myPicture->render("img/mypic2_".$team.".png");
+    echo('<center><img src="img/mypic2_'.$team.'.png"></center><br>');  
 
     //Si choix sur tous les articles, camembert avec détails
     if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {
@@ -3893,8 +3893,8 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
         $myPicture->setFontProperties(array("FontName"=>"./pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>0,"G"=>0,"B"=>0));
         $PieChart->drawPieLegend(30,200,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
 
-        $myPicture->render('mypic'.$i.'_'.$team.'.png');
-        echo('<center><img src="mypic'.$i.'_'.$team.'.png"></center><br>');
+        $myPicture->render('img/mypic'.$i.'_'.$team.'.png');
+        echo('<center><img src="img/mypic'.$i.'_'.$team.'.png"></center><br>');
         $i++;
       }
     }
@@ -4148,8 +4148,8 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
         //$myPicture->drawLine(1,220,898,220,array("R"=>80,"G"=>80,"B"=>80)); 
 
         /* Render the picture (choose the best way) */
-        $myPicture->render('mypic_crogr_'.$team.'.png');
-        echo('<center><img src="mypic_crogr_'.$team.'.png"></center><br>');
+        $myPicture->render('img/mypic_crogr_'.$team.'.png');
+        echo('<center><img src="img/mypic_crogr_'.$team.'.png"></center><br>');
         echo('Ce graphe est généré lors d\'une numérotation/codification par équipe :<br>');
         echo('. Dans le cas d\'une extraction pour une unité, il représente l\'ensemble des publications croisées identifiées pour chaque équipe.<br>');
         echo('. Dans le cas d\'une extraction pour une équipe, il représente le nombre de publications croisées de cette équipe et celui des autres équipes concernées en regard. ');
