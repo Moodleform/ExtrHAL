@@ -1,3 +1,8 @@
+<?php
+/*
+* ExtrHAL - version du 18/03/2016
+*/
+?>
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
             "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -174,7 +179,7 @@ if (isset($_POST["soumis"])) {
 	fwrite($inF,$chaine);
 	//export en RTF
 	$Fnm = "./HAL/extractionHAL_".$team.".rtf";
-	require_once ("./HAL/phprtflite-1.2.0/lib/PHPRtfLite.php");
+	require_once ("./lib/phprtflite-1.2.0/lib/PHPRtfLite.php");
 	PHPRtfLite::registerAutoloader();
 	$rtf = new PHPRtfLite();
 	$sect = $rtf->addSection();
@@ -239,7 +244,7 @@ if (isset($_POST["soumis"])) {
   $urlsauv .= "&autr=".$liste_autr;
 
 	//Création des listes des auteurs appartenant à la collection spécifiée pour la liste
-  include "ExtractionHAL-auteurs.php";
+  include "./pvt/ExtractionHAL-auteurs.php";
   $listenominit = "~";
   $listenomcomp1 = "~";
   $listenomcomp2 = "~";
@@ -384,7 +389,7 @@ if (isset($_GET["team"])) {
 	fwrite($inF,$chaine);
 	//export en RTF
 	$Fnm = "./HAL/extractionHAL_".$team.".rtf";
-	require_once ("./HAL/phprtflite-1.2.0/lib/PHPRtfLite.php");
+	require_once ("./lib/phprtflite-1.2.0/lib/PHPRtfLite.php");
 	PHPRtfLite::registerAutoloader();
 	$rtf = new PHPRtfLite();
 	$sect = $rtf->addSection();
@@ -442,7 +447,7 @@ if (isset($_GET["team"])) {
   }
   
 	//Création des listes des auteurs appartenant à la collection spécifiée pour la liste
-  include "ExtractionHAL-auteurs.php";
+  include "/pvt/ExtractionHAL-auteurs.php";
   $listenominit = "~";
   $listenomcomp1 = "~";
   $listenomcomp2 = "~";
@@ -3697,9 +3702,9 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
   if (isset($_POST["soumis"]) || isset($_GET["team"])) {
     //Création de graphes
     //Librairies pChart
-    include("./pChart/class/pData.class.php");
-    include("./pChart/class/pDraw.class.php");
-    include("./pChart/class/pImage.class.php");
+    include("./lib/pChart/class/pData.class.php");
+    include("./lib/pChart/class/pDraw.class.php");
+    include("./lib/pChart/class/pImage.class.php");
 
     // Données année par type de publication
     $MyData = new pData();  
@@ -3725,7 +3730,7 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
     $myPicture->drawGradientArea(0,0,700,280,DIRECTION_VERTICAL,array("StartR"=>240,"StartG"=>240,"StartB"=>240,"EndR"=>180,"EndG"=>180,"EndB"=>180,"Alpha"=>100));
     $myPicture->drawGradientArea(0,0,700,280,DIRECTION_HORIZONTAL,array("StartR"=>240,"StartG"=>240,"StartB"=>240,"EndR"=>180,"EndG"=>180,"EndB"=>180,"Alpha"=>20));
     $myPicture->drawRectangle(0,0,699,279,array("R"=>0,"G"=>0,"B"=>0));
-    $myPicture->setFontProperties(array("FontName"=>"./pChart/fonts/corbel.ttf","FontSize"=>10));
+    $myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
 
     /* Turn of Antialiasing */
     $myPicture->Antialias = FALSE; 
@@ -3784,7 +3789,7 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
     $myPicture->drawGradientArea(0,0,700,280,DIRECTION_VERTICAL,array("StartR"=>240,"StartG"=>240,"StartB"=>240,"EndR"=>180,"EndG"=>180,"EndB"=>180,"Alpha"=>100));
     $myPicture->drawGradientArea(0,0,700,280,DIRECTION_HORIZONTAL,array("StartR"=>240,"StartG"=>240,"StartB"=>240,"EndR"=>180,"EndG"=>180,"EndB"=>180,"Alpha"=>20));
     $myPicture->drawRectangle(0,0,699,279,array("R"=>0,"G"=>0,"B"=>0));
-    $myPicture->setFontProperties(array("FontName"=>"./pChart/fonts/corbel.ttf","FontSize"=>10));
+    $myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
 
     /* Turn of Antialiasing */
     $myPicture->Antialias = FALSE; 
@@ -3818,7 +3823,7 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
 
     //Si choix sur tous les articles, camembert avec détails
     if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {
-      include("./pChart/class/pPie.class.php");
+      include("./lib/pChart/class/pPie.class.php");
       $i = 3;
       foreach($availableYears as $year => $nb){
         $MyData = new pData();
@@ -3865,11 +3870,11 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
         $myPicture->drawRectangle(0,0,349,229,array("R"=>0,"G"=>0,"B"=>0));
 
         /* Write the picture title */ 
-        $myPicture->setFontProperties(array("FontName"=>"./pChart/fonts/corbel.ttf","FontSize"=>10));
+        $myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
         $myPicture->drawText(175,40,"Détail TA".$year,array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
 
         /* Set the default font properties */ 
-        $myPicture->setFontProperties(array("FontName"=>"./pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>80,"G"=>80,"B"=>80));
+        $myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>80,"G"=>80,"B"=>80));
 
         /* Create the pPie object */ 
         $PieChart = new pPie($myPicture,$MyData);
@@ -3886,11 +3891,11 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
         $PieChart->draw3DPie(175,125,array("WriteValues"=>TRUE,"ValuePosition"=>PIE_VALUE_OUTSIDE,"ValueR"=>0,"ValueG"=>0,"ValueB"=>0,"DataGapAngle"=>10,"DataGapRadius"=>6,"Border"=>TRUE));
 
         /* Write the legend */
-        $myPicture->setFontProperties(array("FontName"=>"./pChart/fonts/corbel.ttf","FontSize"=>10));
+        $myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
         $myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"R"=>0,"G"=>0,"B"=>0,"Alpha"=>20));
 
         /* Write the legend box */ 
-        $myPicture->setFontProperties(array("FontName"=>"./pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>0,"G"=>0,"B"=>0));
+        $myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>0,"G"=>0,"B"=>0));
         $PieChart->drawPieLegend(30,200,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
 
         $myPicture->render('img/mypic'.$i.'_'.$team.'.png');
@@ -4121,7 +4126,7 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
         $myPicture->drawGradientArea(0,0,900,280,DIRECTION_VERTICAL,array("StartR"=>240,"StartG"=>240,"StartB"=>240,"EndR"=>180,"EndG"=>180,"EndB"=>180,"Alpha"=>100));
         $myPicture->drawGradientArea(0,0,900,280,DIRECTION_HORIZONTAL,array("StartR"=>240,"StartG"=>240,"StartB"=>240,"EndR"=>180,"EndG"=>180,"EndB"=>180,"Alpha"=>20));
         $myPicture->drawRectangle(0,0,899,279,array("R"=>0,"G"=>0,"B"=>0));
-        $myPicture->setFontProperties(array("FontName"=>"./pChart/fonts/corbel.ttf","FontSize"=>10));
+        $myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
 
         /* Turn of Antialiasing */
         $myPicture->Antialias = FALSE; 
