@@ -1247,7 +1247,7 @@ $chaine = "";
 
 //export en RTF
 $Fnm2 = "./HAL/publisHAL.rtf";
-require_once ("./HAL/phprtflite-1.2.0/lib/PHPRtfLite.php");
+require_once ("./lib/phprtflite-1.2.0/lib/PHPRtfLite.php");
 
 PHPRtfLite::registerAutoloader();
 $rtf = new PHPRtfLite();
