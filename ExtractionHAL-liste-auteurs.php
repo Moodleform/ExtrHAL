@@ -52,7 +52,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "ajout") {//Validation de l'a
 	$inF1 = fopen($Fnm1,"w");
 	fseek($inF, 0);
 	fseek($inF1, 0);
-	$chaine = "\xEF\xBB\xBF";
+	$chaine = "";
 	$chaine1 = "\xEF\xBB\xBF";
 	$chaine1 .= "Nom;Prénom;Secteur;Titre;Unité;UMR;Grade;Numeq;Eqrec;Collection HAL;Collection équipe HAL;Arrivée;Départ";
 	$chaine .= '<?php'.chr(13);
@@ -130,7 +130,7 @@ if (isset($_POST["modif"]) && $_POST["modif"] != "") {//Validation de la modific
 	$inF1 = fopen($Fnm1,"w");
 	fseek($inF, 0);
 	fseek($inF1, 0);
-	$chaine = "\xEF\xBB\xBF";
+	$chaine = "";
 	$chaine1 = "\xEF\xBB\xBF";
 	$chaine1 .= "Nom;Prénom;Secteur;Titre;Unité;UMR;Grade;Numeq;Eqrec;Collection HAL;Collection équipe HAL;Arrivée;Départ";
 	$chaine .= '<?php'.chr(13);
@@ -196,7 +196,7 @@ if (isset($_GET["suppr"]) && $_GET["suppr"] != "") {//Suppression d'une entrée
 	$inF1 = fopen($Fnm1,"w");
 	fseek($inF, 0);
 	fseek($inF1, 0);
-	$chaine = "\xEF\xBB\xBF";
+	$chaine = "";
 	$chaine1 = "\xEF\xBB\xBF";
 	$chaine1 .= "Nom;Prénom;Secteur;Titre;Unité;UMR;Grade;Numeq;Eqrec;Collection HAL;Collection équipe HAL;Arrivée;Départ";
 	$chaine .= '<?php'.chr(13);
@@ -318,11 +318,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "ajout") {//Ajout d'un auteur
 		<?php
 		//$cehval = "ECOBIO-PAYS";
 		if ((isset($_POST["cehval"]) && $_POST["cehval"] != "TE") || (isset($_GET["cehval"]) && $_GET["cehval"] != "TE")) {
-			if (isset($_POST["cehval"])) {
-				$cehval = $_POST["cehval"];
-			}else{
-				$cehval = $_GET["cehval"];
-			}
+			if (isset($_POST["cehval"])) {$cehval = $_POST["cehval"];}else{$cehval = $_GET["cehval"];}
 			$te = "";
 		}else{
 		 $te = "selected";
@@ -340,15 +336,29 @@ if (isset($_GET["action"]) && $_GET["action"] == "ajout") {//Ajout d'un auteur
 		<input type="submit" value="Valider" name="soumis">
 		</form>
 		<br><a href="ExtractionHAL-liste-auteurs.php?action=ajout&cehval=<?php echo($cehval);?>">Ajouter un auteur</a> - 
-		<a href="./pvt/ExtractionHAL-auteurs.csv">Exporter la liste au format CSV</a> - 
-		Importer une liste <a href="ExtractionHAL-liste-auteurs.php?action=importcomplet<?php echo($cehval);?>">entière</a> ou
-		compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?action=importpartiel<?php echo($cehval);?>">partielle</a>	 à partir d'un fichier csv ou txt (<i>cf. modèle</i>) - 
+		<a href="./pvt/ExtractionHAL-auteurs.csv">Exporter la liste au format CSV</a> -
+		<?php if ((isset($_POST["cehval"]) && $_POST["cehval"] != "TE") || (isset($_GET["cehval"]) && $_GET["cehval"] != "TE")){
+      if (isset($_POST["cehval"])) {$cehvalimp = $_POST["cehval"];}else{$cehvalimp = $_GET["cehval"];}
+		?>
+      Importer une liste <a href="ExtractionHAL-liste-auteurs.php?action=importcomplet&cehval=<?php echo($cehvalimp);?>">entière</a> ou
+      compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?action=importpartiel&cehval=<?php echo($cehvalimp);?>">partielle</a>	 à partir d'un fichier csv ou txt (<i>cf. modèle</i>) - 
+    <?php
+		}else{
+		?>
+      Importer une liste <a href="ExtractionHAL-liste-auteurs.php?action=importcomplet">entière</a> ou
+      compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?action=importpartiel">partielle</a>	 à partir d'un fichier csv ou txt (<i>cf. modèle</i>) - 
+    <?php
+		}
+		?> 
 		<br><br>
 		<?php if (isset($_GET["action"]) && $_GET["action"] == "importcomplet") {//Importation complète à partir d'un fichier CSV
     ?>
       <form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-liste-auteurs-import.php" enctype="multipart/form-data">
       Sélectionnez le fichier à importer :
       <input type="file" name="importcomplet" size="30" style="font-family: Corbel; font-size: 10pt;"><br>
+      <?php if (isset($_GET["cehval"]) && $_GET["cehval"] != "") {
+        echo('<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">');
+      }?>
       <input type="submit" value="Importer">
       </form>
       <?php
@@ -358,6 +368,9 @@ if (isset($_GET["action"]) && $_GET["action"] == "ajout") {//Ajout d'un auteur
       <form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-liste-auteurs-import.php" enctype="multipart/form-data">
       Sélectionnez le fichier à importer :
       <input type="file" name="importpartiel" size="30" style="font-family: Corbel; font-size: 10pt;"><br>
+      <?php if (isset($_GET["cehval"]) && $_GET["cehval"] != "") {
+        echo('<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">');
+      }?>
       <input type="submit" value="Importer">
       </form>
       <?php

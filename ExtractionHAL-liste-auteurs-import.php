@@ -204,5 +204,9 @@ if ($partiel != '') {//Import d'un fichier partiel
   fclose($inF1);
   fclose($handle);//fermeture du fichier
 }
-header("location:"."ExtractionHAL-liste-auteurs.php"); exit;
+if (isset($_POST["cehval"]) && $_POST["cehval"] != "") {
+  header("location:"."ExtractionHAL-liste-auteurs.php?cehval=".$_POST["cehval"]); exit;
+}else{
+  header("location:"."ExtractionHAL-liste-auteurs.php"); exit;
+}
 ?>
