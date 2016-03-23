@@ -380,29 +380,28 @@ if (isset($_GET["action"]) && $_GET["action"] == "ajout") {//Ajout d'un auteur
 		echo('<tr><td colspan="14" align="center">');
 		$total = count($AUTEURS_LISTE);
 		$iaff = 1;
+		$iaut = 0;
+		$text = '';
 		echo ('<b>Total de '.$total.' auteurs renseignés, toutes collections confondues</b>');
-		if (isset($cehval)) {
-			echo ('<br>Détail pour la collection '.$cehval);
-		}
-		echo('</td></tr>');
-		echo('<tr><td colspan="14">&nbsp;</td></tr>');
-		echo('<tr><td>&nbsp;</td>');
-		echo('<td valign=top><b>Nom</b></td>');
-		echo('<td valign=top><b>Prénom</b></td>');
-		echo('<td valign=top><b>Secteur</b></td>');
-		echo('<td valign=top><b>Titre</b></td>');
-		echo('<td valign=top><b>Unité</b></td>');
-		echo('<td valign=top><b>UMR</b></td>');
-		echo('<td valign=top><b>Grade</b></td>');
-		echo('<td valign=top><b>Numeq</b></td>');
-		echo('<td valign=top><b>Eqrec</b></td>');
-		echo('<td valign=top><b>Collection HAL</b></td>');
-		echo('<td valign=top><b>Collection équipe HAL</b></td>');
-		echo('<td valign=top><b>Arrivée</b></td>');
-		echo('<td valign=top><b>Départ</b></td>');
-		echo('<td valign=top>&nbsp;</td>');
-		echo('<td valign=top>&nbsp;</td>');
-		echo('</tr>');
+		$text .= '</td></tr>';
+		$text .= '<tr><td colspan="14">&nbsp;</td></tr>';
+		$text .= '<tr><td>&nbsp;</td>';
+		$text .= '<td valign=top><b>Nom</b></td>';
+		$text .= '<td valign=top><b>Prénom</b></td>';
+		$text .= '<td valign=top><b>Secteur</b></td>';
+		$text .= '<td valign=top><b>Titre</b></td>';
+		$text .= '<td valign=top><b>Unité</b></td>';
+		$text .= '<td valign=top><b>UMR</b></td>';
+		$text .= '<td valign=top><b>Grade</b></td>';
+		$text .= '<td valign=top><b>Numeq</b></td>';
+		$text .= '<td valign=top><b>Eqrec</b></td>';
+		$text .= '<td valign=top><b>Collection HAL</b></td>';
+		$text .= '<td valign=top><b>Collection équipe HAL</b></td>';
+		$text .= '<td valign=top><b>Arrivée</b></td>';
+		$text .= '<td valign=top><b>Départ</b></td>';
+		$text .= '<td valign=top>&nbsp;</td>';
+		$text .= '<td valign=top>&nbsp;</td>';
+		$text .= '</tr>';
 		//export CSV
     $Fnm1 = "./pvt/ExtractionHAL-auteurs.csv";
     $inF1 = fopen($Fnm1,"w");
@@ -419,23 +418,24 @@ if (isset($_GET["action"]) && $_GET["action"] == "ajout") {//Ajout d'un auteur
 				$aff = "oui";
 			}
 			if ($aff == "oui") {
-				echo('<tr><td valign=top>'.$iaff.'</td>');
-				echo('<td valign=top>'.mb_ucwords($AUTEURS_LISTE[$i]['nom']).'</td>');
-				echo('<td valign=top>'.mb_ucwords($AUTEURS_LISTE[$i]['prenom']).'</td>');
-				echo('<td valign=top>'.$AUTEURS_LISTE[$i]['secteur'].'</td>');
-				echo('<td valign=top>'.$AUTEURS_LISTE[$i]['titre'].'</td>');
-				echo('<td valign=top>'.$AUTEURS_LISTE[$i]['unite'].'</td>');
-				echo('<td valign=top>'.$AUTEURS_LISTE[$i]['umr'].'</td>');
-				echo('<td valign=top>'.$AUTEURS_LISTE[$i]['grade'].'</td>');
-				echo('<td valign=top>'.$AUTEURS_LISTE[$i]['numeq'].'</td>');
-				echo('<td valign=top>'.$AUTEURS_LISTE[$i]['eqrec'].'</td>');
-				echo('<td valign=top>'.$AUTEURS_LISTE[$i]['collhal'].'</td>');
-				echo('<td valign=top>'.$AUTEURS_LISTE[$i]['colleqhal'].'</td>');
-				echo('<td valign=top>'.$AUTEURS_LISTE[$i]['arriv'].'</td>');
-				echo('<td valign=top>'.$AUTEURS_LISTE[$i]['depar'].'</td>');
-				echo('<td valign=top><a href="ExtractionHAL-liste-auteurs.php?modif='.$i.'&cehval='.$cehval.'">Modifier</a></td>');
-				echo('<td valign=top><a href="ExtractionHAL-liste-auteurs.php?suppr='.$i.'&cehval='.$cehval.'" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette entrée ?\');">Supprimer</a></td>');
-				echo('</tr>');
+        $iaut += 1;
+				$text .= '<tr><td valign=top>'.$iaff.'</td>';
+				$text .= '<td valign=top>'.mb_ucwords($AUTEURS_LISTE[$i]['nom']).'</td>';
+				$text .= '<td valign=top>'.mb_ucwords($AUTEURS_LISTE[$i]['prenom']).'</td>';
+				$text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['secteur'].'</td>';
+				$text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['titre'].'</td>';
+				$text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['unite'].'</td>';
+				$text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['umr'].'</td>';
+				$text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['grade'].'</td>';
+				$text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['numeq'].'</td>';
+				$text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['eqrec'].'</td>';
+				$text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['collhal'].'</td>';
+				$text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['colleqhal'].'</td>';
+				$text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['arriv'].'</td>';
+				$text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['depar'].'</td>';
+				$text .= '<td valign=top><a href="ExtractionHAL-liste-auteurs.php?modif='.$i.'&cehval='.$cehval.'">Modifier</a></td>';
+				$text .= '<td valign=top><a href="ExtractionHAL-liste-auteurs.php?suppr='.$i.'&cehval='.$cehval.'" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette entrée ?\');">Supprimer</a></td>';
+				$text .= '</tr>';
         $chaine1 = mb_ucwords($AUTEURS_LISTE[$i]["nom"]).';';
         $chaine1 .= mb_ucwords($AUTEURS_LISTE[$i]["prenom"]).';';
         $chaine1 .= $AUTEURS_LISTE[$i]["secteur"].';';
@@ -454,8 +454,12 @@ if (isset($_GET["action"]) && $_GET["action"] == "ajout") {//Ajout d'un auteur
         $iaff += 1;
 			}
 		}
-		echo('</table>');
+		$text .= '</table>';
 		fclose($inF1);
+		if (isset($cehval)) {
+			echo ('<br>Détail pour la collection '.$cehval.' - '.$iaut.' auteurs renseignés');
+		}
+		echo $text;
 	}
 }
 ?>
