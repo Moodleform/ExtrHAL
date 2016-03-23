@@ -25,6 +25,7 @@ array_multisort($AUTEURS_LISTE);
 if (isset($_GET["erreur"])) {
 	$erreur = $_GET["erreur"];
 	if ($erreur == "extfic") {echo('<script type="text/javascript">alert("Vous ne pouvez importer que des fichiers de type csv ou txt !")</script>');}
+	if ($erreur == "nulfic") {echo('<script type="text/javascript">alert("Le fichier csv ou txt est vide !")</script>');}
 }
 
 
@@ -187,7 +188,7 @@ if (isset($_GET["suppr"]) && $_GET["suppr"] != "") {//Suppression d'une entrée
 	}
 	unset($AUTEURS_LISTE[$suppr]);
 	$AUTEURS_LISTE = array_values($AUTEURS_LISTE);
-		$total = count($AUTEURS_LISTE);
+	$total = count($AUTEURS_LISTE);
 	//export liste php et CSV
 	$Fnm = "./pvt/ExtractionHAL-auteurs.php"; 
 	$Fnm1 = "./pvt/ExtractionHAL-auteurs.csv";
@@ -340,13 +341,23 @@ if (isset($_GET["action"]) && $_GET["action"] == "ajout") {//Ajout d'un auteur
 		</form>
 		<br><a href="ExtractionHAL-liste-auteurs.php?action=ajout&cehval=<?php echo($cehval);?>">Ajouter un auteur</a> - 
 		<a href="./pvt/ExtractionHAL-auteurs.csv">Exporter la liste au format CSV</a> - 
-		<a href="ExtractionHAL-liste-auteurs.php?action=import<?php echo($cehval);?>">Importer une liste à partir d'un fichier csv ou txt (<i>cf. modèle</i>)</a>
+		Importer une liste <a href="ExtractionHAL-liste-auteurs.php?action=importcomplet<?php echo($cehval);?>">entière</a> ou
+		compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?action=importpartiel<?php echo($cehval);?>">partielle</a>	 à partir d'un fichier csv ou txt (<i>cf. modèle</i>) - 
 		<br><br>
-		<?php if (isset($_GET["action"]) && $_GET["action"] == "import") {//Importation à partir d'un fichier CSV
+		<?php if (isset($_GET["action"]) && $_GET["action"] == "importcomplet") {//Importation complète à partir d'un fichier CSV
     ?>
       <form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-liste-auteurs-import.php" enctype="multipart/form-data">
       Sélectionnez le fichier à importer :
-      <input type="file" name="importfic" size="30" style="font-family: Corbel; font-size: 10pt;"><br>
+      <input type="file" name="importcomplet" size="30" style="font-family: Corbel; font-size: 10pt;"><br>
+      <input type="submit" value="Importer">
+      </form>
+      <?php
+    }
+    if (isset($_GET["action"]) && $_GET["action"] == "importpartiel") {//Importation partielle à partir d'un fichier CSV
+    ?>
+      <form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-liste-auteurs-import.php" enctype="multipart/form-data">
+      Sélectionnez le fichier à importer :
+      <input type="file" name="importpartiel" size="30" style="font-family: Corbel; font-size: 10pt;"><br>
       <input type="submit" value="Importer">
       </form>
       <?php
