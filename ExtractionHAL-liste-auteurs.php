@@ -379,6 +379,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "ajout") {//Ajout d'un auteur
 		echo('<table width="100%">');
 		echo('<tr><td colspan="14" align="center">');
 		$total = count($AUTEURS_LISTE);
+		$iaff = 1;
 		echo ('<b>Total de '.$total.' auteurs renseignés, toutes collections confondues</b>');
 		if (isset($cehval)) {
 			echo ('<br>Détail pour la collection '.$cehval);
@@ -418,7 +419,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "ajout") {//Ajout d'un auteur
 				$aff = "oui";
 			}
 			if ($aff == "oui") {
-				echo('<tr><td valign=top>'.$i.'</td>');
+				echo('<tr><td valign=top>'.$iaff.'</td>');
 				echo('<td valign=top>'.mb_ucwords($AUTEURS_LISTE[$i]['nom']).'</td>');
 				echo('<td valign=top>'.mb_ucwords($AUTEURS_LISTE[$i]['prenom']).'</td>');
 				echo('<td valign=top>'.$AUTEURS_LISTE[$i]['secteur'].'</td>');
@@ -450,6 +451,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "ajout") {//Ajout d'un auteur
         $chaine1 .= $AUTEURS_LISTE[$i]["depar"];
         $chaine1 .= chr(13);
         fwrite($inF1,$chaine1);
+        $iaff += 1;
 			}
 		}
 		echo('</table>');
