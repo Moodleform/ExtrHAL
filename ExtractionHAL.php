@@ -447,7 +447,7 @@ if (isset($_GET["team"])) {
   }
   
 	//Création des listes des auteurs appartenant à la collection spécifiée pour la liste
-  include "/pvt/ExtractionHAL-auteurs.php";
+  include "./pvt/ExtractionHAL-auteurs.php";
   $listenominit = "~";
   $listenomcomp1 = "~";
   $listenomcomp2 = "~";
@@ -2242,6 +2242,8 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
           $entryInfo .= ", in press";
           $chaine2 .= $delim;
         }
+      }else{
+        $chaine2 .= $delim;
       }
 
       //Adding $dateprod (=producedDateY_i ou conferenceEndDateY_i):
@@ -2417,7 +2419,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
             break;
           }
         }
-        $chaine2 .= $delim;
+        if ($rtfaeres == "") {$chaine2 .= $delim;}
       }else{
         $chaine2 .= $delim;
       }
@@ -2434,7 +2436,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
             break;
           }
         }
-        $chaine2 .= $delim;
+        if ($rtfcnrs == "") {$chaine2 .= $delim;}
       }else{
         $chaine2 .= $delim;
       }
