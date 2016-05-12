@@ -1,6 +1,6 @@
 <?php
 /*
-* ExtrHAL - version du 18/03/2016
+* ExtrHAL - version du 12/05/2016
 */
 ?>
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -163,7 +163,7 @@ function nomCompEntier($nom) {
 }
 
 if (isset($_POST["soumis"])) {
-  $team = $_POST["team"];
+  $team = strtoupper($_POST["team"]);
 
 	//export Bibtex
 	$Fnm2 = "./HAL/extractionHAL_".$team.".bib"; 
@@ -196,7 +196,7 @@ if (isset($_POST["soumis"])) {
 	}
 	$urlsauv = $root."://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
   $urlsauv .= "?team=".$team;
-  $listaut = $_POST["listaut"];
+  $listaut = strtoupper($_POST["listaut"]);
   if ($listaut == "") {$listaut = $team;}
   $urlsauv .= "&listaut=".$listaut;
   $choix_publis = "-";
@@ -365,15 +365,15 @@ if (isset($_POST["soumis"])) {
     $gr = "¤".$team."¤";
     for($i = 1; $i <= $nbeqp; $i++) { 
       //$gr = "¤GR¤GR1¤GR2¤GR3¤GR4¤GR5¤GR6¤GR7¤GR8¤GR9¤";
-      $gr .= $_POST['eqp'.$i]."¤";
-      $nomeqp[$i] = $_POST['eqp'.$i];
+      $gr .= strtoupper($_POST['eqp'.$i])."¤";
+      $nomeqp[$i] = strtoupper($_POST['eqp'.$i]);
       $urlsauv .= "&eqp".$i."=".$nomeqp[$i];
     }
   }
 }
 
 if (isset($_GET["team"])) {
-  $team = $_GET["team"];
+  $team = strtoupper($_GET["team"]);
 
 	//export Bibtex
 	$Fnm2 = "./HAL/extractionHAL_".$team.".bib"; 
@@ -406,7 +406,7 @@ if (isset($_GET["team"])) {
 	}
 	$urlsauv = $root."://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 	$urlsauv .= "?team=".$team;
-  $listaut = $_GET["listaut"];
+  $listaut = strtoupper($_GET["listaut"]);
   if ($listaut == "") {$listaut = $team;}
   $urlsauv .= "&listaut=".$listaut;
   $publis = $_GET["publis"];//Articles de revue
@@ -1261,7 +1261,7 @@ if (isset($prefeq) && $prefeq == "non" || !isset($team)) {$prefn = "checked";}el
 if (isset($typeqp) && $typeqp == "oui") {//Numérotation/codification par équipe
   if (isset($_POST["soumis"])) {
     for($i = 1; $i <= $nbeqp; $i++) {
-      echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Nom HAL équipe '.$i.' : <input type="text" name="eqp'.$i.'" value = "'.$_POST['eqp'.$i].'" size="30"><br>');
+      echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Nom HAL équipe '.$i.' : <input type="text" name="eqp'.$i.'" value = "'.strtoupper($_POST['eqp'.$i]).'" size="30"><br>');
     }
     echo('<br>');
     echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Limiter l\'affichage seulement aux publications croisées :');
@@ -1550,9 +1550,9 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
           $listColl .= "~".$coll."~";
             for($i = 1; $i <= $nbeqp; $i++) {
               if (isset($_POST["soumis"])) {
-                if ($coll == $_POST['eqp'.$i]) {
+                if ($coll == strtoupper($_POST['eqp'.$i])) {
                   $entryInfo .= "GR".$i." - ¤ - ";
-                  $eqpgr = $_POST['eqp'.$i];
+                  $eqpgr = strtoupper($_POST['eqp'.$i]);
                   break;
                 }
               }
@@ -2440,7 +2440,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
       }else{
         $chaine2 .= $delim;
       }
-      
+
       //Corrections diverses
       $entryInfo =str_replace("..", ".", $entryInfo);
       $entryInfo =str_replace(", .", ".", $entryInfo);
