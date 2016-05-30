@@ -187,7 +187,7 @@ if (isset($_GET['auteur_exp']) && ($_GET['auteur_exp'] != "")) {
 //année n ou n+1 ?
 if (date ('m') == 11 || date ('m') == 12) {
   $anneen = date('Y', time())+1;
-  $url = "http://api.archives-ouvertes.fr/search/?wt=xml&q=collCode_s:".$collection_exp."&rows=100000&fq=producedDate_s:".$anneen;
+  $url = "http://api.archives-ouvertes.fr/search/?wt=xml&q=collCode_s:".$collection_exp."&rows=100000&fq=producedDateY_i:".$anneen;
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -685,13 +685,13 @@ while (isset($labosur[$ii])) {
     $iann = $anneedeb;
     while ($iann <= $anneefin) {
       if ($iann == $anneedeb) {$URL .= " (";}else{$URL .= " OR";}
-      $URL .= ' producedDate_s:"'.$iann.'"';
+      $URL .= ' producedDateY_i:"'.$iann.'"';
       $iann++;
     }
     $URL .= ')';
   }else{
-    $URL .= 'producedDate_s:"'.$anneedeb.'"';
-    //if ($anneefin != "") {$URL .= ' OR producedDate_s:"'.$anneefin.'"';}
+    $URL .= 'producedDateY_i:"'.$anneedeb.'"';
+    //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
   }
 
   if ($auteur_exp != "") {
@@ -730,13 +730,13 @@ while (isset($labosur[$ii])) {
       $iann = $anneedeb;
       while ($iann <= $anneefin) {
         if ($iann == $anneedeb) {$URL .= " AND (";}else{$URL .= " OR";}
-        $URL .= ' producedDate_s:"'.$iann.'"';
+        $URL .= ' producedDateY_i:"'.$iann.'"';
         $iann++;
       }
       $URL .= ')';
     }else{
-      $URL .= ' AND producedDate_s:"'.$anneedeb.'"';
-      //if ($anneefin != "") {$URL .= ' OR producedDate_s:"'.$anneefin.'"';}
+      $URL .= ' AND producedDateY_i:"'.$anneedeb.'"';
+      //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
     }
   }
   
@@ -794,13 +794,13 @@ while (isset($labosur[$ii])) {
       $iann = $anneedeb;
       while ($iann <= $anneefin) {
         if ($iann == $anneedeb) {$URL .= " AND (";}else{$URL .= " OR";}
-        $URL .= ' producedDate_s:"'.$iann.'"';
+        $URL .= ' producedDateY_i:"'.$iann.'"';
         $iann++;
       }
       $URL .= ')';
     }else{
-      $URL .= ' AND producedDate_s:"'.$anneedeb.'"';
-      //if ($anneefin != "") {$URL .= ' OR producedDate_s:"'.$anneefin.'"';}
+      $URL .= ' AND producedDateY_i:"'.$anneedeb.'"';
+      //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
     }
   }
   
@@ -824,13 +824,13 @@ while (isset($labosur[$ii])) {
       $iann = $anneedeb;
       while ($iann <= $anneefin) {
         if ($iann == $anneedeb) {$URL .= " AND (";}else{$URL .= " OR";}
-        $URL .= ' producedDate_s:"'.$iann.'"';
+        $URL .= ' producedDateY_i:"'.$iann.'"';
         $iann++;
       }
       $URL .= ')';
     }else{
-      $URL .= ' AND producedDate_s:"'.$anneedeb.'"';
-      //if ($anneefin != "") {$URL .= ' OR producedDate_s:"'.$anneefin.'"';}
+      $URL .= ' AND producedDateY_i:"'.$anneedeb.'"';
+      //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
     }
   }
   
@@ -854,18 +854,18 @@ while (isset($labosur[$ii])) {
       $iann = $anneedeb;
       while ($iann <= $anneefin) {
         if ($iann == $anneedeb) {$URL .= " AND (";}else{$URL .= " OR";}
-        $URL .= ' producedDate_s:"'.$iann.'"';
+        $URL .= ' producedDateY_i:"'.$iann.'"';
         $iann++;
       }
       $URL .= ')';
     }else{
-      $URL .= ' AND producedDate_s:"'.$anneedeb.'"';
-      //if ($anneefin != "") {$URL .= ' OR producedDate_s:"'.$anneefin.'"';}
+      $URL .= ' AND producedDateY_i:"'.$anneedeb.'"';
+      //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
     }
   }
 
 
-  $URL .= '&fl=title_s,subTitle_s,label_s,producedDate_s,uri_s,journalTitle_s,abstract_s,docType_s,doiId_s,keyword_s,authFullName_s,bookTitle_s,conferenceTitle_s,fileMain_s,files_s,halId_s,label_bibtex,volume_s,issue_s,page_s,journalPublisher_s,scientificEditor_s,pubmedId_s,audience_s,peerReviewing_s,authIdHalFullName_fs,authFirstName_s&sort=auth_sort asc';
+  $URL .= '&fl=title_s,subTitle_s,label_s,producedDateY_i,uri_s,journalTitle_s,abstract_s,docType_s,doiId_s,keyword_s,authFullName_s,bookTitle_s,conferenceTitle_s,fileMain_s,files_s,halId_s,label_bibtex,volume_s,issue_s,page_s,journalPublisher_s,scientificEditor_s,pubmedId_s,audience_s,peerReviewing_s,authIdHalFullName_fs,authFirstName_s&sort=auth_sort asc';
   $URL = str_replace(" ", "%20", $URL);
   //echo ("toto : ".$URL);
   
