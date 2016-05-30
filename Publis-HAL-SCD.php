@@ -187,7 +187,7 @@ if (isset($_GET['auteur_exp']) && ($_GET['auteur_exp'] != "")) {
 //année n ou n+1 ?
 if (date ('m') == 11 || date ('m') == 12) {
   $anneen = date('Y', time())+1;
-  $url = "http://api.archives-ouvertes.fr/search/?wt=xml&q=collCode_s:".$collection_exp."&rows=100000&fq=producedDateY_i:".$anneen;
+  $url = "http://api.archives-ouvertes.fr/search/?wt=xml&q=collCode_s:".$collection_exp."&rows=100000&fq=producedDate_s:".$anneen;
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -234,6 +234,12 @@ if (isset($_GET['form']) && ($_GET['form'] != "")) {
 if (isset($_GET['authidhal']) && ($_GET['authidhal'] != "")) {
   $form = "aucun";
 }
+if (isset($_GET['authidhali']) && ($_GET['authidhali'] != "")) {
+  $form = "aucun";
+}
+if (isset($_GET['authid']) && ($_GET['authid'] != "")) {
+  $form = "aucun";
+}
 if (isset($_GET['collection_exp']) && ($_GET['collection_exp'] == "") && isset($_GET['auteur_exp']) && ($_GET['auteur_exp'] != "")) {
   $form = "aucun";
 }
@@ -275,10 +281,22 @@ if (isset($_GET['lienpubmed']) && ($_GET['lienpubmed'] != "")) {
   $lienpubmed = $_GET['lienpubmed'];
 }
 
-//Identifiant auteur
+//Identifiant "string" HAL auteur
 $authidhal = "";
 if (isset($_GET['authidhal']) && ($_GET['authidhal'] != "")) {
   $authidhal = $_GET['authidhal'];
+}
+
+//Identifiant "num" HAL auteur
+$authidhali = "";
+if (isset($_GET['authidhali']) && ($_GET['authidhali'] != "")) {
+  $authidhali = $_GET['authidhali'];
+}
+
+//Identifiant "num" HAL auteur
+$authid = "";
+if (isset($_GET['authid']) && ($_GET['authid'] != "")) {
+  $authidhali = $_GET['authid'];
 }
 
 //années à exclure > ex: &annee_excl=(2013,2010)
@@ -546,7 +564,7 @@ if ($typform == $form9s) {//formulaire de recherche complet
     while ($i >= $anneen - $nbanneesfs) {
       //on vérifie si ce n'est pas une année à exclure
       if (strpos($annee_excl, strval($i)) === false) {
-        $text .= "<a href=\"?labo=".$labo."&collection_exp=".$collection_exp."&equipe_recherche_exp=".$equipe_recherche_exp."&auteur_exp=".$auteur_exp."&mailto=".$mailto."&lang=".$lang."&css=".$css."&form=".$form."&tous=".$tous."&annee_publideb=".$annee_publideb."&anneedep=".$anneedep."&lim_aut=".$lim_aut."&annee_excl=".$annee_excl."&bt=".$bt."&presbib=".$presbib."&labocrit=".$labocrit."&typdoc=".$typdoc."&typform=".$typform."&anneedeb=".$i."&anneefin=".$i."&titre=".$titre."&aut=".$aut."&authidhal=".$authidhal."&lienpubmed=".$lienpubmed."&mef=".$mef."&detail=".$detail."&ipas=".$ipas."&acc=noninit\">".$i."</a>&nbsp;&nbsp;&nbsp;\r\n";
+        $text .= "<a href=\"?labo=".$labo."&collection_exp=".$collection_exp."&equipe_recherche_exp=".$equipe_recherche_exp."&auteur_exp=".$auteur_exp."&mailto=".$mailto."&lang=".$lang."&css=".$css."&form=".$form."&tous=".$tous."&annee_publideb=".$annee_publideb."&anneedep=".$anneedep."&lim_aut=".$lim_aut."&annee_excl=".$annee_excl."&bt=".$bt."&presbib=".$presbib."&labocrit=".$labocrit."&typdoc=".$typdoc."&typform=".$typform."&anneedeb=".$i."&anneefin=".$i."&titre=".$titre."&aut=".$aut."&authidhal=".$authidhal."&authidhali=".$authidhali."&authid=".$authid."&lienpubmed=".$lienpubmed."&mef=".$mef."&detail=".$detail."&ipas=".$ipas."&acc=noninit\">".$i."</a>&nbsp;&nbsp;&nbsp;\r\n";
       }
       $i--;
     }
@@ -667,13 +685,13 @@ while (isset($labosur[$ii])) {
     $iann = $anneedeb;
     while ($iann <= $anneefin) {
       if ($iann == $anneedeb) {$URL .= " (";}else{$URL .= " OR";}
-      $URL .= ' producedDateY_i:"'.$iann.'"';
+      $URL .= ' producedDate_s:"'.$iann.'"';
       $iann++;
     }
     $URL .= ')';
   }else{
-    $URL .= 'producedDateY_i:"'.$anneedeb.'"';
-    //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
+    $URL .= 'producedDate_s:"'.$anneedeb.'"';
+    //if ($anneefin != "") {$URL .= ' OR producedDate_s:"'.$anneefin.'"';}
   }
 
   if ($auteur_exp != "") {
@@ -712,13 +730,13 @@ while (isset($labosur[$ii])) {
       $iann = $anneedeb;
       while ($iann <= $anneefin) {
         if ($iann == $anneedeb) {$URL .= " AND (";}else{$URL .= " OR";}
-        $URL .= ' producedDateY_i:"'.$iann.'"';
+        $URL .= ' producedDate_s:"'.$iann.'"';
         $iann++;
       }
       $URL .= ')';
     }else{
-      $URL .= ' AND producedDateY_i:"'.$anneedeb.'"';
-      //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
+      $URL .= ' AND producedDate_s:"'.$anneedeb.'"';
+      //if ($anneefin != "") {$URL .= ' OR producedDate_s:"'.$anneefin.'"';}
     }
   }
   
@@ -759,7 +777,7 @@ while (isset($labosur[$ii])) {
   if ($authidhal != "") {
     //On limite l'URL à juste une recherche sur authIdHal_s
     $URL = $root.'://api.archives-ouvertes.fr/search/?wt=xml&rows=100000&fq=';
-    if (strpos($halid, ",") === false) {
+    if (strpos($authidhal, ",") === false) {
       $URL .= 'authIdHal_s:"'.$authidhal.'"';
     }else{
       $diffauthidhal = explode(",", $authidhal);
@@ -776,17 +794,78 @@ while (isset($labosur[$ii])) {
       $iann = $anneedeb;
       while ($iann <= $anneefin) {
         if ($iann == $anneedeb) {$URL .= " AND (";}else{$URL .= " OR";}
-        $URL .= ' producedDateY_i:"'.$iann.'"';
+        $URL .= ' producedDate_s:"'.$iann.'"';
         $iann++;
       }
       $URL .= ')';
     }else{
-      $URL .= ' AND producedDateY_i:"'.$anneedeb.'"';
-      //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
+      $URL .= ' AND producedDate_s:"'.$anneedeb.'"';
+      //if ($anneefin != "") {$URL .= ' OR producedDate_s:"'.$anneefin.'"';}
+    }
+  }
+  
+  if ($authidhali != "") {
+    //On limite l'URL à juste une recherche sur authIdHal_i
+    $URL = $root.'://api.archives-ouvertes.fr/search/?wt=xml&rows=100000&fq=';
+    if (strpos($authidhali, ",") === false) {
+      $URL .= 'authIdHal_i:"'.$authidhali.'"';
+    }else{
+      $diffauthidhali = explode(",", $authidhali);
+      $ihal = 0;
+      while (isset($diffauthidhali[$ihal])) {
+        if ($ihal == 0) {$URL .= " (";}else{$URL .= " OR";}
+        $halid = $authidhali[$ihal];
+        $URL .= ' authIdHal_i:"'.$halid.'"';
+        $ihal++;
+      }
+      $URL .= ')';
+    }
+    if ($anneedeb != $anneefin) {
+      $iann = $anneedeb;
+      while ($iann <= $anneefin) {
+        if ($iann == $anneedeb) {$URL .= " AND (";}else{$URL .= " OR";}
+        $URL .= ' producedDate_s:"'.$iann.'"';
+        $iann++;
+      }
+      $URL .= ')';
+    }else{
+      $URL .= ' AND producedDate_s:"'.$anneedeb.'"';
+      //if ($anneefin != "") {$URL .= ' OR producedDate_s:"'.$anneefin.'"';}
+    }
+  }
+  
+  if ($authid != "") {
+    //On limite l'URL à juste une recherche sur authId_i
+    $URL = $root.'://api.archives-ouvertes.fr/search/?wt=xml&rows=100000&fq=';
+    if (strpos($authid, ",") === false) {
+      $URL .= 'authId_i:"'.$authid.'"';
+    }else{
+      $diffauthid = explode(",", $authid);
+      $ihal = 0;
+      while (isset($diffauthid[$ihal])) {
+        if ($ihal == 0) {$URL .= " (";}else{$URL .= " OR";}
+        $halid = $authid[$ihal];
+        $URL .= ' authId_i:"'.$halid.'"';
+        $ihal++;
+      }
+      $URL .= ')';
+    }
+    if ($anneedeb != $anneefin) {
+      $iann = $anneedeb;
+      while ($iann <= $anneefin) {
+        if ($iann == $anneedeb) {$URL .= " AND (";}else{$URL .= " OR";}
+        $URL .= ' producedDate_s:"'.$iann.'"';
+        $iann++;
+      }
+      $URL .= ')';
+    }else{
+      $URL .= ' AND producedDate_s:"'.$anneedeb.'"';
+      //if ($anneefin != "") {$URL .= ' OR producedDate_s:"'.$anneefin.'"';}
     }
   }
 
-  $URL .= '&fl=title_s,subTitle_s,label_s,producedDateY_i,uri_s,journalTitle_s,abstract_s,docType_s,doiId_s,keyword_s,authFullName_s,bookTitle_s,conferenceTitle_s,fileMain_s,files_s,halId_s,label_bibtex,volume_s,issue_s,page_s,journalPublisher_s,scientificEditor_s,pubmedId_s,audience_s,peerReviewing_s,authIdHalFullName_fs,authFirstName_s&sort=auth_sort asc';
+
+  $URL .= '&fl=title_s,subTitle_s,label_s,producedDate_s,uri_s,journalTitle_s,abstract_s,docType_s,doiId_s,keyword_s,authFullName_s,bookTitle_s,conferenceTitle_s,fileMain_s,files_s,halId_s,label_bibtex,volume_s,issue_s,page_s,journalPublisher_s,scientificEditor_s,pubmedId_s,audience_s,peerReviewing_s,authIdHalFullName_fs,authFirstName_s&sort=auth_sort asc';
   $URL = str_replace(" ", "%20", $URL);
   //echo ("toto : ".$URL);
   
@@ -1578,7 +1657,7 @@ if ($halid == "") {
     $ideb = ($ipas * $i) + 1;
     $ifin = $ideb + $ipas - 1;
     if ($ifin > $irec) {$ifin = $irec;}
-    $text .= "<a href=\"?labo=".$labo."&collection_exp=".$collection_exp."&equipe_recherche_exp=".$equipe_recherche_exp."&auteur_exp=".$auteur_exp."&mailto=".$mailto."&lang=".$lang."&css=".$css."&form=".$form."&tous=".$tous."&annee_publideb=".$annee_publideb."&anneedep=".$anneedep."&lim_aut=".$lim_aut."&annee_excl=".$annee_excl."&bt=".$bt."&presbib=".$presbib."&labocrit=".$labocrit."&typdoc=".$typdocinit."&anneedeb=".$anneedeb."&anneefin=".$anneefin."&titre=".$titre."&aut=".$aut."&ipas=".$ipas."&ideb=".$ideb."&ifin=".$ifin."&authidhal=".$authidhal."&lienpubmed=".$lienpubmed."&mef=".$mef."&detail=".$detail."&typform=".$typform."&acc=noninit\">".$ideb."-".$ifin."</a>&nbsp;&nbsp;&nbsp;\r\n";
+    $text .= "<a href=\"?labo=".$labo."&collection_exp=".$collection_exp."&equipe_recherche_exp=".$equipe_recherche_exp."&auteur_exp=".$auteur_exp."&mailto=".$mailto."&lang=".$lang."&css=".$css."&form=".$form."&tous=".$tous."&annee_publideb=".$annee_publideb."&anneedep=".$anneedep."&lim_aut=".$lim_aut."&annee_excl=".$annee_excl."&bt=".$bt."&presbib=".$presbib."&labocrit=".$labocrit."&typdoc=".$typdocinit."&anneedeb=".$anneedeb."&anneefin=".$anneefin."&titre=".$titre."&aut=".$aut."&ipas=".$ipas."&ideb=".$ideb."&ifin=".$ifin."&authidhal=".$authidhal."&authidhali=".$authidhali."&authid=".$authid."&lienpubmed=".$lienpubmed."&mef=".$mef."&detail=".$detail."&typform=".$typform."&acc=noninit\">".$ideb."-".$ifin."</a>&nbsp;&nbsp;&nbsp;\r\n";
     $i++;
   }
   $text .= "<br><br></center></div></div></div></div>\r\n";
