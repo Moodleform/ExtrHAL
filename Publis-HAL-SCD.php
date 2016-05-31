@@ -740,11 +740,11 @@ while (isset($labosur[$ii])) {
     }
   }
   
-  if ($typdoc != "") {
-    if (strpos($typdoc, ",") === false) {
-      $URL .= ' AND docType_s:"'.$typdoc.'"';
+  if ($typdocinit != "") {
+    if (strpos($typdocinit, ",") === false) {
+      $URL .= ' AND docType_s:"'.$typdocinit.'"';
     }else{
-      $diffdoc = explode(",", $typdoc);
+      $diffdoc = explode(",", $typdocinit);
       $idoc = 0;
       while (isset($diffdoc[$idoc])) {
         if ($idoc == 0) {$URL .= " AND (";}else{$URL .= " OR";}
@@ -757,7 +757,7 @@ while (isset($labosur[$ii])) {
   }
 
   if ($halid != "") {
-    //On limite l'URL à juste une recherche sur halId_s
+    //On limite l'URL à juste une recherche sur halId_s, mais en ajoutant après le type de documents recherché
     $URL = $root.'://api.archives-ouvertes.fr/search/?wt=xml&rows=100000&fq=';
     if (strpos($halid, ",") === false) {
       $URL .= 'halId_s:"'.$halid.'"';
@@ -772,10 +772,26 @@ while (isset($labosur[$ii])) {
       }
       $URL .= ')';
     }
+    
+    if ($typdocinit != "") {
+      if (strpos($typdocinit, ",") === false) {
+        $URL .= ' AND docType_s:"'.$typdocinit.'"';
+      }else{
+        $diffdoc = explode(",", $typdocinit);
+        $idoc = 0;
+        while (isset($diffdoc[$idoc])) {
+          if ($idoc == 0) {$URL .= " AND (";}else{$URL .= " OR";}
+          $typdoc = $diffdoc[$idoc];
+          $URL .= ' docType_s:"'.$typdoc.'"';
+          $idoc++;
+        }
+        $URL .= ')';
+      }
+    }
   }
   
   if ($authidhal != "") {
-    //On limite l'URL à juste une recherche sur authIdHal_s
+    //On limite l'URL à juste une recherche sur authIdHal_s, mais en ajoutant après le type de documents recherché
     $URL = $root.'://api.archives-ouvertes.fr/search/?wt=xml&rows=100000&fq=';
     if (strpos($authidhal, ",") === false) {
       $URL .= 'authIdHal_s:"'.$authidhal.'"';
@@ -802,10 +818,26 @@ while (isset($labosur[$ii])) {
       $URL .= ' AND producedDateY_i:"'.$anneedeb.'"';
       //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
     }
+    
+    if ($typdocinit != "") {
+      if (strpos($typdocinit, ",") === false) {
+        $URL .= ' AND docType_s:"'.$typdocinit.'"';
+      }else{
+        $diffdoc = explode(",", $typdocinit);
+        $idoc = 0;
+        while (isset($diffdoc[$idoc])) {
+          if ($idoc == 0) {$URL .= " AND (";}else{$URL .= " OR";}
+          $typdoc = $diffdoc[$idoc];
+          $URL .= ' docType_s:"'.$typdoc.'"';
+          $idoc++;
+        }
+        $URL .= ')';
+      }
+    }
   }
   
   if ($authidhali != "") {
-    //On limite l'URL à juste une recherche sur authIdHal_i
+    //On limite l'URL à juste une recherche sur authIdHal_i, mais en ajoutant après le type de documents recherché
     $URL = $root.'://api.archives-ouvertes.fr/search/?wt=xml&rows=100000&fq=';
     if (strpos($authidhali, ",") === false) {
       $URL .= 'authIdHal_i:"'.$authidhali.'"';
@@ -832,10 +864,26 @@ while (isset($labosur[$ii])) {
       $URL .= ' AND producedDateY_i:"'.$anneedeb.'"';
       //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
     }
+    
+    if ($typdocinit != "") {
+      if (strpos($typdocinit, ",") === false) {
+        $URL .= ' AND docType_s:"'.$typdocinit.'"';
+      }else{
+        $diffdoc = explode(",", $typdocinit);
+        $idoc = 0;
+        while (isset($diffdoc[$idoc])) {
+          if ($idoc == 0) {$URL .= " AND (";}else{$URL .= " OR";}
+          $typdoc = $diffdoc[$idoc];
+          $URL .= ' docType_s:"'.$typdoc.'"';
+          $idoc++;
+        }
+        $URL .= ')';
+      }
+    }
   }
   
   if ($authid != "") {
-    //On limite l'URL à juste une recherche sur authId_i
+    //On limite l'URL à juste une recherche sur authId_i, mais en ajoutant après le type de documents recherché
     $URL = $root.'://api.archives-ouvertes.fr/search/?wt=xml&rows=100000&fq=';
     if (strpos($authid, ",") === false) {
       $URL .= 'authId_i:"'.$authid.'"';
@@ -861,6 +909,22 @@ while (isset($labosur[$ii])) {
     }else{
       $URL .= ' AND producedDateY_i:"'.$anneedeb.'"';
       //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
+    }
+    
+    if ($typdocinit != "") {
+      if (strpos($typdocinit, ",") === false) {
+        $URL .= ' AND docType_s:"'.$typdocinit.'"';
+      }else{
+        $diffdoc = explode(",", $typdocinit);
+        $idoc = 0;
+        while (isset($diffdoc[$idoc])) {
+          if ($idoc == 0) {$URL .= " AND (";}else{$URL .= " OR";}
+          $typdoc = $diffdoc[$idoc];
+          $URL .= ' docType_s:"'.$typdoc.'"';
+          $idoc++;
+        }
+        $URL .= ')';
+      }
     }
   }
 
