@@ -1467,7 +1467,6 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
    $results = json_decode($contents);
    $numFound=$results->response->numFound;
    
-   
    //Extracted fields depend on type of reference:
    $fields="docid,authFirstName_s,authLastName_s,authFullName_s,title_s,files_s,label_s,seeAlso_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
    if ($docType_s=="ART"){
@@ -1477,7 +1476,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
       $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,collCode_s,source_s,bookTitle_s,volume_s,issue_s,page_s,doiId_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
    }
    if ($docType_s=="POSTER"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,conferenceEndDateY_i,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,conferenceEndDateY_i,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s,source_s,volume_s,page_s";
    }
    if ($docType_s=="OTHER" or $docType_s=="OTHERREPORT"){
       $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,files_s,label_s,description_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
@@ -2164,6 +2163,33 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
       //if ($docType_s=="COMM" || $docType_s=="POSTER" || $docType_s == "COMM+POST"){
          //$entryInfo .= ", ".$entry->conferenceStartDate_s;
       //}
+      
+      //Ajout de l'identifiant et des actes pour les posters avec actes
+      if ($docType_s == "POSTER") {
+        //Adding source_s:
+        $chaine1 .= $delim."Source";
+        if($entry->source_s != ""){
+         $entryInfo .= " <i>".$entry->source_s."</i>,";
+         $chaine2 .= $delim.$entry->source_s;
+        }
+        $chaine2 .= $delim;
+        //Adding volume_s:
+        $chaine1 .= $delim."Volume";
+        if($entry->volume_s != ""){
+         $entryInfo .= " <i>".$entry->volume_s."</i>,";
+         $chaine2 .= $delim.$entry->volume_s;
+        }
+        $chaine2 .= $delim;
+        //Adding page_s:
+        $chaine1 .= $delim."Page/identifiant";
+        if($entry->page_s != ""){
+         $entryInfo .= " <i>pp.".$entry->page_s."</i>,";
+         $chaine2 .= $delim.$entry->page_s;
+        }
+        $chaine2 .= $delim;
+      }
+
+
 
       //Adding (avec acte)/(sans acte) pour les communications et posters
       if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
