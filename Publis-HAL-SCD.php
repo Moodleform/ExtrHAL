@@ -1138,7 +1138,7 @@ while (isset($labosur[$ii])) {
         $titrehref[$i] = "<a target='_blank' href='http://".$uri[$i]."'>".$titreseul[$i]."</a>".$presbib;
       }
     }
-    if(isset($doi[$i])) {$doinit[$i] = $doi[$i]; $doi[$i] = "DOI : <a target='_blank' href='http://dx.doi.org/".$doi[$i]."'>".$doi[$i]."</a>".$presbib;}
+    if(isset($doi[$i])) {$doinit[$i] = $doi[$i]; $doi[$i] = "DOI : <a target='_blank' href='https://doi.org/".$doi[$i]."'>https://doi.org/".$doi[$i]."</a>".$presbib;}
     if(isset($pubmed[$i])) {$pubmedinit[$i] = $pubmed[$i]; $pubmed[$i] = "Pubmed : <a target='_blank' href='http://www.ncbi.nlm.nih.gov/pubmed/".$pubmed[$i]."'>".$pubmed[$i]."</a>".$presbib;}
     if(isset($pdf1[$i])) {
       if(strpos($pdf1[$i], "http") !== false) {
