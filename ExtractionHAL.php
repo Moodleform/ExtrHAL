@@ -1,6 +1,6 @@
 <?php
 /*
-* ExtrHAL - version du 12/05/2016
+* ExtrHAL - version du 15/09/2016
 */
 ?>
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -2349,7 +2349,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
 						$fin = "</b></span>";
 					}
 				}
-        $entryInfo .= ". doi: <a target='_blank' href='http://dx.doi.org/".$entry->doiId_s."'>".$deb.$entry->doiId_s.$fin."</a>";
+        $entryInfo .= ". doi: <a target='_blank' href='https://doi.org/".$entry->doiId_s."'>".$deb."https://doi.org/".$entry->doiId_s.$fin."</a>";
         $rtfdoi = $entry->doiId_s;
         $chaine2 .= $delim.$entry->doiId_s;
       }else{
@@ -2700,7 +2700,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
            }
            if ($rtf[1] != "") {
               $sect->writeText(". doi: ", $font);
-              $sect->writeHyperLink("http://dx.doi.org/".$rtf[1], "<u>".$rtf[1]."</u>", $fontlien);
+              $sect->writeHyperLink("https://doi.org/".$rtf[1], "<u>https://doi.org/".$rtf[1]."</u>", $fontlien);
            }
            if ($rtf[12] != "") {
               $sect->writeText(". NNT: ", $font);
@@ -2813,7 +2813,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
            }
            if ($rtf[1] != "") {
               $sect->writeText(". doi: ", $font);
-              $sect->writeHyperLink("http://dx.doi.org/".$rtf[1], "<u>".$rtf[1]."</u>", $fontlien);
+              $sect->writeHyperLink("https://doi.org/".$rtf[1], "<u>https://doi.org/".$rtf[1]."</u>", $fontlien);
            }
            if ($rtf[12] != "") {
               $sect->writeText(". NNT: ", $font);
