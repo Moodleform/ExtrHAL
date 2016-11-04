@@ -1,6 +1,6 @@
 <?php
 /*
-* ExtrHAL - version du 15/09/2016
+* ExtrHAL - version du 07/10/2016
 */
 ?>
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -281,6 +281,7 @@ if (isset($_POST["soumis"])) {
   if (isset($_POST['depotfin'])) {$depotfin = $_POST['depotfin'];}
   // si depotdeb et depotfin non définis, on force depotdeb au 01/01/anneedeb et depotfin au 31/12/anneefin
   if ($depotdeb == '' && $depotfin == '') {
+    $depotforce = "oui";
     $depotdeb = date('d/m/Y', mktime(0, 0, 0, 1, 1, $anneedeb));
     $depotfin = date('d/m/Y', mktime(0, 0, 0, 12, 31, $anneefin));
   }
@@ -482,6 +483,7 @@ if (isset($_GET["team"])) {
   if (isset($_GET['depotfin'])) {$depotfin = $_GET['depotfin'];}
   // si depotdeb et depotfin non définis, on force depotdeb au 01/01/anneedeb et depotfin au 31/12/anneefin
   if ($depotdeb == '' && $depotfin == '') {
+    $depotforce = "oui";
     $depotdeb = date('d/m/Y', mktime(0, 0, 0, 1, 1, $anneedeb));
     $depotfin = date('d/m/Y', mktime(0, 0, 0, 12, 31, $anneefin));
   }
@@ -765,14 +767,22 @@ while ($i >= date('Y', time()) - 20) {
   echo('<option value='.$i.' '.$txt.'>'.$i.'</option>');
   $i--;
 }
+
+if ($depotforce == "oui") {
+  $depotdebval = "";
+  $depotfinval = "";
+}else{
+  $depotdebval = $depotdeb;
+  $depotfinval = $depotfin;
+}
 ?>
 </select></td></tr>
 <tr><td>Date de dépôt :</td>
 <td>
-Du <input type="text" name="depotdeb" value="<?php echo $depotdeb;?>" class="calendrier">
+Du <input type="text" name="depotdeb" value="<?php echo $depotdebval;?>" class="calendrier">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Jusqu'au 
-<input type="text" name="depotfin" value="<?php echo $depotfin;?>" class="calendrier">
+<input type="text" name="depotfin" value="<?php echo $depotfinval;?>" class="calendrier">
 </td></tr></table><br>
 <br>
 <?php
