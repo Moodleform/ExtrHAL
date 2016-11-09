@@ -2001,7 +2001,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
               }
            }
          }else{
-          $entryInfo .= ' in press';
+          if ($docType_s=="ART") {$entryInfo .= ' in press';}
           $chaine2 .= $delim;
          }
       }else{
