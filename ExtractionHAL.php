@@ -572,7 +572,14 @@ if (isset($_GET["team"])) {
 ?>
 
 <body style="font-family:calibri,verdana">
-<h1>ExtrHAL : outil d’extraction des publications HAL d’une unité ou équipe de recherche</h1>
+
+<table width="100%">
+<tr>
+<td style="text-align: left;"><img alt="ExtrHAL" title="ExtrHAL" width="250px" src="./img/logo_Extrhal.png"></td>
+<td style="text-align: right;"><img alt="Université de Rennes 1" title="Université de Rennes 1" width="150px" src="./img/logo_UR1_gris_petit.jpg"></td>
+</tr>
+</table>
+<hr style="color: #467666;">
 
 <p>Cette page permet d’afficher et d’exporter en RTF,CSV et/ou Bibtex des listes de publications HAL d’une unité ou équipe de recherche, 
 à partir d’un script PHP créé par <a target="_blank" href="http://igm.univ-mlv.fr/~gambette/ExtractionHAL/ExtractionHAL.php?collection=UPEC-UPEM">
