@@ -1,6 +1,6 @@
 <?php
 /*
-* ExtrHAL - version du 13/12/2016
+* ExtrHAL - version du 14/12/2016
 */
 ?>
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -10,7 +10,7 @@
 
 
 <head>
-  <title>ExtrHAL : outil d’extraction des publications HAL d’une unité ou équipe de recherche</title>
+  <title>ExtrHAL : outil d’extraction des publications HAL d’une unité, d'une équipe de recherche ou d'un auteur</title>
   <meta name="Description" content="ExtrHAL : outil d’extraction des publications HAL d’une unité, d'une équipe de recherche ou d'un auteur">  
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -271,7 +271,7 @@ if (isset($_POST["soumis"])) {
 			}else{
         $moisactuel = date('n', time());
         if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
-        $depar = "~".$idepar."~";
+        $depar .= $idepar."~";
 			}
     }
   }
@@ -492,7 +492,7 @@ if (isset($_GET["team"])) {
 			}else{
         $moisactuel = date('n', time());
         if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
-        $depar = "~".$idepar."~";
+        $depar .= $idepar."~";
 			}
     }
   }
@@ -619,7 +619,7 @@ if (isset($_GET["team"])) {
 </table>
 <hr style="color: #467666;">
 
-<p>Cette page permet d’afficher et d’exporter en RTF,CSV et/ou Bibtex des listes de publications HAL d’une unité ou équipe de recherche, 
+<p>Cette page permet d’afficher et d’exporter en RTF,CSV et/ou Bibtex des listes de publications HAL d’une unité, d'une équipe de recherche ou d'un auteur, 
 à partir d’un script PHP créé par <a target="_blank" href="http://igm.univ-mlv.fr/~gambette/ExtractionHAL/ExtractionHAL.php?collection=UPEC-UPEM">
 Philippe Gambette</a>, repris et modifié par Olivier Troccaz (ECOBIO - OSUR) pour l’Université de Rennes 1. 
 Si vous souhaitez utiliser le script PHP pour une autre institution, consultez la 
@@ -640,10 +640,13 @@ le code collection de votre labo ou de votre équipe, selon que vous souhaitez m
 </span></a> :
 <input type="text" name="listaut" value="<?php echo $listaut;?>" size="40"><br>
 <h2><b><u>ou</u></b></h2>
-<p>Identifiant HAL (IdHAL) : 
-<input type="text" name="idhal" value="<?php echo $idhal;?>" size="40"><br><br>
+<p>Identifiant HAL auteur (IdHAL) : 
+<input type="text" name="idhal" value="<?php echo $idhal;?>" size="40">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="https://hal.archives-ouvertes.fr/page/mon-idhal">Créer mon IdHAL</a>
+<br><br>
 Auteur correspondant à l'IdHAL à mettre en évidence <i>(Prénom Nom)</i> : 
-<input type="text" name="evhal" value="<?php echo $evhal;?>" size="40"></p><br>
+<input type="text" name="evhal" value="<?php echo $evhal;?>" size="40"></p>
+<br>
 <br>
 <?php
 if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {$ta = "selected";}else{$ta = "";}
@@ -1674,6 +1677,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
 							$crit = strpos($arriv, '~', $crit+1);
 							//echo 'toto : '.strlen($arriv).' - '.$crit.'<br>';
 							//echo 'toto : '.$arriv.'<br>';
+							//echo 'toto : '.$depar.'<br>';
 						}
 						$datearriv = substr($arriv, $crit-4, 4);
 						$datedepar = substr($depar, $crit-4, 4);
