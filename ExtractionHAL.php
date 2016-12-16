@@ -163,8 +163,8 @@ function nomCompEntier($nom) {
 }
 
 if (isset($_POST["soumis"])) {
-  $team = strtoupper($_POST["team"]);
-  $idhal = $_POST["idhal"];
+  $team = strtoupper(htmlspecialchars($_POST["team"]));
+  $idhal = htmlspecialchars($_POST["idhal"]);
   if (isset($idhal) && $idhal != "") {$team = $idhal;}
 	//export Bibtex
 	$Fnm2 = "./HAL/extractionHAL_".$team.".bib"; 
@@ -197,11 +197,11 @@ if (isset($_POST["soumis"])) {
 	}
 	$urlsauv = $root."://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
   $urlsauv .= "?team=".$team;
-  $listaut = strtoupper($_POST["listaut"]);
+  $listaut = strtoupper(htmlspecialchars($_POST["listaut"]));
   if ($listaut == "") {$listaut = $team;}
   $urlsauv .= "&listaut=".$listaut;
   $urlsauv .= "&idhal=".$idhal;
-  $evhal = $_POST["evhal"];
+  $evhal = htmlspecialchars($_POST["evhal"]);
   $urlsauv .= "&evhal=".$evhal;
   $choix_publis = "-";
   $liste_publis = "~";
@@ -393,7 +393,7 @@ if (isset($_POST["soumis"])) {
 }
 
 if (isset($_GET["team"])) {
-  $team = strtoupper($_GET["team"]);
+  $team = strtoupper(htmlspecialchars($_GET["team"]));
   $idhal = $_GET["idhal"];
   if (isset($idhal) && $idhal != "") {$team = $idhal;}
 	//export Bibtex
