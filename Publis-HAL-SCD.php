@@ -49,11 +49,24 @@ function prenomCompEntier($prenom) {
     $postiret = strpos($prenom,"-");
     $autg = substr($prenom,0,$postiret);
     $autd = substr($prenom,($postiret+1),strlen($prenom));
-    $prenom = ucwords($autg)."-".ucwords($autd);
+    $prenom = mb_ucwords($autg)."-".mb_ucwords($autd);
   }else{
-    $prenom = ucwords($prenom);
+    $prenom = mb_ucwords($prenom);
   }
   return $prenom;
+}
+
+function nomCompEntier($nom) {
+  $nom = trim(mb_strtolower($nom,'UTF-8'));
+  if (strpos($nom,"-") !== false) {//Le nom comporte un tiret
+    $postiret = strpos($nom,"-");
+    $autg = substr($nom,0,$postiret);
+    $autd = substr($nom,($postiret+1),strlen($nom));
+    $nom = mb_ucwords($autg)."-".mb_ucwords($autd);
+  }else{
+    $nom = mb_ucwords($nom);
+  }
+  return $nom;
 }
 //Constantes générales
 if (isset($_GET['lang']) && ($_GET['lang'] != "")) {
@@ -173,6 +186,36 @@ if (isset($_GET['collection_exp']) && ($_GET['collection_exp'] != "")) {
   $collection_exp = strtoupper($_GET['collection_exp']);
   $priorite = "collection_exp";
   $entite = $collection_exp;
+	//Création des listes des auteurs appartenant à la collection spécifiée pour la liste
+  include "./pvt/ExtractionHAL-auteurs.php";
+  $listenominit = "~";
+  $listenominit2 = "~";
+  $listenomcomp1 = "~";
+  $listenomcomp2 = "~";
+	$arriv = "~";
+	$depar = "~";
+  foreach($AUTEURS_LISTE AS $i => $valeur) {
+    if ($AUTEURS_LISTE[$i]['collhal'] == $entite || $AUTEURS_LISTE[$i]['colleqhal'] == $entite) {
+      $listenomcomp1 .= nomCompEntier($AUTEURS_LISTE[$i]['nom'])." ".prenomCompEntier($AUTEURS_LISTE[$i]['prenom'])."~";
+      $listenomcomp2 .= prenomCompEntier($AUTEURS_LISTE[$i]['prenom'])." ".nomCompEntier($AUTEURS_LISTE[$i]['nom'])."~";
+      //si prénom composé et juste les ititiales
+      $prenom = prenomCompInit($AUTEURS_LISTE[$i]['prenom']);
+      $listenominit .= nomCompEntier($AUTEURS_LISTE[$i]['nom'])." ".$prenom."~";
+      $listenominit2 .= $prenom." ".nomCompEntier($AUTEURS_LISTE[$i]['nom'])."~";
+			if (isset($AUTEURS_LISTE[$i]['arriv']) && $AUTEURS_LISTE[$i]['arriv'] != "") {
+				$arriv .= $AUTEURS_LISTE[$i]['arriv']."~";
+			}else{
+				$arriv .= "1900~";
+			}
+			if (isset($AUTEURS_LISTE[$i]['depar']) && $AUTEURS_LISTE[$i]['depar'] != "") {
+				$depar .= $AUTEURS_LISTE[$i]['depar']."~";
+			}else{
+        $moisactuel = date('n', time());
+        if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
+        $depar .= $idepar."~";
+			}
+    }
+  }
 }
 $equipe_recherche_exp = "";
 if (isset($_GET['equipe_recherche_exp']) && ($_GET['equipe_recherche_exp'] != "")) {
@@ -1457,11 +1500,16 @@ for ($k = $ideb; $k <= $ifin; $k++) {
     }
     //si recherche sur plusieurs auteurs
     $autaff = $auteurs[$i];
-    if (isset($_GET['auteur_exp']) && ($_GET['auteur_exp'] != "")) {
-      //$auteur_exp_aff = wd_remove_accents(ucwords($_GET['auteur_exp']));
-      $auteur_exp_aff = ucwords($_GET['auteur_exp']);
-      $auteur_exp_aff_tab = explode(",", $auteur_exp_aff);
-      $ii = 0;
+    if (isset($_GET['auteur_exp']) && ($_GET['auteur_exp'] != "") || $listenominit2 != "") {
+      if (isset($_GET['auteur_exp']) && ($_GET['auteur_exp'] != "")) {
+        //$auteur_exp_aff = wd_remove_accents(ucwords($_GET['auteur_exp']));
+        $auteur_exp_aff = ucwords($_GET['auteur_exp']);
+        $auteur_exp_aff_tab = explode(",", $auteur_exp_aff);
+        $ii = 0;
+      }else{
+        $auteur_exp_aff_tab = explode("~", $listenominit2);
+        $ii = 1;
+      }
       while (isset($auteur_exp_aff_tab[$ii]) && $auteur_exp_aff_tab[$ii] != "") {
         $autexp0 = str_replace(","," ",$auteur_exp_aff_tab[$ii]);
         //si nom composé
