@@ -222,10 +222,12 @@ if (isset($_GET['equipe_recherche_exp']) && ($_GET['equipe_recherche_exp'] != ""
   $equipe_recherche_exp = $_GET['equipe_recherche_exp'];
 }
 $auteur_exp = "";
-if (isset($_GET['auteur_exp']) && ($_GET['auteur_exp'] != "")) {
+if (isset($_GET['auteur_exp']) && ($_GET['auteur_exp'] != "") && strpos($_GET['auteur_exp'], ",") === false) {
   //$auteur_exp = wd_remove_accents(ucwords($_GET['auteur_exp']));
   $auteur_exp = prenomCompEntier($_GET['auteur_exp']);
   //$auteur_exp = str_replace("'", "\'", $auteur_exp);
+}else{
+  $auteur_exp = $_GET['auteur_exp'];
 }
 //année n ou n+1 ?
 if (date ('m') == 11 || date ('m') == 12) {
@@ -752,7 +754,7 @@ while (isset($labosur[$ii])) {
       $URL .= ')';
     }
   }
-  
+  echo $auteur_exp;
   if ($auteur_exp != "" && $collection_exp == "") {
     //On limite l'URL à juste une recherche sur auteur_exp toutes collections confondues, mais en ajoutant après le type de documents recherché
     $URL = $root.'://api.archives-ouvertes.fr/search/?wt=xml&rows=100000&fq=';
