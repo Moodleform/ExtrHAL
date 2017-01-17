@@ -754,7 +754,6 @@ while (isset($labosur[$ii])) {
       $URL .= ')';
     }
   }
-  echo $auteur_exp;
   if ($auteur_exp != "" && $collection_exp == "") {
     //On limite l'URL à juste une recherche sur auteur_exp toutes collections confondues, mais en ajoutant après le type de documents recherché
     $URL = $root.'://api.archives-ouvertes.fr/search/?wt=xml&rows=100000&fq=';
