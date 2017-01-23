@@ -1019,7 +1019,7 @@ while (isset($labosur[$ii])) {
         if (strpos("page_s",$quoi) !== false) {$page[$i] = $resgen1->nodeValue;}
         if ($mef == 1 && $page[$i] != "") {$label[$i] = str_replace('pp.'.$page[$i], $page[$i], $label[$i]);}//Mise en forme spéciale > suppression 'pp.' devant les pages
         if (strpos("journalPublisher_s",$quoi) !== false) {$journalPublisher[$i] = $resgen1->nodeValue;}
-        if ($mef == 1 && $journalPublisher[$i] != "") {$label[$i] = str_replace($journalPublisher[$i].', ', '', $label[$i]);}//Mise en forme spéciale > suppression journalPublisher
+        if ($mef == 1 && $journalPublisher[$i] != "") {$label[$i] = str_replace(', '.$journalPublisher[$i], '', $label[$i]);}//Mise en forme spéciale > suppression journalPublisher
         if (strpos("scientificEditor_s",$quoi) !== false) {$scientificEditor[$i] = $resgen1->nodeValue;}
         if (strpos("audience_s",$quoi) !== false) {$audience[$i] = $resgen1->nodeValue;}
         if (strpos("peerReviewing_s",$quoi) !== false) {$peerrev[$i] = $resgen1->nodeValue;}
@@ -1169,7 +1169,7 @@ while (isset($labosur[$ii])) {
     }
     $i++;
   }
-  
+
   $i = 1;
   while (isset($label[$i])) {
     if(isset($uri[$i]) && isset($titreseul[$i])) {
