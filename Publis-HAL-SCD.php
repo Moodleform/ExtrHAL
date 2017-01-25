@@ -344,6 +344,18 @@ if (isset($_GET['authid']) && ($_GET['authid'] != "")) {
   $authidhali = $_GET['authid'];
 }
 
+//Identifiant "num" HAL auteur à exclure
+$notauthid = "";
+if (isset($_GET['notauthid']) && ($_GET['notauthid'] != "")) {
+  $notauthid = $_GET['notauthid'];
+}
+
+//Identifiant HAL notice à exclure
+$nothal = "";
+if (isset($_GET['nothal']) && ($_GET['nothal'] != "")) {
+  $nothal = $_GET['nothal'];
+}
+
 //années à exclure > ex: &annee_excl=(2013,2010)
 $annee_excl = "";
 if (isset($_GET['annee_excl']) && ($_GET['annee_excl'] != "")) {
@@ -609,7 +621,7 @@ if ($typform == $form9s) {//formulaire de recherche complet
     while ($i >= $anneen - $nbanneesfs) {
       //on vérifie si ce n'est pas une année à exclure
       if (strpos($annee_excl, strval($i)) === false) {
-        $text .= "<a href=\"?labo=".$labo."&collection_exp=".$collection_exp."&equipe_recherche_exp=".$equipe_recherche_exp."&auteur_exp=".$auteur_exp."&mailto=".$mailto."&lang=".$lang."&css=".$css."&form=".$form."&tous=".$tous."&annee_publideb=".$annee_publideb."&anneedep=".$anneedep."&lim_aut=".$lim_aut."&annee_excl=".$annee_excl."&bt=".$bt."&presbib=".$presbib."&labocrit=".$labocrit."&typdoc=".$typdoc."&typform=".$typform."&anneedeb=".$i."&anneefin=".$i."&titre=".$titre."&aut=".$aut."&authidhal=".$authidhal."&authidhali=".$authidhali."&authid=".$authid."&lienpubmed=".$lienpubmed."&mef=".$mef."&detail=".$detail."&ipas=".$ipas."&acc=noninit\">".$i."</a>&nbsp;&nbsp;&nbsp;\r\n";
+        $text .= "<a href=\"?labo=".$labo."&collection_exp=".$collection_exp."&equipe_recherche_exp=".$equipe_recherche_exp."&auteur_exp=".$auteur_exp."&mailto=".$mailto."&lang=".$lang."&css=".$css."&form=".$form."&tous=".$tous."&annee_publideb=".$annee_publideb."&anneedep=".$anneedep."&lim_aut=".$lim_aut."&annee_excl=".$annee_excl."&bt=".$bt."&presbib=".$presbib."&labocrit=".$labocrit."&typdoc=".$typdoc."&typform=".$typform."&anneedeb=".$i."&anneefin=".$i."&titre=".$titre."&aut=".$aut."&authidhal=".$authidhal."&authidhali=".$authidhali."&authid=".$authid."&notauthid=".$notauthid."&nothal=".$nothal."&lienpubmed=".$lienpubmed."&mef=".$mef."&detail=".$detail."&ipas=".$ipas."&acc=noninit\">".$i."</a>&nbsp;&nbsp;&nbsp;\r\n";
       }
       $i--;
     }
@@ -844,8 +856,8 @@ while (isset($labosur[$ii])) {
       $ihal = 0;
       while (isset($diffauthidhal[$ihal])) {
         if ($ihal == 0) {$URL .= " (";}else{$URL .= " OR";}
-        $halid = $authidhal[$ihal];
-        $URL .= ' authIdHal_s:"'.$halid.'"';
+        $authidhal = $diffauthidhal[$ihal];
+        $URL .= ' authIdHal_s:"'.$authidhal.'"';
         $ihal++;
       }
       $URL .= ')';
@@ -871,8 +883,8 @@ while (isset($labosur[$ii])) {
         $idoc = 0;
         while (isset($diffdoc[$idoc])) {
           if ($idoc == 0) {$URL .= " AND (";}else{$URL .= " OR";}
-          $typdoc = $diffdoc[$idoc];
-          $URL .= ' docType_s:"'.$typdoc.'"';
+          $typdocinit = $diffdoc[$idoc];
+          $URL .= ' docType_s:"'.$typdocinit.'"';
           $idoc++;
         }
         $URL .= ')';
@@ -890,8 +902,8 @@ while (isset($labosur[$ii])) {
       $ihal = 0;
       while (isset($diffauthidhali[$ihal])) {
         if ($ihal == 0) {$URL .= " (";}else{$URL .= " OR";}
-        $halid = $authidhali[$ihal];
-        $URL .= ' authIdHal_i:"'.$halid.'"';
+        $authidhali = $diffauthidhali[$ihal];
+        $URL .= ' authIdHal_i:"'.$authidhali.'"';
         $ihal++;
       }
       $URL .= ')';
@@ -917,8 +929,8 @@ while (isset($labosur[$ii])) {
         $idoc = 0;
         while (isset($diffdoc[$idoc])) {
           if ($idoc == 0) {$URL .= " AND (";}else{$URL .= " OR";}
-          $typdoc = $diffdoc[$idoc];
-          $URL .= ' docType_s:"'.$typdoc.'"';
+          $typdocinit = $diffdoc[$idoc];
+          $URL .= ' docType_s:"'.$typdocinit.'"';
           $idoc++;
         }
         $URL .= ')';
@@ -936,8 +948,8 @@ while (isset($labosur[$ii])) {
       $ihal = 0;
       while (isset($diffauthid[$ihal])) {
         if ($ihal == 0) {$URL .= " (";}else{$URL .= " OR";}
-        $halid = $authid[$ihal];
-        $URL .= ' authId_i:"'.$halid.'"';
+        $authid = $diffauthid[$ihal];
+        $URL .= ' authId_i:"'.$authid.'"';
         $ihal++;
       }
       $URL .= ')';
@@ -963,12 +975,44 @@ while (isset($labosur[$ii])) {
         $idoc = 0;
         while (isset($diffdoc[$idoc])) {
           if ($idoc == 0) {$URL .= " AND (";}else{$URL .= " OR";}
-          $typdoc = $diffdoc[$idoc];
-          $URL .= ' docType_s:"'.$typdoc.'"';
+          $typdocinit = $diffdoc[$idoc];
+          $URL .= ' docType_s:"'.$typdocinit.'"';
           $idoc++;
         }
         $URL .= ')';
       }
+    }
+  }
+  
+  if ($notauthid != "") {//auteur à exclure
+    if (strpos($notauthid, ",") === false) {
+      $URL .= ' NOT (authId_i:"'.$notauthid.'")';
+    }else{
+      $diffnotauthid = explode(",", $notauthid);
+      $ihal = 0;
+      while (isset($diffnotauthid[$ihal])) {
+        if ($ihal == 0) {$URL .= " NOT (";}else{$URL .= " OR";}
+        $notauthid = $diffnotauthid[$ihal];
+        $URL .= ' authId_i:"'.$notauthid.'"';
+        $ihal++;
+      }
+      $URL .= ')';
+    }
+  }
+  
+  if ($nothal != "") {//notice à exclure
+    if (strpos($nothal, ",") === false) {
+      $URL .= ' NOT (halId_s:"'.$nothal.'")';
+    }else{
+      $diffnothal = explode(",", $nothal);
+      $ihal = 0;
+      while (isset($diffnothal[$ihal])) {
+        if ($ihal == 0) {$URL .= " NOT (";}else{$URL .= " OR";}
+        $nothal = $diffnothal[$ihal];
+        $URL .= ' halId_s:"'.$nothal.'"';
+        $ihal++;
+      }
+      $URL .= ')';
     }
   }
 
@@ -1770,7 +1814,7 @@ if ($halid == "") {
     $ideb = ($ipas * $i) + 1;
     $ifin = $ideb + $ipas - 1;
     if ($ifin > $irec) {$ifin = $irec;}
-    $text .= "<a href=\"?labo=".$labo."&collection_exp=".$collection_exp."&equipe_recherche_exp=".$equipe_recherche_exp."&auteur_exp=".$auteur_exp."&mailto=".$mailto."&lang=".$lang."&css=".$css."&form=".$form."&tous=".$tous."&annee_publideb=".$annee_publideb."&anneedep=".$anneedep."&lim_aut=".$lim_aut."&annee_excl=".$annee_excl."&bt=".$bt."&presbib=".$presbib."&labocrit=".$labocrit."&typdoc=".$typdocinit."&anneedeb=".$anneedeb."&anneefin=".$anneefin."&titre=".$titre."&aut=".$aut."&ipas=".$ipas."&ideb=".$ideb."&ifin=".$ifin."&authidhal=".$authidhal."&authidhali=".$authidhali."&authid=".$authid."&lienpubmed=".$lienpubmed."&mef=".$mef."&detail=".$detail."&typform=".$typform."&acc=noninit\">".$ideb."-".$ifin."</a>&nbsp;&nbsp;&nbsp;\r\n";
+    $text .= "<a href=\"?labo=".$labo."&collection_exp=".$collection_exp."&equipe_recherche_exp=".$equipe_recherche_exp."&auteur_exp=".$auteur_exp."&mailto=".$mailto."&lang=".$lang."&css=".$css."&form=".$form."&tous=".$tous."&annee_publideb=".$annee_publideb."&anneedep=".$anneedep."&lim_aut=".$lim_aut."&annee_excl=".$annee_excl."&bt=".$bt."&presbib=".$presbib."&labocrit=".$labocrit."&typdoc=".$typdocinit."&anneedeb=".$anneedeb."&anneefin=".$anneefin."&titre=".$titre."&aut=".$aut."&ipas=".$ipas."&ideb=".$ideb."&ifin=".$ifin."&authidhal=".$authidhal."&authidhali=".$authidhali."&authid=".$authid."&notauthid=".$notauthid."&nothal=".$nothal."&lienpubmed=".$lienpubmed."&mef=".$mef."&detail=".$detail."&typform=".$typform."&acc=noninit\">".$ideb."-".$ifin."</a>&nbsp;&nbsp;&nbsp;\r\n";
     $i++;
   }
   $text .= "<br><br></center></div></div></div></div>\r\n";
