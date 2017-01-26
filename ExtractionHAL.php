@@ -2539,6 +2539,10 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
       //Corrections diverses
       $entryInfo =str_replace("..", ".", $entryInfo);
       $entryInfo =str_replace(", .", ".", $entryInfo);
+      
+      if (!isset($entry->page_s)) {
+        $entryInfo = str_replace(array(",  in press", " in press.", " in press", "; in press", " in press."), "", $entryInfo);
+      }
               
       //Adding the reference to the array
       array_push($infoArray,$entryInfo);      
