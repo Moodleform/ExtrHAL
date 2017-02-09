@@ -162,6 +162,24 @@ function nomCompEntier($nom) {
   return $nom;
 }
 
+//Initialisation des variables
+$idhal = "";
+$evhal = "";
+$depotforce = "";
+$depotdeb = "";
+$depotfin = "";
+$typidh = "";
+$typcro = "";
+$prefeq = "";
+$sortArray = array();
+$rtfArray = array();
+$bibArray = array();
+$gr = "";
+$listedoi = "";
+$listetitre = "";
+$arriv = "";
+$depar = "";
+
 if (isset($_POST["soumis"])) {
   $team = strtoupper(htmlspecialchars($_POST["team"]));
   $idhal = htmlspecialchars($_POST["idhal"]);
@@ -203,49 +221,58 @@ if (isset($_POST["soumis"])) {
   $urlsauv .= "&idhal=".$idhal;
   $evhal = htmlspecialchars($_POST["evhal"]);
   $urlsauv .= "&evhal=".$evhal;
-  $choix_publis = "-";
-  $liste_publis = "~";
-  $publis_array = $_POST['publis'];
-  if (!empty($publis_array)) {
-    foreach($publis_array as $selectValue){
-      $choix_publis .= $selectValue."-";
-      $liste_publis .= $selectValue."~";
-    }
-  }
-  $urlsauv .= "&publis=".$liste_publis;
   
-  $choix_comm = "-";
-  $liste_comm = "~";
-  $comm_array = $_POST['comm'];
-  if (!empty($comm_array)) {
-    foreach($comm_array as $selectValue){
-      $choix_comm .= $selectValue."-";
-      $liste_comm .= $selectValue."~";
+  if (isset($_POST['publis'])) {
+    $choix_publis = "-";
+    $liste_publis = "~";
+    $publis_array = $_POST['publis'];
+    if (!empty($publis_array)) {
+      foreach($publis_array as $selectValue){
+        $choix_publis .= $selectValue."-";
+        $liste_publis .= $selectValue."~";
+      }
     }
+    $urlsauv .= "&publis=".$liste_publis;
   }
-  $urlsauv .= "&comm=".$liste_comm;
   
-  $choix_ouvr = "-";
-  $liste_ouvr = "~";
-  $ouvr_array = $_POST['ouvr'];
-  if (!empty($ouvr_array)) {
-    foreach($ouvr_array as $selectValue){
-      $choix_ouvr .= $selectValue."-";
-      $liste_ouvr .= $selectValue."~";
+  if (isset($_POST['comm'])) {
+    $choix_comm = "-";
+    $liste_comm = "~";
+    $comm_array = $_POST['comm'];
+    if (!empty($comm_array)) {
+      foreach($comm_array as $selectValue){
+        $choix_comm .= $selectValue."-";
+        $liste_comm .= $selectValue."~";
+      }
     }
+    $urlsauv .= "&comm=".$liste_comm;
   }
-  $urlsauv .= "&ouvr=".$liste_ouvr;
   
-  $choix_autr = "-";
-  $liste_autr = "~";
-  $autr_array = $_POST['autr'];
-  if (!empty($autr_array)) {
-    foreach($autr_array as $selectValue){
-      $choix_autr .= $selectValue."-";
-      $liste_autr .= $selectValue."~";
+  if (isset($_POST['ouvr'])) {
+    $choix_ouvr = "-";
+    $liste_ouvr = "~";
+    $ouvr_array = $_POST['ouvr'];
+    if (!empty($ouvr_array)) {
+      foreach($ouvr_array as $selectValue){
+        $choix_ouvr .= $selectValue."-";
+        $liste_ouvr .= $selectValue."~";
+      }
     }
+    $urlsauv .= "&ouvr=".$liste_ouvr;
   }
-  $urlsauv .= "&autr=".$liste_autr;
+  
+  if (isset($_POST['autr'])) {
+    $choix_autr = "-";
+    $liste_autr = "~";
+    $autr_array = $_POST['autr'];
+    if (!empty($autr_array)) {
+      foreach($autr_array as $selectValue){
+        $choix_autr .= $selectValue."-";
+        $liste_autr .= $selectValue."~";
+      }
+    }
+    $urlsauv .= "&autr=".$liste_autr;
+  }
 
 	//Création des listes des auteurs appartenant à la collection spécifiée pour la liste
   include "./pvt/ExtractionHAL-auteurs.php";
@@ -369,14 +396,22 @@ if (isset($_POST["soumis"])) {
       $urlsauv .= "&delim=para";
       break;
   }
-	$typcro = $_POST["typcro"];
-	$urlsauv .= "&typcro=".$typcro;
-	$typeqp = $_POST["typeqp"];
-	$urlsauv .= "&typeqp=".$typeqp;
-	$prefeq = $_POST["prefeq"];
-	$urlsauv .= "&prefeq=".$prefeq;
-	$nbeqp = $_POST["nbeqp"];
-	$urlsauv .= "&nbeqp=".$nbeqp;
+  if (isset($_POST['typcro'])) {
+    $typcro = $_POST["typcro"];
+    $urlsauv .= "&typcro=".$typcro;
+  }
+  if (isset($_POST['typeqp'])) {
+    $typeqp = $_POST["typeqp"];
+    $urlsauv .= "&typeqp=".$typeqp;
+  }
+	if (isset($_POST['prefeq'])) {
+    $prefeq = $_POST["prefeq"];
+    $urlsauv .= "&prefeq=".$prefeq;
+  }
+  if (isset($_POST['nbeqp'])) {
+    $nbeqp = $_POST["nbeqp"];
+    $urlsauv .= "&nbeqp=".$nbeqp;
+  }
 	
   $nomeqp[0] = $team;
   $typeqp = $_POST["typeqp"];
@@ -433,41 +468,49 @@ if (isset($_GET["team"])) {
   $urlsauv .= "&idhal=".$idhal;
   $evhal = $_GET["evhal"];
   $urlsauv .= "&evhal=".$evhal;
-  $publis = $_GET["publis"];//Articles de revue
-	$urlsauv .= "&publis=".$publis;
-  $tabpublis = explode("~", $publis);
-  $i = 0;
-  $choix_publis = "-";
-  while (isset($tabpublis[$i])) {
-    $choix_publis .= $tabpublis[$i]."-";
-    $i++;
+  if (isset($_GET['publis'])) {//Articles de revue
+    $publis = $_GET["publis"];
+    $urlsauv .= "&publis=".$publis;
+    $tabpublis = explode("~", $publis);
+    $i = 0;
+    $choix_publis = "-";
+    while (isset($tabpublis[$i])) {
+      $choix_publis .= $tabpublis[$i]."-";
+      $i++;
+    }
   }
-  $comm = $_GET["comm"];//Communications / conférences
-	$urlsauv .= "&comm=".$comm;
-  $tabcomm = explode("~", $comm);
-  $i = 0;
-  $choix_comm = "-";
-  while (isset($tabcomm[$i])) {
-    $choix_comm .= $tabcomm[$i]."-";
-    $i++;
+  if (isset($_GET['comm'])) {//Communications / conférences
+    $comm = $_GET["comm"];
+    $urlsauv .= "&comm=".$comm;
+    $tabcomm = explode("~", $comm);
+    $i = 0;
+    $choix_comm = "-";
+    while (isset($tabcomm[$i])) {
+      $choix_comm .= $tabcomm[$i]."-";
+      $i++;
+    }
   }
-  $ouvr = $_GET["ouvr"];//Ouvrages
-	$urlsauv .= "&ouvr=".$ouvr;
-  $tabouvr = explode("~", $ouvr);
-  $i = 0;
-  $choix_ouvr = "-";
-  while (isset($tabouvr[$i])) {
-    $choix_ouvr .= $tabouvr[$i]."-";
-    $i++;
+  if (isset($_GET['ouvr'])) {//Ouvrages
+    $ouvr = $_GET["ouvr"];
+    $urlsauv .= "&ouvr=".$ouvr;
+    $tabouvr = explode("~", $ouvr);
+    $i = 0;
+    $choix_ouvr = "-";
+    while (isset($tabouvr[$i])) {
+      $choix_ouvr .= $tabouvr[$i]."-";
+      $i++;
+    }
   }
-  $autr = $_GET["autr"];//Autres
-	$urlsauv .= "&autr=".$autr;
-  $tabautr = explode("~", $autr);
-  $i = 0;
-  $choix_autr = "-";
-  while (isset($tabautr[$i])) {
-    $choix_autr .= $tabautr[$i]."-";
-    $i++;
+  if (isset($_GET['autr'])) {//Autres
+    $autr = $_GET["autr"];
+    $urlsauv .= "&autr=".$autr;
+    $tabautr = explode("~", $autr);
+    $i = 0;
+    $choix_autr = "-";
+    while (isset($tabautr[$i])) {
+      $choix_autr .= $tabautr[$i]."-";
+      $i++;
+    }
   }
   
 	//Création des listes des auteurs appartenant à la collection spécifiée pour la liste
@@ -590,14 +633,22 @@ if (isset($_GET["team"])) {
       break;
   }
   $nomeqp[0] = $team;
-  $typcro = $_GET["typcro"];
-	$urlsauv .= "&typcro=".$typcro;
-  $typeqp = $_GET["typeqp"];
-	$urlsauv .= "&typeqp=".$typeqp;
-	$prefeq = $_GET["prefeq"];
-	$urlsauv .= "&prefeq=".$prefeq;
-  $nbeqp = $_GET["nbeqp"];
-	$urlsauv .= "&nbeqp=".$nbeqp;
+  if (isset($_GET['typcro'])) {
+    $typcro = $_GET["typcro"];
+    $urlsauv .= "&typcro=".$typcro;
+  }
+  if (isset($_GET['typeqp'])) {
+    $typeqp = $_GET["typeqp"];
+    $urlsauv .= "&typeqp=".$typeqp;
+  }
+  if (isset($_GET['prefeq'])) {
+    $prefeq = $_GET["prefeq"];
+    $urlsauv .= "&prefeq=".$prefeq;
+  }
+  if (isset($_GET['nbeqp'])) {
+    $nbeqp = $_GET["nbeqp"];
+    $urlsauv .= "&nbeqp=".$nbeqp;
+  }
   if (isset($typeqp) && $typeqp == "oui") {//Numérotation/codification par équipe
     $gr = "¤".$team."¤";
     for($i = 1; $i <= $nbeqp; $i++) { 
@@ -1493,7 +1544,7 @@ if (isset($anneedeb) && isset($anneefin) && $anneedeb != $anneefin) {
 }
 
 //Date de dépôt
-if (isset($depotdeb) && isset($depotfin)) {
+if (isset($depotdeb) && $depotdeb != "" && isset($depotfin) && $depotfin != "") {
   //Conversion des dates au format HAL ISO 8601 jj/mm/aaaa > aaaa-mm-jjT00:00:00Z
   $tabdepotdeb = explode('/', $depotdeb);
   $depotdebiso = $tabdepotdeb[2].'-'.$tabdepotdeb[1].'-'.$tabdepotdeb[0].'T00:00:00Z';
@@ -1599,7 +1650,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
       $img="";
       $chaine1 = "";
       $chaine2 = "";
-      if($entry->files_s){
+      if(isset($entry->files_s)){
          $img="<a href=\"".$entry->files_s[0]."\"><img
          src=\"http://haltools-new.inria.fr/images/Haltools_pdf.png\"/></a>";
       }
@@ -1890,7 +1941,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
       $vol = "";
       $chaine1 .= $delim."Volume";
       if ($docType_s=="ART"){
-         if(!is_array($entry->volume_s)){
+         if(isset($entry->volume_s) && !is_array($entry->volume_s)){
             if($entry->volume_s!="" and $entry->volume_s!=" " and $entry->volume_s!="-" and $entry->volume_s!="()"){
                if(toAppear($entry->volume_s)){
                   $toAppear=1;
@@ -1920,7 +1971,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
       $chaine1 .= $delim."Issue";
       //if ($docType_s=="ART" OR $docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s=="COMM+POST"){
       if ($docType_s=="ART" OR $docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV"){
-         if(!is_array($entry->issue_s[0])){
+         if(isset($entry->issue_s[0]) && !is_array($entry->issue_s[0])){
             if($entry->issue_s[0]!="" and $entry->issue_s[0]!=" " and $entry->issue_s[0]!="-" and $entry->issue_s[0]!="()"){
                if(toAppear($entry->issue_s[0])){
                   $toAppear=1;
@@ -2092,7 +2143,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
       //Adding comment:
       $chaine1 .= $delim."Commentaire";
       if (($docType_s=="COMM" and $specificRequestCode=="%20AND%20invitedCommunication_s:1") or ($docType_s=="OTHER") or ($docType_s=="OTHERREPORT") || $docType_s == "COMM+POST"){
-         if ($entry->comment_s!="" and $entry->comment_s!=" " and $entry->comment_s!="-" and $entry->comment_s!="?"){
+         if (isset($entry->comment_s) && $entry->comment_s!="" and $entry->comment_s!=" " and $entry->comment_s!="-" and $entry->comment_s!="?"){
            $entryInfo .= ", ".$entry->comment_s;
            $chaine2 .= $delim.$entry->comment_s;
          }else{
@@ -2106,43 +2157,43 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
       $chaine1 .= $delim."Date congrès";
       $mois = Array('','janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre');
       if ($docType_s=="COMM" || $docType_s=="POSTER" || $docType_s == "COMM+POST"){
-        if ($entry->conferenceStartDateY_i != "" && $entry->conferenceStartDateY_i == $entry->conferenceEndDateY_i) {//même année
-          if ($entry->conferenceStartDateM_i != "" && $entry->conferenceStartDateM_i == $entry->conferenceEndDateM_i) {//même mois
-            if ($entry->conferenceStartDateD_i != "" && $entry->conferenceStartDateD_i == $entry->conferenceEndDateD_i) {//même jour
+        if (isset($entry->conferenceStartDateY_i) && isset($entry->conferenceEndDateY_i) && $entry->conferenceStartDateY_i != "" && $entry->conferenceStartDateY_i == $entry->conferenceEndDateY_i) {//même année
+          if (isset($entry->conferenceStartDateM_i) && isset($entry->conferenceEndDateM_i) && $entry->conferenceStartDateM_i != "" && $entry->conferenceStartDateM_i == $entry->conferenceEndDateM_i) {//même mois
+            if (isset($entry->conferenceStartDateD_i) && isset($entry->conferenceEndDateD_i) && $entry->conferenceStartDateD_i != "" && $entry->conferenceStartDateD_i == $entry->conferenceEndDateD_i) {//même jour
               $entryInfo .= ", ".$entry->conferenceStartDateD_i." ".$mois[$entry->conferenceEndDateM_i]." ".$entry->conferenceEndDateY_i;
               $chaine2 .= $delim.$entry->conferenceStartDateD_i." ".$mois[$entry->conferenceEndDateM_i]." ".$entry->conferenceEndDateY_i;
             }else{//jours différents
-              if ($entry->conferenceStartDateD_i != "") {
+              if (isset($entry->conferenceStartDateD_i) && $entry->conferenceStartDateD_i != "") {
                 $entryInfo .= ", ".$entry->conferenceStartDateD_i;
                 $chaine2 .= $delim.$entry->conferenceStartDateD_i;
               }
-              if ($entry->conferenceEndDateD_i != "" && $entry->conferenceEndDateM_i != "" && $entry->conferenceEndDateY_i != "") {
+              if (isset($entry->conferenceEndDateD_i) && $entry->conferenceEndDateD_i != "" && $entry->conferenceEndDateM_i != "" && $entry->conferenceEndDateY_i != "") {
                 $entryInfo .= "-".$entry->conferenceEndDateD_i." ".$mois[$entry->conferenceEndDateM_i]." ".$entry->conferenceEndDateY_i;
                 $chaine2 .= "-".$entry->conferenceEndDateD_i." ".$mois[$entry->conferenceEndDateM_i]." ".$entry->conferenceEndDateY_i;
               }
             }
           }else{//mois différents
-            if ($entry->conferenceStartDateD_i != "" && $entry->conferenceStartDateM_i != "") {
+            if (isset($entry->conferenceStartDateD_i) && $entry->conferenceStartDateD_i != "" && $entry->conferenceStartDateM_i != "") {
               $entryInfo .= ", ".$entry->conferenceStartDateD_i." ".$mois[$entry->conferenceStartDateM_i];
               $chaine2 .= $delim.$entry->conferenceStartDateD_i." ".$mois[$entry->conferenceStartDateM_i];
             }
-            if ($entry->conferenceEndDateD_i != "" && $entry->conferenceEndDateM_i != "" && $entry->conferenceEndDateY_i != "") {
+            if (isset($entry->conferenceEndDateD_i) && $entry->conferenceEndDateD_i != "" && $entry->conferenceEndDateM_i != "" && $entry->conferenceEndDateY_i != "") {
               $entryInfo .= "-".$entry->conferenceEndDateD_i." ".$mois[$entry->conferenceEndDateM_i]." ".$entry->conferenceEndDateY_i;
               $chaine2 .= "-".$entry->conferenceEndDateD_i." ".$mois[$entry->conferenceEndDateM_i]." ".$entry->conferenceEndDateY_i;
             }
           }
         }else{//années différentes
-          if ($entry->conferenceStartDateD_i != "" && $entry->conferenceStartDateM_i != "" && $entry->conferenceStartDateY_i != "") {
+          if (isset($entry->conferenceStartDateD_i) && $entry->conferenceStartDateD_i != "" && $entry->conferenceStartDateM_i != "" && $entry->conferenceStartDateY_i != "") {
             $entryInfo .= ", ".$entry->conferenceStartDateD_i." ".$mois[$entry->conferenceStartDateM_i]." ".$entry->conferenceStartDateY_i;
             $chaine2 .= $delim.$entry->conferenceStartDateD_i." ".$mois[$entry->conferenceStartDateM_i]." ".$entry->conferenceStartDateY_i;
           }
-          if ($entry->conferenceEndDateD_i != "" && $entry->conferenceEndDateM_i != "" && $entry->conferenceEndDateY_i != "") {
+          if (isset($entry->conferenceEndDateY_i) && $entry->conferenceEndDateD_i != "" && $entry->conferenceEndDateM_i != "" && $entry->conferenceEndDateY_i != "") {
             $entryInfo .= " - ".$entry->conferenceEndDateD_i." ".$mois[$entry->conferenceEndDateM_i]." ".$entry->conferenceEndDateY_i;
             $chaine2 .= " - ".$entry->conferenceEndDateD_i." ".$mois[$entry->conferenceEndDateM_i]." ".$entry->conferenceEndDateY_i;
           }
         }
         //si aucune date renseignée
-        if ($entry->conferenceStartDateY_i == "" && $entry->conferenceStartDateM_i == "" && $entry->conferenceStartDateD_i == "" && $entry->conferenceEndDateY_i == "" && $entry->conferenceEndDateM_i == "" && $entry->conferenceEndDateD_i == "") {
+        if (isset($entry->conferenceStartDateY_i) && $entry->conferenceStartDateY_i == "" && $entry->conferenceStartDateM_i == "" && $entry->conferenceStartDateD_i == "" && $entry->conferenceEndDateY_i == "" && $entry->conferenceEndDateM_i == "" && $entry->conferenceEndDateD_i == "") {
           $chaine2 .= $delim;
         }
       }else{
@@ -2180,11 +2231,11 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
       if ($docType_s == "COMM" || $docType_s == "COMM+POST") {
         //Adding source_s:
         $chaine1 .= $delim."Source";
-        if($entry->source_s != ""){
+        if(isset($entry->source_s) && $entry->source_s != ""){
          $entryInfo .= " <i>".$entry->source_s."</i>,";
          $chaine2 .= $delim.$entry->source_s;
         }else{
-          if($entry->bookTitle_s != "") {
+          if(isset($entry->bookTitle_s) && $entry->bookTitle_s != "") {
             $entryInfo .= " <i>".$entry->bookTitle_s."</i>,";
             $chaine2 .= $delim.$entry->bookTitle_s;
           }else{
@@ -2194,7 +2245,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
         //Adding volume_s:
 				$vol = 0;
         $chaine1 .= $delim."Volume";
-        if($entry->volume_s != ""){
+        if(isset($entry->volume_s) && $entry->volume_s != ""){
 				 $vol = 1;
          $entryInfo .= " ".$entry->volume_s;
          $chaine2 .= $delim.$entry->volume_s;
@@ -2204,7 +2255,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
         //Adding issue_s:
 				$iss = 0;
         $chaine1 .= $delim."Numéro";
-        if($entry->issue_s != ""){
+        if(isset($entry->issue_s) && $entry->issue_s != ""){
 				 $iss = 1;
          $entryInfo .= "(".$entry->issue_s[0].")";
          $chaine2 .= $delim.$entry->issue_s[0];
@@ -2213,7 +2264,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
         }
         //Adding page_s:
         $chaine1 .= $delim."Pagination";
-        if($entry->page_s != ""){
+        if(isset($entry->page_s) && $entry->page_s != ""){
 				 if ($vol == 1 && $iss == 1) {
 				  $entryInfo .= ":";
 				 }else{
@@ -2541,7 +2592,7 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
       $entryInfo =str_replace(", .", ".", $entryInfo);
       
       if (!isset($entry->page_s)) {
-        $entryInfo = str_replace(array(",  in press", " in press.", " in press", "; in press", " in press."), "", $entryInfo);
+        $entryInfo = str_replace(array(",  in press", " in press.", " in press", "; in press"), "", $entryInfo);
       }
               
       //Adding the reference to the array
@@ -2603,7 +2654,12 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
       array_push($rtfArray,$rtfInfo."^".$rtfdoi."^".$rtfpubmed."^".$rtflocref."^".$rtfarxiv."^".$rtfdescrip."^".$rtfalso."^".$rtfrefhal."^".$rtfaeres."^".$rtfcnrs."^".$chaine1."^".$chaine2."^".$rtfnnt."^".$affprefeq."^".$racine);
       //bibtex
       $biblabel = $entry->label_bibtex;
-      array_push($bibArray,$entry->label_bibtex."¤".$entry->peerReviewing_s."¤".$entry->audience_s."¤".$entry->proceedings_s."¤".$entry->invitedCommunication_s);
+      if (isset($entry->label_bibtex)) {array_push($bibArray,$entry->label_bibtex."¤");}else{array_push($bibArray," ¤");}
+      if (isset($entry->peerReviewing_s)) {array_push($bibArray,$entry->peerReviewing_s."¤");}else{array_push($bibArray," ¤");}
+      if (isset($entry->audience_s)) {array_push($bibArray,$entry->audience_s."¤");}else{array_push($bibArray," ¤");}
+      if (isset($entry->proceedings_s)) {array_push($bibArray,$entry->proceedings_s."¤");}else{array_push($bibArray," ¤");}
+      if (isset($entry->invitedCommunication_s)) {array_push($bibArray,$entry->invitedCommunication_s."¤");}else{array_push($bibArray," ¤");}
+      //array_push($bibArray,$entry->label_bibtex."¤".$entry->peerReviewing_s."¤".$entry->audience_s."¤".$entry->proceedings_s."¤".$entry->invitedCommunication_s);
    }
    $result=array();
    array_push($result,$infoArray);
@@ -2705,7 +2761,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
    static $indgr = array();
    static $crogr = array();
    static $drefl = array();
-   if ($drefl[0]  == "") {
+   if (isset($drefl[0]) && $drefl[0] == "") {
      for ($j = 1; $j <= $nbeqp; $j++) {
        $indgr[$j] = 1;
        $crogr[$j] = 0;
@@ -2947,10 +3003,11 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
       $bib = explode("¤", $bibArray[$i]);
       $tex0 = $bib[0];
       //$tex = substr($bib[0], 0, (strlen($bib[0])-2));
-      $tex1 = "PEER_REVIEWING = {".$bib[1]."},\r\n";
-      $tex1 .= "  AUDIENCE = {".$bib[2]."},\r\n";
-      $tex1 .= "  PROCEEDINGS = {".$bib[3]."},\r\n";
-      $tex1 .= "  INVITED_COMMUNICATION = {".$bib[4]."},\r\n";
+      $tex1 = "";
+      if (isset($bib[1])) {$tex1 .= "PEER_REVIEWING = {".$bib[1]."},\r\n";}
+      if (isset($bib[2])) {$tex1 .= "  AUDIENCE = {".$bib[2]."},\r\n";}
+      if (isset($bib[3])) {$tex1 .= "  PROCEEDINGS = {".$bib[3]."},\r\n";}
+      if (isset($bib[4])) {$tex1 .= "  INVITED_COMMUNICATION = {".$bib[4]."},\r\n";}
       //$tex .= "}\r\n";
       $tex = str_replace("HAL_VERSION", $tex1."  HAL_VERSION", $tex0);
       $Fnm2 = "./HAL/extractionHAL_".$team.".bib"; 
@@ -3233,7 +3290,7 @@ $numbers=array();
 //$team sert aussi bien à une collection qu'à un idhal
 if (isset($idhal) && $idhal != "") {$team = $idhal;}
 if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {
-  $sect->writeText(substr($sortArray[$i],-4)."<br><br>", $font);
+  //$sect->writeText(substr($sortArray[$i],-4)."<br><br>", $font);
 
   echo "<a name=\"TA\"></a><h2>Tous les articles (sauf vulgarisation) <a href=\"#sommaire\">&#8683;</a></h2>";
   $sect->writeText("<b>Tous les articles (sauf vulgarisation)</b><br><br>", $fonth2);
