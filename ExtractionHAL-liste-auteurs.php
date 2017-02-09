@@ -23,6 +23,9 @@ if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 
 if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip == "129.20.91.175" OR $ip == "129.20.88.134" OR $ip == "129.20.88.135")
 {
+  //Déclaration des variables
+  $cehval = "";
+  
   $fichier_auteurs = './pvt/ExtractionHAL-auteurs.php';
 
   function mb_ucwords($str) {
