@@ -24,8 +24,8 @@ if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip == "129.20.91.175" OR $ip == "129.20.88.134" OR $ip == "129.20.88.135")
 {
   //Déclaration des variables
-  $cehval = "";
-  
+  if (!isset($cehval)) {$cehval = "TE";}
+
   $fichier_auteurs = './pvt/ExtractionHAL-auteurs.php';
 
   function mb_ucwords($str) {
@@ -121,7 +121,7 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
       $cehval = $_POST["cehval"];
       $te = "";
     }else{
-     $te = "selected";
+      $te = "selected";
     }
     $AUTEURS_LISTE[$modif]["nom"] = str_replace('"','&#039;',$_POST["nom"]);
     $AUTEURS_LISTE[$modif]["prenom"] = str_replace('"','&#039;',$_POST["prenom"]);
@@ -335,7 +335,8 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
         if (isset($_POST["cehval"])) {$cehval = $_POST["cehval"];}else{$cehval = $_GET["cehval"];}
         $te = "";
       }else{
-       $te = "selected";
+        //$cehval = "TE";
+        $te = "selected";
       }
       ?>
       <select name="cehval">
@@ -426,7 +427,7 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
       fwrite($inF1,$chaine1);
       foreach($AUTEURS_LISTE AS $i => $valeur) {
         $aff = "non";
-        if (isset($cehval)) {
+        if (isset($cehval) && $cehval !="TE") {
           if ($AUTEURS_LISTE[$i]['collhal'] == $cehval) {$aff = "oui";}
         }else{
           $aff = "oui";
@@ -447,7 +448,13 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
           $text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['colleqhal'].'</td>';
           $text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['arriv'].'</td>';
           $text .= '<td valign=top>'.$AUTEURS_LISTE[$i]['depar'].'</td>';
-          $text .= '<td valign=top><a href="ExtractionHAL-liste-auteurs.php?modif='.$i.'&cehval='.$cehval.'">Modifier</a></td>';
+          if (isset($cehval)) {
+            $text .= '<td valign=top><a href="ExtractionHAL-liste-auteurs.php?modif='.$i.'&cehval='.$cehval.'">Modifier</a></td>';
+            $text .= '<td valign=top><a href="ExtractionHAL-liste-auteurs.php?suppr='.$i.'&cehval='.$cehval.'" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette entrée ?\');">Supprimer</a></td>';
+          }else{
+            $text .= '<td valign=top><a href="ExtractionHAL-liste-auteurs.php?modif='.$i.'">Modifier</a></td>';
+            $text .= '<td valign=top><a href="ExtractionHAL-liste-auteurs.php?suppr='.$i.'" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette entrée ?\');">Supprimer</a></td>';
+          }
           $text .= '<td valign=top><a href="ExtractionHAL-liste-auteurs.php?suppr='.$i.'&cehval='.$cehval.'" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette entrée ?\');">Supprimer</a></td>';
           $text .= '</tr>';
           $chaine1 = mb_ucwords($AUTEURS_LISTE[$i]["nom"]).';';
@@ -470,7 +477,7 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
       }
       $text .= '</table>';
       fclose($inF1);
-      if (isset($cehval)) {
+      if (isset($cehval) && $cehval !="TE") {
         echo ('<br>Détail pour la collection '.$cehval.' - '.$iaut.' auteurs renseignés');
       }
       echo $text;

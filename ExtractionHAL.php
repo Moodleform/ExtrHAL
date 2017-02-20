@@ -1,8 +1,3 @@
-<?php
-/*
-* ExtrHAL - version du 14/12/2016
-*/
-?>
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
             "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -404,7 +399,7 @@ if (isset($_POST["soumis"])) {
     $typeqp = $_POST["typeqp"];
     $urlsauv .= "&typeqp=".$typeqp;
   }
-	if (isset($_POST['prefeq'])) {
+  if (isset($_POST['prefeq'])) {
     $prefeq = $_POST["prefeq"];
     $urlsauv .= "&prefeq=".$prefeq;
   }
@@ -1424,7 +1419,7 @@ if (isset($_POST["soumis"]) || isset($_GET["team"])) {
   if (strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) {include_once('bitly_local.php');$bitly = "ok";}
   if (strpos($_SERVER['HTTP_HOST'], 'ecobio') !== false) {include_once('bitly_ecobio.php');$bitly = "ok";}
   if (strpos($_SERVER['HTTP_HOST'], 'halur1') !== false) {include_once('bitly_halur1.php');$bitly = "ok";}
-  if ($bitly == "aucun";) {include_once('bitly_extrhal.php');$bitly = "ok";}
+  if ($bitly == "aucun") {include_once('bitly_extrhal.php');$bitly = "ok";}
   $results = bitly_v3_shorten($urlsauv, 'a77347d33877d34446fa9a61d17bdcfafd70a087', 'bit.ly');
   //var_dump($results);
   $urlbitly = $results["url"];
@@ -2245,10 +2240,10 @@ function getReferences($infoArray,$sortArray,$docType,$collCode_s,$specificReque
           }
         }
         //Adding volume_s:
-				$vol = 0;
+		$vol = 0;
         $chaine1 .= $delim."Volume";
         if(isset($entry->volume_s) && $entry->volume_s != ""){
-				 $vol = 1;
+		 $vol = 1;
          $entryInfo .= " ".$entry->volume_s;
          $chaine2 .= $delim.$entry->volume_s;
         }else{
