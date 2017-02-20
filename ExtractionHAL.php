@@ -657,6 +657,11 @@ if (isset($_GET["team"])) {
 
 <body style="font-family:calibri,verdana">
 
+<noscript>
+<div align='center' id='noscript'><font color='red'><b>ATTENTION !!! JavaScript est désactivé ou non pris en charge par votre navigateur : cette procédure ne fonctionnera pas correctement.</b></font><br>
+<b>Pour modifier cette option, voir <a target='_blank' href='http://www.libellules.ch/browser_javascript_activ.php'>ce lien</a>.</b></div><br>
+</noscript>
+
 <table width="100%">
 <tr>
 <td style="text-align: left;"><img alt="ExtrHAL" title="ExtrHAL" width="250px" src="./img/logo_Extrhal.png"></td>
