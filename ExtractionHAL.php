@@ -15,71 +15,7 @@
   <script type='text/x-mathjax-config'>
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['$$','$$']]}});
   </script>
-  <STYLE type="text/css">
-  a.info{
-      position:relative;
-      z-index:24; background-color:#ccc;
-      color:#000;
-      text-decoration:none}
-
-  a.info:hover{z-index:25; background-color:#ff0}
-
-  a.info span{display: none}
-
-  a.info:hover span{
-  /*le contenu de la balise span ne sera visible que pour l'état a:hover */
-  display:block;
-  position:absolute;
-  top:2em; left:2em; width:15em;
-  border:1px solid #6699cc;
-  background-color:#eeeeee; color:#6699cc;
-  text-align: justify;
-  font-weight: normal;
-  padding:1px;
-  }
-
-  .calendar_input{
-    background-color:#f7f6f3;
-    position:absolute;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:11px;
-    border:1px solid #0099cc;
-
-  }
-  .calendar_input a{
-      text-decoration:none;
-      color:#ffffff;
-      font-weight:bold;
-  }
-  .calendar_input span{
-      float:left;
-      display:block;
-      width:25px;
-      cursor:pointer;
-      text-align:center;
-  }
-  .titleMonth{
-      width:100%;
-      background-color:#08a1d4;
-      color:#FFFFFF;
-      text-align:center;
-      border-bottom:1px solid #666;
-      margin:0px;
-      padding:0px;
-      padding-bottom:2px;
-      margin-top:0px;
-      margin-bottom:0px;
-      font-weight:bold;
-  }
-  .separator{
-      float:left;
-      display:block;
-      width:25px;
-  }
-  .currentDay{
-      font-weight:bold;
-  }
-  </STYLE>
+  <link rel="stylesheet" href="./ExtractionHAL.css">
   <script src="./lib/jscolor-2.0.4/jscolor.js"></script>
 </head>
 
@@ -1559,13 +1495,12 @@ if (isset($typeqp) && $typeqp == "oui") {//Numérotation/codification par équip
   }
 }
 ?>
-<br><br>
-<div style='width:99%;float: left;border:2px solid #fc6a00;padding: 3px;border-radius: 5px;'>
-<a name="optsc"></a>
-<b><a href="#optsc" style="text-decoration: none; color: #000000;" onClick="affich_div('optsc');">Options et styles de citations</a></b>
 </div>
-<div id="optsc">
-<br><i>(sélection/désélection multiple pour la mise en page en maintenant la touche 'Ctrl' (PC) ou 'Pomme' (Mac) enfoncée)</i> :<br>
+<br><br>
+<div style='width:99%;float: left;border:2px solid #fc6a00;padding: 3px;border-radius: 5px;margin-bottom: 10px;'>
+<span class="accordeon"><b>Options et styles de citations :</b></span>
+<div class="panel">
+<i>(sélection/désélection multiple pour la mise en page en maintenant la touche 'Ctrl' (PC) ou 'Pomme' (Mac) enfoncée)</i><br>
 <b>Important, loi du tout ou rien :</b> si aucune option ci-dessous n'est choisie, ce sont les règles équivalentes ci-dessus qui seront appliquées. A l'inverse, si une option ci-dessous est choisie, il faut alors <u>obligatoirement</u> faire un choix pour toutes les autres possibilités et ce seront ces règles qui seront appliquées. Le style 'Majuscules' sera prioritaire au style 'Minuscules' si les deux sont sélectionnés.<br><br>
 <center><table width="80%">
   <tr>
@@ -1711,6 +1646,7 @@ if (isset($sep4) && $sep4 == "- ") {$sep4_4 = "selected ";}else{$sep4_4 = "";}
   <tr>
 <?php
 if (isset($choix_mp1) && strpos($choix_mp1, "~--~") !== false || !isset($team)) {$mp1v = "selected ";}else{$mp1v = "";}
+if (isset($choix_mp1) && strpos($choix_mp1, "~norm~") !== false) {$mp1n = "selected ";}else{$mp1n = "";}
 if (isset($choix_mp1) && strpos($choix_mp1, "~gras~") !== false) {$mp1g = "selected ";}else{$mp1g = "";}
 if (isset($choix_mp1) && strpos($choix_mp1, "~soul~") !== false) {$mp1s = "selected ";}else{$mp1s = "";}
 if (isset($choix_mp1) && strpos($choix_mp1, "~ital~") !== false) {$mp1i = "selected ";}else{$mp1i = "";}
@@ -1723,6 +1659,7 @@ if (isset($choix_mp1) && strpos($choix_mp1, "~emaj~") !== false) {$mp1a = "selec
     <td>
       <select id="mp1" size="9" name="mp1[]" multiple>
       <option <?php echo $mp1v;?>value="--" onClick="majapercu();">--</option>
+      <option <?php echo $mp1n;?>value="norm" onClick="majapercu();">Normal</option>
       <option <?php echo $mp1g;?>value="gras" onClick="majapercu();">Gras</option>
       <option <?php echo $mp1s;?>value="soul" onClick="majapercu();">Souligné</option>
       <option <?php echo $mp1i;?>value="ital" onClick="majapercu();">Italique</option>
@@ -1736,6 +1673,7 @@ if (isset($choix_mp1) && strpos($choix_mp1, "~emaj~") !== false) {$mp1a = "selec
     <td>&nbsp;</td>
 <?php
 if (isset($choix_mp2) && strpos($choix_mp2, "~--~") !== false || !isset($team)) {$mp2v = "selected ";}else{$mp2v = "";}
+if (isset($choix_mp2) && strpos($choix_mp2, "~norm~") !== false) {$mp2n = "selected ";}else{$mp2n = "";}
 if (isset($choix_mp2) && strpos($choix_mp2, "~gras~") !== false) {$mp2g = "selected ";}else{$mp2g = "";}
 if (isset($choix_mp2) && strpos($choix_mp2, "~soul~") !== false) {$mp2s = "selected ";}else{$mp2s = "";}
 if (isset($choix_mp2) && strpos($choix_mp2, "~ital~") !== false) {$mp2i = "selected ";}else{$mp2i = "";}
@@ -1748,6 +1686,7 @@ if (isset($choix_mp2) && strpos($choix_mp2, "~emaj~") !== false) {$mp2a = "selec
     <td>
       <select id="mp2" size="9" name="mp2[]" multiple>
       <option <?php echo $mp2v;?>value="--" onClick="majapercu();">--</option>
+      <option <?php echo $mp2n;?>value="norm" onClick="majapercu();">Normal</option>
       <option <?php echo $mp2g;?>value="gras" onClick="majapercu();">Gras</option>
       <option <?php echo $mp2s;?>value="soul" onClick="majapercu();">Souligné</option>
       <option <?php echo $mp2i;?>value="ital" onClick="majapercu();">Italique</option>
@@ -1761,6 +1700,7 @@ if (isset($choix_mp2) && strpos($choix_mp2, "~emaj~") !== false) {$mp2a = "selec
     <td>&nbsp;</td>
 <?php
 if (isset($choix_mp3) && strpos($choix_mp3, "~--~") !== false || !isset($team)) {$mp3v = "selected ";}else{$mp3v = "";}
+if (isset($choix_mp3) && strpos($choix_mp3, "~norm~") !== false) {$mp3n = "selected ";}else{$mp3n = "";}
 if (isset($choix_mp3) && strpos($choix_mp3, "~gras~") !== false) {$mp3g = "selected ";}else{$mp3g = "";}
 if (isset($choix_mp3) && strpos($choix_mp3, "~soul~") !== false) {$mp3s = "selected ";}else{$mp3s = "";}
 if (isset($choix_mp3) && strpos($choix_mp3, "~ital~") !== false) {$mp3i = "selected ";}else{$mp3i = "";}
@@ -1773,6 +1713,7 @@ if (isset($choix_mp3) && strpos($choix_mp3, "~emaj~") !== false) {$mp3a = "selec
     <td>
       <select id="mp3" size="9" name="mp3[]" multiple>
       <option <?php echo $mp3v;?>value="--" onClick="majapercu();">--</option>
+      <option <?php echo $mp3n;?>value="norm" onClick="majapercu();">Normal</option>
       <option <?php echo $mp3g;?>value="gras" onClick="majapercu();">Gras</option>
       <option <?php echo $mp3s;?>value="soul" onClick="majapercu();">Souligné</option>
       <option <?php echo $mp3i;?>value="ital" onClick="majapercu();">Italique</option>
@@ -1786,6 +1727,7 @@ if (isset($choix_mp3) && strpos($choix_mp3, "~emaj~") !== false) {$mp3a = "selec
     <td>&nbsp;</td>
 <?php
 if (isset($choix_mp4) && strpos($choix_mp4, "~--~") !== false || !isset($team)) {$mp4v = "selected ";}else{$mp4v = "";}
+if (isset($choix_mp4) && strpos($choix_mp4, "~norm~") !== false) {$mp4n = "selected ";}else{$mp4n = "";}
 if (isset($choix_mp4) && strpos($choix_mp4, "~gras~") !== false) {$mp4g = "selected ";}else{$mp4g = "";}
 if (isset($choix_mp4) && strpos($choix_mp4, "~soul~") !== false) {$mp4s = "selected ";}else{$mp4s = "";}
 if (isset($choix_mp4) && strpos($choix_mp4, "~ital~") !== false) {$mp4i = "selected ";}else{$mp4i = "";}
@@ -1798,6 +1740,7 @@ if (isset($choix_mp4) && strpos($choix_mp4, "~emaj~") !== false) {$mp4a = "selec
     <td>
       <select id="mp4" size="9" name="mp4[]" multiple>
       <option <?php echo $mp4v;?>value="--" onClick="majapercu();">--</option>
+      <option <?php echo $mp4n;?>value="norm" onClick="majapercu();">Normal</option>
       <option <?php echo $mp4g;?>value="gras" onClick="majapercu();">Gras</option>
       <option <?php echo $mp4s;?>value="soul" onClick="majapercu();">Souligné</option>
       <option <?php echo $mp4i;?>value="ital" onClick="majapercu();">Italique</option>
@@ -1847,9 +1790,9 @@ if (isset($choix_cg4)) {$cg4v = $choix_cg4;}
 </div>
 <br><br>
 La suite sera constituée des éléments habituels s'ils ont été demandés : pagination, DOI, Pubmed, etc.
-<br>
-</div>
-<br><br><br>
+<br><br>
+</div></div>
+<br><br>
 <input type="submit" value="Valider" name="soumis">
 </form>
 
@@ -3377,10 +3320,13 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
    static $indgr = array();
    static $crogr = array();
    static $drefl = array();
-   if (isset($drefl[0]) && $drefl[0] == "") {
-     for ($j = 1; $j <= $nbeqp; $j++) {
+   for ($j = 1; $j <= $nbeqp; $j++) {
+     if (isset($drefl[0]) && $drefl[0] == "") {
        $indgr[$j] = 1;
        $crogr[$j] = 0;
+     }else{
+       $indgr[$j] = 1;
+       $crogr[$j] = "";
      }
    }
 
@@ -3533,6 +3479,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
          $rtf = explode("^", $rtfArray[$i]);
          echo "<h3>".substr($sortArray[$i],-4)."</h3>";
          $currentYear=substr($sortArray[$i],-4);
+         $yearNumbers[$currentYear] = 0;
          $sect->writeText("<b>".substr($sortArray[$i],-4)."</b><br><br>", $fonth3);
          if (isset($collCode_s) && isset($gr) && (strpos($gr, $collCode_s) !== false)) {//GR
            $rtfval = $rtf[0];
@@ -5004,162 +4951,12 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
   echo ('Aucun résultat');
 }
 ?>
-<script type="text/javascript" charset="UTF-8">
-document.getElementById("deteqp").style.display = "none";
-document.getElementById("detrac").style.display = "none";
-document.getElementById("optsc").style.display = "none";
-function affich_div(id) {
-  if (document.getElementById(id).style.display == "none") {
-    document.getElementById(id).style.display = "block";
-  }else{
-    cacher_div(id);
-  }
-}
-function cacher_div(id) {
-  document.getElementById(id).style.display = "none";
-}
-function affich_form() {
-  document.getElementById("deteqp").style.display = "block";
-}
+<br>
+<script type="text/javascript" src="./ExtractionHAL.js"></script>
+<script type="text/javascript">
+  $("#nbeqpid").keyup(function(event) {affich_form_suite();});
 
-function cacher_form() {
-  document.getElementById("deteqp").style.display = "none";
-  document.getElementById("eqp").style.display = "none";
-}
-
-function affich_form_suite() {
-  nbeqpval = document.extrhal.nbeqp.value;
-  var eqpaff = '';
-  for (i=1; i<=nbeqpval; i++) {
-    eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Nom HAL équipe '+i+' : <input type="text" name="eqp'+i+'" size="30"><br>';
-  }
-  eqpaff += '<br>';
-  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Limiter l\'affichage seulement aux publications croisées :';
-  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-  eqpaff += '<input type="radio" name="typcro" value="non" <?php echo $cron;?>>non';
-  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-  eqpaff += '<input type="radio" name="typcro" value="oui" <?php echo $croo;?>>oui';
-  eqpaff += '<br><br>';
-  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Afficher le préfixe AERES  :';
-  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-  eqpaff += '<input type="radio" name="prefeq" value="oui" <?php echo $prefo;?>>oui';
-  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-  eqpaff += '<input type="radio" name="prefeq" value="non" <?php echo $prefn;?>>non';
-  document.getElementById("eqp").innerHTML = eqpaff;
-}
-
-$("#nbeqpid").keyup(function(event) {affich_form_suite();});
-
-function affich_form2() {
-  document.getElementById("detrac").style.display = "block";
-}
-
-function cacher_form2() {
-  document.getElementById("detrac").style.display = "none";
-}
-
-function mise_en_ordre(id) {
-  var idmaxi = 5;
-  var idtest = 1;
-  var test = "";
-  while (idtest < idmaxi) {
-    select = document.getElementById("gp"+idtest);
-    choix = select.selectedIndex;
-    valeur = document.getElementById("gp"+idtest).options[choix].value;
-    if (valeur != "--") {
-      test += "~"+valeur;
-    }
-    idtest++;
-  }
-  var idtest = 1;
-  while (idtest < idmaxi) {
-    selectid = document.getElementById("gp"+idtest);
-    choixid = selectid.selectedIndex;
-    valeurid = document.getElementById("gp"+idtest).options[choixid].value;
-    if (idtest != id || (idtest == id && valeurid == "--")) {
-      switch(valeurid) {
-        case "--":
-          true0 = true;
-          true1 = false;
-          true2 = false;
-          true3 = false;
-          true4 = false;
-          break;
-        case "auteurs":
-          true0 = false;
-          true1 = true;
-          true2 = false;
-          true3 = false;
-          true4 = false;
-          break;
-        case "année":
-          true0 = false;
-          true1 = false;
-          true2 = true;
-          true3 = false;
-          true4 = false;
-          break;
-        case "titre":
-          true0 = false;
-          true1 = false;
-          true2 = false;
-          true3 = true;
-          true4 = false;
-          break;
-        case "revue":
-          true0 = false;
-          true1 = false;
-          true2 = false;
-          true3 = false;
-          true4 = true;
-          break;
-      }
-      document.getElementById("gp"+idtest).options.length = 0;
-      document.getElementById("gp"+idtest).options[0] = new Option("--", "--", false, true0);
-      var i = 1;
-      if (test.indexOf("auteurs") == -1 || true1 == true) {document.getElementById("gp"+idtest).options[i] = new Option("Auteurs", "auteurs", false, true1); i++;}
-      if (test.indexOf("année") == -1 || true2 == true) {document.getElementById("gp"+idtest).options[i] = new Option("Année", "année", false, true2); i++;}
-      if (test.indexOf("titre") == -1 || true3 == true) {document.getElementById("gp"+idtest).options[i] = new Option("Titre", "titre", false, true3); i++;}
-      if (test.indexOf("revue") == -1 || true4 == true) {document.getElementById("gp"+idtest).options[i] = new Option("Revue", "revue", false, true4); i++;}
-    }
-    idtest++;
-  }
-}
-
-//Librairie aperçu
-function mp(sel, quoi, qui, code1, code2, mem) {
-  var contres = document.getElementById(qui).innerHTML;
-  if (quoi == "--") {
-    document.getElementById(qui).innerHTML = mem;
-    return;
-  }
-  if (quoi == "ecol") {
-    contaff = "<font color='#"+code1+"'>"+contres+"</font>";
-  }else{
-    if (quoi == "emin" && sel.indexOf("emin") != -1 || quoi == "emaj" && sel.indexOf("emaj") != -1) {
-      switch(quoi) {
-        case "emin":
-          contaff = contres.toLowerCase();
-          break;
-        case "emaj":
-          contaff = contres.toUpperCase();
-          break;
-      }
-    }else{
-      if (sel.indexOf(quoi) != -1) {
-        var contaff = contres;
-        if (contres.indexOf(code1) == -1 && contres.indexOf(code2) == -1) {
-          var contaff = code1+contres+code2;
-        }
-      }else{
-        var contaff = contres.replace(code1, "");
-        var contaff = contaff.replace(code2, "");
-      }
-    }
-  }
-  document.getElementById(qui).innerHTML = contaff;
-}
-function majapercu(){
+  function majapercu(){
   var selsep = [];
   selsep.push('--');
   var selgrp = [];
@@ -5234,6 +5031,7 @@ function majapercu(){
       if (selmpgpAut.indexOf("--") != -1) {//Réinitialisation
         mp(selmpgpAut, "--", "listAut", "", "", "<?php echo $txtAut;?>");
       }else{
+        mp(selmpgpAut, "norm", "listAut", "", "", "<?php echo $txtAut;?>");
         mp(selmpgpAut, "emin", "listAut", "", "", "<?php echo $txtAut;?>");
         mp(selmpgpAut, "emaj", "listAut", "", "", "<?php echo $txtAut;?>");
         mp(selmpgpAut, "gras", "listAut", "<b>", "</b>", "<?php echo $txtAut;?>");
@@ -5257,6 +5055,7 @@ function majapercu(){
       if (selmpgpTit.indexOf("--") != -1) {//Réinitialisation
         mp(selmpgpTit, "--", "listTit", "", "", "<?php echo $txtTit;?>");
       }else{
+        mp(selmpgpTit, "norm", "listTit", "", "", "<?php echo $txtTit;?>");
         mp(selmpgpTit, "emin", "listTit", "", "", "<?php echo $txtTit;?>");
         mp(selmpgpTit, "emaj", "listTit", "", "", "<?php echo $txtTit;?>");
         mp(selmpgpTit, "gras", "listTit", "<b>", "</b>", "<?php echo $txtTit;?>");
@@ -5280,6 +5079,7 @@ function majapercu(){
       if (selmpgpAnn.indexOf("--") != -1) {//Réinitialisation
         mp(selmpgpAnn, "--", "listAnn", "", "", "<?php echo $txtAnn;?>");
       }else{
+        mp(selmpgpAnn, "norm", "listAnn", "", "", "<?php echo $txtAnn;?>");
         mp(selmpgpAnn, "emin", "listAnn", "", "", "<?php echo $txtAnn;?>");
         mp(selmpgpAnn, "emaj", "listAnn", "", "", "<?php echo $txtAnn;?>");
         mp(selmpgpAnn, "gras", "listAnn", "<b>", "</b>", "<?php echo $txtAnn;?>");
@@ -5303,6 +5103,7 @@ function majapercu(){
       if (selmpgpRev.indexOf("--") != -1) {//Réinitialisation
         mp(selmpgpRev, "--", "listRev", "", "", "<?php echo $txtRev;?>");
       }else{
+        mp(selmpgpRev, "norm", "listRev", "", "", "<?php echo $txtRev;?>");
         mp(selmpgpRev, "emin", "listRev", "", "", "<?php echo $txtRev;?>");
         mp(selmpgpRev, "emaj", "listRev", "", "", "<?php echo $txtRev;?>");
         mp(selmpgpRev, "gras", "listRev", "<b>", "</b>", "<?php echo $txtRev;?>");
@@ -5317,412 +5118,7 @@ function majapercu(){
     idtest++;
   }
 }
-
-// librairie calendrier
-
-/* ##################### CONFIGURATION ##################### */
-
-/* ##- INITIALISATION DES VARIABLES -##*/
-var calendrierSortie = '';
-//Date actuelle
-var today = '';
-//Mois actuel
-var current_month = '';
-//Année actuelle
-var current_year = '' ;
-//Jours actuel
-var current_day = '';
-//Nombres de jours depuis le début de la semaine
-var current_day_since_start_week = '';
-//On initialise le nom des mois et le nom des jours en VF :)
-var month_name = new Array('Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre');
-var day_name = new Array('L','M','M','J','V','S','D');
-//permet de récupèrer l'input sur lequel on a clické et de le remplir avec la date formatée
-var myObjectClick = null;
-//Classe qui sera détecté pour afficher le calendrier
-var classMove = "calendrier";
-//Variable permettant de savoir si on doit garder en mémoire le champs input clické
-var lastInput = null;
-//Div du calendrier
-var div_calendar = "";
-
-
-
-//########################## FIN DES FONCTION LISTENER ########################## //
-/*Ajout du listener pour détecter le click sur l'élément et afficher le calendrier
-uniquement sur les textbox de class css date */
-
-//Fonction permettant d'initialiser les listeners
-function init_evenement(){
-    //On commence par affecter une fonction à chaque évènement de la souris
-    if(window.attachEvent){
-        document.onmousedown = start;
-        document.onmouseup = drop;
-    }
-    else{
-        document.addEventListener("mousedown",start, false);
-        document.addEventListener("mouseup",drop, false);
-    }
-}
-//Fonction permettant de récupèrer l'objet sur lequel on a clické, et l'on récupère sa classe
-function start(e){
-    //On initialise l'évènement s'il n'a aps été créé ( sous ie )
-    if(!e){
-        e = window.event;
-    }
-    //Détection de l'élément sur lequel on a clické
-    var monElement = null;
-    monElement = (e.target)? e.target:e.srcElement;
-    if(monElement != null && monElement)
-    {
-        //On appel la fonction permettant de récupèrer la classe de l'objet et assigner les variables
-        getClassDrag(monElement);
-
-        if(myObjectClick){
-            initialiserCalendrier(monElement);
-            lastInput = myObjectClick;
-        }
-    }
-}
-function drop(){
-         myObjectClick = null;
-}
-
-function getClassDrag(myObject){
-    with(myObject){
-        var x = className;
-        listeClass = x.split(" ");
-        //On parcours le tableau pour voir si l'objet est de type calendrier
-        for(var i = 0 ; i < listeClass.length ; i++){
-            if(listeClass[i] == classMove){
-                myObjectClick = myObject;
-                break;
-            }
-        }
-    }
-}
-window.onload = init_evenement;
-
-//########################## Pour combler un bug d'ie 6 on masque les select ########################## //
-function masquerSelect(){
-        var ua = navigator.userAgent.toLowerCase();
-        var versionNav = parseFloat( ua.substring( ua.indexOf('msie ') + 5 ) );
-        var isIE        = ( (ua.indexOf('msie') != -1) && (ua.indexOf('opera') == -1) && (ua.indexOf('webtv') == -1) );
-
-        if(isIE && (versionNav < 7)){
-             svn=document.getElementsByTagName("SELECT");
-             for (a=0;a<svn.length;a++){
-                svn[a].style.visibility="hidden";
-             }
-        }
-}
-
-function montrerSelect(){
-       var ua = navigator.userAgent.toLowerCase();
-        var versionNav = parseFloat( ua.substring( ua.indexOf('msie ') + 5 ) );
-        var isIE        = ( (ua.indexOf('msie') != -1) && (ua.indexOf('opera') == -1) && (ua.indexOf('webtv') == -1) );
-        if(isIE && versionNav < 7){
-             svn=document.getElementsByTagName("SELECT");
-             for (a=0;a<svn.length;a++){
-                svn[a].style.visibility="visible";
-             }
-         }
-}
-
-//########################## FIN DES FONCTION LISTENER ########################## //
-
-// ## PARAMETRE D'AFFICHAGE du CALENDRIER ## //
-//si enLigne est a true , le calendrier s'affiche sur une seule ligne,
-//sinon il prend la taille spécifié par défaut;
-
-var enLigne = false ;
-var largeur = "175";
-var formatage = "/";
-
-/* ##################### FIN DE LA CONFIGURATION ##################### */
-
-//Fonction permettant de passer a l'annee précédente
-function annee_precedente(){
-
-    //On récupère l'annee actuelle puis on vérifit que l'on est pas en l'an 1 :-)
-    if(current_year == 1){
-        current_year = current_year;
-    }
-    else{
-        current_year = current_year - 1 ;
-    }
-    //et on appel la fonction de génération de calendrier
-    calendrier(    current_year , current_month, current_day);
-}
-
-//Fonction permettant de passer à l'annee suivante
-function annee_suivante(){
-    //Pas de limite pour l'ajout d'année
-    current_year = current_year +1 ;
-    //et on appel la fonction de génération de calendrier
-    calendrier(    current_year , current_month, current_day);
-}
-
-
-
-
-//Fonction permettant de passer au mois précédent
-function mois_precedent(){
-
-    //On récupère le mois actuel puis on vérifit que l'on est pas en janvier sinon on enlève une année
-    if(current_month == 0){
-        current_month = 11;
-        current_year = current_year - 1;
-    }
-    else{
-        current_month = current_month - 1 ;
-    }
-    //et on appel la fonction de génération de calendrier
-    calendrier(    current_year , current_month, current_day);
-}
-
-//Fonction permettant de passer au mois suivant
-function mois_suivant(){
-    //On récupère le mois actuel puis on vérifit que l'on est pas en janvier sinon on ajoute une année
-    if(current_month == 12){
-        current_month = 1;
-        current_year = current_year  + 1;
-    }
-    else{
-        current_month = current_month + 1;
-    }
-    //et on appel la fonction de génération de calendrier
-    calendrier(    current_year , current_month, current_day);
-}
-
-//Fonction principale qui génère le calendrier
-//Elle prend en paramètre, l'année , le mois , et le jour
-//Si l'année et le mois ne sont pas renseignés , la date courante est affecté par défaut
-function calendrier(year, month, day ){
-
-    //Aujourd'hui si month et year ne sont pas renseignés
-    if(month == null || year == null){
-        today = new Date();
-    }
-    else{
-        //month = month - 1;
-        //Création d'une date en fonction de celle passée en paramètre
-        today = new Date(year, month , day);
-    }
-
-    //Mois actuel
-    current_month = today.getMonth()
-
-    //Année actuelle
-    current_year = today.getFullYear();
-
-    //Jours actuel
-    current_day = today.getDate();
-
-    // On récupère le premier jour de la semaine du mois
-    var dateTemp = new Date(current_year, current_month,1);
-
-    //test pour vérifier quel jour était le prmier du mois
-    current_day_since_start_week = (( dateTemp.getDay()== 0 ) ? 6 : dateTemp.getDay() - 1);
-
-    //variable permettant de vérifier si l'on est déja rentré dans la condition pour éviter une boucle infinit
-    var verifJour = false;
-
-    //On initialise le nombre de jour par mois
-    var nbJoursfevrier = (current_year % 4) == 0 ? 29 : 28;
-    //Initialisation du tableau indiquant le nombre de jours par mois
-    var day_number = new Array(31,nbJoursfevrier,31,30,31,30,31,31,30,31,30,31);
-
-    //On initialise la ligne qui comportera tous les noms des jours depuis le début du mois
-    var list_day = '';
-    var day_calendar = '';
-
-    var x = 0
-
-    //Lignes permettant de changer  de mois
-
-    var month_bef = "<a href=\"javascript:mois_precedent()\" style=\"float:left;margin-left:3px;\" > << </a>";
-    var month_next = "<a href=\"javascript:mois_suivant()\" style=\"float:right;margin-right:3px;\" > >> </a>";
-
-	  /*   //Lignes permettant de changer l'année et de mois
-	  var month_bef = "<a href=\"javascript:mois_precedent()\" style=\"margin-left:3px;\" > < </a>";
-    var month_next = "<a href=\"javascript:mois_suivant()\" style=\"margin-right:3px;\"> > </a>";
-    var year_next = "<a href=\"javascript:annee_suivante()\" style=\"float:right;margin-right:3px;\" >&nbsp;&nbsp; > > </a>";
-    var year_bef = "<a href=\"javascript:annee_precedente()\" style=\"float:left;margin-left:3px;\"  > < < &nbsp;&nbsp;</a>";
-	 */
-    calendrierSortie = "<p class=\"titleMonth\"> <a href=\"javascript:alimenterChamps('')\" style=\"float:left;margin-left:3px;color:#cccccc;font-size:10px;\"> Effacer la date </a><a href=\"javascript:masquerCalendrier()\" style=\"float:right;margin-right:3px;color:red;font-weight:bold;font-size:12px;\">X</a>&nbsp;</p>";
-    //On affiche le mois et l'année en titre
-   // calendrierSortie += "<p class=\"titleMonth\" style=\"float:left;\">" + year_next + year_bef+  month_bef +  month_name[current_month]+ " "+ current_year + month_next+"</p>";
-    calendrierSortie += "<p class=\"titleMonth\" style=\"float:left;\">" +  month_bef +  month_name[current_month]+ " "+ current_year + month_next+"</p>";
-    //On remplit le calendrier avec le nombre de jour, en remplissant les premiers jours par des champs vides
-    for(var nbjours = 0 ; nbjours < (day_number[current_month] + current_day_since_start_week) ; nbjours++){
-
-        // On boucle tous les 7 jours pour créer la ligne qui comportera le nom des jours en fonction des<br />
-        // paramètres d'affichage
-        if(enLigne == true){
-            // Si le premier jours de la semaine n'est pas un lundi alors on commence ce jours ci
-            if(current_day_since_start_week != 1 && verifJour == false){
-                i  = current_day_since_start_week - 1 ;
-                if(x == 6){
-                    list_day += "<span>" + day_name[x] + "</span>";
-
-                }
-                else{
-                    list_day += "<span>" + day_name[x] + "</span>";
-                }
-                verifJour = true;
-            }
-            else{
-                if(x == 6){
-                    list_day += "<span>" + day_name[x] + "</span>";
-
-                }
-                else{
-                    list_day += "<span>" + day_name[x] + "</span>";
-                }
-            }
-            x = (x == 6) ? 0: x    + 1;
-        }
-        else if( enLigne == false && verifJour == false){
-            for(x = 0 ; x < 7 ; x++){
-                if(x == 6){
-                    list_day += "<span>" + day_name[x] + "</span>";
-
-                }
-                else{
-                    list_day += "<span>" + day_name[x] + "</span>";
-                }
-            }
-            verifJour = true;
-        }
-        //et enfin on ajoute les dates au calendrier
-        //Pour gèrer les jours "vide" et éviter de faire une boucle on vérifit que le nombre de jours corespond bien au
-        //nombre de jour du mois
-        if(nbjours < day_number[current_month]){
-            if(current_day == (nbjours+1)){
-                day_calendar += "<span onclick=\"alimenterChamps(this.innerHTML)\" class=\"currentDay\">" + (nbjours+1) + "</span>";
-            }
-            else{
-                day_calendar += "<span onclick=\"alimenterChamps(this.innerHTML)\">" + (nbjours+1) + "</span>";
-            }
-        }
-    }
-
-    //On ajoute les jours "vide" du début du mois
-    for(i  = 0 ; i < current_day_since_start_week ; i ++){
-        day_calendar = "<span>&nbsp;</span>" + day_calendar;
-    }
-    //Si aucun calendrier n'a encore été crée :
-    if(!document.getElementById("calendrier")){
-        //On crée une div dynamiquement, en absolute, positionné sous le champs input
-        var div_calendar = document.createElement("div");
-
-        //On lui attribut un id
-        div_calendar.setAttribute("id","calendrier");
-
-        //On définit les propriétés de cette div ( id et classe )
-        div_calendar.className = "calendar_input";
-
-        //Pour ajouter la div dans le document
-        var mybody = document.getElementsByTagName("body")[0];
-
-        //Pour finir on ajoute la div dans le document
-        mybody.appendChild(div_calendar);
-    }
-    else{
-            div_calendar = document.getElementById("calendrier");
-    }
-
-    //On insèrer dans la div, le contenu du calendrier généré
-    //On assigne la taille du calendrier de façon dynamique ( on ajoute 10 px pour combler un bug sous ie )
-    var width_calendar = ( enLigne == false ) ?  largeur+"px" : ((nbjours * 20) + ( nbjours * 4 ))+10+"px" ;
-
-    calendrierSortie = calendrierSortie + list_day  + day_calendar + "<div class=\"separator\"></div>";
-    div_calendar.innerHTML = calendrierSortie;
-    div_calendar.style.width = width_calendar;
-}
-
-//Fonction permettant de trouver la position de l'élément ( input ) pour pouvoir positioner le calendrier
-function ds_getleft(el) {
-    var tmp = el.offsetLeft;
-    el = el.offsetParent
-    while(el) {
-        tmp += el.offsetLeft;
-        el = el.offsetParent;
-    }
-    return tmp;
-}
-
-function ds_gettop(el) {
-    var tmp = el.offsetTop;
-    el = el.offsetParent
-    while(el) {
-        tmp += el.offsetTop;
-        el = el.offsetParent;
-    }
-    return tmp;
-}
-
-//fonction permettant de positioner le calendrier
-function positionCalendar(objetParent){
-    //document.getElementById('calendrier').style.left = ds_getleft(objetParent) + "px";
-    document.getElementById('calendrier').style.left = ds_getleft(objetParent) + "px";
-    //document.getElementById('calendrier').style.top = ds_gettop(objetParent) + 20 + "px" ;
-    document.getElementById('calendrier').style.top = ds_gettop(objetParent) + 20 + "px" ;
-    // et on le rend visible
-    document.getElementById('calendrier').style.visibility = "visible";
-}
-
-function initialiserCalendrier(objetClick){
-        //on affecte la variable définissant sur quel input on a clické
-        myObjectClick = objetClick;
-
-        if(myObjectClick.disabled != true){
-            //On vérifit que le champs n'est pas déja remplit, sinon on va se positionner sur la date du champs
-            if(myObjectClick.value != ''){
-                //On utilise la chaine de formatage
-                var reg=new RegExp("/", "g");
-                var dateDuChamps = myObjectClick.value;
-                var tableau=dateDuChamps.split(reg);
-                calendrier(    tableau[2] , tableau[1] - 1 , tableau[0]);
-            }
-            else{
-                //on créer le calendrier
-                calendrier(objetClick);
-
-            }
-            //puis on le positionne par rapport a l'objet sur lequel on a clické
-            //positionCalendar(objetClick);
-            positionCalendar(objetClick);
-            masquerSelect();
-        }
-
-}
-
-//Fonction permettant d'alimenter le champ
-function alimenterChamps(daySelect){
-        if(daySelect != ''){
-            lastInput.value= formatInfZero(daySelect) + formatage + formatInfZero((current_month+1)) + formatage +current_year;
-        }
-        else{
-            lastInput.value = '';
-        }
-        masquerCalendrier();
-}
-function masquerCalendrier(){
-        document.getElementById('calendrier').style.visibility = "hidden";
-        montrerSelect();
-}
-
-function formatInfZero(numberFormat){
-        if(parseInt(numberFormat) < 10){
-                numberFormat = "0"+numberFormat;
-        }
-
-        return numberFormat;
-}
 </script>
-<br>
 <!-- Piwik -->
 <script type="text/javascript">
   var _paq = _paq || [];

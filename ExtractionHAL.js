@@ -1,4 +1,20 @@
 document.getElementById("deteqp").style.display = "none";
+document.getElementById("detrac").style.display = "none";
+//document.getElementById("optsc").style.display = "none";
+var acc = document.getElementsByClassName("accordeon");
+var i;
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  }
+}
+
 function affich_form() {
   document.getElementById("deteqp").style.display = "block";
 }
@@ -14,17 +30,137 @@ function affich_form_suite() {
   for (i=1; i<=nbeqpval; i++) {
     eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Nom HAL équipe '+i+' : <input type="text" name="eqp'+i+'" size="30"><br>';
   }
+  eqpaff += '<br>';
+  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Limiter l\'affichage seulement aux publications croisées :';
+  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+  eqpaff += '<input type="radio" name="typcro" value="non" <?php echo $cron;?>non';
+  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+  eqpaff += '<input type="radio" name="typcro" value="oui" <?php echo $croo;?>oui';
+  eqpaff += '<br><br>';
+  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Afficher le préfixe AERES  :';
+  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+  eqpaff += '<input type="radio" name="prefeq" value="oui" <?php echo $prefo;?>oui';
+  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+  eqpaff += '<input type="radio" name="prefeq" value="non" <?php echo $prefn;?>non';
   document.getElementById("eqp").innerHTML = eqpaff;
 }
 
 $("#nbeqpid").keyup(function(event) {affich_form_suite();});
 
+function affich_form2() {
+  document.getElementById("detrac").style.display = "block";
+}
+
+function cacher_form2() {
+  document.getElementById("detrac").style.display = "none";
+}
+
+function mise_en_ordre(id) {
+  var idmaxi = 5;
+  var idtest = 1;
+  var test = "";
+  while (idtest < idmaxi) {
+    select = document.getElementById("gp"+idtest);
+    choix = select.selectedIndex;
+    valeur = document.getElementById("gp"+idtest).options[choix].value;
+    if (valeur != "--") {
+      test += "~"+valeur;
+    }
+    idtest++;
+  }
+  var idtest = 1;
+  while (idtest < idmaxi) {
+    selectid = document.getElementById("gp"+idtest);
+    choixid = selectid.selectedIndex;
+    valeurid = document.getElementById("gp"+idtest).options[choixid].value;
+    if (idtest != id || (idtest == id && valeurid == "--")) {
+      switch(valeurid) {
+        case "--":
+          true0 = true;
+          true1 = false;
+          true2 = false;
+          true3 = false;
+          true4 = false;
+          break;
+        case "auteurs":
+          true0 = false;
+          true1 = true;
+          true2 = false;
+          true3 = false;
+          true4 = false;
+          break;
+        case "année":
+          true0 = false;
+          true1 = false;
+          true2 = true;
+          true3 = false;
+          true4 = false;
+          break;
+        case "titre":
+          true0 = false;
+          true1 = false;
+          true2 = false;
+          true3 = true;
+          true4 = false;
+          break;
+        case "revue":
+          true0 = false;
+          true1 = false;
+          true2 = false;
+          true3 = false;
+          true4 = true;
+          break;
+      }
+      document.getElementById("gp"+idtest).options.length = 0;
+      document.getElementById("gp"+idtest).options[0] = new Option("--", "--", false, true0);
+      var i = 1;
+      if (test.indexOf("auteurs") == -1 || true1 == true) {document.getElementById("gp"+idtest).options[i] = new Option("Auteurs", "auteurs", false, true1); i++;}
+      if (test.indexOf("année") == -1 || true2 == true) {document.getElementById("gp"+idtest).options[i] = new Option("Année", "année", false, true2); i++;}
+      if (test.indexOf("titre") == -1 || true3 == true) {document.getElementById("gp"+idtest).options[i] = new Option("Titre", "titre", false, true3); i++;}
+      if (test.indexOf("revue") == -1 || true4 == true) {document.getElementById("gp"+idtest).options[i] = new Option("Revue", "revue", false, true4); i++;}
+    }
+    idtest++;
+  }
+}
+
+//Librairie aperçu
+function mp(sel, quoi, qui, code1, code2, mem) {
+  var contres = document.getElementById(qui).innerHTML;
+  if (quoi == "--") {
+    document.getElementById(qui).innerHTML = mem;
+    return;
+  }
+  if (quoi == "ecol") {
+    contaff = "<font color='#"+code1+"'>"+contres+"</font>";
+  }else{
+    if (quoi == "emin" && sel.indexOf("emin") != -1 || quoi == "emaj" && sel.indexOf("emaj") != -1) {
+      switch(quoi) {
+        case "emin":
+          contaff = contres.toLowerCase();
+          break;
+        case "emaj":
+          contaff = contres.toUpperCase();
+          break;
+      }
+    }else{
+      if (sel.indexOf(quoi) != -1) {
+        var contaff = contres;
+        if (contres.indexOf(code1) == -1 && contres.indexOf(code2) == -1) {
+          var contaff = code1+contres+code2;
+        }
+      }else{
+        var contaff = contres.replace(code1, "");
+        var contaff = contaff.replace(code2, "");
+      }
+    }
+  }
+  document.getElementById(qui).innerHTML = contaff;
+}
+
 // librairie calendrier
- 
-/* Inclure ce script dans l'entete */
- 
+
 /* ##################### CONFIGURATION ##################### */
- 
+
 /* ##- INITIALISATION DES VARIABLES -##*/
 var calendrierSortie = '';
 //Date actuelle
@@ -48,13 +184,13 @@ var classMove = "calendrier";
 var lastInput = null;
 //Div du calendrier
 var div_calendar = "";
- 
- 
- 
+
+
+
 //########################## FIN DES FONCTION LISTENER ########################## //
 /*Ajout du listener pour détecter le click sur l'élément et afficher le calendrier
 uniquement sur les textbox de class css date */
- 
+
 //Fonction permettant d'initialiser les listeners
 function init_evenement(){
     //On commence par affecter une fonction à chaque évènement de la souris
@@ -80,7 +216,7 @@ function start(e){
     {
         //On appel la fonction permettant de récupèrer la classe de l'objet et assigner les variables
         getClassDrag(monElement);
-        
+
         if(myObjectClick){
             initialiserCalendrier(monElement);
             lastInput = myObjectClick;
@@ -90,7 +226,7 @@ function start(e){
 function drop(){
          myObjectClick = null;
 }
- 
+
 function getClassDrag(myObject){
     with(myObject){
         var x = className;
@@ -105,13 +241,13 @@ function getClassDrag(myObject){
     }
 }
 window.onload = init_evenement;
- 
+
 //########################## Pour combler un bug d'ie 6 on masque les select ########################## //
 function masquerSelect(){
         var ua = navigator.userAgent.toLowerCase();
         var versionNav = parseFloat( ua.substring( ua.indexOf('msie ') + 5 ) );
         var isIE        = ( (ua.indexOf('msie') != -1) && (ua.indexOf('opera') == -1) && (ua.indexOf('webtv') == -1) );
- 
+
         if(isIE && (versionNav < 7)){
              svn=document.getElementsByTagName("SELECT");
              for (a=0;a<svn.length;a++){
@@ -119,7 +255,7 @@ function masquerSelect(){
              }
         }
 }
- 
+
 function montrerSelect(){
        var ua = navigator.userAgent.toLowerCase();
         var versionNav = parseFloat( ua.substring( ua.indexOf('msie ') + 5 ) );
@@ -131,22 +267,22 @@ function montrerSelect(){
              }
          }
 }
- 
+
 //########################## FIN DES FONCTION LISTENER ########################## //
- 
+
 // ## PARAMETRE D'AFFICHAGE du CALENDRIER ## //
 //si enLigne est a true , le calendrier s'affiche sur une seule ligne,
 //sinon il prend la taille spécifié par défaut;
- 
+
 var enLigne = false ;
 var largeur = "175";
 var formatage = "/";
- 
+
 /* ##################### FIN DE LA CONFIGURATION ##################### */
- 
+
 //Fonction permettant de passer a l'annee précédente
 function annee_precedente(){
- 
+
     //On récupère l'annee actuelle puis on vérifit que l'on est pas en l'an 1 :-)
     if(current_year == 1){
         current_year = current_year;
@@ -157,7 +293,7 @@ function annee_precedente(){
     //et on appel la fonction de génération de calendrier
     calendrier(    current_year , current_month, current_day);
 }
- 
+
 //Fonction permettant de passer à l'annee suivante
 function annee_suivante(){
     //Pas de limite pour l'ajout d'année
@@ -165,13 +301,13 @@ function annee_suivante(){
     //et on appel la fonction de génération de calendrier
     calendrier(    current_year , current_month, current_day);
 }
- 
- 
- 
- 
+
+
+
+
 //Fonction permettant de passer au mois précédent
 function mois_precedent(){
- 
+
     //On récupère le mois actuel puis on vérifit que l'on est pas en janvier sinon on enlève une année
     if(current_month == 0){
         current_month = 11;
@@ -183,7 +319,7 @@ function mois_precedent(){
     //et on appel la fonction de génération de calendrier
     calendrier(    current_year , current_month, current_day);
 }
- 
+
 //Fonction permettant de passer au mois suivant
 function mois_suivant(){
     //On récupère le mois actuel puis on vérifit que l'on est pas en janvier sinon on ajoute une année
@@ -197,12 +333,12 @@ function mois_suivant(){
     //et on appel la fonction de génération de calendrier
     calendrier(    current_year , current_month, current_day);
 }
- 
+
 //Fonction principale qui génère le calendrier
 //Elle prend en paramètre, l'année , le mois , et le jour
 //Si l'année et le mois ne sont pas renseignés , la date courante est affecté par défaut
 function calendrier(year, month, day ){
- 
+
     //Aujourd'hui si month et year ne sont pas renseignés
     if(month == null || year == null){
         today = new Date();
@@ -212,42 +348,42 @@ function calendrier(year, month, day ){
         //Création d'une date en fonction de celle passée en paramètre
         today = new Date(year, month , day);
     }
- 
+
     //Mois actuel
     current_month = today.getMonth()
-    
+
     //Année actuelle
     current_year = today.getFullYear();
-    
+
     //Jours actuel
     current_day = today.getDate();
-    
+
     // On récupère le premier jour de la semaine du mois
     var dateTemp = new Date(current_year, current_month,1);
-    
+
     //test pour vérifier quel jour était le prmier du mois
     current_day_since_start_week = (( dateTemp.getDay()== 0 ) ? 6 : dateTemp.getDay() - 1);
-    
+
     //variable permettant de vérifier si l'on est déja rentré dans la condition pour éviter une boucle infinit
     var verifJour = false;
-    
+
     //On initialise le nombre de jour par mois
     var nbJoursfevrier = (current_year % 4) == 0 ? 29 : 28;
     //Initialisation du tableau indiquant le nombre de jours par mois
     var day_number = new Array(31,nbJoursfevrier,31,30,31,30,31,31,30,31,30,31);
-    
+
     //On initialise la ligne qui comportera tous les noms des jours depuis le début du mois
     var list_day = '';
     var day_calendar = '';
-    
+
     var x = 0
-    
+
     //Lignes permettant de changer  de mois
-	 
+
     var month_bef = "<a href=\"javascript:mois_precedent()\" style=\"float:left;margin-left:3px;\" > << </a>";
     var month_next = "<a href=\"javascript:mois_suivant()\" style=\"float:right;margin-right:3px;\" > >> </a>";
-	 
-	  /*   //Lignes permettant de changer l'année et de mois	  
+
+	  /*   //Lignes permettant de changer l'année et de mois
 	  var month_bef = "<a href=\"javascript:mois_precedent()\" style=\"margin-left:3px;\" > < </a>";
     var month_next = "<a href=\"javascript:mois_suivant()\" style=\"margin-right:3px;\"> > </a>";
     var year_next = "<a href=\"javascript:annee_suivante()\" style=\"float:right;margin-right:3px;\" >&nbsp;&nbsp; > > </a>";
@@ -259,7 +395,7 @@ function calendrier(year, month, day ){
     calendrierSortie += "<p class=\"titleMonth\" style=\"float:left;\">" +  month_bef +  month_name[current_month]+ " "+ current_year + month_next+"</p>";
     //On remplit le calendrier avec le nombre de jour, en remplissant les premiers jours par des champs vides
     for(var nbjours = 0 ; nbjours < (day_number[current_month] + current_day_since_start_week) ; nbjours++){
-        
+
         // On boucle tous les 7 jours pour créer la ligne qui comportera le nom des jours en fonction des<br />
         // paramètres d'affichage
         if(enLigne == true){
@@ -268,7 +404,7 @@ function calendrier(year, month, day ){
                 i  = current_day_since_start_week - 1 ;
                 if(x == 6){
                     list_day += "<span>" + day_name[x] + "</span>";
-                    
+
                 }
                 else{
                     list_day += "<span>" + day_name[x] + "</span>";
@@ -278,7 +414,7 @@ function calendrier(year, month, day ){
             else{
                 if(x == 6){
                     list_day += "<span>" + day_name[x] + "</span>";
-                    
+
                 }
                 else{
                     list_day += "<span>" + day_name[x] + "</span>";
@@ -290,7 +426,7 @@ function calendrier(year, month, day ){
             for(x = 0 ; x < 7 ; x++){
                 if(x == 6){
                     list_day += "<span>" + day_name[x] + "</span>";
-                    
+
                 }
                 else{
                     list_day += "<span>" + day_name[x] + "</span>";
@@ -310,7 +446,7 @@ function calendrier(year, month, day ){
             }
         }
     }
- 
+
     //On ajoute les jours "vide" du début du mois
     for(i  = 0 ; i < current_day_since_start_week ; i ++){
         day_calendar = "<span>&nbsp;</span>" + day_calendar;
@@ -319,32 +455,32 @@ function calendrier(year, month, day ){
     if(!document.getElementById("calendrier")){
         //On crée une div dynamiquement, en absolute, positionné sous le champs input
         var div_calendar = document.createElement("div");
-        
+
         //On lui attribut un id
         div_calendar.setAttribute("id","calendrier");
-        
-        //On définit les propriétés de cette div ( id et classe ) 
+
+        //On définit les propriétés de cette div ( id et classe )
         div_calendar.className = "calendar_input";
-        
+
         //Pour ajouter la div dans le document
         var mybody = document.getElementsByTagName("body")[0];
-        
+
         //Pour finir on ajoute la div dans le document
         mybody.appendChild(div_calendar);
     }
     else{
             div_calendar = document.getElementById("calendrier");
     }
-    
+
     //On insèrer dans la div, le contenu du calendrier généré
     //On assigne la taille du calendrier de façon dynamique ( on ajoute 10 px pour combler un bug sous ie )
     var width_calendar = ( enLigne == false ) ?  largeur+"px" : ((nbjours * 20) + ( nbjours * 4 ))+10+"px" ;
- 
+
     calendrierSortie = calendrierSortie + list_day  + day_calendar + "<div class=\"separator\"></div>";
     div_calendar.innerHTML = calendrierSortie;
     div_calendar.style.width = width_calendar;
 }
- 
+
 //Fonction permettant de trouver la position de l'élément ( input ) pour pouvoir positioner le calendrier
 function ds_getleft(el) {
     var tmp = el.offsetLeft;
@@ -355,7 +491,7 @@ function ds_getleft(el) {
     }
     return tmp;
 }
- 
+
 function ds_gettop(el) {
     var tmp = el.offsetTop;
     el = el.offsetParent
@@ -365,7 +501,7 @@ function ds_gettop(el) {
     }
     return tmp;
 }
- 
+
 //fonction permettant de positioner le calendrier
 function positionCalendar(objetParent){
     //document.getElementById('calendrier').style.left = ds_getleft(objetParent) + "px";
@@ -375,11 +511,11 @@ function positionCalendar(objetParent){
     // et on le rend visible
     document.getElementById('calendrier').style.visibility = "visible";
 }
- 
+
 function initialiserCalendrier(objetClick){
         //on affecte la variable définissant sur quel input on a clické
         myObjectClick = objetClick;
-        
+
         if(myObjectClick.disabled != true){
             //On vérifit que le champs n'est pas déja remplit, sinon on va se positionner sur la date du champs
             if(myObjectClick.value != ''){
@@ -392,17 +528,17 @@ function initialiserCalendrier(objetClick){
             else{
                 //on créer le calendrier
                 calendrier(objetClick);
- 
+
             }
             //puis on le positionne par rapport a l'objet sur lequel on a clické
             //positionCalendar(objetClick);
             positionCalendar(objetClick);
             masquerSelect();
         }
- 
+
 }
- 
-//Fonction permettant d'alimenter le champs
+
+//Fonction permettant d'alimenter le champ
 function alimenterChamps(daySelect){
         if(daySelect != ''){
             lastInput.value= formatInfZero(daySelect) + formatage + formatInfZero((current_month+1)) + formatage +current_year;
@@ -416,11 +552,11 @@ function masquerCalendrier(){
         document.getElementById('calendrier').style.visibility = "hidden";
         montrerSelect();
 }
- 
+
 function formatInfZero(numberFormat){
         if(parseInt(numberFormat) < 10){
                 numberFormat = "0"+numberFormat;
         }
-        
+
         return numberFormat;
 }
