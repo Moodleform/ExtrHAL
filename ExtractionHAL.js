@@ -1,6 +1,6 @@
 document.getElementById("deteqp").style.display = "none";
 document.getElementById("detrac").style.display = "none";
-//document.getElementById("optsc").style.display = "none";
+
 var acc = document.getElementsByClassName("accordeon");
 var i;
 for (i = 0; i < acc.length; i++) {
@@ -17,42 +17,23 @@ for (i = 0; i < acc.length; i++) {
 
 function affich_form() {
   document.getElementById("deteqp").style.display = "block";
+  document.getElementById("panel2").style.maxHeight = document.getElementById("panel2").scrollHeight + "px";
 }
 
 function cacher_form() {
   document.getElementById("deteqp").style.display = "none";
   document.getElementById("eqp").style.display = "none";
+  document.getElementById("panel2").style.maxHeight = document.getElementById("panel2").scrollHeight + "px";
 }
-
-function affich_form_suite() {
-  nbeqpval = document.extrhal.nbeqp.value;
-  var eqpaff = '';
-  for (i=1; i<=nbeqpval; i++) {
-    eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Nom HAL équipe '+i+' : <input type="text" name="eqp'+i+'" size="30"><br>';
-  }
-  eqpaff += '<br>';
-  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Limiter l\'affichage seulement aux publications croisées :';
-  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-  eqpaff += '<input type="radio" name="typcro" value="non" <?php echo $cron;?>non';
-  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-  eqpaff += '<input type="radio" name="typcro" value="oui" <?php echo $croo;?>oui';
-  eqpaff += '<br><br>';
-  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Afficher le préfixe AERES  :';
-  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-  eqpaff += '<input type="radio" name="prefeq" value="oui" <?php echo $prefo;?>oui';
-  eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-  eqpaff += '<input type="radio" name="prefeq" value="non" <?php echo $prefn;?>non';
-  document.getElementById("eqp").innerHTML = eqpaff;
-}
-
-$("#nbeqpid").keyup(function(event) {affich_form_suite();});
 
 function affich_form2() {
   document.getElementById("detrac").style.display = "block";
+  document.getElementById("panel2").style.maxHeight = document.getElementById("panel2").scrollHeight + "px";
 }
 
 function cacher_form2() {
   document.getElementById("detrac").style.display = "none";
+  document.getElementById("panel2").style.maxHeight = document.getElementById("panel2").scrollHeight + "px";
 }
 
 function mise_en_ordre(id) {

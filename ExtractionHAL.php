@@ -987,7 +987,7 @@ if (isset($typnum) && $typnum == "inv" || !isset($team)) {$inv = "checked";}else
 </div>
 <div style='width:99%;float: left;border:2px solid #fc6a00;padding: 3px;border-radius: 5px;margin-bottom: 10px;'>
 <span class="accordeon"><b>Options d'affichage et d'export</b> :</span>
-<div class="panel">
+<div class="panel" id="panel2">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Numérotation :
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="radio" name="typnum" value="vis" <?php echo $vis;?>>visible
@@ -4963,6 +4963,28 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
 <br>
 <script type="text/javascript" src="./ExtractionHAL.js"></script>
 <script type="text/javascript">
+  function affich_form_suite() {
+    nbeqpval = document.extrhal.nbeqp.value;
+    var eqpaff = '';
+    for (i=1; i<=nbeqpval; i++) {
+      eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Nom HAL équipe '+i+' : <input type="text" name="eqp'+i+'" size="30"><br>';
+    }
+    eqpaff += '<br>';
+    eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Limiter l\'affichage seulement aux publications croisées :';
+    eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+    eqpaff += '<input type="radio" name="typcro" value="non" <?php echo $cron;?>>non';
+    eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+    eqpaff += '<input type="radio" name="typcro" value="oui" <?php echo $croo;?>>oui';
+    eqpaff += '<br><br>';
+    eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Afficher le préfixe AERES  :';
+    eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+    eqpaff += '<input type="radio" name="prefeq" value="oui" <?php echo $prefo;?>>oui';
+    eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+    eqpaff += '<input type="radio" name="prefeq" value="non" <?php echo $prefn;?>>non';
+    document.getElementById("eqp").innerHTML = eqpaff;
+    document.getElementById("panel2").style.maxHeight = document.getElementById("panel2").scrollHeight + "px";
+  }
+
   $("#nbeqpid").keyup(function(event) {affich_form_suite();});
 
   function majapercu(){
