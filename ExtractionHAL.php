@@ -776,7 +776,7 @@ le code collection de votre labo ou de votre équipe, selon que vous souhaitez m
 </span></a> :
 <input type="text" name="listaut" value="<?php echo $listaut;?>" size="40"><br>
 <h2><b><u>ou</u></b></h2>
-<p>Identifiant HAL auteur (IdHAL) :
+<p><b>Identifiant alphabétique auteur HAL</b> <i>(IdHAL > olivier-troccaz, par exemple)</i> :
 <input type="text" name="idhal" value="<?php echo $idhal;?>" size="40">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="https://hal.archives-ouvertes.fr/page/mon-idhal">Créer mon IdHAL</a>
 <br><br>
