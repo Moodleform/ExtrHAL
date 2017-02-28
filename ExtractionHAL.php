@@ -20,6 +20,17 @@
 </head>
 
 <?php
+//Liste auteurs externes à Rennes 1 > autosoumission d'un formulaire avec le champ nécessaire pour retrouver le fichier
+if (isset($_GET['extur1']) && $_GET['extur1'] != '' && isset($_GET["import"]) && $_GET["import"] == "ok") {
+  $uniq = $_GET['extur1'];
+  echo('<form name="troli" action="ExtractionHAL.php" method="post">');
+  echo('<input type="hidden" name="extur1" value="'.$uniq.'">');
+  echo('</form>');
+  echo('<script type="text/javascript">');
+  echo('document.troli.submit();');
+  echo('</script>');
+}
+
 //Institut général
 $institut = "";// -> univ-rennes1/ par exemple, mais est-ce vraiment nécessaire ?
 
@@ -207,7 +218,13 @@ if (isset($_POST["soumis"])) {
   }
 
 	//Création des listes des auteurs appartenant à la collection spécifiée pour la liste
-  include "./pvt/ExtractionHAL-auteurs.php";
+  if (isset($_POST['extur1']) && $_POST['extur1'] != '') {//Liste d'auteurs extérieurs à Rennes 1
+    $uniq = $_POST['extur1'];
+    include "./pvt/ExtractionHAL-auteurs-extur1-".$uniq.".php";
+    $urlsauv .= "&extur1=".$uniq;
+  }else{
+    include "./pvt/ExtractionHAL-auteurs.php";
+  }
   $listenominit = "~";
   $listenomcomp1 = "~";
   $listenomcomp2 = "~";
@@ -518,7 +535,13 @@ if (isset($_GET["team"])) {
   }
 
 	//Création des listes des auteurs appartenant à la collection spécifiée pour la liste
-  include "./pvt/ExtractionHAL-auteurs.php";
+  if (isset($_GET['extur1']) && $_GET['extur1'] != '') {//Liste d'auteurs extérieurs à Rennes 1
+    $uniq = $_GET['extur1'];
+    include "./pvt/ExtractionHAL-auteurs-extur1-".$uniq.".php";
+    $urlsauv .= "&extur1=".$uniq;
+  }else{
+    include "./pvt/ExtractionHAL-auteurs.php";
+  }
   $listenominit = "~";
   $listenomcomp1 = "~";
   $listenomcomp2 = "~";
@@ -1802,6 +1825,18 @@ if (isset($choix_cg4)) {$cg4v = $choix_cg4;}
 La suite sera constituée des éléments habituels s'ils ont été demandés : pagination, DOI, Pubmed, etc.
 <br><br>
 </div></div>
+<br><br>
+<?php
+$uniq = "";
+if (isset($_GET['extur1']) && $_GET['extur1'] != '') {$uniq = $_GET['extur1'];}
+if (isset($_POST['extur1']) && $_POST['extur1'] != '') {$uniq = $_POST['extur1'];}
+if ($uniq != '') {
+  echo('Vous utilisez votre propre fichier de liste d\'auteurs à mettre en évidence');
+  echo('<input type="hidden" value="'.$uniq.'" name="extur1">');
+}else{
+  echo('Extérieurs à Rennes 1, vous avez la possibilité de mettre en évidence les auteurs de votre collection en <a href="ExtractionHAL-liste-auteurs-extur1.php">prétéléchargeant un fichier CSV ou TXT</a> réalisé selon <a href="https://halur1.univ-rennes1.fr/modele.csv">ce modèle</a>.');
+}
+?>
 <br><br>
 <input type="submit" value="Valider" name="soumis">
 </form>
