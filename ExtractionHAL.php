@@ -785,6 +785,17 @@ Si vous souhaitez utiliser le script PHP pour une autre institution, consultez l
 <a target="_blank" href="http://www.bibliopedia.fr/wiki/D%C3%A9veloppements_HAL">page Bibliopedia</a> (ExtractionHAL).</p>
 
 <form method="POST" accept-charset="utf-8" name="extrhal" action="ExtractionHAL.php#sommaire">
+<?php
+$uniq = "";
+if (isset($_GET['extur1']) && $_GET['extur1'] != '') {$uniq = $_GET['extur1'];}
+if (isset($_POST['extur1']) && $_POST['extur1'] != '') {$uniq = $_POST['extur1'];}
+if ($uniq != '') {
+  echo('Vous utilisez votre propre fichier de liste d\'auteurs à mettre en évidence');
+  echo('<input type="hidden" value="'.$uniq.'" name="extur1">');
+}else{
+  echo('Extérieurs à Rennes 1, vous avez la possibilité de mettre en évidence les auteurs de votre collection en <a href="ExtractionHAL-liste-auteurs-extur1.php">prétéléchargeant un fichier CSV ou TXT</a> réalisé selon <a href="https://halur1.univ-rennes1.fr/modele.csv">ce modèle</a>.');
+}
+?>
 <p><b>Code collection HAL</b> <a class=info onclick='return false' href="#">(qu’est-ce que c’est ?)<span>Code visible dans l’URL d’une collection.
 Exemple : IPR-MOL est le code de la collection http://hal.archives-ouvertes.fr/<b>IPR-PMOL</b> de l’équipe Physique moléculaire
 de l’unité IPR UMR CNRS 6251</span></a> :
@@ -1825,18 +1836,6 @@ if (isset($choix_cg4)) {$cg4v = $choix_cg4;}
 La suite sera constituée des éléments habituels s'ils ont été demandés : pagination, DOI, Pubmed, etc.
 <br><br>
 </div></div>
-<br><br>
-<?php
-$uniq = "";
-if (isset($_GET['extur1']) && $_GET['extur1'] != '') {$uniq = $_GET['extur1'];}
-if (isset($_POST['extur1']) && $_POST['extur1'] != '') {$uniq = $_POST['extur1'];}
-if ($uniq != '') {
-  echo('Vous utilisez votre propre fichier de liste d\'auteurs à mettre en évidence');
-  echo('<input type="hidden" value="'.$uniq.'" name="extur1">');
-}else{
-  echo('Extérieurs à Rennes 1, vous avez la possibilité de mettre en évidence les auteurs de votre collection en <a href="ExtractionHAL-liste-auteurs-extur1.php">prétéléchargeant un fichier CSV ou TXT</a> réalisé selon <a href="https://halur1.univ-rennes1.fr/modele.csv">ce modèle</a>.');
-}
-?>
 <br><br>
 <input type="submit" value="Valider" name="soumis">
 </form>
