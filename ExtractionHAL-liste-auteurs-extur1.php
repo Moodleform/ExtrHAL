@@ -29,9 +29,12 @@ if (isset($_GET["erreur"])) {
   $erreur = $_GET["erreur"];
   if ($erreur == "extfic") {echo('<script type="text/javascript">alert("Vous ne pouvez importer que des fichiers de type csv ou txt !")</script>');}
   if ($erreur == "nulfic") {echo('<script type="text/javascript">alert("Le fichier csv ou txt est vide !")</script>');}
+  if ($erreur == "nulteam") {echo('<script type="text/javascript">alert("Vous devez spécifier un code collection HAL !")</script>');}
+  if ($erreur == "nofic") {echo('<script type="text/javascript">alert("Vous devez renseigner un fichier !")</script>');}
 }
 ?>
 <form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-liste-auteurs-extur1-import.php" enctype="multipart/form-data">
+Code collection HAL : <input type="text" name="team" size="40"><br>
 Sélectionnez le fichier CSV à importer <i>(<a href="https://halur1.univ-rennes1.fr/modele.csv">cf. modèle</a>)</i> :
 <input type="file" name="import" size="30" style="font-family: Corbel; font-size: 10pt;"><br>
 <input type="submit" value="Importer">

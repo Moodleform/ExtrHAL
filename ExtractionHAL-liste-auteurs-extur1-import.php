@@ -4,8 +4,10 @@ function mb_ucwords($str) {
   $str = mb_convert_case($str, MB_CASE_TITLE, "UTF-8");
   return ($str);
 }
+//code collection
+$uniq = $_POST["team"];
+if ($uniq == "") {header("location:"."ExtractionHAL-liste-auteurs-extur1.php?erreur=nulteam"); exit;}
 //fichier CSV ou txt
-$complet = '';
 if ($_FILES['import']['name'] != "") {
   $ext = strtolower(strrchr($_FILES['import']['name'], '.'));
   if ($ext != ".csv" && $ext != ".txt"){
@@ -15,9 +17,10 @@ if ($_FILES['import']['name'] != "") {
       header("location:"."ExtractionHAL-liste-auteurs-extur1.php?erreur=nulfic"); exit;
     }else{
       $temp = $_FILES['import']['tmp_name'];
-      $complet = 'ok';
     }
   }
+}else{
+  header("location:"."ExtractionHAL-liste-auteurs-extur1.php?erreur=nofic"); exit;
 }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -41,7 +44,6 @@ if ($_FILES['import']['name'] != "") {
 <hr style="color: #467666;">
 <h1>Création des fichiers de liste d'auteurs extérieurs à Rennes 1</h1>
 <?php
-$uniq = time();
 $handle = fopen($temp, 'r');//Ouverture du fichier
 if ($handle)  {//Si on a réussi à ouvrir le fichier
   $ligne = 1;
