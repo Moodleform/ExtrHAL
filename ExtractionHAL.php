@@ -2190,8 +2190,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
         if ($typnom == "nominit") {
           //si prénom composé et initiales
           $prenom = prenomCompInit($prenom);
-          $prenom2 = str_replace(array(".", "-"), array("trolipoint", "trolitiret") , $prenom);
-          $nom2 = str_replace(array(".", "-"), array("trolipoint", "trolitiret") , $nom);
+          $prenom2 = str_replace(array(".", "-", "'"), array("trolipoint", "trolitiret", "troliapos") , $prenom);
+          $nom2 = str_replace(array(".", "-", "'"), array("trolipoint", "trolitiret", "troliapos") , $nom);
           if ($initial == 1){
             $initial = 0;
             $authors = "";
@@ -2224,7 +2224,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
           }
           $authors .= $nom2."troliesp".$prenom2;
           $authors = mise_en_evidence(wd_remove_accents($nom2."troliesp".$prenom2), $authors, $deb, $fin);
-          $authors = str_replace(array("troliesp", "trolipoint", "trolitiret"), array(" ", ".", "-") , $authors);
+          $authors = str_replace(array("troliesp", "trolipoint", "trolitiret", "troliapos"), array(" ", ".", "-", "'") , $authors);
         }else{//Si nom/prénom complets
           if ($typnom == "nomcomp1") {//Nom Prénom
             if ($initial == 1){
@@ -2234,8 +2234,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
               $authors .= ", ";
             }
             $prenom = prenomCompEntier($prenom);
-            $prenom2 = str_replace(array(".", "-"), array("trolipoint", "trolitiret") , $prenom);
-            $nom2 = str_replace(array(".", "-"), array("trolipoint", "trolitiret") , $nom);
+            $prenom2 = str_replace(array(".", "-", "'"), array("trolipoint", "trolitiret", "troliapos") , $prenom);
+            $nom2 = str_replace(array(".", "-", "'"), array("trolipoint", "trolitiret", "troliapos") , $nom);
             if (strpos(wd_remove_accents($listenomcomp1), wd_remove_accents($nom." ".$prenom)) === false) {
               $deb = "";$fin = "";
             }else{
@@ -2258,7 +2258,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
             }
             $authors .= $nom2."troliesp".$prenom2;
             $authors = mise_en_evidence(wd_remove_accents($nom2."troliesp".$prenom2), $authors, $deb, $fin);
-            $authors = str_replace(array("troliesp", "trolipoint", "trolitiret"), array(" ", ".", "-") , $authors);
+            $authors = str_replace(array("troliesp", "trolipoint", "trolitiret", "troliapos"), array(" ", ".", "-", "'") , $authors);
           }else{//Prénom Nom
             if ($initial == 1){
               $initial = 0;
@@ -2267,8 +2267,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
               $authors .= ", ";
             }
             $prenom = prenomCompEntier($prenom);
-            $prenom2 = str_replace(array(".", "-"), array("trolipoint", "trolitiret") , $prenom);
-            $nom2 = str_replace(array(".", "-"), array("trolipoint", "trolitiret") , $nom);
+            $prenom2 = str_replace(array(".", "-", "'"), array("trolipoint", "trolitiret", "troliapos") , $prenom);
+            $nom2 = str_replace(array(".", "-", "'"), array("trolipoint", "trolitiret", "troliapos") , $nom);
             if (strpos(wd_remove_accents($listenomcomp2), wd_remove_accents($prenom." ".$nom)) === false) {
               $deb = "";$fin = "";
             }else{
@@ -2289,7 +2289,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
             }
             $authors .= $prenom2."troliesp".$nom2;
             $authors = mise_en_evidence(wd_remove_accents($prenom2."troliesp".$nom2), $authors, $deb, $fin);
-            $authors = str_replace(array("troliesp", "trolipoint", "trolitiret"), array(" ", ".", "-") , $authors);
+            $authors = str_replace(array("troliesp", "trolipoint", "trolitiret", "troliapos"), array(" ", ".", "-", "'") , $authors);
           }
         }
         $i++;
