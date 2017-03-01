@@ -105,6 +105,57 @@ function nomCompEntier($nom) {
   return $nom;
 }
 
+function mise_en_evidence($phrase, $string, $deb, $fin) {
+  $non_letter_chars = '/[^\pL]/iu';
+  $words = preg_split($non_letter_chars, $phrase);
+
+  $search_words = array();
+  foreach ($words as $word) {
+    if (strlen($word) > 2 && !preg_match($non_letter_chars, $word)) {
+      $search_words[] = $word;
+    }
+  }
+
+  $search_words = array_unique($search_words);
+
+  $patterns = array(
+    /* à répéter pour chaque caractère accentué possible */
+    '/(ae|æ)/iu' => '(ae|æ)',
+    '/(oe|œ)/iu' => '(oe|œ)',
+    '/[aàáâãäå]/iu' => '[aàáâãäå]',
+    '/[cç]/iu' => '[cç]',
+    '/[eèéêëeeeee]/iu' => '[eèéêëeeeee]',
+    '/[iìíîïiiiii]/iu' => '[iìíîïiiiii]',
+    '/[nñ]/iu' => '[nñ]',
+    '/[oòóôõö]/iu' => '[oòóôõö]',
+    '/[sš]/iu' => '[sš]',
+    '/[uùúûü]/iu' => '[uùúûü]',
+    '/[yýÿ]/iu' => '[yýÿ]',
+    '/[zž]/iu' => '[zž]',
+  );
+
+  foreach ($search_words as $word) {
+    $search = preg_quote($word);
+
+    $search = preg_replace(array_keys($patterns), $patterns, $search);
+
+    $string = preg_replace('/\b' . $search . '(e?s)?\b/iu', $deb.'$0'.$fin, $string);
+    return $string;
+  }
+}
+
+//Suppresion des accents
+function wd_remove_accents($str, $charset='utf-8')
+{
+    $str = htmlentities($str, ENT_NOQUOTES, $charset);
+
+    $str = preg_replace('#&([A-za-z])(?:acute|cedil|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
+    $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
+    $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
+
+    return $str;
+}
+
 //Initialisation des variables
 $idhal = "";
 $evhal = "";
@@ -2139,19 +2190,21 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
         if ($typnom == "nominit") {
           //si prénom composé et initiales
           $prenom = prenomCompInit($prenom);
+          $prenom2 = str_replace(array(".", "-"), array("trolipoint", "trolitiret") , $prenom);
+          $nom2 = str_replace(array(".", "-"), array("trolipoint", "trolitiret") , $nom);
           if ($initial == 1){
             $initial = 0;
             $authors = "";
           }else{
             $authors .= ", ";
           }
-          if (strpos($listenominit, $nom." ".$prenom) === false) {
+          if (strpos(wd_remove_accents($listenominit), wd_remove_accents($nom." ".$prenom)) === false) {
             $deb = "";$fin = "";
           }else{
             //On vérifie que l'auteur est bien dans la collection pour l'année de la publication
             $deb = "";
             $fin = "";
-            $pos = strpos($listenominit, $nom." ".$prenom);
+            $pos = strpos(wd_remove_accents($listenominit), wd_remove_accents($nom." ".$prenom));
             $pos = substr_count(substr($listenominit, 0, $pos), '~');
             $crit = 0;
             for ($k = 1; $k <= $pos; $k++) {
@@ -2169,7 +2222,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
               if ($typcol == "aucun") {$deb = "";$fin = "";}
             }
           }
-          $authors .= $deb.$nom." ".$prenom.$fin;
+          $authors .= $nom2."troliesp".$prenom2;
+          $authors = mise_en_evidence(wd_remove_accents($nom2."troliesp".$prenom2), $authors, $deb, $fin);
+          $authors = str_replace(array("troliesp", "trolipoint", "trolitiret"), array(" ", ".", "-") , $authors);
         }else{//Si nom/prénom complets
           if ($typnom == "nomcomp1") {//Nom Prénom
             if ($initial == 1){
@@ -2179,13 +2234,15 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
               $authors .= ", ";
             }
             $prenom = prenomCompEntier($prenom);
-            if (strpos($listenomcomp1, $nom." ".$prenom) === false) {
+            $prenom2 = str_replace(array(".", "-"), array("trolipoint", "trolitiret") , $prenom);
+            $nom2 = str_replace(array(".", "-"), array("trolipoint", "trolitiret") , $nom);
+            if (strpos(wd_remove_accents($listenomcomp1), wd_remove_accents($nom." ".$prenom)) === false) {
               $deb = "";$fin = "";
             }else{
               //On vérifie que l'auteur est bien dans la collection pour l'année de la publication
               $deb = "";
               $fin = "";
-              $pos = strpos($listenomcomp1, $nom." ".$prenom);
+              $pos = strpos(wd_remove_accents($listenomcomp1), wd_remove_accents($nom." ".$prenom));
               $pos = substr_count(substr($listenomcomp1, 0, $pos), '~');
               $crit = 0;
               for ($k = 1; $k <= $pos; $k++) {
@@ -2199,7 +2256,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
                 if ($typcol == "aucun") {$deb = "";$fin = "";}
               }
             }
-            $authors .= $deb.$nom." ".$prenom.$fin;
+            $authors .= $nom2."troliesp".$prenom2;
+            $authors = mise_en_evidence(wd_remove_accents($nom2."troliesp".$prenom2), $authors, $deb, $fin);
+            $authors = str_replace(array("troliesp", "trolipoint", "trolitiret"), array(" ", ".", "-") , $authors);
           }else{//Prénom Nom
             if ($initial == 1){
               $initial = 0;
@@ -2208,11 +2267,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
               $authors .= ", ";
             }
             $prenom = prenomCompEntier($prenom);
-            if (strpos($listenomcomp2, $prenom." ".$nom) === false) {
+            $prenom2 = str_replace(array(".", "-"), array("trolipoint", "trolitiret") , $prenom);
+            $nom2 = str_replace(array(".", "-"), array("trolipoint", "trolitiret") , $nom);
+            if (strpos(wd_remove_accents($listenomcomp2), wd_remove_accents($prenom." ".$nom)) === false) {
               $deb = "";$fin = "";
             }else{
               //On vérifie que l'auteur est bien dans la collection pour l'année de la publication
-              $pos = strpos($listenomcomp2, $prenom." ".$nom);
+              $pos = strpos(wd_remove_accents($listenomcomp2), wd_remove_accents($prenom." ".$nom));
               $pos = substr_count(substr($listenomcomp2, 0, $pos), '~');
               $crit = 0;
               for ($k = 1; $k <= $pos; $k++) {
@@ -2226,7 +2287,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
                 if ($typcol == "aucun") {$deb = "";$fin = "";}
               }
             }
-            $authors .= $deb.$prenom." ".$nom.$fin;
+            $authors .= $prenom2."troliesp".$nom2;
+            $authors = mise_en_evidence(wd_remove_accents($prenom2."troliesp".$nom2), $authors, $deb, $fin);
+            $authors = str_replace(array("troliesp", "trolipoint", "trolitiret"), array(" ", ".", "-") , $authors);
           }
         }
         $i++;
