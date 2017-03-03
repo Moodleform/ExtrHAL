@@ -837,11 +837,11 @@ if (isset($_GET["team"])) {
 </table>
 <hr style="color: #467666;">
 
-<p>Cette page permet d’afficher et d’exporter en RTF,CSV et/ou Bibtex des listes de publications HAL d’une unité, d'une équipe de recherche ou d'un auteur,
+<p>permet d’afficher et d’exporter en RTF,CSV et/ou Bibtex des listes de publications HAL d’une unité, d'une équipe de recherche ou d'un auteur,
 à partir d’un script PHP créé par <a target="_blank" href="http://igm.univ-mlv.fr/~gambette/ExtractionHAL/ExtractionHAL.php?collection=UPEC-UPEM">
 Philippe Gambette</a>, repris et modifié par Olivier Troccaz (ECOBIO - OSUR) pour l’Université de Rennes 1.
-Si vous souhaitez utiliser le script PHP pour une autre institution, consultez la
-<a target="_blank" href="http://www.bibliopedia.fr/wiki/D%C3%A9veloppements_HAL">page Bibliopedia</a> (ExtractionHAL).</p>
+Si vous souhaitez utiliser et adapter ExtrHAL pour une autre institution, consultez
+<a target="_blank" href="https://wiki.ccsd.cnrs.fr/wikis/hal/index.php/Outils_et_services_d%C3%A9velopp%C3%A9s_localement_pour_am%C3%A9liorer_ou_faciliter_l%27utilisation_de_HAL#Extraction_et_mise_en_forme_des_publications">le wiki du CCSD</a>.</p>
 
 <form method="POST" accept-charset="utf-8" name="extrhal" action="ExtractionHAL.php#sommaire">
 <?php
@@ -876,7 +876,6 @@ le code collection de votre labo ou de votre équipe, selon que vous souhaitez m
 Auteur correspondant à l'IdHAL à mettre en évidence <i>(Prénom Nom)</i> :
 <input type="text" name="evhal" value="<?php echo $evhal;?>" size="40"></p>
 <br>
-<br>
 <?php
 if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {$ta = "selected";}else{$ta = "";}
 if (isset($choix_publis) && strpos($choix_publis, "-ACL-") !== false) {$acl = "selected";}else{$acl = "";}
@@ -889,9 +888,10 @@ if (isset($choix_publis) && strpos($choix_publis, "-ASCLRI-") !== false) {$asclr
 if (isset($choix_publis) && strpos($choix_publis, "-ASCLRN-") !== false) {$asclrn = "selected";}else{$asclrn = "";}
 if (isset($choix_publis) && strpos($choix_publis, "-AV-") !== false) {$av = "selected";}else{$av = "";}
 ?>
+<div style='width:99%;float: left;'>
 <font color="#cccccc"><i>Cliquez sur les titres des menus pour afficher les choix et options</i></font>
-<div style='width:99%;float: left;border:2px solid #fc6a00;padding: 3px;border-radius: 5px;margin-bottom: 10px;'>
-<span class="accordeon"><b>Choix des listes de publications à afficher :</b></span>
+<div style='width:80%;float: left;background-color:#d9face;border:1px solid #dddddd;padding: 3px;border-radius: 3px;margin-bottom: 10px;'>
+<span style='color:#333333;' class='accordeon'><b>Choix des listes de publications à afficher :</b></span>
 <div class="panel">
 <i>(sélection/désélection multiple en maintenant la touche 'Ctrl' (PC) ou 'Pomme' (Mac) enfoncée)</i>:
 <table>
@@ -1078,8 +1078,8 @@ if (isset($typnum) && $typnum == "inv" || !isset($team)) {$inv = "checked";}else
 ?>
 </div>
 </div>
-<div style='width:99%;float: left;border:2px solid #fc6a00;padding: 3px;border-radius: 5px;margin-bottom: 10px;'>
-<span class="accordeon"><b>Options d'affichage et d'export</b> :</span>
+<div style='width:80%;float: left;background-color:#afeafc;border:1px solid #dddddd;padding: 3px;border-radius: 3px;margin-bottom: 10px;'>
+<span style='color:#333333;' class='accordeon'><b>Options d'affichage et d'export</b> :</span>
 <div class="panel" id="panel2">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Numérotation :
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1649,8 +1649,8 @@ if (isset($typeqp) && $typeqp == "oui") {//Numérotation/codification par équip
 </div>
 </div>
 <br><br>
-<div style='width:99%;float: left;border:2px solid #fc6a00;padding: 3px;border-radius: 5px;margin-bottom: 10px;'>
-<span class="accordeon"><b>Options et styles de citations :</b></span>
+<div style='width:80%;float: left;background-color:#fcecc9;border:1px solid #dddddd;padding: 3px;border-radius: 3px;margin-bottom: 10px;'>
+<span style='color:#333333;' class='accordeon'><b>Options et styles de citations :</b></span>
 <div class="panel">
 <i>(sélection/désélection multiple pour la mise en page en maintenant la touche 'Ctrl' (PC) ou 'Pomme' (Mac) enfoncée)</i><br>
 <b>Important, loi du tout ou rien :</b> si aucune option ci-dessous n'est choisie, ce sont les règles équivalentes ci-dessus qui seront appliquées. A l'inverse, si une option ci-dessous est choisie, il faut alors <u>obligatoirement</u> faire un choix pour toutes les autres possibilités et ce seront ces règles qui seront appliquées. Le style 'Majuscules' sera prioritaire au style 'Minuscules' si les deux sont sélectionnés.<br><br>
@@ -1943,7 +1943,7 @@ if (isset($choix_cg4)) {$cg4v = $choix_cg4;}
 <br><br>
 La suite sera constituée des éléments habituels s'ils ont été demandés : pagination, DOI, Pubmed, etc.
 <br><br>
-</div></div>
+</div></div></div>
 <br><br>
 <input type="submit" value="Valider" name="soumis">
 </form>
