@@ -3,11 +3,11 @@ header('Content-type: text/html; charset=UTF-8');
 function wd_remove_accents($str, $charset='utf-8')
 {
     $str = htmlentities($str, ENT_NOQUOTES, $charset);
-    
+
     $str = preg_replace('#&([A-za-z])(?:acute|cedil|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
     $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
     $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
-    
+
     return $str;
 }
 function mb_ucwords($str) {
@@ -421,7 +421,7 @@ $a = $anneen;
   <script type='text/x-mathjax-config'>
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['$$','$$']]}});
   </script>
-  <STYLE type="text/css"> 
+  <STYLE type="text/css">
   BODY {
     font-family: sans-serif, Times, "Times New Roman";
   }
@@ -440,7 +440,7 @@ $a = $anneen;
       text-decoration: none;
       font-weight: bold;
   }
-  
+
   </STYLE>
   <link rel="stylesheet" href="<?php echo($css);?>" type="text/css">
 	<?php
@@ -456,7 +456,7 @@ $a = $anneen;
 					else if (document.compatMode && document.compatMode != 'BackCompat') {
 							docHeight = document.documentElement.scrollHeight;
 					}
-					else if (document.body 
+					else if (document.body
 							&& typeof document.body.scrollHeight != 'undefined') {
 							docHeight = document.body.scrollHeight;
 					}
@@ -464,7 +464,7 @@ $a = $anneen;
 					// magic number: suppress generation of scrollbars...
 					docHeight += 70;
 
-					parent.document.getElementById('the_iframe').style.height = docHeight + "px";    
+					parent.document.getElementById('the_iframe').style.height = docHeight + "px";
 			}
 			parent.document.getElementById('the_iframe').onload = resizeIframe;
 			parent.window.onresize = resizeIframe;
@@ -704,7 +704,7 @@ while (isset($labosur[$ii])) {
     $mailto = $mailtosur[$ii];
   }
   //$mailto = $mailtosur[$ii];
-  
+
   //if ($lang == "fr") {
     //if ($tous == "oui") {
       //$HAL_URL = "http://hal.archives-ouvertes.fr/Public/afficheRequetePubli.php?typdoc=".$typdoc."&annee_publideb=".$anneedeb."&annee_publifin=".$anneefin."&auteur_exp=".$auteur_exp."&CB_typdoc=oui&CB_auteur=oui&CB_titre=oui&CB_article=oui&CB_DOI=oui&langue=Francais&tri_exp=annee_publi&tri_exp2=typdoc&tri_exp3=date_publi&ordre_aff=TA&Fen=Aff";
@@ -718,7 +718,7 @@ while (isset($labosur[$ii])) {
       //$HAL_URL = "http://hal.archives-ouvertes.fr/Public/afficheRequetePubli.php?typdoc=".$typdoc."&annee_publideb=".$anneedeb."&annee_publifin=".$anneefin."&collection_exp=".$labocrit."&equipe_recherche_exp=".$equipe_recherche_exp."&auteur_exp=".$auteur_exp."&CB_typdoc=oui&CB_auteur=oui&CB_titre=oui&CB_article=oui&CB_DOI=oui&langue=Anglais&tri_exp=annee_publi&tri_exp2=typdoc&tri_exp3=date_publi&ordre_aff=TA&Fen=Aff";
     //}
   //}
-  
+
   //Extraction des résultats
   $dom = new DomDocument;
   //$URL = 'http://api-preprod.archives-ouvertes.fr/search/?wt=xml&q=labStructCode_s:"UMR6553"&fq=producedDateY_i:"2014"&fl=title_s,label_s,uri_s,abstract_s,docType_s,doiId_s,label_bibtex,keyword_s,authFullName_s&sort=auth_sort asc';
@@ -795,7 +795,7 @@ while (isset($labosur[$ii])) {
       //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
     }
   }
-  
+
   if ($typdocinit != "") {
     if (strpos($typdocinit, ",") === false) {
       $URL .= ' AND docType_s:"'.$typdocinit.'"';
@@ -828,7 +828,7 @@ while (isset($labosur[$ii])) {
       }
       $URL .= ')';
     }
-    
+
     if ($typdocinit != "") {
       if (strpos($typdocinit, ",") === false) {
         $URL .= ' AND docType_s:"'.$typdocinit.'"';
@@ -845,7 +845,7 @@ while (isset($labosur[$ii])) {
       }
     }
   }
-  
+
   if ($authidhal != "") {
     //On limite l'URL à juste une recherche sur authIdHal_s, mais en ajoutant après le type de documents recherché
     $URL = $root.'://api.archives-ouvertes.fr/search/?wt=xml&rows=100000&fq=';
@@ -874,7 +874,7 @@ while (isset($labosur[$ii])) {
       $URL .= ' AND producedDateY_i:"'.$anneedeb.'"';
       //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
     }
-    
+
     if ($typdocinit != "") {
       if (strpos($typdocinit, ",") === false) {
         $URL .= ' AND docType_s:"'.$typdocinit.'"';
@@ -891,7 +891,7 @@ while (isset($labosur[$ii])) {
       }
     }
   }
-  
+
   if ($authidhali != "") {
     //On limite l'URL à juste une recherche sur authIdHal_i, mais en ajoutant après le type de documents recherché
     $URL = $root.'://api.archives-ouvertes.fr/search/?wt=xml&rows=100000&fq=';
@@ -920,7 +920,7 @@ while (isset($labosur[$ii])) {
       $URL .= ' AND producedDateY_i:"'.$anneedeb.'"';
       //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
     }
-    
+
     if ($typdocinit != "") {
       if (strpos($typdocinit, ",") === false) {
         $URL .= ' AND docType_s:"'.$typdocinit.'"';
@@ -937,7 +937,7 @@ while (isset($labosur[$ii])) {
       }
     }
   }
-  
+
   if ($authid != "") {
     //On limite l'URL à juste une recherche sur authId_i, mais en ajoutant après le type de documents recherché
     $URL = $root.'://api.archives-ouvertes.fr/search/?wt=xml&rows=100000&fq=';
@@ -966,7 +966,7 @@ while (isset($labosur[$ii])) {
       $URL .= ' AND producedDateY_i:"'.$anneedeb.'"';
       //if ($anneefin != "") {$URL .= ' OR producedDateY_i:"'.$anneefin.'"';}
     }
-    
+
     if ($typdocinit != "") {
       if (strpos($typdocinit, ",") === false) {
         $URL .= ' AND docType_s:"'.$typdocinit.'"';
@@ -983,7 +983,7 @@ while (isset($labosur[$ii])) {
       }
     }
   }
-  
+
   if ($notauthid != "") {//auteur à exclure
     if (strpos($notauthid, ",") === false) {
       $URL .= ' NOT (authId_i:"'.$notauthid.'")';
@@ -999,7 +999,7 @@ while (isset($labosur[$ii])) {
       $URL .= ')';
     }
   }
-  
+
   if ($nothal != "") {//notice à exclure
     if (strpos($nothal, ",") === false) {
       $URL .= ' NOT (halId_s:"'.$nothal.'")';
@@ -1020,9 +1020,9 @@ while (isset($labosur[$ii])) {
   $URL .= '&fl=title_s,subTitle_s,label_s,producedDateY_i,uri_s,journalTitle_s,abstract_s,docType_s,doiId_s,keyword_s,authFullName_s,bookTitle_s,conferenceTitle_s,fileMain_s,files_s,halId_s,label_bibtex,volume_s,issue_s,page_s,journalPublisher_s,scientificEditor_s,pubmedId_s,audience_s,peerReviewing_s,authIdHalFullName_fs,authFirstName_s&sort=auth_sort asc';
   $URL = str_replace(" ", "%20", $URL);
   //echo ("toto : ".$URL);
-  
+
   //$dom->load($URL);
-  
+
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $URL);
   curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -1034,7 +1034,7 @@ while (isset($labosur[$ii])) {
 
   //$resultat = str_replace("&","and",$resultat);
   $resultat = str_replace(" < "," &#60; ",$resultat);
-  //$resultat = str_replace(">", ">\r\n", $resultat); 
+  //$resultat = str_replace(">", ">\r\n", $resultat);
   //echo "Début<br>".$resultat."Fin<br>";
   curl_close($ch);
   $dom = new DOMDocument();
@@ -1202,7 +1202,7 @@ while (isset($labosur[$ii])) {
         }
       }
     }
-    
+
     $res3 = $resgen0->getElementsByTagName('int');
     foreach($res3 as $resgen3) {
       if ($resgen3->hasAttribute("name")) {
@@ -1439,8 +1439,8 @@ if ($lim_aut != "") {
 }
 
 //export en CSV
-$Fnm1 = "./HAL/publisHAL.csv"; 
-$inF = fopen($Fnm1,"w"); 
+$Fnm1 = "./HAL/publisHAL.csv";
+$inF = fopen($Fnm1,"w");
 
 fseek($inF, 0);
 $chaine = "\xEF\xBB\xBF";
@@ -1572,7 +1572,7 @@ for ($k = $ideb; $k <= $ifin; $k++) {
         $ii += 1;
       }
     }else{
-      $autaff = str_replace(array($aut, prenomCompEntier($aut), strtoupper($aut), strtolower($aut), $autgd),array($autaff1, $autaff2, $autaff3, $autaff4, $autaff5),$auteurs[$i]);    
+      $autaff = str_replace(array($aut, prenomCompEntier($aut), strtoupper($aut), strtolower($aut), $autgd),array($autaff1, $autaff2, $autaff3, $autaff4, $autaff5),$auteurs[$i]);
     }
     //si requête avec authIdHal_s
     if ($authidhal != "" & $authidhal_mev != "") {
@@ -1591,10 +1591,10 @@ for ($k = $ideb; $k <= $ifin; $k++) {
       $textaff .= "<dd class='ValeurRes Titre' style='display: inline; margin-left: 0%; font-size: 1em;'>".$titreaff."</dd>";
       //$textaff .= "<dt class='ChampRes'>Détail</dt><dd class='ValeurRes Detail' style='display: inline; margin-left: 0%; font-size: 1em;'>".$rvnp[$i]."</dd>";
       $textaff .= "<dd class='ValeurRes Detail' style='display: inline; margin-left: 0%; font-size: 1em;'>".$rvnp[$i]."</dd>";
-      if ($doi[$i] == "-") {$doiaff = "";}else{$doiaff = $doi[$i];} 
+      if ($doi[$i] == "-") {$doiaff = "";}else{$doiaff = $doi[$i];}
       //$textaff .= "<dt class='ChampRes'>DOI</dt><dd class='ValeurRes DOI' style='display: inline; margin-left: 0%; font-size: 1em;'>".$doiaff."</dd>";
       $textaff .= "<dd class='ValeurRes DOI' style='display: inline; margin-left: 0%; font-size: 1em;'>".$doiaff."</dd>";
-      if ($pubmed[$i] == "-") {$pubmedaff = "";}else{$pubmedaff = $pubmed[$i];} 
+      if ($pubmed[$i] == "-") {$pubmedaff = "";}else{$pubmedaff = $pubmed[$i];}
       $textaff .= "<dd class='ValeurRes Pubmed' style='display: inline; margin-left: 0%; font-size: 1em;'>".$pubmedaff."</dd>";
       //$textaff .= "<dt class='ChampRes'>Accès au bibtex</dt><dd class='ValeurRes LienBibtex' style='display: inline; margin-left: 0%; font-size: 1em;'>".$bibtex[$i]."</dd>";
       if ($bt == "oui") {
@@ -1612,10 +1612,10 @@ for ($k = $ideb; $k <= $ifin; $k++) {
       $textaff .= "<dd class='ValeurRes Auteurs' style='font-size: 1em;'>".$autaff."</dd>";
       //$textaff .= "<dt class='ChampRes'>Détail</dt><dd class='ValeurRes Detail' style='font-size: 1em;'>".$rvnp[$i]."</dd>";
       $textaff .= "<dd class='ValeurRes Detail' style='font-size: 1em;'>".$rvnp[$i]."</dd>";
-      if ($doi[$i] == "-") {$doiaff = "";}else{$doiaff = $doi[$i];} 
+      if ($doi[$i] == "-") {$doiaff = "";}else{$doiaff = $doi[$i];}
       //$textaff .= "<dt class='ChampRes'>DOI</dt><dd class='ValeurRes DOI' style='font-size: 1em;'>".$doiaff."</dd>";
       $textaff .= "<dd class='ValeurRes DOI' style='font-size: 1em;'>".$doiaff."</dd>";
-      if ($pubmed[$i] == "-") {$pubmedaff = "";}else{$pubmedaff = $pubmed[$i];} 
+      if ($pubmed[$i] == "-") {$pubmedaff = "";}else{$pubmedaff = $pubmed[$i];}
       $textaff .= "<dd class='ValeurRes Pubmed' style='font-size: 1em;'>".$pubmedaff."</dd>";
       //$textaff .= "<dt class='ChampRes'>Accès au bibtex</dt><dd class='ValeurRes' style='display: inline; font-size: 1em;'>".$bibtex[$i]."</dd>";
       if ($bt == "oui") {
@@ -1660,7 +1660,7 @@ for ($k = $ideb; $k <= $ifin; $k++) {
     }
     //RVNP
     //$chaine .= strip_tags(str_replace(";",",",str_replace($presbib,"",$rvnp[$i]))).";";
-    $sect->writeText($presbib.str_replace($presbib,"",strip_tags($rvnp[$i])), $font);
+    $sect->writeText($presbib.str_replace($presbib, "", strip_tags($rvnp[$i])), $font);
     $sect->writeText($presbib, $font);
     //Revue
     if ($journal[$i] != "-") {
@@ -1709,15 +1709,13 @@ for ($k = $ideb; $k <= $ifin; $k++) {
     }else{
       $chaine .= ";";
     }
-    $crit = $doi[$i];
-    $sect->writeText("DOI : ", $font);
-    if ($crit != "-") {
+    if ($doi[$i] != "-") {
+      $crit = $doi[$i];
+      $sect->writeText("DOI : ", $font);
       $txt1 = str_replace("DOI : ","",strip_tags($crit));
       $txt1 = str_replace($presbib,"",$txt1);
       $txt2 = substr($crit,strpos($crit,"href='")+6,strpos($crit,"'>")-strpos($crit,"href='")-6);
       $sect->writeHyperLink($txt2, $txt1, $fontlien2);
-    }else{
-      $sect->writeText($crit, $font);
     }
     //Pubmed
     if ($pubmed[$i] != "-") {
@@ -1725,16 +1723,14 @@ for ($k = $ideb; $k <= $ifin; $k++) {
     }else{
       $chaine .= ";";
     }
-    $crit = $pubmed[$i];
-    $sect->writeText($presbib, $font);
-    $sect->writeText("Pubmed : ", $font);
-    if ($crit != "-") {
+    if ($pubmed[$i] != "-") {
+      $crit = $pubmed[$i];
+      $sect->writeText($presbib, $font);
+      $sect->writeText("Pubmed : ", $font);
       $txt1 = str_replace("Pubmed : ","",strip_tags($crit));
       $txt1 = str_replace($presbib,"",$txt1);
       $txt2 = substr($crit,strpos($crit,"href='")+6,strpos($crit,"'>")-strpos($crit,"href='")-6);
       $sect->writeHyperLink($txt2, $txt1, $fontlien2);
-    }else{
-      $sect->writeText($crit, $font);
     }
     //Bibtex
     if ($bt == "oui") {
@@ -1751,7 +1747,7 @@ for ($k = $ideb; $k <= $ifin; $k++) {
     }else{
       $sect->writeText($presbib, $font);
     }
-    
+
     //PDF
     $j = 1;
     $cpt++;
@@ -1777,13 +1773,13 @@ for ($k = $ideb; $k <= $ifin; $k++) {
     //reprint
     $chaine .= ";".str_replace(";",",",str_replace($presbib,"",str_replace("&nbsp;","",$reprint[$i])));
     $crit = $reprint[$i];
-    if ($crit != "-") {
+    if ($crit != "&nbsp;") {
       $sect->writeText(" - ", $font);
       $txt1 = "Reprint";
       $txt2 = substr($crit,strpos($crit,"href='")+6,strpos($crit,"'>")-strpos($crit,"href='")-6);
       $sect->writeHyperLink($txt2, $txt1, $fontlien2);
     }
-    //Affichage    
+    //Affichage
     if (isset($_GET['presbib']) && ($_GET['presbib'] != "<br>")) {
       //$text .= "<dt class='ChampRes'>Reprint</dt><dd class='ValeurRes Reprint' style='display: inline; margin-left: 0%;'>".$reprint[$i]."</dd></div></dl>\r\n";
       $text .= "<dd class='ValeurRes Reprint' style='display: inline; margin-left: 0%;'>".$reprint[$i]."</dd></div></dl>\r\n";
@@ -1793,7 +1789,7 @@ for ($k = $ideb; $k <= $ifin; $k++) {
     }
     //export en CSV
     fwrite($inF,$chaine.chr(13).chr(10));
-    
+
     //export en RTF
     $sect->writeText("<br><br>", $font);
     $rtf->save($Fnm2);

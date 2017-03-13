@@ -837,7 +837,7 @@ if (isset($_GET["team"])) {
 </table>
 <hr style="color: #467666;">
 
-<p>permet d’afficher et d’exporter en RTF,CSV et/ou Bibtex des listes de publications HAL d’une unité, d'une équipe de recherche ou d'un auteur,
+<p>ExtrHAL permet d’afficher et d’exporter en RTF,CSV et/ou Bibtex des listes de publications HAL d’une unité, d'une équipe de recherche ou d'un auteur,
 à partir d’un script PHP créé par <a target="_blank" href="http://igm.univ-mlv.fr/~gambette/ExtractionHAL/ExtractionHAL.php?collection=UPEC-UPEM">
 Philippe Gambette</a>, repris et modifié par Olivier Troccaz (ECOBIO - OSUR) pour l’Université de Rennes 1.
 Si vous souhaitez utiliser et adapter ExtrHAL pour une autre institution, consultez
@@ -1564,6 +1564,16 @@ if (isset($typrevc) && $typrevc == "inv" || !isset($team)) {$inv = "checked";}el
 <input type="radio" name="typrevc" value="inv" <?php echo $inv;?>>invisible
 <br>
 <?php
+if (isset($prefeq) && $prefeq == "oui") {$prefo = "checked";}else{$prefo = "";}
+if (isset($prefeq) && $prefeq == "non" || !isset($team)) {$prefn = "checked";}else{$prefn = "";}
+?>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Afficher le préfixe AERES :
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="prefeq" value="oui" <?php echo $prefo;?>>oui
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="prefeq" value="non" <?php echo $prefn;?>>non
+<br>
+<?php
 if (isset($typavsa) && $typavsa == "vis") {$vis = "checked";}else{$vis = "";}
 if (isset($typavsa) && $typavsa == "inv" || !isset($team)) {$inv = "checked";}else{$inv = "";}
 ?>
@@ -1606,8 +1616,6 @@ if (!isset($nbeqp)) {$nbeqp = "";}
 <?php
 if (isset($typcro) && $typcro == "non" || !isset($team)) {$cron = "checked";}else{$cron = "";}
 if (isset($typcro) && $typcro == "oui") {$croo = "checked";}else{$croo = "";}
-if (isset($prefeq) && $prefeq == "oui") {$prefo = "checked";}else{$prefo = "";}
-if (isset($prefeq) && $prefeq == "non" || !isset($team)) {$prefn = "checked";}else{$prefn = "";}
 if (isset($typeqp) && $typeqp == "oui") {//Numérotation/codification par équipe
   if (isset($_POST["soumis"])) {
     for($i = 1; $i <= $nbeqp; $i++) {
@@ -1619,12 +1627,6 @@ if (isset($typeqp) && $typeqp == "oui") {//Numérotation/codification par équip
     echo('<input type="radio" name="typcro" value="non" '.$cron.'>non');
     echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
     echo('<input type="radio" name="typcro" value="oui" '.$croo.'>oui');
-    echo('<br><br>');
-    echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Afficher le préfixe AERES :');
-    echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-    echo('<input type="radio" name="prefeq" value="oui" '.$prefo.'>oui');
-    echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-    echo('<input type="radio" name="prefeq" value="non" '.$prefn.'>non');
   }
   if (isset($_GET["team"])) {
     for($i = 1; $i <= $nbeqp; $i++) {
@@ -1636,16 +1638,10 @@ if (isset($typeqp) && $typeqp == "oui") {//Numérotation/codification par équip
     echo('<input type="radio" name="typcro" value="non" '.$cron.'>non');
     echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
     echo('<input type="radio" name="typcro" value="oui" '.$croo.'>oui');
-    echo('<br><br>');
-    echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Afficher le préfixe AERES :');
-    echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-    echo('<input type="radio" name="prefeq" value="oui" '.$prefo.'>oui');
-    echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-    echo('<input type="radio" name="prefeq" value="non" '.$prefn.'>non');
   }
 }
 ?>
-</div>
+</div><br>
 </div>
 </div>
 <br><br>
@@ -5153,12 +5149,6 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
     eqpaff += '<input type="radio" name="typcro" value="non" <?php echo $cron;?>>non';
     eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
     eqpaff += '<input type="radio" name="typcro" value="oui" <?php echo $croo;?>>oui';
-    eqpaff += '<br><br>';
-    eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Afficher le préfixe AERES  :';
-    eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-    eqpaff += '<input type="radio" name="prefeq" value="oui" <?php echo $prefo;?>>oui';
-    eqpaff += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-    eqpaff += '<input type="radio" name="prefeq" value="non" <?php echo $prefn;?>>non';
     document.getElementById("eqp").innerHTML = eqpaff;
     document.getElementById("panel2").style.maxHeight = document.getElementById("panel2").scrollHeight + "px";
   }
