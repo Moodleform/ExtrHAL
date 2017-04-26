@@ -1,2 +1,21 @@
 # Ignorer le dossier archive pour l'utilisation d'ExtrHAL du SCD
 ExtrHAL/
+img/mypic1_frederic-villieras.png
+*.bib
+*.csv
+*.rtf
+img/mypic1_ECOBIO.png
+img/mypic1_IGDR-CC.png
+img/mypic1_ISCR-CORINT.png
+img/mypic2_frederic-villieras.png
+img/mypic2_IGDR-CC.png
+img/mypic2_ISCR-CORINT.png
+img/mypic3_ISCR-CORINT.png
+pvt/ExtractionHAL-auteurs - Copie.php
+img/mypic1_ECOBIO.png
+img/mypic2_ECOBIO.png
+HAL/extractionHAL_ECOBIO.rtf
+HAL/extractionHAL_ECOBIO.csv
+HAL/extractionHAL_ECOBIO.bib
+HAL/extractionHAL.csv
+HAL/extractionHAL.csv
