@@ -11,7 +11,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="icon" type="type/ico" href="HAL_favicon.ico">
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script type='text/x-mathjax-config'>
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['$$','$$']]}});
   </script>
@@ -3297,6 +3297,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       //Corrections diverses
       $entryInfo =str_replace("..", ".", $entryInfo);
       $entryInfo =str_replace(", .", ".", $entryInfo);
+      $entryInfo =str_replace(", , ", ", ", $entryInfo);
 
       if (!isset($entry->page_s)) {
         $entryInfo = str_replace(array(",  in press", " in press.", " in press", "; in press"), "", $entryInfo);
