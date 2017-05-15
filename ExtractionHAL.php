@@ -306,11 +306,11 @@ if (isset($_POST["soumis"])) {
   //Extraction sur un IdHAL > auteur à mettre en évidence
   if (isset($evhal) && $evhal != "") {
     $list = explode(" ", $evhal);
-    $listenomcomp1 = "~".nomCompEntier($list[1])." ".prenomCompEntier($list[0])."~";
-    $listenomcomp2 = "~".prenomCompEntier($list[0])." ".nomCompEntier($list[1])."~";
+-    $listenomcomp1 = "~".str_replace("_", " ", nomCompEntier($list[1]))." ".str_replace("_", " ", prenomCompEntier($list[0]))."~";
+    $listenomcomp2 = "~".str_replace("_", " ", prenomCompEntier($list[0]))." ".str_replace("_", " ", nomCompEntier($list[1]))."~";
     //si prénom composé et juste les ititiales
     $prenom = prenomCompInit($list[0]);
-    $listenominit = "~".nomCompEntier($list[1])." ".$prenom.".~";
+    $listenominit = "~".str_replace("_", " ", nomCompEntier($list[1]))." ".$prenom.".~";
     $arriv = "~1900~";
     $moisactuel = date('n', time());
     if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
@@ -870,11 +870,11 @@ le code collection de votre labo ou de votre équipe, selon que vous souhaitez m
 <input type="text" name="listaut" value="<?php echo $listaut;?>" size="40"><br>
 <h2><b><u>ou</u></b></h2>
 <p><b>Identifiant alphabétique auteur HAL</b> <i>(IdHAL > olivier-troccaz, par exemple)</i> :
-<input type="text" name="idhal" value="<?php echo $idhal;?>" size="40">
+<input type="text" name="idhal" value="<?php echo $idhal;?>" size="30">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="https://hal.archives-ouvertes.fr/page/mon-idhal">Créer mon IdHAL</a>
 <br><br>
-Auteur correspondant à l'IdHAL à mettre en évidence <i>(Prénom Nom)</i> :
-<input type="text" name="evhal" value="<?php echo $evhal;?>" size="40"></p>
+Auteur correspondant à l'IdHAL à mettre en évidence <i>(Remplacez les espaces par des _ > Jean-Luc Le_Breton, par exemple)</i> :
+<input type="text" name="evhal" value="<?php echo $evhal;?>" size="30"></p>
 <br>
 <?php
 if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {$ta = "selected";}else{$ta = "";}
@@ -2244,8 +2244,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
         if ($typnom == "nominit") {
           //si prénom composé et initiales
           $prenom = prenomCompInit($prenom);
-          $prenom2 = str_replace(array(".", "-", "'"), array("trolipoint", "trolitiret", "troliapos") , $prenom);
-          $nom2 = str_replace(array(".", "-", "'"), array("trolipoint", "trolitiret", "troliapos") , $nom);
+          $prenom2 = str_replace(array(".", "-", "'", " "), array("trolipoint", "trolitiret", "troliapos", "troliesp") , $prenom);
+          $nom2 = str_replace(array(".", "-", "'", " "), array("trolipoint", "trolitiret", "troliapos", "troliesp") , $nom);
           if ($initial == 1){
             $initial = 0;
             $authors = "";
