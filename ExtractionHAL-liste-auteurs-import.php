@@ -1,8 +1,17 @@
 <?php
+header('Content-type: text/html; charset=UTF-8');
 ini_set('auto_detect_line_endings',TRUE);
 function mb_ucwords($str) {
   $str = mb_convert_case($str, MB_CASE_TITLE, "UTF-8");
   return ($str);
+}
+function utf8_fopen_read($fileName) {
+    //$fc = iconv('windows-1250', 'utf-8', file_get_contents($fileName));
+    $fc = file_get_contents($fileName);
+    $handle=fopen("php://memory", "rw");
+    fwrite($handle, $fc);
+    fseek($handle, 0);
+    return $handle;
 }
 //fichier CSV ou txt
 $complet = '';
@@ -34,14 +43,15 @@ if ($_FILES['importpartiel']['name'] != "") {
   }
 }
 if ($complet != '') {// Import d'un fichier complet
-  $handle = fopen($temp, 'r');//Ouverture du fichier
+  //$handle = fopen($temp, 'r');//Ouverture du fichier
+  $handle = utf8_fopen_read($temp);
   if ($handle)  {//Si on a réussi à ouvrir le fichier
     $ligne = 1;
     $total = count(file($temp));
     //export liste php et CSV
-    $Fnm = "./pvt/ExtractionHAL-auteurs.php"; 
+    $Fnm = "./pvt/ExtractionHAL-auteurs.php";
     $Fnm1 = "./pvt/ExtractionHAL-auteurs.csv";
-    $inF = fopen($Fnm,"w"); 
+    $inF = fopen($Fnm,"w");
     $inF1 = fopen($Fnm1,"w");
     fseek($inF, 0);
     fseek($inF1, 0);
@@ -84,6 +94,7 @@ if ($complet != '') {// Import d'un fichier complet
         $chaine1 .= $tab[12];
         if ($i != $total-1) {$chaine .= ',';}
         $chaine .= chr(13);
+        $chaine = str_replace(array("Č","č","ď"), array("È","è","ï"), $chaine);
         $chaine1 .= chr(13);
         fwrite($inF,$chaine);
         fwrite($inF1,$chaine1);
@@ -103,9 +114,9 @@ if ($partiel != '') {//Import d'un fichier partiel
   include $fichier_auteurs;
   //Début d'écriture du fichier avec l'existant
   //export liste php et CSV
-	$Fnm = "./pvt/ExtractionHAL-auteurs.php"; 
+	$Fnm = "./pvt/ExtractionHAL-auteurs.php";
 	$Fnm1 = "./pvt/ExtractionHAL-auteurs.csv";
-	$inF = fopen($Fnm,"w"); 
+	$inF = fopen($Fnm,"w");
 	$inF1 = fopen($Fnm1,"w");
 	fseek($inF, 0);
 	fseek($inF1, 0);
@@ -146,14 +157,16 @@ if ($partiel != '') {//Import d'un fichier partiel
 		$chaine1 .= $AUTEURS_LISTE[$i]["depar"];
 		$chaine .= ',';
 		$chaine .= chr(13);
+    $chaine = str_replace(array("Č","č","ď"), array("È","è","ï"), $chaine);
 		$chaine1 .= chr(13);
 		fwrite($inF,$chaine);
 		fwrite($inF1,$chaine1);
 	}
 	$imax = count($AUTEURS_LISTE);
-	
+
 	//Suite d'écriture du fichier avec le complément
-  $handle = fopen($temp, 'r');//Ouverture du fichier
+  //$handle = fopen($temp, 'r');//Ouverture du fichier
+  $handle = utf8_fopen_read($temp);
   if ($handle)  {//Si on a réussi à ouvrir le fichier
     $ligne = 1;
     $total = count(file($temp));
@@ -189,6 +202,7 @@ if ($partiel != '') {//Import d'un fichier partiel
         $chaine1 .= $tab[11].';';
         $chaine1 .= $tab[12];
         if ($i != $imax + $total - 1) {$chaine .= ',';}
+        $chaine = str_replace(array("Č","č"), array("È","è"), $chaine);
         $chaine .= chr(13);
         $chaine1 .= chr(13);
         fwrite($inF,$chaine);
@@ -207,6 +221,6 @@ if ($partiel != '') {//Import d'un fichier partiel
 if (isset($_POST["cehval"]) && $_POST["cehval"] != "") {
   header("location:"."ExtractionHAL-liste-auteurs.php?cehval=".$_POST["cehval"]); exit;
 }else{
-  header("location:"."ExtractionHAL-liste-auteurs.php"); exit;
+  //header("location:"."ExtractionHAL-liste-auteurs.php"); exit;
 }
 ?>

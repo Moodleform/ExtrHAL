@@ -21,7 +21,7 @@ if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
   $ip = $_SERVER['REMOTE_ADDR'];
 }
 
-if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip == "129.20.91.175" OR $ip == "129.20.88.134" OR $ip == "129.20.88.135")
+if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip == "129.20.30.5" OR $ip == "129.20.88.134" OR $ip == "129.20.88.135")
 {
   //Déclaration des variables
   if (!isset($cehval)) {$cehval = "TE";}
@@ -52,7 +52,7 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
     $AUTEURS_LISTE[$modif]["unite"] = str_replace('"','&#039;',$_POST["unite"]);
     $AUTEURS_LISTE[$modif]["umr"] = str_replace('"','&#039;',$_POST["umr"]);
     $AUTEURS_LISTE[$modif]["grade"] = str_replace('"','&#039;',$_POST["grade"]);
-    $AUTEURS_LISTE[$modif]["numeq"] = str_replace('"','&#039;',$_POST["numeqp"]);
+    $AUTEURS_LISTE[$modif]["numeq"] = str_replace('"','&#039;',$_POST["numeq"]);
     $AUTEURS_LISTE[$modif]["eqrec"] = str_replace('"','&#039;',$_POST["eqrec"]);
     $AUTEURS_LISTE[$modif]["collhal"] = str_replace('"','&#039;',$_POST["collhal"]);
     $AUTEURS_LISTE[$modif]["colleqhal"] = str_replace('"','&#039;',$_POST["colleqhal"]);
@@ -60,9 +60,9 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
     $AUTEURS_LISTE[$modif]["depar"] = str_replace('"','&#039;',$_POST["depar"]);
     $total = count($AUTEURS_LISTE);
     //export liste php et CSV
-    $Fnm = "./pvt/ExtractionHAL-auteurs.php"; 
+    $Fnm = "./pvt/ExtractionHAL-auteurs.php";
     $Fnm1 = "./pvt/ExtractionHAL-auteurs.csv";
-    $inF = fopen($Fnm,"w"); 
+    $inF = fopen($Fnm,"w");
     $inF1 = fopen($Fnm1,"w");
     fseek($inF, 0);
     fseek($inF1, 0);
@@ -138,9 +138,9 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
     $AUTEURS_LISTE[$modif]["depar"] = str_replace('"','&#039;',$_POST["depar"]);
     $total = count($AUTEURS_LISTE);
     //export liste php et CSV
-    $Fnm = "./pvt/ExtractionHAL-auteurs.php"; 
+    $Fnm = "./pvt/ExtractionHAL-auteurs.php";
     $Fnm1 = "./pvt/ExtractionHAL-auteurs.csv";
-    $inF = fopen($Fnm,"w"); 
+    $inF = fopen($Fnm,"w");
     $inF1 = fopen($Fnm1,"w");
     fseek($inF, 0);
     fseek($inF1, 0);
@@ -204,9 +204,9 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
     $AUTEURS_LISTE = array_values($AUTEURS_LISTE);
     $total = count($AUTEURS_LISTE);
     //export liste php et CSV
-    $Fnm = "./pvt/ExtractionHAL-auteurs.php"; 
+    $Fnm = "./pvt/ExtractionHAL-auteurs.php";
     $Fnm1 = "./pvt/ExtractionHAL-auteurs.csv";
-    $inF = fopen($Fnm,"w"); 
+    $inF = fopen($Fnm,"w");
     $inF1 = fopen($Fnm1,"w");
     fseek($inF, 0);
     fseek($inF1, 0);
@@ -264,7 +264,6 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
   }
 
   if (isset($_GET["action"]) && $_GET["action"] == "ajout") {//Ajout d'un auteur
-    $modif = $_GET["modif"];
     echo('<form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-liste-auteurs.php">');
     echo('<b>Ajout d\'un auteur :</b><br><br>');
     echo('<b>Nom</b> : <input type="text" name="nom"><br>');
@@ -350,23 +349,87 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
       </select><br>
       <input type="submit" value="Valider" name="soumis">
       </form>
-      <br><a href="ExtractionHAL-liste-auteurs.php?action=ajout&cehval=<?php echo($cehval);?>">Ajouter un auteur</a> - 
+      <br><a href="ExtractionHAL-liste-auteurs.php?action=ajout&cehval=<?php echo($cehval);?>">Ajouter un auteur</a> -
       <a href="./pvt/ExtractionHAL-auteurs.csv">Exporter la liste au format CSV</a> -
-      <?php if ((isset($_POST["cehval"]) && $_POST["cehval"] != "TE") || (isset($_GET["cehval"]) && $_GET["cehval"] != "TE")){
+      <?php
+      if ((isset($_POST["cehval"]) && $_POST["cehval"] != "TE") || (isset($_GET["cehval"]) && $_GET["cehval"] != "TE")){
         if (isset($_POST["cehval"])) {$cehvalimp = $_POST["cehval"];}else{$cehvalimp = $_GET["cehval"];}
       ?>
-        Importer une liste <a href="ExtractionHAL-liste-auteurs.php?action=importcomplet&cehval=<?php echo($cehvalimp);?>">entière</a> ou
-        compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?action=importpartiel&cehval=<?php echo($cehvalimp);?>">partielle</a>	 à partir d'un fichier csv ou txt (<i>cf. modèle</i>) - 
+        <a href="ExtractionHAL-liste-auteurs.php?action=supprimer&cehval=<?php echo($cehvalimp);?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette liste ?');">Supprimer cette liste</a>
+        - Importer une liste <a href="ExtractionHAL-liste-auteurs.php?action=importcomplet&cehval=<?php echo($cehvalimp);?>">entière</a> ou
+        compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?action=importpartiel&cehval=<?php echo($cehvalimp);?>">partielle</a> à partir d'un fichier csv ou txt (<i><a href="./modele.csv">cf. modèle</a></i>) -
       <?php
       }else{
       ?>
         Importer une liste <a href="ExtractionHAL-liste-auteurs.php?action=importcomplet">entière</a> ou
-        compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?action=importpartiel">partielle</a>	 à partir d'un fichier csv ou txt (<i>cf. modèle</i>) - 
+        compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?action=importpartiel">partielle</a>	 à partir d'un fichier csv ou txt (<i><a href="./modele.csv">cf. modèle</a></i>) -
       <?php
       }
-      ?> 
+      ?>
       <br><br>
-      <?php if (isset($_GET["action"]) && $_GET["action"] == "importcomplet") {//Importation complète à partir d'un fichier CSV
+      <?php
+      if (isset($_GET["action"]) && $_GET["action"] == "supprimer") {//Suppression d'une liste
+        $cehvalsup = $_GET["cehval"];
+        $AUTEURS_LISTE = array_values($AUTEURS_LISTE);
+        $total = count($AUTEURS_LISTE);
+        //export liste php et CSV
+        $Fnm = "./pvt/ExtractionHAL-auteurs.php";
+        $Fnm1 = "./pvt/ExtractionHAL-auteurs.csv";
+        $inF = fopen($Fnm,"w");
+        $inF1 = fopen($Fnm1,"w");
+        fseek($inF, 0);
+        fseek($inF1, 0);
+        $chaine = "";
+        $chaine1 = "\xEF\xBB\xBF";
+        $chaine1 .= "Nom;Prénom;Secteur;Titre;Unité;UMR;Grade;Numeq;Eqrec;Collection HAL;Collection équipe HAL;Arrivée;Départ";
+        $chaine .= '<?php'.chr(13);
+        $chaine .= '$AUTEURS_LISTE = array('.chr(13);
+        fwrite($inF,$chaine);
+        fwrite($inF1,$chaine1);
+        foreach($AUTEURS_LISTE AS $i => $valeur) {
+          if ($AUTEURS_LISTE[$i]["collhal"] != $cehvalsup) {
+            $chaine = $i.' => array("nom"=>"'.mb_ucwords($AUTEURS_LISTE[$i]["nom"]).'", ';
+            $chaine .= '"prenom"=>"'.mb_ucwords($AUTEURS_LISTE[$i]["prenom"]).'", ';
+            $chaine .= '"secteur"=>"'.$AUTEURS_LISTE[$i]["secteur"].'", ';
+            $chaine .= '"titre"=>"'.$AUTEURS_LISTE[$i]["titre"].'", ';
+            $chaine .= '"unite"=>"'.$AUTEURS_LISTE[$i]["unite"].'", ';
+            $chaine .= '"umr"=>"'.$AUTEURS_LISTE[$i]["umr"].'", ';
+            $chaine .= '"grade"=>"'.$AUTEURS_LISTE[$i]["grade"].'", ';
+            $chaine .= '"numeq"=>"'.$AUTEURS_LISTE[$i]["numeq"].'", ';
+            $chaine .= '"eqrec"=>"'.$AUTEURS_LISTE[$i]["eqrec"].'", ';
+            $chaine .= '"collhal"=>"'.$AUTEURS_LISTE[$i]["collhal"].'", ';
+            $chaine .= '"colleqhal"=>"'.$AUTEURS_LISTE[$i]["colleqhal"].'", ';
+            $chaine .= '"arriv"=>"'.$AUTEURS_LISTE[$i]["arriv"].'", ';
+            $chaine .= '"depar"=>"'.$AUTEURS_LISTE[$i]["depar"].'")';
+            //export csv
+            $chaine1 = mb_ucwords($AUTEURS_LISTE[$i]["nom"]).';';
+            $chaine1 .= mb_ucwords($AUTEURS_LISTE[$i]["prenom"]).';';
+            $chaine1 .= $AUTEURS_LISTE[$i]["secteur"].';';
+            $chaine1 .= $AUTEURS_LISTE[$i]["titre"].';';
+            $chaine1 .= $AUTEURS_LISTE[$i]["unite"].';';
+            $chaine1 .= $AUTEURS_LISTE[$i]["umr"].';';
+            $chaine1 .= $AUTEURS_LISTE[$i]["grade"].';';
+            $chaine1 .= $AUTEURS_LISTE[$i]["numeq"].';';
+            $chaine1 .= $AUTEURS_LISTE[$i]["eqrec"].';';
+            $chaine1 .= $AUTEURS_LISTE[$i]["collhal"].';';
+            $chaine1 .= $AUTEURS_LISTE[$i]["colleqhal"].';';
+            $chaine1 .= $AUTEURS_LISTE[$i]["arriv"].';';
+            $chaine1 .= $AUTEURS_LISTE[$i]["depar"];
+            if ($i != $total-1) {$chaine .= ',';}
+            $chaine .= chr(13);
+            $chaine1 .= chr(13);
+            fwrite($inF,$chaine);
+            fwrite($inF1,$chaine1);
+          }
+        }
+        $chaine = ');'.chr(13);
+        $chaine .= '?>';
+        fwrite($inF,$chaine);
+        fclose($inF);
+        fclose($inF1);
+        header('Location: ExtractionHAL-liste-auteurs.php');
+      }
+      if (isset($_GET["action"]) && $_GET["action"] == "importcomplet") {//Importation complète à partir d'un fichier CSV
       ?>
         <form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-liste-auteurs-import.php" enctype="multipart/form-data">
         Sélectionnez le fichier à importer :
@@ -455,7 +518,7 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
             $text .= '<td valign=top><a href="ExtractionHAL-liste-auteurs.php?modif='.$i.'">Modifier</a></td>';
             $text .= '<td valign=top><a href="ExtractionHAL-liste-auteurs.php?suppr='.$i.'" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette entrée ?\');">Supprimer</a></td>';
           }
-          $text .= '<td valign=top><a href="ExtractionHAL-liste-auteurs.php?suppr='.$i.'&cehval='.$cehval.'" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette entrée ?\');">Supprimer</a></td>';
+          //$text .= '<td valign=top><a href="ExtractionHAL-liste-auteurs.php?suppr='.$i.'&cehval='.$cehval.'" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette entrée ?\');">Supprimer</a></td>';
           $text .= '</tr>';
           $chaine1 = mb_ucwords($AUTEURS_LISTE[$i]["nom"]).';';
           $chaine1 .= mb_ucwords($AUTEURS_LISTE[$i]["prenom"]).';';
