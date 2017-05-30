@@ -221,6 +221,6 @@ if ($partiel != '') {//Import d'un fichier partiel
 if (isset($_POST["cehval"]) && $_POST["cehval"] != "") {
   header("location:"."ExtractionHAL-liste-auteurs.php?cehval=".$_POST["cehval"]); exit;
 }else{
-  //header("location:"."ExtractionHAL-liste-auteurs.php"); exit;
+  header("location:"."ExtractionHAL-liste-auteurs.php"); exit;
 }
 ?>
