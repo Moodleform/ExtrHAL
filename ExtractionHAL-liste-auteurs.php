@@ -24,7 +24,7 @@ if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip == "129.20.30.5" OR $ip == "129.20.88.134" OR $ip == "129.20.88.135")
 {
   //Déclaration des variables
-  if (!isset($cehval)) {$cehval = "TE";}
+  if (!isset($cehval)) {$cehval = "TouCol";}
 
   $fichier_auteurs = './pvt/ExtractionHAL-auteurs.php';
 
@@ -117,7 +117,7 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
 
   if (isset($_POST["modif"]) && $_POST["modif"] != "") {//Validation de la modification d'une entrée
     $modif = $_POST["modif"];
-    if (isset($_POST["cehval"]) && $_POST["cehval"] != "TE") {
+    if (isset($_POST["cehval"]) && $_POST["cehval"] != "TouCol") {
       $cehval = $_POST["cehval"];
       $te = "";
     }else{
@@ -194,7 +194,7 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
 
   if (isset($_GET["suppr"]) && $_GET["suppr"] != "") {//Suppression d'une entrée
     $suppr = $_GET["suppr"];
-    if (isset($_GET["cehval"]) && $_GET["cehval"] != "TE") {
+    if (isset($_GET["cehval"]) && $_GET["cehval"] != "TouCol") {
       $cehval = $_GET["cehval"];
       $te = "";
     }else{
@@ -330,16 +330,16 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
       <form method="POST" accept-charset="utf-8" name="extrhaliste" action="ExtractionHAL-liste-auteurs.php">
       <?php
       //$cehval = "ECOBIO-PAYS";
-      if ((isset($_POST["cehval"]) && $_POST["cehval"] != "TE") || (isset($_GET["cehval"]) && $_GET["cehval"] != "TE")) {
+      if ((isset($_POST["cehval"]) && $_POST["cehval"] != "TouCol") || (isset($_GET["cehval"]) && $_GET["cehval"] != "TouCol")) {
         if (isset($_POST["cehval"])) {$cehval = $_POST["cehval"];}else{$cehval = $_GET["cehval"];}
         $te = "";
       }else{
-        //$cehval = "TE";
+        //$cehval = "TouCol";
         $te = "selected";
       }
       ?>
       <select name="cehval">
-      <option value="TE" <?php echo $te;?>>Toutes les collections</option>
+      <option value="TouCol" <?php echo $te;?>>Toutes les collections</option>
       <?php
       for($i=0; $i<$ceh; $i++) {
         if (isset($cehval) && $cehval == $cehal[$i]) {$ta = "selected";}else{$ta = "";}
@@ -352,12 +352,13 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
       <br><a href="ExtractionHAL-liste-auteurs.php?action=ajout&cehval=<?php echo($cehval);?>">Ajouter un auteur</a> -
       <a href="./pvt/ExtractionHAL-auteurs.csv">Exporter la liste au format CSV</a> -
       <?php
-      if ((isset($_POST["cehval"]) && $_POST["cehval"] != "TE") || (isset($_GET["cehval"]) && $_GET["cehval"] != "TE")){
+      if ((isset($_POST["cehval"]) && $_POST["cehval"] != "TouCol") || (isset($_GET["cehval"]) && $_GET["cehval"] != "TouCol")){
         if (isset($_POST["cehval"])) {$cehvalimp = $_POST["cehval"];}else{$cehvalimp = $_GET["cehval"];}
+        $cehvalimp = str_replace("&", "&amp;", $cehvalimp);
       ?>
-        <a href="ExtractionHAL-liste-auteurs.php?action=supprimer&cehval=<?php echo($cehvalimp);?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette liste ?');">Supprimer cette liste</a>
-        - Importer une liste <a href="ExtractionHAL-liste-auteurs.php?action=importcomplet&cehval=<?php echo($cehvalimp);?>">entière</a> ou
-        compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?action=importpartiel&cehval=<?php echo($cehvalimp);?>">partielle</a> à partir d'un fichier csv ou txt (<i><a href="./modele.csv">cf. modèle</a></i>) -
+        <a href="ExtractionHAL-liste-auteurs.php?cehval=<?php echo($cehvalimp);?>&action=supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette liste ?');">Supprimer cette liste</a>
+        - Importer une liste <a href="ExtractionHAL-liste-auteurs.php?cehval=<?php echo($cehvalimp);?>&action=importcomplet">entière</a> ou
+        compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?cehval=<?php echo($cehvalimp);?>&action=importpartiel">partielle</a> à partir d'un fichier csv ou txt (<i><a href="./modele.csv">cf. modèle</a></i>) -
       <?php
       }else{
       ?>
@@ -490,7 +491,7 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
       fwrite($inF1,$chaine1);
       foreach($AUTEURS_LISTE AS $i => $valeur) {
         $aff = "non";
-        if (isset($cehval) && $cehval !="TE") {
+        if (isset($cehval) && $cehval !="TouCol") {
           if ($AUTEURS_LISTE[$i]['collhal'] == $cehval) {$aff = "oui";}
         }else{
           $aff = "oui";
@@ -540,7 +541,7 @@ if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip =
       }
       $text .= '</table>';
       fclose($inF1);
-      if (isset($cehval) && $cehval !="TE") {
+      if (isset($cehval) && $cehval !="TouCol") {
         echo ('<br>Détail pour la collection '.$cehval.' - '.$iaut.' auteurs renseignés');
       }
       echo $text;
