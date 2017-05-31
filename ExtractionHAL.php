@@ -288,12 +288,12 @@ if (isset($_POST["soumis"])) {
       //si prénom composé et juste les ititiales
       $prenom = prenomCompInit($AUTEURS_LISTE[$i]['prenom']);
       $listenominit .= nomCompEntier($AUTEURS_LISTE[$i]['nom'])." ".$prenom.".~";
-			if (isset($AUTEURS_LISTE[$i]['arriv']) && $AUTEURS_LISTE[$i]['arriv'] != "") {
+			if (isset($AUTEURS_LISTE[$i]['arriv']) && $AUTEURS_LISTE[$i]['arriv'] != "" && $AUTEURS_LISTE[$i]['arriv'] != "x") {
 				$arriv .= $AUTEURS_LISTE[$i]['arriv']."~";
 			}else{
 				$arriv .= "1900~";
 			}
-			if (isset($AUTEURS_LISTE[$i]['depar']) && $AUTEURS_LISTE[$i]['depar'] != "") {
+			if (isset($AUTEURS_LISTE[$i]['depar']) && $AUTEURS_LISTE[$i]['depar'] != "" && $AUTEURS_LISTE[$i]['depar'] != "x") {
 				$depar .= $AUTEURS_LISTE[$i]['depar']."~";
 			}else{
         $moisactuel = date('n', time());
@@ -607,12 +607,12 @@ if (isset($_GET["team"])) {
       //si prénom composé et juste les ititiales
       $prenom = prenomCompInit($AUTEURS_LISTE[$i]['prenom']);
       $listenominit .= nomCompEntier($AUTEURS_LISTE[$i]['nom'])." ".$prenom.".~";
-			if (isset($AUTEURS_LISTE[$i]['arriv']) && $AUTEURS_LISTE[$i]['arriv'] != "") {
+			if (isset($AUTEURS_LISTE[$i]['arriv']) && $AUTEURS_LISTE[$i]['arriv'] != "" && $AUTEURS_LISTE[$i]['arriv'] != "x") {
 				$arriv .= $AUTEURS_LISTE[$i]['arriv']."~";
 			}else{
 				$arriv .= "1900~";
 			}
-			if (isset($AUTEURS_LISTE[$i]['depar']) && $AUTEURS_LISTE[$i]['depar'] != "") {
+			if (isset($AUTEURS_LISTE[$i]['depar']) && $AUTEURS_LISTE[$i]['depar'] != "" && $AUTEURS_LISTE[$i]['depar'] != "x") {
 				$depar .= $AUTEURS_LISTE[$i]['depar']."~";
 			}else{
         $moisactuel = date('n', time());
