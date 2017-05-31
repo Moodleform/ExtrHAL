@@ -64,7 +64,7 @@ if ($complet != '') {// Import d'un fichier complet
     fwrite($inF1,$chaine1);
     while($tab = fgetcsv($handle, 0, ';')) {
       if ($ligne != 1) {//On exclut la première ligne > noms des colonnes
-        $i = $ligne - 1;
+        $i = $ligne - 2;
         $chaine = $i.' => array("nom"=>"'.mb_ucwords($tab[0]).'", ';
         $chaine .= '"prenom"=>"'.mb_ucwords($tab[1]).'", ';
         $chaine .= '"secteur"=>"'.$tab[2].'", ';
@@ -99,7 +99,7 @@ if ($complet != '') {// Import d'un fichier complet
         fwrite($inF,$chaine);
         fwrite($inF1,$chaine1);
       }
-    $ligne ++;
+    $ligne++;
     }
   }
   $chaine = ');'.chr(13);
@@ -127,8 +127,9 @@ if ($partiel != '') {//Import d'un fichier partiel
 	$chaine .= '$AUTEURS_LISTE = array('.chr(13);
 	fwrite($inF,$chaine);
 	fwrite($inF1,$chaine1);
+	$j = 0;
 	foreach($AUTEURS_LISTE AS $i => $valeur) {
-		$chaine = $i.' => array("nom"=>"'.mb_ucwords($AUTEURS_LISTE[$i]["nom"]).'", ';
+		$chaine = $j.' => array("nom"=>"'.mb_ucwords($AUTEURS_LISTE[$i]["nom"]).'", ';
 		$chaine .= '"prenom"=>"'.mb_ucwords($AUTEURS_LISTE[$i]["prenom"]).'", ';
 		$chaine .= '"secteur"=>"'.$AUTEURS_LISTE[$i]["secteur"].'", ';
 		$chaine .= '"titre"=>"'.$AUTEURS_LISTE[$i]["titre"].'", ';
@@ -161,6 +162,7 @@ if ($partiel != '') {//Import d'un fichier partiel
 		$chaine1 .= chr(13);
 		fwrite($inF,$chaine);
 		fwrite($inF1,$chaine1);
+		$j++;
 	}
 	$imax = count($AUTEURS_LISTE);
 
@@ -173,7 +175,8 @@ if ($partiel != '') {//Import d'un fichier partiel
     //export liste php et CSV
     while($tab = fgetcsv($handle, 0, ';')) {
       if ($ligne != 1) {//On exclut la première ligne > noms des colonnes
-        $i = $imax + $ligne - 1;
+        $i = $imax + $ligne - 2;
+        echo $i.'<br>';
         $chaine = $i.' => array("nom"=>"'.mb_ucwords($tab[0]).'", ';
         $chaine .= '"prenom"=>"'.mb_ucwords($tab[1]).'", ';
         $chaine .= '"secteur"=>"'.$tab[2].'", ';
@@ -202,13 +205,13 @@ if ($partiel != '') {//Import d'un fichier partiel
         $chaine1 .= $tab[11].';';
         $chaine1 .= $tab[12];
         if ($i != $imax + $total - 1) {$chaine .= ',';}
-        $chaine = str_replace(array("Č","č"), array("È","è"), $chaine);
+        $chaine = str_replace(array("Č","č","ď"), array("È","è","ï"), $chaine);
         $chaine .= chr(13);
         $chaine1 .= chr(13);
         fwrite($inF,$chaine);
         fwrite($inF1,$chaine1);
       }
-    $ligne ++;
+    $ligne++;
     }
   }
   $chaine = ');'.chr(13);
