@@ -3358,7 +3358,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
         //$affprefeq = "Toto";
       }
       if ($affprefeq == "") {$affprefeq = "AP";}
-
+      
+      $rtfInfo = str_replace(array('<sub>', '</sub>', '<sup>', '</sup>'), array('&#92;sub ', '&#92;nosupersub ', '&#92;sup ', '&#92;nosupersup '), $rtfInfo);
       array_push($rtfArray,$rtfInfo."^".$rtfdoi."^".$rtfpubmed."^".$rtflocref."^".$rtfarxiv."^".$rtfdescrip."^".$rtfalso."^".$rtfrefhal."^".$rtfaeres."^".$rtfcnrs."^".$chaine1."^".$chaine2."^".$rtfnnt."^".$affprefeq."^".$racine."^".$rtfhceres);
       //bibtex
       $biblabel = $entry->label_bibtex;
@@ -3376,7 +3377,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
    array_push($result,$rtfArray);
    array_push($result,$bibArray);
    array_push($result,$resArray);
-   //var_dump($rtfArray);
+   var_dump($rtfArray);
    return $result;
 }
 
