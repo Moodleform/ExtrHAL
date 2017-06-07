@@ -33,7 +33,7 @@ if ($_FILES['import']['name'] != "") {
   }
 }
 
-$Fnm = "./JCR.php";
+$Fnm = "./pvt/JCR.php";
 $inF = fopen($Fnm,"w");
 fseek($inF, 0);
 $chaine = "";
@@ -43,7 +43,7 @@ fwrite($inF,$chaine);
 $handle = utf8_fopen_read($temp);
 if ($handle) {
   $ligne = 0;
-  $total = count(file("./JCR.csv"));
+  $total = count(file($temp));
   while($tab = fgetcsv($handle, 0, ',')) {
     if ($ligne != 0) {//Exclure les noms des colonnes
       $ind = $ligne - 1;

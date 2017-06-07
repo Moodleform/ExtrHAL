@@ -3328,7 +3328,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       if ($typif == "vis") {
         if ($JT != "") {
           $IF = "";
-          include "./JCR.php";
+          include "./pvt/JCR.php";
           foreach($JCR_LISTE AS $i => $valeur) {
             if (normalize(strtoupper(str_replace('&', 'and', $JCR_LISTE[$i]["Full Journal Title"]))) == normalize(strtoupper(str_replace('&', 'and', $JT)))) {$IF = $JCR_LISTE[$i]["Journal Impact Factor"];}
           }
