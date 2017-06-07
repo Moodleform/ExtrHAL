@@ -1585,8 +1585,8 @@ if (isset($typrevc) && $typrevc == "inv" || !isset($team)) {$inv = "checked";}el
 if (isset($typif) && $typif == "vis") {$vis = "checked";}else{$vis = "";}
 if (isset($typif) && $typif == "inv" || !isset($team)) {$inv = "checked";}else{$inv = "";}
 ?>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; IF revue :
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; IF des revues <i>(il peut être nécessaire de lancer <a target="_blank" href="./ExtractionHAL-IF.php">la procédure d'extraction</a> à partir de votre liste CSV réalisée selon ce <a href="./modele-JCR.csv">modèle</a>)</i> :<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="radio" name="typif" value="vis" <?php echo $vis;?>>visible
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="radio" name="typif" value="inv" <?php echo $inv;?>>invisible
@@ -2471,34 +2471,14 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       //Adding journalTitle_s:
       $chaine1 .= $delim."Titre journal";
       $resArray[$iRA]["revue"] = $entry->journalTitle_s;
-      if ($docType_s=="ART"){
+      if ($docType_s == "ART"){
         $entryInfo0 .= ". <i>".$entry->journalTitle_s."</i>";
         $chaine2 .= $delim.$entry->journalTitle_s;
-        $JT = $entry->journalTitle_s;
+        $JT = $entry->journalTitle_s;//for IF
       }else{
         $chaine2 .= $delim;
       }
       
-      //Impact Factor
-      if ($typif == "vis") {
-        if ($JT != "") {
-          $IF = "";
-          include "./JCR.php";
-          foreach($JCR_LISTE AS $i => $valeur) {
-            if (normalize(strtoupper($JCR_LISTE[$i]["Full Journal Title"])) == normalize(strtoupper($JT))) {$IF = $JCR_LISTE[$i]["Journal Impact Factor"];}
-          }
-          $chaine1 .= $delim."IF";
-          $resArray[$iRA]["IF"] = $IF;
-          if ($docType_s == "ART" && $IF != ""){
-            $entryInfo0 .= " <i>(IF ".$IF.")</i>";
-            $chaine2 .= $delim.$IF;
-          }else{
-            $chaine2 .= $delim;
-          }
-        }
-      }
-
-
       //Adding $dateprod (=producedDateY_i ou conferenceEndDateY_i)
       $chaine1 .= $delim."Année";
       if ($typann == "avant") {//Année avant le numéro de volume
@@ -3214,7 +3194,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       }else{
         $chaine2 .= $delim;
       }
-
+      
       //Thesis - adding nntId_s
       $rtfnnt = "";
       $chaine1 .= $delim."NNT";
@@ -3342,6 +3322,27 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       }else{
         $chaine2 .= $delim;
       }
+      
+      //Adding Impact Factor
+      $rtfif = "";
+      if ($typif == "vis") {
+        if ($JT != "") {
+          $IF = "";
+          include "./JCR.php";
+          foreach($JCR_LISTE AS $i => $valeur) {
+            if (normalize(strtoupper(str_replace('&', 'and', $JCR_LISTE[$i]["Full Journal Title"]))) == normalize(strtoupper(str_replace('&', 'and', $JT)))) {$IF = $JCR_LISTE[$i]["Journal Impact Factor"];}
+          }
+          $chaine1 .= $delim."IF";
+          $resArray[$iRA]["IF"] = $IF;
+          if ($IF != ""){
+            $entryInfo .= ". IF=".$IF;
+            $rtfif = $IF;
+            $chaine2 .= $delim.$IF;
+          }else{
+            $chaine2 .= $delim;
+          }
+        }
+      }
 
       //Corrections diverses
       $entryInfo =str_replace("..", ".", $entryInfo);
@@ -3409,7 +3410,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       if ($affprefeq == "") {$affprefeq = "AP";}
       
       $rtfInfo = str_replace(array('<sub>', '</sub>', '<sup>', '</sup>'), array('&#92;sub ', '&#92;nosupersub ', '&#92;sup ', '&#92;nosupersup '), $rtfInfo);
-      array_push($rtfArray,$rtfInfo."^".$rtfdoi."^".$rtfpubmed."^".$rtflocref."^".$rtfarxiv."^".$rtfdescrip."^".$rtfalso."^".$rtfrefhal."^".$rtfaeres."^".$rtfcnrs."^".$chaine1."^".$chaine2."^".$rtfnnt."^".$affprefeq."^".$racine."^".$rtfhceres);
+      array_push($rtfArray,$rtfInfo."^".$rtfdoi."^".$rtfpubmed."^".$rtflocref."^".$rtfarxiv."^".$rtfdescrip."^".$rtfalso."^".$rtfrefhal."^".$rtfaeres."^".$rtfcnrs."^".$chaine1."^".$chaine2."^".$rtfnnt."^".$affprefeq."^".$racine."^".$rtfhceres."^".$rtfif);
       //bibtex
       $biblabel = $entry->label_bibtex;
       if (isset($entry->label_bibtex)) {array_push($bibArray,$entry->label_bibtex."¤");}else{array_push($bibArray," ¤");}
@@ -3426,7 +3427,6 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
    array_push($result,$rtfArray);
    array_push($result,$bibArray);
    array_push($result,$resArray);
-   //var_dump($rtfArray);
    return $result;
 }
 
@@ -3684,6 +3684,9 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
            if ($rtf[9] != "") {
               $sect->writeText(". Rang CNRS: ".$rtf[9], $font);
            }
+           if ($rtf[16] != "") {
+              $sect->writeText(". IF=".$rtf[16], $font);
+           }
            $sect->writeText("<br><br>", $font);
            $yearNumbers[substr($sortArray[$i],-4)]+=1;
            //export CSV
@@ -3829,6 +3832,9 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
            }
            if ($rtf[9] != "") {
               $sect->writeText(". Rang CNRS: ".$rtf[9], $font);
+           }
+           if ($rtf[16] != "") {
+              $sect->writeText(". IF=".$rtf[16], $font);
            }
            $sect->writeText("<br><br>", $font);
            //export CSV

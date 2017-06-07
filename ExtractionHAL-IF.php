@@ -1,44 +1,29 @@
-<body style="font-family:calibri,verdana">
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>ExtrHAL : outil d’extraction des publications HAL d’une unité, d'une équipe de recherche ou d'un auteur</title>
+  <meta name="Description" content="ExtrHAL : outil d’extraction des publications HAL d’une unité, d'une équipe de recherche ou d'un auteur">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="icon" type="type/ico" href="HAL_favicon.ico">
+  <link rel="stylesheet" href="./ExtractionHAL.css">
+</head>
 <?php
-function utf8_fopen_read($fileName) {
-    $fc = file_get_contents($fileName);
-    $handle=fopen("php://memory", "rw");
-    fwrite($handle, $fc);
-    fseek($handle, 0);
-    return $handle;
+if (isset($_GET["erreur"])) {
+  $erreur = $_GET["erreur"];
+  if ($erreur == "extfic") {echo('<script type="text/javascript">alert("Vous ne pouvez importer que des fichiers de type csv ou txt !")</script>');}
+  if ($erreur == "nulfic") {echo('<script type="text/javascript">alert("Le fichier csv ou txt est vide !")</script>');}
 }
-
-$Fnm = "./JCR.php";
-$inF = fopen($Fnm,"w");
-fseek($inF, 0);
-$chaine = "";
-$chaine .= '<?php'.chr(13);
-$chaine .= '$JCR_LISTE = array('.chr(13);
-fwrite($inF,$chaine);
-$handle = utf8_fopen_read("./JCR.csv");
-if ($handle) {
-  $ligne = 0;
-  $total = count(file("./JCR.csv"));
-  while($tab = fgetcsv($handle, 0, ',')) {
-    if (is_numeric($tab[0])) {
-      $chaine = $ligne.' => array("Rank"=>"'.$tab[0].'", ';
-      $chaine .= '"Full Journal Title"=>"'.$tab[1].'", ';
-      $chaine .= '"Total Cites"=>"'.$tab[2].'", ';
-      $chaine .= '"Journal Impact Factor"=>"'.$tab[3].'", ';
-      $chaine .= '"Eigenfactor Score"=>"'.$tab[4].'")';
-      if ($ligne != $total-1) {$chaine .= ',';}
-      $chaine .= chr(13);
-      echo $chaine.'<br>';
-      fwrite($inF,$chaine);
-      $ligne++;
-    }
-  }
-  $chaine = ');'.chr(13);
-  $chaine .= '?>';
-  fwrite($inF,$chaine);
-  fclose($inF);
-  fclose($handle);
-}
-echo '<br><b>Fichier JCR.php créé.<br><br>'
 ?>
+<body style="font-family:calibri,verdana">
+<br><b>Procédure d'extraction des IF :</b><br><br>
+
+<form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-IF-import.php" enctype="multipart/form-data">
+Sélectionnez le fichier à importer :
+<input type="file" name="import" size="30" style="font-family: Corbel; font-size: 10pt;"><br>
+<br>
+<input type="submit" value="Importer">
+</form>
 </body>
+</html>
