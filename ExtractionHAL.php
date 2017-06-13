@@ -2907,6 +2907,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       }else{
         $extract = $authors;
       }
+      $extractpur = $extract;
       if ($typaut == "soul") {$extract = "<u>".$extract."</u>";}
       if ($typaut == "gras") {$extract = "<b>".$extract."</b>";}
       if (isset($spa) && $spa == "pvi") {$extract = str_replace(", ", "; ", $extract);}
@@ -2917,10 +2918,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $resArray[$iRA]["authors"] = $extract;
       if (isset($collCode_s) && isset($gr) && (strpos($gr, $collCode_s) !== false)) {
         $chaine1 .= $delim."Auteurs";
-        $chaine2 .= $delim.strip_tags($extract);
+        $chaine2 .= $delim.strip_tags($extractpur);
       }else{
         $chaine1 .= "Auteurs";
-        $chaine2 .= strip_tags($extract);
+        $chaine2 .= strip_tags($extractpur);
       }
 
       //Adding producedDateY_i:

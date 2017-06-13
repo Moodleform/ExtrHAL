@@ -5,6 +5,7 @@ var acc = document.getElementsByClassName("accordeon");
 var i;
 for (i = 0; i < acc.length; i++) {
   acc[i].onclick = function() {
+    majapercu();
     this.classList.toggle("active");
     var panel = this.nextElementSibling;
     if (panel.style.maxHeight){
