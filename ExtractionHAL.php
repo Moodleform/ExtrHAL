@@ -320,7 +320,7 @@ if (isset($_POST["soumis"])) {
   //Extraction sur un IdHAL > auteur à mettre en évidence
   if (isset($evhal) && $evhal != "") {
     $list = explode(" ", $evhal);
--    $listenomcomp1 = "~".str_replace("_", " ", nomCompEntier($list[1]))." ".str_replace("_", " ", prenomCompEntier($list[0]))."~";
+    $listenomcomp1 = "~".str_replace("_", " ", nomCompEntier($list[1]))." ".str_replace("_", " ", prenomCompEntier($list[0]))."~";
     $listenomcomp2 = "~".str_replace("_", " ", prenomCompEntier($list[0]))." ".str_replace("_", " ", nomCompEntier($list[1]))."~";
     //si prénom composé et juste les ititiales
     $prenom = prenomCompInit($list[0]);
@@ -400,8 +400,8 @@ if (isset($_POST["soumis"])) {
 	$urlsauv .= "&dscp=".$dscp;
 	$typrevc = $_POST["typrevc"];
 	$urlsauv .= "&typrevc=".$typrevc;
-	$typif = $_POST["typif"];
-	$urlsauv .= "&typif=".$typif;
+	//$typif = $_POST["typif"];
+	//$urlsauv .= "&typif=".$typif;
 	$typavsa = $_POST["typavsa"];
 	$urlsauv .= "&typavsa=".$typavsa;
 	$delim = $_POST["delim"];
@@ -446,6 +446,15 @@ if (isset($_POST["soumis"])) {
     }
   }
 
+  $stpdf = $_POST['stpdf'];
+  $urlsauv .= "&stpdf=".$stpdf;
+
+  $spa = $_POST['spa'];
+  $urlsauv .= "&spa=".$spa;
+
+  $nmo = $_POST['nmo'];
+  $urlsauv .= "&nmo=".$nmo;
+
   $gp1 = $_POST['gp1'];
   $urlsauv .= "&gp1=".$gp1;
 
@@ -457,6 +466,15 @@ if (isset($_POST["soumis"])) {
 
   $gp4 = $_POST['gp4'];
   $urlsauv .= "&gp4=".$gp4;
+
+  $gp5 = $_POST['gp5'];
+  $urlsauv .= "&gp5=".$gp5;
+
+  $gp6 = $_POST['gp6'];
+  $urlsauv .= "&gp6=".$gp6;
+
+  $gp7 = $_POST['gp7'];
+  $urlsauv .= "&gp7=".$gp7;
 
   $sep1 = $_POST['sep1'];
   $urlsauv .= "&sep1=".$sep1;
@@ -470,10 +488,22 @@ if (isset($_POST["soumis"])) {
   $sep4 = $_POST['sep4'];
   $urlsauv .= "&sep4=".$sep4;
 
+  $sep5 = $_POST['sep5'];
+  $urlsauv .= "&sep5=".$sep5;
+
+  $sep6 = $_POST['sep6'];
+  $urlsauv .= "&sep6=".$sep6;
+
+  $sep7 = $_POST['sep7'];
+  $urlsauv .= "&sep7=".$sep7;
+
   $choix_mp1 = "~";
   $choix_mp2 = "~";
   $choix_mp3 = "~";
   $choix_mp4 = "~";
+  $choix_mp5 = "~";
+  $choix_mp6 = "~";
+  $choix_mp7 = "~";
   $mp1_array = $_POST['mp1'];
   if (!empty($mp1_array)) {
     foreach($mp1_array as $selectValue){
@@ -506,6 +536,30 @@ if (isset($_POST["soumis"])) {
   }
   $urlsauv .= "&mp4=".$choix_mp4;
 
+  $mp5_array = $_POST['mp5'];
+  if (!empty($mp5_array)) {
+    foreach($mp5_array as $selectValue){
+      $choix_mp5 .= $selectValue."~";
+    }
+  }
+  $urlsauv .= "&mp5=".$choix_mp5;
+
+  $mp6_array = $_POST['mp6'];
+  if (!empty($mp6_array)) {
+    foreach($mp6_array as $selectValue){
+      $choix_mp6 .= $selectValue."~";
+    }
+  }
+  $urlsauv .= "&mp6=".$choix_mp6;
+
+  $mp7_array = $_POST['mp7'];
+  if (!empty($mp7_array)) {
+    foreach($mp7_array as $selectValue){
+      $choix_mp7 .= $selectValue."~";
+    }
+  }
+  $urlsauv .= "&mp7=".$choix_mp7;
+
   $choix_cg1 = "#".$_POST['cg1'];
   $urlsauv .= "&cg1=".$_POST['cg1'];
 
@@ -517,6 +571,15 @@ if (isset($_POST["soumis"])) {
 
   $choix_cg4 = "#".$_POST['cg4'];
   $urlsauv .= "&cg4=".$_POST['cg4'];
+
+  $choix_cg5 = "#".$_POST['cg5'];
+  $urlsauv .= "&cg5=".$_POST['cg5'];
+
+  $choix_cg6 = "#".$_POST['cg6'];
+  $urlsauv .= "&cg6=".$_POST['cg6'];
+
+  $choix_cg7 = "#".$_POST['cg7'];
+  $urlsauv .= "&cg7=".$_POST['cg7'];
 }
 
 if (isset($_GET["team"])) {
@@ -717,8 +780,8 @@ if (isset($_GET["team"])) {
 	$urlsauv .= "&dscp=".$dscp;
   $typrevc = $_GET["typrevc"];
 	$urlsauv .= "&typrevc=".$typrevc;
-	$typif = $_GET["typif"];
-	$urlsauv .= "&typif=".$typif;
+	//$typif = $_GET["typif"];
+	//$urlsauv .= "&typif=".$typif;
   $typavsa = $_GET["typavsa"];
 	$urlsauv .= "&typavsa=".$typavsa;
   $delim = $_GET["delim"];
@@ -762,6 +825,15 @@ if (isset($_GET["team"])) {
     }
   }
 
+  $stpdf = $_GET['stpdf'];
+  $urlsauv .= "&stpdf=".$stpdf;
+
+  $spa = $_GET['spa'];
+  $urlsauv .= "&spa=".$spa;
+
+  $nmo = $_GET['nmo'];
+  $urlsauv .= "&nmo=".$nmo;
+
   $gp1 = $_GET['gp1'];
   $urlsauv .= "&gp1=".$gp1;
 
@@ -774,6 +846,15 @@ if (isset($_GET["team"])) {
   $gp4 = $_GET['gp4'];
   $urlsauv .= "&gp4=".$gp4;
 
+  $gp5 = $_GET['gp5'];
+  $urlsauv .= "&gp5=".$gp5;
+
+  $gp6 = $_GET['gp6'];
+  $urlsauv .= "&gp6=".$gp6;
+
+  $gp7 = $_GET['gp7'];
+  $urlsauv .= "&gp7=".$gp7;
+
   $sep1 = $_GET['sep1'];
   $urlsauv .= "&sep1=".$sep1;
 
@@ -785,6 +866,15 @@ if (isset($_GET["team"])) {
 
   $sep4 = $_GET['sep4'];
   $urlsauv .= "&sep4=".$sep4;
+
+  $sep5 = $_GET['sep5'];
+  $urlsauv .= "&sep5=".$sep5;
+
+  $sep6 = $_GET['sep6'];
+  $urlsauv .= "&sep6=".$sep6;
+
+  $sep7 = $_GET['sep7'];
+  $urlsauv .= "&sep7=".$sep7;
 
   $choix_mp1 = $_GET["mp1"];//Mise en page 1
 	$urlsauv .= "&mp1=".$choix_mp1;
@@ -826,6 +916,36 @@ if (isset($_GET["team"])) {
     $i++;
   }
 
+  $choix_mp5 = $_GET["mp5"];//Mise en page 5
+	$urlsauv .= "&mp5=".$choix_mp5;
+  $tabmp5 = explode("~", $choix_mp5);
+  $i = 0;
+  $choix_mp5 = "~";
+  while (isset($tabmp5[$i])) {
+    $choix_mp5 .= $tabmp5[$i]."~";
+    $i++;
+  }
+
+  $choix_mp6 = $_GET["mp6"];//Mise en page 6
+	$urlsauv .= "&mp6=".$choix_mp6;
+  $tabmp6 = explode("~", $choix_mp6);
+  $i = 0;
+  $choix_mp6 = "~";
+  while (isset($tabmp6[$i])) {
+    $choix_mp6 .= $tabmp6[$i]."~";
+    $i++;
+  }
+
+  $choix_mp7 = $_GET["mp7"];//Mise en page 7
+	$urlsauv .= "&mp7=".$choix_mp7;
+  $tabmp7 = explode("~", $choix_mp7);
+  $i = 0;
+  $choix_mp7 = "~";
+  while (isset($tabmp7[$i])) {
+    $choix_mp7 .= $tabmp7[$i]."~";
+    $i++;
+  }
+
   $choix_cg1 = "#".$_GET['cg1'];
   $urlsauv .= "&cg1=".$_GET['cg1'];
 
@@ -837,6 +957,15 @@ if (isset($_GET["team"])) {
 
   $choix_cg4 = "#".$_GET['cg4'];
   $urlsauv .= "&cg4=".$_GET['cg4'];
+
+  $choix_cg5 = "#".$_GET['cg5'];
+  $urlsauv .= "&cg5=".$_GET['cg5'];
+
+  $choix_cg6 = "#".$_GET['cg6'];
+  $urlsauv .= "&cg6=".$_GET['cg6'];
+
+  $choix_cg7 = "#".$_GET['cg7'];
+  $urlsauv .= "&cg7=".$_GET['cg7'];
 }
 ?>
 
@@ -908,7 +1037,7 @@ if (isset($choix_publis) && strpos($choix_publis, "-AV-") !== false) {$av = "sel
 ?>
 <div style='width:99%;float: left;'>
 <font color="#cccccc"><i>Cliquez sur les titres des menus pour afficher les choix et options</i></font>
-<div style='width:80%;float: left;background-color:#d9face;border:1px solid #dddddd;padding: 3px;border-radius: 3px;margin-bottom: 10px;'>
+<div style='width:100%;float: left;background-color:#d9face;border:1px solid #dddddd;padding: 3px;border-radius: 3px;margin-bottom: 10px;'>
 <span style='color:#333333;' class='accordeon'><b>Choix des listes de publications à afficher :</b></span>
 <div class="panel">
 <i>(sélection/désélection multiple en maintenant la touche 'Ctrl' (PC) ou 'Pomme' (Mac) enfoncée)</i>:
@@ -1096,7 +1225,7 @@ if (isset($typnum) && $typnum == "inv" || !isset($team)) {$inv = "checked";}else
 ?>
 </div>
 </div>
-<div style='width:80%;float: left;background-color:#afeafc;border:1px solid #dddddd;padding: 3px;border-radius: 3px;margin-bottom: 10px;'>
+<div style='width:100%;float: left;background-color:#afeafc;border:1px solid #dddddd;padding: 3px;border-radius: 3px;margin-bottom: 10px;'>
 <span style='color:#333333;' class='accordeon'><b>Options d'affichage et d'export</b> :</span>
 <div class="panel" id="panel2">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Numérotation :
@@ -1120,7 +1249,7 @@ if (isset($typaut) && $typaut == "aucun" || !isset($team)) {$auc = "checked";}el
 <br>
 <?php
 if (isset($typnom) && $typnom == "nominit" || !isset($team)) {$nominit = "checked";}else{$nominit = "";}
-if (isset($typnom) && $typnom == "nomcomp1") {$nomcomp1 = "checked";}else{$nomcomp1 = "";}
+if (isset($typnom) && $typnom == "nomcomp1" || isset($stpdf) && $stpdf == "chi") {$nomcomp1 = "checked";}else{$nomcomp1 = "";}
 if (isset($typnom) && $typnom == "nomcomp2") {$nomcomp2 = "checked";}else{$nomcomp2 = "";}
 ?>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Auteurs (tous) :
@@ -1151,6 +1280,8 @@ if (isset($typlim) && $typlim == "oui") {$limo = "checked";}else{$limo = "";}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Limiter l’affichage aux
 <select name="limaff">
 <?php
+if(isset($limaff) && $limaff == 1 || isset($stpdf) && $stpdf == "mla") {$txt = "selected";}else{$txt = "";}
+echo('<option value=1 '.$txt.'>1</option>');
 if((isset($limaff) && $limaff == 5) || !isset($team)) {$txt = "selected";}else{$txt = "";}
 echo('<option value=5 '.$txt.'>5</option>');
 if(isset($limaff) && $limaff == 10) {$txt = "selected";}else{$txt = "";}
@@ -1161,7 +1292,7 @@ if(isset($limaff) && $limaff == 20) {$txt = "selected";}else{$txt = "";}
 echo('<option value=20 '.$txt.'>20</option>');
 ?>
 </select>
- premiers auteurs (« et al. ») :
+ premier(s) auteur(s) (« et al. ») :
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="radio" name="typlim" value="non" <?php echo $limn;?>>non
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1581,7 +1712,7 @@ if (isset($typrevc) && $typrevc == "inv" || !isset($team)) {$inv = "checked";}el
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="radio" name="typrevc" value="inv" <?php echo $inv;?>>invisible
 <br>
-<?php
+<!--<?php
 if (isset($typif) && $typif == "vis") {$vis = "checked";}else{$vis = "";}
 if (isset($typif) && $typif == "inv" || !isset($team)) {$inv = "checked";}else{$inv = "";}
 ?>
@@ -1590,7 +1721,7 @@ if (isset($typif) && $typif == "inv" || !isset($team)) {$inv = "checked";}else{$
 <input type="radio" name="typif" value="vis" <?php echo $vis;?>>visible
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="radio" name="typif" value="inv" <?php echo $inv;?>>invisible
-<br>
+<br>-->
 <?php
 if (isset($prefeq) && $prefeq == "oui") {$prefo = "checked";}else{$prefo = "";}
 if (isset($prefeq) && $prefeq == "non" || !isset($team)) {$prefn = "checked";}else{$prefn = "";}
@@ -1673,155 +1804,405 @@ if (isset($typeqp) && $typeqp == "oui") {//Numérotation/codification par équip
 </div>
 </div>
 <br><br>
-<div style='width:80%;float: left;background-color:#fcecc9;border:1px solid #dddddd;padding: 3px;border-radius: 3px;margin-bottom: 10px;'>
+<div style='width:100%;float: left;background-color:#fcecc9;border:1px solid #dddddd;padding: 3px;border-radius: 3px;margin-bottom: 10px;'>
 <span style='color:#333333;' class='accordeon'><b>Options et styles de citations :</b></span>
 <div class="panel">
 <i>(sélection/désélection multiple pour la mise en page en maintenant la touche 'Ctrl' (PC) ou 'Pomme' (Mac) enfoncée)</i><br>
 <b>Important, loi du tout ou rien :</b> si aucune option ci-dessous n'est choisie, ce sont les règles équivalentes ci-dessus qui seront appliquées. A l'inverse, si une option ci-dessous est choisie, il faut alors <u>obligatoirement</u> faire un choix pour toutes les autres possibilités et ce seront ces règles qui seront appliquées. Le style 'Majuscules' sera prioritaire au style 'Minuscules' si les deux sont sélectionnés.<br><br>
-<center><table width="80%">
+<?php
+if (isset($stpdf) && $stpdf == "- -" || !isset($team)) {$st0 = "selected ";}else{$st0 = "";}
+if (isset($stpdf) && $stpdf == "acs") {$st1 = "selected ";}else{$st1 = "";}
+if (isset($stpdf) && $stpdf == "apa") {$st2 = "selected ";}else{$st2 = "";}
+if (isset($stpdf) && $stpdf == "chi") {$st3 = "selected "; $typnom = "nomcomp1"; $nomcomp1 = "checked";}else{$st3 = "";}
+if (isset($stpdf) && $stpdf == "har") {$st4 = "selected ";}else{$st4 = "";}
+if (isset($stpdf) && $stpdf == "iee") {$st5 = "selected ";}else{$st5 = "";}
+if (isset($stpdf) && $stpdf == "nlm") {$st6 = "selected ";}else{$st6 = "";}
+if (isset($stpdf) && $stpdf == "nat") {$st7 = "selected ";}else{$st7 = "";}
+if (isset($stpdf) && $stpdf == "mla") {$st8 = "selected "; $typlim = "oui"; $limaff = 1; $typnom = "nomcomp1"; $nomcomp1 = "checked";}else{$st8 = "";}
+if (isset($stpdf) && $stpdf == "van") {$st9 = "selected ";}else{$st9 = "";}
+?>
+<u>Styles prédéfinis :</u> <i>(l'adéquation avec le style demandé dépend des éléments qui ont été renseignés dans HAL)</i><br>
+<select id="stpdf" size="1" name="stpdf" onChange="appst();mise_en_ordre('1');mise_en_ordre('2');majapercu();">
+<option <?php echo $st0;?>value="- -">- -</option>
+<option <?php echo $st1;?>value="acs">ACS - American Chemical Society</option>
+<option <?php echo $st2;?>value="apa">APA - American Psychological Association, 6th ed.</option>
+<option <?php echo $st3;?>value="chi">Chicago</option>
+<option <?php echo $st4;?>value="har">Harvard</option>
+<option <?php echo $st5;?>value="iee">IEEE</option>
+<option <?php echo $st6;?>value="nlm">National Library of Medicine (NLM)</option>
+<option <?php echo $st7;?>value="nat">Nature</option>
+<option <?php echo $st8;?>value="mla">Modern Language Association (MLA), 8th ed.</option>
+<option <?php echo $st9;?>value="van">Vancouver</option>
+</select>
+<br><br>
+<u>Styles personnalisés :</u><br>
+<center><table width="80%" style="font-size: 80%">
   <tr>
+    <td colspan="15">
+      Séparateur interne au groupe d'auteurs :
+      <?php
+      if (isset($spa) && $spa == "- -" || !isset($team)) {$spa_0 = "selected ";}else{$spa_0 = "";}
+      if (isset($spa) && $spa == "vir") {$spa_1 = "selected ";}else{$spa_1 = "";}
+      if (isset($spa) && $spa == "pvi") {$spa_2 = "selected ";}else{$spa_2 = "";}
+      if (isset($spa) && $spa == "esp") {$spa_3 = "selected ";}else{$spa_3 = "";}
+      if (isset($spa) && $spa == "tir") {$spa_4 = "selected ";}else{$spa_4 = "";}
+      ?>
+      <select id="spa" size="1" name="spa" onChange="mise_en_ordre('1'); majapercu();" style="font-size: 80%">
+      <option <?php echo $spa_0;?>value="- -">- -</option>
+      <option <?php echo $spa_1;?>value="vir">virg. + esp.</option>
+      <option <?php echo $spa_2;?>value="pvi">p.virg. + esp.</option>
+      <option <?php echo $spa_3;?>value="esp">espace</option>
+      <option <?php echo $spa_4;?>value="tir">esp. + tiret + esp.</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>Numérot.</td>
     <td>Groupe 1</td>
-    <td>Séparateur 1</td>
+    <td>Sép. 1</td>
     <td>Groupe 2</td>
-    <td>Séparateur 2</td>
+    <td>Sép. 2</td>
     <td>Groupe 3</td>
-    <td>Séparateur 3</td>
+    <td>Sép. 3</td>
     <td>Groupe 4</td>
-    <td>Séparateur 4</td>
+    <td>Sép. 4</td>
+    <td>Groupe 5</td>
+    <td>Sép. 5</td>
+    <td>Groupe 6</td>
+    <td>Sép. 6</td>
+    <td>Groupe 7</td>
+    <td>Sép. 7</td>
   </tr>
   <tr>
 <?php
-if (isset($gp1) && $gp1 == "--" || !isset($team)) {$gp1_0 = "selected ";}else{$gp1_0 = "";}
+if (isset($nmo) && $nmo == "- -" || !isset($team)) {$nmo_0 = "selected ";}else{$nmo_0 = "";}
+if (isset($nmo) && $nmo == "auc") {$nmo_1 = "selected ";}else{$nmo_1 = "";}
+if (isset($nmo) && $nmo == "sim") {$nmo_2 = "selected ";}else{$nmo_2 = "";}
+if (isset($nmo) && $nmo == "par") {$nmo_3 = "selected ";}else{$nmo_3 = "";}
+if (isset($nmo) && $nmo == "cro") {$nmo_4 = "selected ";}else{$nmo_4 = "";}
+?>
+    <td width="100px">
+      <select id="nmo" size="1" name="nmo" onChange="mise_en_ordre('1'); majapercu();" style="font-size: 80%">
+      <option <?php echo $nmo_0;?>value="- -">- -</option>
+      <option <?php echo $nmo_1;?>value="auc">Aucune</option>
+      <option <?php echo $nmo_2;?>value="sim">x. + esp.</option>
+      <option <?php echo $nmo_3;?>value="par">(x) + esp.</option>
+      <option <?php echo $nmo_4;?>value="cro">[x] + esp.</option>
+      </select>
+    </td>
+<?php
+if (isset($gp1) && $gp1 == "- -" || !isset($team)) {$gp1_0 = "selected ";}else{$gp1_0 = "";}
 if (isset($gp1) && $gp1 == "auteurs") {$gp1_1 = "selected ";}else{$gp1_1 = "";}
 if (isset($gp1) && $gp1 == "année") {$gp1_2 = "selected ";}else{$gp1_2 = "";}
 if (isset($gp1) && $gp1 == "titre") {$gp1_3 = "selected ";}else{$gp1_3 = "";}
 if (isset($gp1) && $gp1 == "revue") {$gp1_4 = "selected ";}else{$gp1_4 = "";}
+if (isset($gp1) && $gp1 == "volume") {$gp1_5 = "selected ";}else{$gp1_5 = "";}
+if (isset($gp1) && $gp1 == "numéro") {$gp1_6 = "selected ";}else{$gp1_6 = "";}
+if (isset($gp1) && $gp1 == "pages") {$gp1_7 = "selected ";}else{$gp1_7 = "";}
 ?>
     <td width="100px">
-      <select id="gp1" size="1" name="gp1" onChange="mise_en_ordre('1'); majapercu();">
-      <option <?php echo $gp1_0;?>value="--">--</option>
+      <select id="gp1" size="1" name="gp1" onChange="mise_en_ordre('1'); majapercu();" style="font-size: 80%">
+      <option <?php echo $gp1_0;?>value="- -">- -</option>
       <option <?php echo $gp1_1;?>value="auteurs">Auteurs</option>
       <option <?php echo $gp1_2;?>value="année">Année</option>
       <option <?php echo $gp1_3;?>value="titre">Titre</option>
       <option <?php echo $gp1_4;?>value="revue">Revue</option>
+      <option <?php echo $gp1_5;?>value="volume">Volume</option>
+      <option <?php echo $gp1_6;?>value="numéro">Numéro</option>
+      <option <?php echo $gp1_7;?>value="pages">Pages</option>
       </select>
     </td>
 <?php
-if (isset($sep1) && $sep1 == "--" || !isset($team)) {$sep1_0 = "selected ";}else{$sep1_0 = "";}
-if (isset($sep1) && $sep1 == ", ") {$sep1_1 = "selected ";}else{$sep1_1 = "";}
-if (isset($sep1) && $sep1 == ". ") {$sep1_2 = "selected ";}else{$sep1_2 = "";}
-if (isset($sep1) && $sep1 == "; ") {$sep1_3 = "selected ";}else{$sep1_3 = "";}
-if (isset($sep1) && $sep1 == "- ") {$sep1_4 = "selected ";}else{$sep1_4 = "";}
+if (isset($sep1) && $sep1 == "- -" || !isset($team)) {$sep1_0 = "selected ";}else{$sep1_0 = "";}
+if (isset($sep1) && $sep1 == " ") {$sep1_1 = "selected ";}else{$sep1_1 = "";}
+if (isset($sep1) && $sep1 == ", ") {$sep1_2 = "selected ";}else{$sep1_2 = "";}
+if (isset($sep1) && $sep1 == ". ") {$sep1_3 = "selected ";}else{$sep1_3 = "";}
+if (isset($sep1) && $sep1 == "; ") {$sep1_4 = "selected ";}else{$sep1_4 = "";}
+if (isset($sep1) && $sep1 == " - ") {$sep1_5 = "selected ";}else{$sep1_5 = "";}
+if (isset($sep1) && $sep1 == "auc") {$sep1_6 = "selected ";}else{$sep1_6 = "";}
+if (isset($sep1) && $sep1 == ": ") {$sep1_7 = "selected ";}else{$sep1_7 = "";}
 ?>
     <td width="100px">
-      <select id="sep1" size="1" name="sep1" onChange="majapercu();">
-      <option <?php echo $sep1_0;?>value="--" >--</option>
-      <option <?php echo $sep1_1;?>value=", ">virg. + esp.</option>
-      <option <?php echo $sep1_2;?>value=". ">point + esp.</option>
-      <option <?php echo $sep1_3;?>value="; ">p.-v. + esp.</option>
-      <option <?php echo $sep1_4;?>value="- ">tiret + esp.</option>
+      <select id="sep1" size="1" name="sep1" onChange="majapercu();" style="font-size: 80%">
+      <option <?php echo $sep1_0;?>value="- -" >- -</option>
+      <option <?php echo $sep1_1;?>value=" ">_</option>
+      <option <?php echo $sep1_2;?>value=", ">,_</option>
+      <option <?php echo $sep1_3;?>value=". ">._</option>
+      <option <?php echo $sep1_4;?>value="; ">;_</option>
+      <option <?php echo $sep1_5;?>value=" - ">_-_</option>
+      <option <?php echo $sep1_6;?>value="">auc</option>
+      <option <?php echo $sep1_7;?>value=": ">:_</option>
       </select>
     </td>
 <?php
-if (isset($gp2) && $gp2 == "--" || !isset($team)) {$gp2_0 = "selected ";}else{$gp2_0 = "";}
+if (isset($gp2) && $gp2 == "- -" || !isset($team)) {$gp2_0 = "selected ";}else{$gp2_0 = "";}
 if (isset($gp2) && $gp2 == "auteurs") {$gp2_1 = "selected ";}else{$gp2_1 = "";}
 if (isset($gp2) && $gp2 == "année") {$gp2_2 = "selected ";}else{$gp2_2 = "";}
 if (isset($gp2) && $gp2 == "titre") {$gp2_3 = "selected ";}else{$gp2_3 = "";}
 if (isset($gp2) && $gp2 == "revue") {$gp2_4 = "selected ";}else{$gp2_4 = "";}
+if (isset($gp2) && $gp2 == "volume") {$gp2_5 = "selected ";}else{$gp2_5 = "";}
+if (isset($gp2) && $gp2 == "numéro") {$gp2_6 = "selected ";}else{$gp2_6 = "";}
+if (isset($gp2) && $gp2 == "pages") {$gp2_7 = "selected ";}else{$gp2_7 = "";}
 ?>
     <td width="100px">
-      <select id="gp2" size="1" name="gp2" onChange="mise_en_ordre('2'); majapercu();">
-      <option <?php echo $gp2_0;?>value="--">--</option>
+      <select id="gp2" size="1" name="gp2" onChange="mise_en_ordre('2'); majapercu();" style="font-size: 80%">
+      <option <?php echo $gp2_0;?>value="- -">- -</option>
       <option <?php echo $gp2_1;?>value="auteurs">Auteurs</option>
       <option <?php echo $gp2_2;?>value="année">Année</option>
       <option <?php echo $gp2_3;?>value="titre">Titre</option>
       <option <?php echo $gp2_4;?>value="revue">Revue</option>
+      <option <?php echo $gp2_5;?>value="volume">Volume</option>
+      <option <?php echo $gp2_6;?>value="numéro">Numéro</option>
+      <option <?php echo $gp2_7;?>value="pages">Pages</option>
       </select>
     </td>
 <?php
-if (isset($sep2) && $sep2 == "--" || !isset($team)) {$sep2_0 = "selected ";}else{$sep2_0 = "";}
-if (isset($sep2) && $sep2 == ", ") {$sep2_1 = "selected ";}else{$sep2_1 = "";}
-if (isset($sep2) && $sep2 == ". ") {$sep2_2 = "selected ";}else{$sep2_2 = "";}
-if (isset($sep2) && $sep2 == "; ") {$sep2_3 = "selected ";}else{$sep2_3 = "";}
-if (isset($sep2) && $sep2 == "- ") {$sep2_4 = "selected ";}else{$sep2_4 = "";}
+if (isset($sep2) && $sep2 == "- -" || !isset($team)) {$sep2_0 = "selected ";}else{$sep2_0 = "";}
+if (isset($sep2) && $sep2 == " ") {$sep2_1 = "selected ";}else{$sep2_1 = "";}
+if (isset($sep2) && $sep2 == ", ") {$sep2_2 = "selected ";}else{$sep2_2 = "";}
+if (isset($sep2) && $sep2 == ". ") {$sep2_3 = "selected ";}else{$sep2_3 = "";}
+if (isset($sep2) && $sep2 == "; ") {$sep2_4 = "selected ";}else{$sep2_4 = "";}
+if (isset($sep2) && $sep2 == " - ") {$sep2_5 = "selected ";}else{$sep2_5 = "";}
+if (isset($sep2) && $sep2 == "auc") {$sep2_6 = "selected ";}else{$sep2_6 = "";}
+if (isset($sep2) && $sep2 == ": ") {$sep2_7 = "selected ";}else{$sep2_7 = "";}
 ?>
     <td width="100px">
-      <select id="sep2" size="1" name="sep2" onChange="majapercu();">
-      <option <?php echo $sep2_0;?>value="--">--</option>
-      <option <?php echo $sep2_1;?>value=", ">virg. + esp.</option>
-      <option <?php echo $sep2_2;?>value=". ">point + esp.</option>
-      <option <?php echo $sep2_3;?>value="; ">p.-v. + esp.</option>
-      <option <?php echo $sep2_4;?>value="- ">tiret + esp.</option>
+      <select id="sep2" size="1" name="sep2" onChange="majapercu();" style="font-size: 80%">
+      <option <?php echo $sep2_0;?>value="- -">- -</option>
+      <option <?php echo $sep2_1;?>value=" ">_</option>
+      <option <?php echo $sep2_2;?>value=", ">,_</option>
+      <option <?php echo $sep2_3;?>value=". ">._</option>
+      <option <?php echo $sep2_4;?>value="; ">;_</option>
+      <option <?php echo $sep2_5;?>value=" - ">_-_</option>
+      <option <?php echo $sep2_6;?>value="">auc</option>
+      <option <?php echo $sep2_7;?>value=": ">:_</option>
       </select>
     </td>
 <?php
-if (isset($gp3) && $gp3 == "--" || !isset($team)) {$gp3_0 = "selected ";}else{$gp3_0 = "";}
+if (isset($gp3) && $gp3 == "- -" || !isset($team)) {$gp3_0 = "selected ";}else{$gp3_0 = "";}
 if (isset($gp3) && $gp3 == "auteurs") {$gp3_1 = "selected ";}else{$gp3_1 = "";}
 if (isset($gp3) && $gp3 == "année") {$gp3_2 = "selected ";}else{$gp3_2 = "";}
 if (isset($gp3) && $gp3 == "titre") {$gp3_3 = "selected ";}else{$gp3_3 = "";}
 if (isset($gp3) && $gp3 == "revue") {$gp3_4 = "selected ";}else{$gp3_4 = "";}
+if (isset($gp3) && $gp3 == "volume") {$gp3_5 = "selected ";}else{$gp3_5 = "";}
+if (isset($gp3) && $gp3 == "numéro") {$gp3_6 = "selected ";}else{$gp3_6 = "";}
+if (isset($gp3) && $gp3 == "pages") {$gp3_7 = "selected ";}else{$gp3_7 = "";}
 ?>
     <td width="100px">
-      <select id="gp3" size="1" name="gp3" onChange="mise_en_ordre('3'); majapercu();">
-      <option <?php echo $gp3_0;?>value="--">--</option>
+      <select id="gp3" size="1" name="gp3" onChange="mise_en_ordre('3'); majapercu();" style="font-size: 80%">
+      <option <?php echo $gp3_0;?>value="- -">- -</option>
       <option <?php echo $gp3_1;?>value="auteurs">Auteurs</option>
       <option <?php echo $gp3_2;?>value="année">Année</option>
       <option <?php echo $gp3_3;?>value="titre">Titre</option>
       <option <?php echo $gp3_4;?>value="revue">Revue</option>
+      <option <?php echo $gp3_5;?>value="volume">Volume</option>
+      <option <?php echo $gp3_6;?>value="numéro">Numéro</option>
+      <option <?php echo $gp3_7;?>value="pages">Pages</option>
       </select>
     </td>
 <?php
-if (isset($sep3) && $sep3 == "--" || !isset($team)) {$sep3_0 = "selected ";}else{$sep3_0 = "";}
-if (isset($sep3) && $sep3 == ", ") {$sep3_1 = "selected ";}else{$sep3_1 = "";}
-if (isset($sep3) && $sep3 == ". ") {$sep3_2 = "selected ";}else{$sep3_2 = "";}
-if (isset($sep3) && $sep3 == "; ") {$sep3_3 = "selected ";}else{$sep3_3 = "";}
-if (isset($sep3) && $sep3 == "- ") {$sep3_4 = "selected ";}else{$sep3_4 = "";}
+if (isset($sep3) && $sep3 == "- -" || !isset($team)) {$sep3_0 = "selected ";}else{$sep3_0 = "";}
+if (isset($sep3) && $sep3 == " ") {$sep3_1 = "selected ";}else{$sep3_1 = "";}
+if (isset($sep3) && $sep3 == ", ") {$sep3_2 = "selected ";}else{$sep3_2 = "";}
+if (isset($sep3) && $sep3 == ". ") {$sep3_3 = "selected ";}else{$sep3_3 = "";}
+if (isset($sep3) && $sep3 == "; ") {$sep3_4 = "selected ";}else{$sep3_4 = "";}
+if (isset($sep3) && $sep3 == " - ") {$sep3_5 = "selected ";}else{$sep3_5 = "";}
+if (isset($sep3) && $sep3 == "auc") {$sep3_6 = "selected ";}else{$sep3_6 = "";}
+if (isset($sep3) && $sep3 == ": ") {$sep3_7 = "selected ";}else{$sep3_7 = "";}
 ?>
     <td width="100px">
-      <select id="sep3" size="1" name="sep3" onChange="majapercu();">
-      <option <?php echo $sep3_0;?>value="--">--</option>
-      <option <?php echo $sep3_1;?>value=", ">virg. + esp.</option>
-      <option <?php echo $sep3_2;?>value=". ">point + esp.</option>
-      <option <?php echo $sep3_3;?>value="; ">p.-v. + esp.</option>
-      <option <?php echo $sep3_4;?>value="- ">tiret + esp.</option>
+      <select id="sep3" size="1" name="sep3" onChange="majapercu();" style="font-size: 80%">
+      <option <?php echo $sep3_0;?>value="- -">- -</option>
+      <option <?php echo $sep3_1;?>value=" ">_</option>
+      <option <?php echo $sep3_2;?>value=", ">,_</option>
+      <option <?php echo $sep3_3;?>value=". ">._</option>
+      <option <?php echo $sep3_4;?>value="; ">;_</option>
+      <option <?php echo $sep3_5;?>value=" - ">_-_</option>
+      <option <?php echo $sep3_6;?>value="">auc</option>
+      <option <?php echo $sep3_7;?>value=": ">:_</option>
       </select>
     </td>
 <?php
-if (isset($gp4) && $gp4 == "--" || !isset($team)) {$gp4_0 = "selected ";}else{$gp4_0 = "";}
+if (isset($gp4) && $gp4 == "- -" || !isset($team)) {$gp4_0 = "selected ";}else{$gp4_0 = "";}
 if (isset($gp4) && $gp4 == "auteurs") {$gp4_1 = "selected ";}else{$gp4_1 = "";}
 if (isset($gp4) && $gp4 == "année") {$gp4_2 = "selected ";}else{$gp4_2 = "";}
 if (isset($gp4) && $gp4 == "titre") {$gp4_3 = "selected ";}else{$gp4_3 = "";}
 if (isset($gp4) && $gp4 == "revue") {$gp4_4 = "selected ";}else{$gp4_4 = "";}
+if (isset($gp4) && $gp4 == "volume") {$gp4_5 = "selected ";}else{$gp4_5 = "";}
+if (isset($gp4) && $gp4 == "numéro") {$gp4_6 = "selected ";}else{$gp4_6 = "";}
+if (isset($gp4) && $gp4 == "pages") {$gp4_7 = "selected ";}else{$gp4_7 = "";}
 ?>
     <td width="100px">
-      <select id="gp4" size="1" name="gp4" onChange="mise_en_ordre('4'); majapercu();">
-      <option <?php echo $gp4_0;?>value="--">--</option>
+      <select id="gp4" size="1" name="gp4" onChange="mise_en_ordre('4'); majapercu();" style="font-size: 80%">
+      <option <?php echo $gp4_0;?>value="- -">- -</option>
       <option <?php echo $gp4_1;?>value="auteurs">Auteurs</option>
       <option <?php echo $gp4_2;?>value="année">Année</option>
       <option <?php echo $gp4_3;?>value="titre">Titre</option>
       <option <?php echo $gp4_4;?>value="revue">Revue</option>
+      <option <?php echo $gp4_5;?>value="volume">Volume</option>
+      <option <?php echo $gp4_6;?>value="numéro">Numéro</option>
+      <option <?php echo $gp4_7;?>value="pages">Pages</option>
       </select>
     </td>
 <?php
-if (isset($sep4) && $sep4 == "--" || !isset($team)) {$sep4_0 = "selected ";}else{$sep4_0 = "";}
-if (isset($sep4) && $sep4 == ", ") {$sep4_1 = "selected ";}else{$sep4_1 = "";}
-if (isset($sep4) && $sep4 == ". ") {$sep4_2 = "selected ";}else{$sep4_2 = "";}
-if (isset($sep4) && $sep4 == "; ") {$sep4_3 = "selected ";}else{$sep4_3 = "";}
-if (isset($sep4) && $sep4 == "- ") {$sep4_4 = "selected ";}else{$sep4_4 = "";}
+if (isset($sep4) && $sep4 == "- -" || !isset($team)) {$sep4_0 = "selected ";}else{$sep4_0 = "";}
+if (isset($sep4) && $sep4 == " ") {$sep4_1 = "selected ";}else{$sep4_1 = "";}
+if (isset($sep4) && $sep4 == ", ") {$sep4_2 = "selected ";}else{$sep4_2 = "";}
+if (isset($sep4) && $sep4 == ". ") {$sep4_3 = "selected ";}else{$sep4_3 = "";}
+if (isset($sep4) && $sep4 == "; ") {$sep4_4 = "selected ";}else{$sep4_4 = "";}
+if (isset($sep4) && $sep4 == " - ") {$sep4_5 = "selected ";}else{$sep4_5 = "";}
+if (isset($sep4) && $sep4 == "auc") {$sep4_6 = "selected ";}else{$sep4_6 = "";}
+if (isset($sep4) && $sep4 == ": ") {$sep4_7 = "selected ";}else{$sep4_7 = "";}
 ?>
-    <td>
-      <select id="sep4" size="1" name="sep4"  onChange="majapercu();">
-      <option <?php echo $sep4_0;?>value="--">--</option>
-      <option <?php echo $sep4_1;?>value=", ">virg. + esp.</option>
-      <option <?php echo $sep4_2;?>value=". ">point + esp.</option>
-      <option <?php echo $sep4_3;?>value="; ">p.-v. + esp.</option>
-      <option <?php echo $sep4_4;?>value="- ">tiret + esp.</option>
+    <td width="100px">
+      <select id="sep4" size="1" name="sep4" onChange="majapercu();" style="font-size: 80%">
+      <option <?php echo $sep4_0;?>value="- -">- -</option>
+      <option <?php echo $sep4_1;?>value=" ">_</option>
+      <option <?php echo $sep4_2;?>value=", ">,_</option>
+      <option <?php echo $sep4_3;?>value=". ">._</option>
+      <option <?php echo $sep4_4;?>value="; ">;_</option>
+      <option <?php echo $sep4_5;?>value=" - ">_-_</option>
+      <option <?php echo $sep4_6;?>value="">auc</option>
+      <option <?php echo $sep4_7;?>value=": ">:_</option>
       </select>
     </td>
+<?php
+if (isset($gp5) && $gp5 == "- -" || !isset($team)) {$gp5_0 = "selected ";}else{$gp5_0 = "";}
+if (isset($gp5) && $gp5 == "auteurs") {$gp5_1 = "selected ";}else{$gp5_1 = "";}
+if (isset($gp5) && $gp5 == "année") {$gp5_2 = "selected ";}else{$gp5_2 = "";}
+if (isset($gp5) && $gp5 == "titre") {$gp5_3 = "selected ";}else{$gp5_3 = "";}
+if (isset($gp5) && $gp5 == "revue") {$gp5_4 = "selected ";}else{$gp5_4 = "";}
+if (isset($gp5) && $gp5 == "volume") {$gp5_5 = "selected ";}else{$gp5_5 = "";}
+if (isset($gp5) && $gp5 == "numéro") {$gp5_6 = "selected ";}else{$gp5_6 = "";}
+if (isset($gp5) && $gp5 == "pages") {$gp5_7 = "selected ";}else{$gp5_7 = "";}
+?>
+    <td width="100px">
+      <select id="gp5" size="1" name="gp5" onChange="mise_en_ordre('5'); majapercu();" style="font-size: 80%">
+      <option <?php echo $gp5_0;?>value="- -">- -</option>
+      <option <?php echo $gp5_1;?>value="auteurs">Auteurs</option>
+      <option <?php echo $gp5_2;?>value="année">Année</option>
+      <option <?php echo $gp5_3;?>value="titre">Titre</option>
+      <option <?php echo $gp5_4;?>value="revue">Revue</option>
+      <option <?php echo $gp5_5;?>value="volume">Volume</option>
+      <option <?php echo $gp5_6;?>value="numéro">Numéro</option>
+      <option <?php echo $gp5_7;?>value="pages">Pages</option>
+      </select>
+    </td>
+    <?php
+    if (isset($sep5) && $sep5 == "- -" || !isset($team)) {$sep5_0 = "selected ";}else{$sep5_0 = "";}
+    if (isset($sep5) && $sep5 == " ") {$sep5_1 = "selected ";}else{$sep5_1 = "";}
+    if (isset($sep5) && $sep5 == ", ") {$sep5_2 = "selected ";}else{$sep5_2 = "";}
+    if (isset($sep5) && $sep5 == ". ") {$sep5_3 = "selected ";}else{$sep5_3 = "";}
+    if (isset($sep5) && $sep5 == "; ") {$sep5_4 = "selected ";}else{$sep5_4 = "";}
+    if (isset($sep5) && $sep5 == " - ") {$sep5_5 = "selected ";}else{$sep5_5 = "";}
+    if (isset($sep5) && $sep5 == "auc") {$sep5_6 = "selected ";}else{$sep5_6 = "";}
+    if (isset($sep5) && $sep5 == ": ") {$sep5_7 = "selected ";}else{$sep5_7 = "";}
+    ?>
+    <td>
+      <select id="sep5" size="1" name="sep5"  onChange="majapercu();" style="font-size: 80%">
+      <option <?php echo $sep5_0;?>value="- -">- -</option>
+      <option <?php echo $sep5_1;?>value=" ">_</option>
+      <option <?php echo $sep5_2;?>value=", ">,_</option>
+      <option <?php echo $sep5_3;?>value=". ">._</option>
+      <option <?php echo $sep5_4;?>value="; ">;_</option>
+      <option <?php echo $sep5_5;?>value=" - ">_-_</option>
+      <option <?php echo $sep5_6;?>value="">auc</option>
+      <option <?php echo $sep5_7;?>value=": ">:_</option>
+      </select>
+    </td>
+    <?php
+    if (isset($gp6) && $gp6 == "- -" || !isset($team)) {$gp6_0 = "selected ";}else{$gp6_0 = "";}
+    if (isset($gp6) && $gp6 == "auteurs") {$gp6_1 = "selected ";}else{$gp6_1 = "";}
+    if (isset($gp6) && $gp6 == "année") {$gp6_2 = "selected ";}else{$gp6_2 = "";}
+    if (isset($gp6) && $gp6 == "titre") {$gp6_3 = "selected ";}else{$gp6_3 = "";}
+    if (isset($gp6) && $gp6 == "revue") {$gp6_4 = "selected ";}else{$gp6_4 = "";}
+    if (isset($gp6) && $gp6 == "volume") {$gp6_5 = "selected ";}else{$gp6_5 = "";}
+    if (isset($gp6) && $gp6 == "numéro") {$gp6_6 = "selected ";}else{$gp6_6 = "";}
+    if (isset($gp6) && $gp6 == "pages") {$gp6_7 = "selected ";}else{$gp6_7 = "";}
+    ?>
+        <td width="100px">
+          <select id="gp6" size="1" name="gp6" onChange="mise_en_ordre('6'); majapercu();" style="font-size: 80%">
+          <option <?php echo $gp6_0;?>value="- -">- -</option>
+          <option <?php echo $gp6_1;?>value="auteurs">Auteurs</option>
+          <option <?php echo $gp6_2;?>value="année">Année</option>
+          <option <?php echo $gp6_3;?>value="titre">Titre</option>
+          <option <?php echo $gp6_4;?>value="revue">Revue</option>
+          <option <?php echo $gp6_5;?>value="volume">Volume</option>
+          <option <?php echo $gp6_6;?>value="numéro">Numéro</option>
+          <option <?php echo $gp6_7;?>value="pages">Pages</option>
+          </select>
+        </td>
+    <?php
+    if (isset($sep6) && $sep6 == "- -" || !isset($team)) {$sep6_0 = "selected ";}else{$sep6_0 = "";}
+    if (isset($sep6) && $sep6 == " ") {$sep6_1 = "selected ";}else{$sep6_1 = "";}
+    if (isset($sep6) && $sep6 == ", ") {$sep6_2 = "selected ";}else{$sep6_2 = "";}
+    if (isset($sep6) && $sep6 == ". ") {$sep6_3 = "selected ";}else{$sep6_3 = "";}
+    if (isset($sep6) && $sep6 == "; ") {$sep6_4 = "selected ";}else{$sep6_4 = "";}
+    if (isset($sep6) && $sep6 == " - ") {$sep6_5 = "selected ";}else{$sep6_5 = "";}
+    if (isset($sep6) && $sep6 == "auc") {$sep6_6 = "selected ";}else{$sep6_6 = "";}
+    if (isset($sep6) && $sep6 == ": ") {$sep6_7 = "selected ";}else{$sep6_7 = "";}
+    ?>
+        <td>
+          <select id="sep6" size="1" name="sep6"  onChange="majapercu();" style="font-size: 80%">
+          <option <?php echo $sep6_0;?>value="- -">- -</option>
+          <option <?php echo $sep6_1;?>value=" ">_</option>
+          <option <?php echo $sep6_2;?>value=", ">,_</option>
+          <option <?php echo $sep6_3;?>value=". ">._</option>
+          <option <?php echo $sep6_4;?>value="; ">;_</option>
+          <option <?php echo $sep6_5;?>value=" - ">_-_</option>
+          <option <?php echo $sep6_6;?>value="">auc</option>
+          <option <?php echo $sep6_7;?>value=": ">:_</option>
+          </select>
+        </td>
+    <?php
+    if (isset($gp7) && $gp7 == "- -" || !isset($team)) {$gp7_0 = "selected ";}else{$gp7_0 = "";}
+    if (isset($gp7) && $gp7 == "auteurs") {$gp7_1 = "selected ";}else{$gp7_1 = "";}
+    if (isset($gp7) && $gp7 == "année") {$gp7_2 = "selected ";}else{$gp7_2 = "";}
+    if (isset($gp7) && $gp7 == "titre") {$gp7_3 = "selected ";}else{$gp7_3 = "";}
+    if (isset($gp7) && $gp7 == "revue") {$gp7_4 = "selected ";}else{$gp7_4 = "";}
+    if (isset($gp7) && $gp7 == "volume") {$gp7_5 = "selected ";}else{$gp7_5 = "";}
+    if (isset($gp7) && $gp7 == "numéro") {$gp7_6 = "selected ";}else{$gp7_6 = "";}
+    if (isset($gp7) && $gp7 == "pages") {$gp7_7 = "selected ";}else{$gp7_7 = "";}
+    ?>
+        <td width="100px">
+          <select id="gp7" size="1" name="gp7" onChange="mise_en_ordre('7'); majapercu();" style="font-size: 80%">
+          <option <?php echo $gp7_0;?>value="- -">- -</option>
+          <option <?php echo $gp7_1;?>value="auteurs">Auteurs</option>
+          <option <?php echo $gp7_2;?>value="année">Année</option>
+          <option <?php echo $gp7_3;?>value="titre">Titre</option>
+          <option <?php echo $gp7_4;?>value="revue">Revue</option>
+          <option <?php echo $gp7_5;?>value="volume">Volume</option>
+          <option <?php echo $gp7_6;?>value="numéro">Numéro</option>
+          <option <?php echo $gp7_7;?>value="pages">Pages</option>
+          </select>
+        </td>
+    <?php
+    if (isset($sep7) && $sep7 == "- -" || !isset($team)) {$sep7_0 = "selected ";}else{$sep7_0 = "";}
+    if (isset($sep7) && $sep7 == " ") {$sep7_1 = "selected ";}else{$sep7_1 = "";}
+    if (isset($sep7) && $sep7 == ", ") {$sep7_2 = "selected ";}else{$sep7_2 = "";}
+    if (isset($sep7) && $sep7 == ". ") {$sep7_3 = "selected ";}else{$sep7_3 = "";}
+    if (isset($sep7) && $sep7 == "; ") {$sep7_4 = "selected ";}else{$sep7_4 = "";}
+    if (isset($sep7) && $sep7 == " - ") {$sep7_5 = "selected ";}else{$sep7_5 = "";}
+    if (isset($sep7) && $sep7 == "auc") {$sep7_6 = "selected ";}else{$sep7_6 = "";}
+    if (isset($sep7) && $sep7 == ": ") {$sep7_7 = "selected ";}else{$sep7_7 = "";}
+    ?>
+        <td>
+          <select id="sep7" size="1" name="sep7"  onChange="majapercu();" style="font-size: 80%">
+          <option <?php echo $sep7_0;?>value="- -">- -</option>
+          <option <?php echo $sep7_1;?>value=" ">_</option>
+          <option <?php echo $sep7_2;?>value=", ">,_</option>
+          <option <?php echo $sep7_3;?>value=". ">._</option>
+          <option <?php echo $sep7_4;?>value="; ">;_</option>
+          <option <?php echo $sep7_5;?>value=" - ">_-_</option>
+          <option <?php echo $sep7_6;?>value="">auc</option>
+          <option <?php echo $sep7_7;?>value=": ">:_</option>
+          </select>
+        </td>
   </tr>
   <tr>
+    <td>&nbsp;</td>
 <?php
-if (isset($choix_mp1) && strpos($choix_mp1, "~--~") !== false || !isset($team)) {$mp1v = "selected ";}else{$mp1v = "";}
+if (isset($choix_mp1) && strpos($choix_mp1, "~- -~") !== false || !isset($team)) {$mp1v = "selected ";}else{$mp1v = "";}
 if (isset($choix_mp1) && strpos($choix_mp1, "~norm~") !== false) {$mp1n = "selected ";}else{$mp1n = "";}
 if (isset($choix_mp1) && strpos($choix_mp1, "~gras~") !== false) {$mp1g = "selected ";}else{$mp1g = "";}
 if (isset($choix_mp1) && strpos($choix_mp1, "~soul~") !== false) {$mp1s = "selected ";}else{$mp1s = "";}
@@ -1831,10 +2212,11 @@ if (isset($choix_mp1) && strpos($choix_mp1, "~ecro~") !== false) {$mp1c = "selec
 if (isset($choix_mp1) && strpos($choix_mp1, "~egui~") !== false) {$mp1u = "selected ";}else{$mp1u = "";}
 if (isset($choix_mp1) && strpos($choix_mp1, "~emin~") !== false) {$mp1m = "selected ";}else{$mp1m = "";}
 if (isset($choix_mp1) && strpos($choix_mp1, "~emaj~") !== false) {$mp1a = "selected ";}else{$mp1a = "";}
+if (isset($choix_mp1) && strpos($choix_mp1, "~effa~") !== false) {$mp1f = "selected ";}else{$mp1f = "";}
 ?>
     <td>
-      <select id="mp1" size="10" name="mp1[]" multiple>
-      <option <?php echo $mp1v;?>value="--" onClick="majapercu();">--</option>
+      <select id="mp1" size="11" name="mp1[]" multiple style="font-size: 80%">
+      <option <?php echo $mp1v;?>value="- -" onClick="majapercu();">- -</option>
       <option <?php echo $mp1n;?>value="norm" onClick="majapercu();">Normal</option>
       <option <?php echo $mp1g;?>value="gras" onClick="majapercu();">Gras</option>
       <option <?php echo $mp1s;?>value="soul" onClick="majapercu();">Souligné</option>
@@ -1844,11 +2226,12 @@ if (isset($choix_mp1) && strpos($choix_mp1, "~emaj~") !== false) {$mp1a = "selec
       <option <?php echo $mp1u;?>value="egui" onClick="majapercu();">Entre " "</option>
       <option <?php echo $mp1m;?>value="emin" onClick="majapercu();">Minuscules</option>
       <option <?php echo $mp1a;?>value="emaj" onClick="majapercu();">Majuscules</option>
+      <option <?php echo $mp1f;?>value="effa" onClick="majapercu();">Effacé</option>
       </select>
     </td>
     <td>&nbsp;</td>
 <?php
-if (isset($choix_mp2) && strpos($choix_mp2, "~--~") !== false || !isset($team)) {$mp2v = "selected ";}else{$mp2v = "";}
+if (isset($choix_mp2) && strpos($choix_mp2, "~- -~") !== false || !isset($team)) {$mp2v = "selected ";}else{$mp2v = "";}
 if (isset($choix_mp2) && strpos($choix_mp2, "~norm~") !== false) {$mp2n = "selected ";}else{$mp2n = "";}
 if (isset($choix_mp2) && strpos($choix_mp2, "~gras~") !== false) {$mp2g = "selected ";}else{$mp2g = "";}
 if (isset($choix_mp2) && strpos($choix_mp2, "~soul~") !== false) {$mp2s = "selected ";}else{$mp2s = "";}
@@ -1858,10 +2241,11 @@ if (isset($choix_mp2) && strpos($choix_mp2, "~ecro~") !== false) {$mp2c = "selec
 if (isset($choix_mp2) && strpos($choix_mp2, "~egui~") !== false) {$mp2u = "selected ";}else{$mp2u = "";}
 if (isset($choix_mp2) && strpos($choix_mp2, "~emin~") !== false) {$mp2m = "selected ";}else{$mp2m = "";}
 if (isset($choix_mp2) && strpos($choix_mp2, "~emaj~") !== false) {$mp2a = "selected ";}else{$mp2a = "";}
+if (isset($choix_mp2) && strpos($choix_mp2, "~effa~") !== false) {$mp2f = "selected ";}else{$mp2f = "";}
 ?>
     <td>
-      <select id="mp2" size="10" name="mp2[]" multiple>
-      <option <?php echo $mp2v;?>value="--" onClick="majapercu();">--</option>
+      <select id="mp2" size="11" name="mp2[]" multiple style="font-size: 80%">
+      <option <?php echo $mp2v;?>value="- -" onClick="majapercu();">- -</option>
       <option <?php echo $mp2n;?>value="norm" onClick="majapercu();">Normal</option>
       <option <?php echo $mp2g;?>value="gras" onClick="majapercu();">Gras</option>
       <option <?php echo $mp2s;?>value="soul" onClick="majapercu();">Souligné</option>
@@ -1871,11 +2255,12 @@ if (isset($choix_mp2) && strpos($choix_mp2, "~emaj~") !== false) {$mp2a = "selec
       <option <?php echo $mp2u;?>value="egui" onClick="majapercu();">Entre " "</option>
       <option <?php echo $mp2m;?>value="emin" onClick="majapercu();">Minuscules</option>
       <option <?php echo $mp2a;?>value="emaj" onClick="majapercu();">Majuscules</option>
+      <option <?php echo $mp2f;?>value="effa" onClick="majapercu();">Effacé</option>
       </select>
     </td>
     <td>&nbsp;</td>
 <?php
-if (isset($choix_mp3) && strpos($choix_mp3, "~--~") !== false || !isset($team)) {$mp3v = "selected ";}else{$mp3v = "";}
+if (isset($choix_mp3) && strpos($choix_mp3, "~- -~") !== false || !isset($team)) {$mp3v = "selected ";}else{$mp3v = "";}
 if (isset($choix_mp3) && strpos($choix_mp3, "~norm~") !== false) {$mp3n = "selected ";}else{$mp3n = "";}
 if (isset($choix_mp3) && strpos($choix_mp3, "~gras~") !== false) {$mp3g = "selected ";}else{$mp3g = "";}
 if (isset($choix_mp3) && strpos($choix_mp3, "~soul~") !== false) {$mp3s = "selected ";}else{$mp3s = "";}
@@ -1885,10 +2270,11 @@ if (isset($choix_mp3) && strpos($choix_mp3, "~ecro~") !== false) {$mp3c = "selec
 if (isset($choix_mp3) && strpos($choix_mp3, "~egui~") !== false) {$mp3u = "selected ";}else{$mp3u = "";}
 if (isset($choix_mp3) && strpos($choix_mp3, "~emin~") !== false) {$mp3m = "selected ";}else{$mp3m = "";}
 if (isset($choix_mp3) && strpos($choix_mp3, "~emaj~") !== false) {$mp3a = "selected ";}else{$mp3a = "";}
+if (isset($choix_mp3) && strpos($choix_mp3, "~effa~") !== false) {$mp3f = "selected ";}else{$mp3f = "";}
 ?>
     <td>
-      <select id="mp3" size="10" name="mp3[]" multiple>
-      <option <?php echo $mp3v;?>value="--" onClick="majapercu();">--</option>
+      <select id="mp3" size="11" name="mp3[]" multiple style="font-size: 80%">
+      <option <?php echo $mp3v;?>value="- -" onClick="majapercu();">- -</option>
       <option <?php echo $mp3n;?>value="norm" onClick="majapercu();">Normal</option>
       <option <?php echo $mp3g;?>value="gras" onClick="majapercu();">Gras</option>
       <option <?php echo $mp3s;?>value="soul" onClick="majapercu();">Souligné</option>
@@ -1898,11 +2284,12 @@ if (isset($choix_mp3) && strpos($choix_mp3, "~emaj~") !== false) {$mp3a = "selec
       <option <?php echo $mp3u;?>value="egui" onClick="majapercu();">Entre " "</option>
       <option <?php echo $mp3m;?>value="emin" onClick="majapercu();">Minuscules</option>
       <option <?php echo $mp3a;?>value="emaj" onClick="majapercu();">Majuscules</option>
+      <option <?php echo $mp3f;?>value="effa" onClick="majapercu();">Effacé</option>
       </select>
     </td>
     <td>&nbsp;</td>
 <?php
-if (isset($choix_mp4) && strpos($choix_mp4, "~--~") !== false || !isset($team)) {$mp4v = "selected ";}else{$mp4v = "";}
+if (isset($choix_mp4) && strpos($choix_mp4, "~- -~") !== false || !isset($team)) {$mp4v = "selected ";}else{$mp4v = "";}
 if (isset($choix_mp4) && strpos($choix_mp4, "~norm~") !== false) {$mp4n = "selected ";}else{$mp4n = "";}
 if (isset($choix_mp4) && strpos($choix_mp4, "~gras~") !== false) {$mp4g = "selected ";}else{$mp4g = "";}
 if (isset($choix_mp4) && strpos($choix_mp4, "~soul~") !== false) {$mp4s = "selected ";}else{$mp4s = "";}
@@ -1912,10 +2299,11 @@ if (isset($choix_mp4) && strpos($choix_mp4, "~ecro~") !== false) {$mp4c = "selec
 if (isset($choix_mp4) && strpos($choix_mp4, "~egui~") !== false) {$mp4u = "selected ";}else{$mp4u = "";}
 if (isset($choix_mp4) && strpos($choix_mp4, "~emin~") !== false) {$mp4m = "selected ";}else{$mp4m = "";}
 if (isset($choix_mp4) && strpos($choix_mp4, "~emaj~") !== false) {$mp4a = "selected ";}else{$mp4a = "";}
+if (isset($choix_mp4) && strpos($choix_mp4, "~effa~") !== false) {$mp4f = "selected ";}else{$mp4f = "";}
 ?>
     <td>
-      <select id="mp4" size="10" name="mp4[]" multiple>
-      <option <?php echo $mp4v;?>value="--" onClick="majapercu();">--</option>
+      <select id="mp4" size="11" name="mp4[]" multiple style="font-size: 80%">
+      <option <?php echo $mp4v;?>value="- -" onClick="majapercu();">- -</option>
       <option <?php echo $mp4n;?>value="norm" onClick="majapercu();">Normal</option>
       <option <?php echo $mp4g;?>value="gras" onClick="majapercu();">Gras</option>
       <option <?php echo $mp4s;?>value="soul" onClick="majapercu();">Souligné</option>
@@ -1925,6 +2313,94 @@ if (isset($choix_mp4) && strpos($choix_mp4, "~emaj~") !== false) {$mp4a = "selec
       <option <?php echo $mp4u;?>value="egui" onClick="majapercu();">Entre " "</option>
       <option <?php echo $mp4m;?>value="emin" onClick="majapercu();">Minuscules</option>
       <option <?php echo $mp4a;?>value="emaj" onClick="majapercu();">Majuscules</option>
+      <option <?php echo $mp4f;?>value="effa" onClick="majapercu();">Effacé</option>
+      </select>
+    </td>
+    <td>&nbsp;</td>
+<?php
+if (isset($choix_mp5) && strpos($choix_mp5, "~- -~") !== false || !isset($team)) {$mp5v = "selected ";}else{$mp5v = "";}
+if (isset($choix_mp5) && strpos($choix_mp5, "~norm~") !== false) {$mp5n = "selected ";}else{$mp5n = "";}
+if (isset($choix_mp5) && strpos($choix_mp5, "~gras~") !== false) {$mp5g = "selected ";}else{$mp5g = "";}
+if (isset($choix_mp5) && strpos($choix_mp5, "~soul~") !== false) {$mp5s = "selected ";}else{$mp5s = "";}
+if (isset($choix_mp5) && strpos($choix_mp5, "~ital~") !== false) {$mp5i = "selected ";}else{$mp5i = "";}
+if (isset($choix_mp5) && strpos($choix_mp5, "~epar~") !== false) {$mp5e = "selected ";}else{$mp5e = "";}
+if (isset($choix_mp5) && strpos($choix_mp5, "~ecro~") !== false) {$mp5c = "selected ";}else{$mp5c = "";}
+if (isset($choix_mp5) && strpos($choix_mp5, "~egui~") !== false) {$mp5u = "selected ";}else{$mp5u = "";}
+if (isset($choix_mp5) && strpos($choix_mp5, "~emin~") !== false) {$mp5m = "selected ";}else{$mp5m = "";}
+if (isset($choix_mp5) && strpos($choix_mp5, "~emaj~") !== false) {$mp5a = "selected ";}else{$mp5a = "";}
+if (isset($choix_mp5) && strpos($choix_mp5, "~effa~") !== false) {$mp5f = "selected ";}else{$mp5f = "";}
+?>
+    <td>
+      <select id="mp5" size="11" name="mp5[]" multiple style="font-size: 80%">
+      <option <?php echo $mp5v;?>value="- -" onClick="majapercu();">- -</option>
+      <option <?php echo $mp5n;?>value="norm" onClick="majapercu();">Normal</option>
+      <option <?php echo $mp5g;?>value="gras" onClick="majapercu();">Gras</option>
+      <option <?php echo $mp5s;?>value="soul" onClick="majapercu();">Souligné</option>
+      <option <?php echo $mp5i;?>value="ital" onClick="majapercu();">Italique</option>
+      <option <?php echo $mp5e;?>value="epar" onClick="majapercu();">Entre ( )</option>
+      <option <?php echo $mp5c;?>value="ecro" onClick="majapercu();">Entre [ ]</option>
+      <option <?php echo $mp5u;?>value="egui" onClick="majapercu();">Entre " "</option>
+      <option <?php echo $mp5m;?>value="emin" onClick="majapercu();">Minuscules</option>
+      <option <?php echo $mp5a;?>value="emaj" onClick="majapercu();">Majuscules</option>
+      <option <?php echo $mp5f;?>value="effa" onClick="majapercu();">Effacé</option>
+      </select>
+    </td>
+    <td>&nbsp;</td>
+<?php
+if (isset($choix_mp6) && strpos($choix_mp6, "~- -~") !== false || !isset($team)) {$mp6v = "selected ";}else{$mp6v = "";}
+if (isset($choix_mp6) && strpos($choix_mp6, "~norm~") !== false) {$mp6n = "selected ";}else{$mp6n = "";}
+if (isset($choix_mp6) && strpos($choix_mp6, "~gras~") !== false) {$mp6g = "selected ";}else{$mp6g = "";}
+if (isset($choix_mp6) && strpos($choix_mp6, "~soul~") !== false) {$mp6s = "selected ";}else{$mp6s = "";}
+if (isset($choix_mp6) && strpos($choix_mp6, "~ital~") !== false) {$mp6i = "selected ";}else{$mp6i = "";}
+if (isset($choix_mp6) && strpos($choix_mp6, "~epar~") !== false) {$mp6e = "selected ";}else{$mp6e = "";}
+if (isset($choix_mp6) && strpos($choix_mp6, "~ecro~") !== false) {$mp6c = "selected ";}else{$mp6c = "";}
+if (isset($choix_mp6) && strpos($choix_mp6, "~egui~") !== false) {$mp6u = "selected ";}else{$mp6u = "";}
+if (isset($choix_mp6) && strpos($choix_mp6, "~emin~") !== false) {$mp6m = "selected ";}else{$mp6m = "";}
+if (isset($choix_mp6) && strpos($choix_mp6, "~emaj~") !== false) {$mp6a = "selected ";}else{$mp6a = "";}
+if (isset($choix_mp6) && strpos($choix_mp6, "~effa~") !== false) {$mp6f = "selected ";}else{$mp6f = "";}
+?>
+    <td>
+      <select id="mp6" size="11" name="mp6[]" multiple style="font-size: 80%">
+      <option <?php echo $mp6v;?>value="- -" onClick="majapercu();">- -</option>
+      <option <?php echo $mp6n;?>value="norm" onClick="majapercu();">Normal</option>
+      <option <?php echo $mp6g;?>value="gras" onClick="majapercu();">Gras</option>
+      <option <?php echo $mp6s;?>value="soul" onClick="majapercu();">Souligné</option>
+      <option <?php echo $mp6i;?>value="ital" onClick="majapercu();">Italique</option>
+      <option <?php echo $mp6e;?>value="epar" onClick="majapercu();">Entre ( )</option>
+      <option <?php echo $mp6c;?>value="ecro" onClick="majapercu();">Entre [ ]</option>
+      <option <?php echo $mp6u;?>value="egui" onClick="majapercu();">Entre " "</option>
+      <option <?php echo $mp6m;?>value="emin" onClick="majapercu();">Minuscules</option>
+      <option <?php echo $mp6a;?>value="emaj" onClick="majapercu();">Majuscules</option>
+      <option <?php echo $mp6f;?>value="effa" onClick="majapercu();">Effacé</option>
+      </select>
+    </td>
+    <td>&nbsp;</td>
+<?php
+if (isset($choix_mp7) && strpos($choix_mp7, "~- -~") !== false || !isset($team)) {$mp7v = "selected ";}else{$mp7v = "";}
+if (isset($choix_mp7) && strpos($choix_mp7, "~norm~") !== false) {$mp7n = "selected ";}else{$mp7n = "";}
+if (isset($choix_mp7) && strpos($choix_mp7, "~gras~") !== false) {$mp7g = "selected ";}else{$mp7g = "";}
+if (isset($choix_mp7) && strpos($choix_mp7, "~soul~") !== false) {$mp7s = "selected ";}else{$mp7s = "";}
+if (isset($choix_mp7) && strpos($choix_mp7, "~ital~") !== false) {$mp7i = "selected ";}else{$mp7i = "";}
+if (isset($choix_mp7) && strpos($choix_mp7, "~epar~") !== false) {$mp7e = "selected ";}else{$mp7e = "";}
+if (isset($choix_mp7) && strpos($choix_mp7, "~ecro~") !== false) {$mp7c = "selected ";}else{$mp7c = "";}
+if (isset($choix_mp7) && strpos($choix_mp7, "~egui~") !== false) {$mp7u = "selected ";}else{$mp7u = "";}
+if (isset($choix_mp7) && strpos($choix_mp7, "~emin~") !== false) {$mp7m = "selected ";}else{$mp7m = "";}
+if (isset($choix_mp7) && strpos($choix_mp7, "~emaj~") !== false) {$mp7a = "selected ";}else{$mp7a = "";}
+if (isset($choix_mp7) && strpos($choix_mp7, "~effa~") !== false) {$mp7f = "selected ";}else{$mp7f = "";}
+?>
+    <td>
+      <select id="mp7" size="11" name="mp7[]" multiple style="font-size: 80%">
+      <option <?php echo $mp7v;?>value="- -" onClick="majapercu();">- -</option>
+      <option <?php echo $mp7n;?>value="norm" onClick="majapercu();">Normal</option>
+      <option <?php echo $mp7g;?>value="gras" onClick="majapercu();">Gras</option>
+      <option <?php echo $mp7s;?>value="soul" onClick="majapercu();">Souligné</option>
+      <option <?php echo $mp7i;?>value="ital" onClick="majapercu();">Italique</option>
+      <option <?php echo $mp7e;?>value="epar" onClick="majapercu();">Entre ( )</option>
+      <option <?php echo $mp7c;?>value="ecro" onClick="majapercu();">Entre [ ]</option>
+      <option <?php echo $mp7u;?>value="egui" onClick="majapercu();">Entre " "</option>
+      <option <?php echo $mp7m;?>value="emin" onClick="majapercu();">Minuscules</option>
+      <option <?php echo $mp7a;?>value="emaj" onClick="majapercu();">Majuscules</option>
+      <option <?php echo $mp7f;?>value="effa" onClick="majapercu();">Effacé</option>
       </select>
     </td>
     <td>&nbsp;</td>
@@ -1934,38 +2410,60 @@ $cg1v = "000000";
 $cg2v = "000000";
 $cg3v = "000000";
 $cg4v = "000000";
+$cg5v = "000000";
+$cg6v = "000000";
+$cg7v = "000000";
 if (isset($choix_cg1)) {$cg1v = $choix_cg1;}
 if (isset($choix_cg2)) {$cg2v = $choix_cg2;}
 if (isset($choix_cg3)) {$cg3v = $choix_cg3;}
 if (isset($choix_cg4)) {$cg4v = $choix_cg4;}
+if (isset($choix_cg5)) {$cg5v = $choix_cg5;}
+if (isset($choix_cg6)) {$cg6v = $choix_cg6;}
+if (isset($choix_cg7)) {$cg7v = $choix_cg7;}
 ?>
   <tr>
-   <td><input type="text" id="cg1" name="cg1" size="10" class="jscolor {closable:true,closeText:'Fermer'}" value="<?php echo $cg1v;?>" onChange="majapercu();"></td>
    <td>&nbsp;</td>
-   <td><input type="text" id="cg2" name="cg2" size="10" class="jscolor {closable:true,closeText:'Fermer'}" value="<?php echo $cg2v;?>" onChange="majapercu();"></td>
+   <td><input type="text" id="cg1" name="cg1" size="10" class="jscolor {closable:true,closeText:'Fermer'}" value="<?php echo $cg1v;?>" onChange="majapercu();" style="font-size: 80%"></td>
    <td>&nbsp;</td>
-   <td><input type="text" id="cg3" name="cg3" size="10" class="jscolor {closable:true,closeText:'Fermer'}" value="<?php echo $cg3v;?>" onChange="majapercu();"></td>
+   <td><input type="text" id="cg2" name="cg2" size="10" class="jscolor {closable:true,closeText:'Fermer'}" value="<?php echo $cg2v;?>" onChange="majapercu();" style="font-size: 80%"></td>
    <td>&nbsp;</td>
-   <td><input type="text" id="cg4" name="cg4" size="10" class="jscolor {closable:true,closeText:'Fermer'}" value="<?php echo $cg4v;?>" onChange="majapercu();"></td>
+   <td><input type="text" id="cg3" name="cg3" size="10" class="jscolor {closable:true,closeText:'Fermer'}" value="<?php echo $cg3v;?>" onChange="majapercu();" style="font-size: 80%"></td>
+   <td>&nbsp;</td>
+   <td><input type="text" id="cg4" name="cg4" size="10" class="jscolor {closable:true,closeText:'Fermer'}" value="<?php echo $cg4v;?>" onChange="majapercu();" style="font-size: 80%"></td>
+   <td>&nbsp;</td>
+   <td><input type="text" id="cg5" name="cg5" size="10" class="jscolor {closable:true,closeText:'Fermer'}" value="<?php echo $cg5v;?>" onChange="majapercu();" style="font-size: 80%"></td>
+   <td>&nbsp;</td>
+   <td><input type="text" id="cg6" name="cg6" size="10" class="jscolor {closable:true,closeText:'Fermer'}" value="<?php echo $cg6v;?>" onChange="majapercu();" style="font-size: 80%"></td>
+   <td>&nbsp;</td>
+   <td><input type="text" id="cg7" name="cg7" size="10" class="jscolor {closable:true,closeText:'Fermer'}" value="<?php echo $cg7v;?>" onChange="majapercu();" style="font-size: 80%"></td>
    <td>&nbsp;</td>
   </tr>
 </table></center><br><br>
 <u>Aperçu :</u><br>
 <?php
   //Définition des variables initiales
-  $txtAut = "La liste des auteurs";
-  $txtTit = "En réalité, on travaille avec peu de couleurs. Ce qui donne l'illusion de leur nombre, c'est d'avoir été mises à leur juste place.";
-  $txtAnn = date('Y', time());
-  $txtRev = "Pablo PICASSO";
+  //26 (14), 1911–1915 DOI: 10.1016/j.cub.2016.05.047.
+  $txtAut = "Hisakata, R.; Nishida, S.; Johnston, A.";
+  $txtAutChi = "Hisakata, Rumi, Shin 'ya Nishida, and Alan Johnston";
+  $txtAutMla = "Hisakata, Rumi, et al.";
+  $txtTit = "An Adaptable Metric Shapes Perceptual Space";
+  $txtAnn = "2016";
+  $txtRev = "Current Biology";
+  $txtVol = "26";
+  $txtNum = "14";
+  $txtPag = "1911-1915";
 ?>
 <div id="apercu">
 <!--<span id="listAut"><?php echo($txtAut);?></span>
 <span id="listTit"><?php echo($txtTit);?></span>
 <span id="listAnn"><?php echo($txtAnn);?></span>
-<span id="listRev"><?php echo($txtRev);?></span>-->
+<span id="listRev"><?php echo($txtRev);?></span>
+<span id="listVol"><?php echo($txtVol);?></span>
+<span id="listNum"><?php echo($txtNum);?></span>
+<span id="listPag"><?php echo($txtPag);?></span>-->
 </div>
 <br><br>
-La suite sera constituée des éléments habituels s'ils ont été demandés : pagination, DOI, Pubmed, etc.
+La suite sera constituée des éléments habituels s'ils ont été demandés : DOI, Pubmed, etc.
 <br><br>
 </div></div></div>
 <br><br>
@@ -2114,7 +2612,7 @@ if (isset($depotdeb) && $depotdeb != "" && isset($depotfin) && $depotfin != "") 
 }
 
 //collCode_s sert aussi bien pour une collection que pour un idhal
-function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4){
+function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7){
 	 static $listedoi = "";
    include "ExtractionHAL-rang-AERES-SHS.php";
    include "ExtractionHAL-rang-CNRS.php";
@@ -2207,6 +2705,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
    $results = json_decode($contents);
    //var_dump($results);
    $iRA = 0;
+   $nmoOrd = 0;
    foreach($results->response->docs as $entry){
       $img="";
       $chaine1 = "";
@@ -2376,7 +2875,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
         }
         $i++;
       }
-      //Limiting to 5, 10, 15 or 20 authors + et al.
+      //Limiting to 1, 5, 10, 15 or 20 authors + et al.
       if (isset($typlim) && $typlim == "oui") {
         $cpt = 1;
         $pospv = 0;
@@ -2395,7 +2894,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
         if ($lim_aut_ok != 0) {
           //$extract = mb_substr($authors, 0, $pospv, 'UTF-8');
           $extract = substr($authors, 0, $pospv);
-          $extract .= " <i> et al.</i>";
+          if (isset($stpdf) && $stpdf == "mla") {//Cas spécifique du style MLA prédéfini
+            $extract .= ", et al.";
+          }else{
+            $extract .= " <i> et al.</i>";
+          }
         }else{
           if ($typnom != "nominit") {
             $extract .= ".";
@@ -2406,6 +2909,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       }
       if ($typaut == "soul") {$extract = "<u>".$extract."</u>";}
       if ($typaut == "gras") {$extract = "<b>".$extract."</b>";}
+      if (isset($spa) && $spa == "pvi") {$extract = str_replace(", ", "; ", $extract);}
+      if (isset($spa) && $spa == "esp") {$extract = str_replace(", ", " ", $extract);}
+      if (isset($spa) && $spa == "tir") {$extract = str_replace(", ", " - ", $extract);}
 
       $entryInfo0 .= $extract;
       $resArray[$iRA]["authors"] = $extract;
@@ -3062,12 +3568,12 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 
       //Ordre à respecter
       $ord = "non";
-      if ($gp1 != "--" && $gp2 != "--" && $gp3 != "--" && $gp4 != "--" && $sep1 != "--" && $sep2 != "--" && $sep3 != "--" && $sep4 != "--") {
+      if ($nmo != "- -" && $gp1 != "- -" && $gp2 != "- -" && $gp3 != "- -" && $gp4 != "- -" && $gp5 != "- -" && $gp6 != "- -" && $gp7 != "- -" && $sep1 != "- -" && $sep2 != "- -" && $sep3 != "- -" && $sep4 != "- -" && $sep5 != "- -" && $sep6 != "- -" && $sep7 != "- -") {
         //echo 'toto : '.$gp1.' '.$gp2.' '.$gp3.' '.$gp4.' ';
         $ord = "oui";
         //Mise en page des groupes
         $i = 1;
-        while ($i <= 4) {//$i = Nombre de groupes
+        while ($i <= 7) {//$i = Nombre de groupes
           if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~gras~") !== false) {${"deb" .$i . "_1"} = "<b>";${"fin" . $i ."_1"} = "</b>";}else{${"deb" .$i . "_1"} = "";${"fin" .$i . "_1"} = "";}
           if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~soul~") !== false) {${"deb" .$i . "_2"} = "<u>";${"fin" . $i ."_2"} = "</u>";}else{${"deb" .$i . "_2"} = "";${"fin" .$i . "_2"} = "";}
           if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~ital~") !== false) {${"deb" .$i . "_3"} = "<i>";${"fin" . $i ."_3"} = "</i>";}else{${"deb" .$i . "_3"} = "";${"fin" .$i . "_3"} = "";}
@@ -3081,9 +3587,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
         $entryOrd = "";
         $rtfOrd = array();
         $rtfSep = array();
+        $rtfOrd[0] = $entryOrd;
+        $rtfSep[0] = "";
         if (isset($resArray[$iRA]["GR"])) {$entryOrd .= $resArray[$iRA]["GR"];}
         $i = 1;
-        while ($i <= 4) {
+        while ($i <= 7) {//$i = Nombre de groupes
           $entryOrdi = "".${"deb" .$i . "_1"};
           $entryOrdi .= "".${"deb" .$i . "_2"};
           $entryOrdi .= "".${"deb" .$i . "_3"};
@@ -3100,64 +3608,165 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
           $entryOrdf .= "".${"fin" .$i . "_1"};
           switch (${"gp" . $i}) {
             case "auteurs":
-              $entryAut = $resArray[$iRA]["authors"];
+              if (isset($resArray[$iRA]["authors"])) {
+                $entryAut = $resArray[$iRA]["authors"];
+              }else{
+                $entryAut = "";
+              }
               if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emin~") !== false) {$entryAut = mb_strtolower($resArray[$iRA]["authors"],'UTF-8');}
               if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emaj~") !== false) {$entryAut = mb_strtoupper($resArray[$iRA]["authors"],'UTF-8');}
-              $rtfOrd[$i-1] = $entryOrdi.$entryAut.$entryOrdf;
+              if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~effa~") !== false) {$entryAut = "";}
+              $rtfOrd[$i] = $entryOrdi.$entryAut.$entryOrdf;
               $entryOrd .= $entryOrdi.${"debcg" .$i};
               $entryOrd .= $entryAut;
               $entryOrd .= ${"fincg" .$i}.$entryOrdf;
               break;
             case "revue":
-              $entryRev = $resArray[$iRA]["revue"];
+              if (isset($resArray[$iRA]["revue"])) {
+                $entryRev = $resArray[$iRA]["revue"];
+              }else{
+                $entryRev = "";
+              }
               if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emin~") !== false) {$entryRev = mb_strtolower($resArray[$iRA]["revue"],'UTF-8');}
               if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emaj~") !== false) {$entryRev = mb_strtoupper($resArray[$iRA]["revue"],'UTF-8');}
-              $rtfOrd[$i-1] = $entryOrdi.$entryRev.$entryOrdf;
+              if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~effa~") !== false) {$entryRev = "";}
+              $rtfOrd[$i] = $entryOrdi.$entryRev.$entryOrdf;
               $entryOrd .= $entryOrdi.${"debcg" .$i};
               $entryOrd .= $entryRev;
               $entryOrd .= ${"fincg" .$i}.$entryOrdf;
               break;
             case "titre":
-              $entryTit = $resArray[$iRA]["titre"];
+              if (isset($resArray[$iRA]["titre"])) {
+                $entryTit = $resArray[$iRA]["titre"];
+              }else{
+                $entryTit = "";
+              }
               if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emin~") !== false) {$entryTit = mb_strtolower($resArray[$iRA]["titre"],'UTF-8');}
               if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emaj~") !== false) {$entryTit = mb_strtoupper($resArray[$iRA]["titre"],'UTF-8');}
-              $rtfOrd[$i-1] = $entryOrdi.$entryTit.$entryOrdf;
+              if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~effa~") !== false) {$entryTit = "";}
+              $rtfOrd[$i] = $entryOrdi.$entryTit.$entryOrdf;
               $entryOrd .= $entryOrdi.${"debcg" .$i};
               $entryOrd .= $entryTit;
               $entryOrd .= ${"fincg" .$i}.$entryOrdf;
               break;
             case "année":
-              $entryAnn = $resArray[$iRA]["annee"];
+              if (isset($resArray[$iRA]["annee"])) {
+                $entryAnn = $resArray[$iRA]["annee"];
+              }else{
+                $entryAnn = "";
+              }
               if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emin~") !== false) {$entryAnn = mb_strtolower($resArray[$iRA]["annee"],'UTF-8');}
               if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emaj~") !== false) {$entryAnn = mb_strtoupper($resArray[$iRA]["annee"],'UTF-8');}
-              $rtfOrd[$i-1] = $entryOrdi.$entryAnn.$entryOrdf;
+              if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~effa~") !== false) {$entryAnn = "";}
+              $rtfOrd[$i] = $entryOrdi.$entryAnn.$entryOrdf;
               $entryOrd .= $entryOrdi.${"debcg" .$i};
               $entryOrd .= $entryAnn;
               $entryOrd .= ${"fincg" .$i}.$entryOrdf;
               break;
+            case "volume":
+              if (isset($resArray[$iRA]["volume"])) {
+                $entryVol = $resArray[$iRA]["volume"];
+              }else{
+                $entryVol = "";
+              }
+              if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emin~") !== false) {$entryVol = mb_strtolower($resArray[$iRA]["volume"],'UTF-8');}
+              if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emaj~") !== false) {$entryVol = mb_strtoupper($resArray[$iRA]["volume"],'UTF-8');}
+              if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~effa~") !== false) {$entryVol = "";}
+              $rtfOrd[$i] = $entryOrdi.$entryVol.$entryOrdf;
+              $entryOrd .= $entryOrdi.${"debcg" .$i};
+              $entryOrd .= $entryVol;
+              $entryOrd .= ${"fincg" .$i}.$entryOrdf;
+              break;
+            case "numéro":
+              if (isset($resArray[$iRA]["issue"])) {
+                $entryNum = $resArray[$iRA]["issue"];
+              }else{
+                $entryNum = "";
+              }
+              if ($entryNum != "") {
+                if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emin~") !== false) {$entryNum = mb_strtolower($resArray[$iRA]["issue"],'UTF-8');}
+                if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emaj~") !== false) {$entryNum = mb_strtoupper($resArray[$iRA]["issue"],'UTF-8');}
+                if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~effa~") !== false) {$entryNum = "";}
+                $rtfOrd[$i] = $entryOrdi.$entryNum.$entryOrdf;
+                $entryOrd .= $entryOrdi.${"debcg" .$i};
+                $entryOrd .= $entryNum;
+                $entryOrd .= ${"fincg" .$i}.$entryOrdf;
+              }else{
+                $rtfOrd[$i] = $entryOrdi.$entryNum.$entryOrdf;
+              }
+              break;
+            case "pages":
+              if (isset($resArray[$iRA]["page"])) {
+                $entryPag = $resArray[$iRA]["page"];
+              }else{
+                $entryPag = "";
+              }
+              if ($entryPag == "") {$entryPag = "sans pagination";}
+              if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emin~") !== false) {$entryPag = mb_strtolower($resArray[$iRA]["page"],'UTF-8');}
+              if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~emaj~") !== false) {$entryPag = mb_strtoupper($resArray[$iRA]["page"],'UTF-8');}
+              if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~effa~") !== false) {$entryPag = "";}
+              $rtfOrd[$i] = $entryOrdi.$entryPag.$entryOrdf;
+              $entryOrd .= $entryOrdi.${"debcg" .$i};
+              $entryOrd .= $entryPag;
+              $entryOrd .= ${"fincg" .$i}.$entryOrdf;
+              break;
           }
           switch (${"sep" . $i}) {
+            case " ":
+              $entryOrd .= " ";
+              $rtfSep[$i] = " ";
+              break;
             case ", ":
               $entryOrd .= ", ";
-              $rtfSep[$i-1] = ", ";
+              $rtfSep[$i] = ", ";
               break;
             case ". ":
               $entryOrd .= ". ";
-              $rtfSep[$i-1] = ". ";
+              $rtfSep[$i] = ". ";
               break;
             case "; ":
               $entryOrd .= "; ";
-              $rtfSep[$i-1] = "; ";
+              $rtfSep[$i] = "; ";
               break;
-            case "- ":
-              $entryOrd .= "- ";
-              $rtfSep[$i-1] = "- ";
+            case " - ":
+              $entryOrd .= " - ";
+              $rtfSep[$i] = " - ";
+              break;
+            case "":
+              $entryOrd .= "";
+              $rtfSep[$i] = "";
+              break;
+            case ": ":
+              $entryOrd .= ": ";
+              $rtfSep[$i] = ": ";
+              break;
+            //cas spéciaux
+            case ", vol. ":
+              $entryOrd .= ", vol. ";
+              $rtfSep[$i] = ", vol. ";
+              break;
+            case ", no. ":
+              $entryOrd .= ", no. ";
+              $rtfSep[$i] = ", no. ";
+              break;
+            case ", pp. ":
+              $entryOrd .= ", pp. ";
+              $rtfSep[$i] = ", pp. ";
+              break;
+            case ":":
+              $entryOrd .= ":";
+              $rtfSep[$i] = ":";
+              break;
+            case ";":
+              $entryOrd .= ";";
+              $rtfSep[$i] = ";";
               break;
           }
           $i++;
         }
-        $rtfOrd[$i-1] = $entryInfo;
-        $entryInfo = $entryOrd . $entryInfo;
+        $rtfOrd[$i] = $entryInfo;
+        //$entryInfo = $entryOrd . $entryInfo;
+        $entryInfo = $entryOrd;
         $i = 0;
         $rtfInfo = "~|~";
         while($i < count($rtfSep)) {
@@ -3172,6 +3781,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
         $rtfInfo = str_replace("  ", " ", $rtfInfo);
       }
       //echo $entryOrd.'<br>';
+      //echo $entryInfo.'<br>';
+      //echo $rtfInfo.'<br>';
+      //var_dump($rtfSep);
 
       //Adding DOI
       $rtfdoi = "";
@@ -3189,12 +3801,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
           }
         }
         $entryInfo .= ". doi: <a target='_blank' href='https://doi.org/".$entry->doiId_s."'>".$deb."https://doi.org/".$entry->doiId_s.$fin."</a>";
+        $entryInfo = str_replace(array(" . doi", " , "), array(". doi", ", "), $entryInfo);
         $rtfdoi = $entry->doiId_s;
         $chaine2 .= $delim.$entry->doiId_s;
       }else{
         $chaine2 .= $delim;
       }
-      
+
       //Thesis - adding nntId_s
       $rtfnnt = "";
       $chaine1 .= $delim."NNT";
@@ -3325,7 +3938,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       
       //Adding Impact Factor
       $rtfif = "";
-      if ($typif == "vis") {
+      if (isset($typif) && $typif == "vis") {
         if ($JT != "") {
           $IF = "";
           include "./pvt/JCR.php";
@@ -3348,6 +3961,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $entryInfo =str_replace("..", ".", $entryInfo);
       $entryInfo =str_replace(", .", ".", $entryInfo);
       $entryInfo =str_replace(", , ", ", ", $entryInfo);
+      $entryInfo =str_replace(" : ", ": ", $entryInfo);
+      $entryInfo =str_replace(", No.,", ",", $entryInfo);
+      $entryInfo =str_replace(", no.,", ",", $entryInfo);
 
       if (!isset($entry->page_s)) {
         $entryInfo = str_replace(array(",  in press", " in press.", " in press", "; in press"), "", $entryInfo);
@@ -3408,9 +4024,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
         //$affprefeq = "Toto";
       }
       if ($affprefeq == "") {$affprefeq = "AP";}
-      
-      $rtfInfo = str_replace(array('<sub>', '</sub>', '<sup>', '</sup>'), array('&#92;sub ', '&#92;nosupersub ', '&#92;sup ', '&#92;nosupersup '), $rtfInfo);
-      array_push($rtfArray,$rtfInfo."^".$rtfdoi."^".$rtfpubmed."^".$rtflocref."^".$rtfarxiv."^".$rtfdescrip."^".$rtfalso."^".$rtfrefhal."^".$rtfaeres."^".$rtfcnrs."^".$chaine1."^".$chaine2."^".$rtfnnt."^".$affprefeq."^".$racine."^".$rtfhceres."^".$rtfif);
+
+      array_push($rtfArray,$rtfInfo."^".$rtfdoi."^".$rtfpubmed."^".$rtflocref."^".$rtfarxiv."^".$rtfdescrip."^".$rtfalso."^".$rtfrefhal."^".$rtfaeres."^".$rtfcnrs."^".$chaine1."^".$chaine2."^".$rtfnnt."^".$affprefeq."^".$racine."^".$rtfhceres);
       //bibtex
       $biblabel = $entry->label_bibtex;
       if (isset($entry->label_bibtex)) {array_push($bibArray,$entry->label_bibtex."¤");}else{array_push($bibArray," ¤");}
@@ -3427,6 +4042,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
    array_push($result,$rtfArray);
    array_push($result,$bibArray);
    array_push($result,$resArray);
+   //var_dump($resArray);
    return $result;
 }
 
@@ -3437,7 +4053,8 @@ function toAppear($string){
    }
    return $toAppear;
 }
-function mpcg($sect, $groupe, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4) {//fonction pour ordonner les groupes et attribuer les couleurs au RTF
+
+function mpcg($sect, $groupe, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7) {//fonction pour ordonner les groupes et attribuer les couleurs au RTF
    $tabgp = explode("~|~", $groupe);
    //var_dump($tabgp);
    $font = new PHPRtfLite_Font(9, 'Trebuchet', '#000000', '#FFFFFF');
@@ -3445,18 +4062,27 @@ function mpcg($sect, $groupe, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4) {/
    $fontgp2 = new PHPRtfLite_Font(9, 'Trebuchet', $choix_cg2, '#FFFFFF');
    $fontgp3 = new PHPRtfLite_Font(9, 'Trebuchet', $choix_cg3, '#FFFFFF');
    $fontgp4 = new PHPRtfLite_Font(9, 'Trebuchet', $choix_cg4, '#FFFFFF');
-   $sect->writeText($tabgp[1], $fontgp1);//1er groupe
-   $sect->writeText($tabgp[2], $font);//1er séparateur
-   $sect->writeText($tabgp[3], $fontgp2);//2ème groupe
-   $sect->writeText($tabgp[4], $font);//2ème séparateur
-   $sect->writeText($tabgp[5], $fontgp3);//3ème groupe
-   $sect->writeText($tabgp[6], $font);//3ème séparateur
-   $sect->writeText($tabgp[7], $fontgp4);//4ème groupe
-   $sect->writeText($tabgp[8], $font);//4ème séparateur
-   $sect->writeText($tabgp[9], $font);//suite
+   $fontgp5 = new PHPRtfLite_Font(9, 'Trebuchet', $choix_cg5, '#FFFFFF');
+   $fontgp6 = new PHPRtfLite_Font(9, 'Trebuchet', $choix_cg6, '#FFFFFF');
+   $fontgp7 = new PHPRtfLite_Font(9, 'Trebuchet', $choix_cg7, '#FFFFFF');
+   $sect->writeText($tabgp[3], $fontgp1);//1er groupe
+   $sect->writeText($tabgp[4], $font);//1er séparateur
+   $sect->writeText($tabgp[5], $fontgp2);//2ème groupe
+   $sect->writeText($tabgp[6], $font);//2ème séparateur
+   $sect->writeText($tabgp[7], $fontgp3);//3ème groupe
+   $sect->writeText($tabgp[8], $font);//3ème séparateur
+   $sect->writeText($tabgp[9], $fontgp4);//4ème groupe
+   $sect->writeText($tabgp[10], $font);//4ème séparateur
+   $sect->writeText($tabgp[11], $fontgp5);//5ème groupe
+   $sect->writeText($tabgp[12], $font);//5ème séparateur
+   $sect->writeText($tabgp[13], $fontgp6);//6ème groupe
+   $sect->writeText($tabgp[14], $font);//6ème séparateur
+   $sect->writeText($tabgp[15], $fontgp7);//7ème groupe
+   $sect->writeText($tabgp[16], $font);//7ème séparateur
+   $sect->writeText($tabgp[17], $font);//suite
 }
 
-function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$refType,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4){
+function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$refType,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7){
    $infoArray = array();
    $sortArray = array();
    $rtfArray = array();
@@ -3466,7 +4092,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
    if ($docType_s=="COMPOSTER"){
       //Request on a union of HAL types
       //COMM ACTI
-      $result = getReferences($infoArray,$resArray,$sortArray,"COMM",$collCode_s,"%20AND%20proceedings_s:1%20AND%20audience_s:2".$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+      $result = getReferences($infoArray,$resArray,$sortArray,"COMM",$collCode_s,"%20AND%20proceedings_s:1%20AND%20audience_s:2".$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
       //$result = getReferences($infoArray,$resArray,$sortArray,"COMM",$collCode_s,$specificRequestCode,$countries);
       $infoArray = $result[0];
       $sortArray = $result[1];
@@ -3474,7 +4100,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
       $bibArray = $result[3];
       $resArray = $result[4];
       //COMM ACTN
-      $result = getReferences($infoArray,$resArray,$sortArray,"COMM",$collCode_s,"%20AND%20proceedings_s:1%20AND%20audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0".$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+      $result = getReferences($infoArray,$resArray,$sortArray,"COMM",$collCode_s,"%20AND%20proceedings_s:1%20AND%20audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0".$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
       //$result = getReferences($infoArray,$resArray,$sortArray,"COMM",$collCode_s,$specificRequestCode,$countries);
       $infoArray = $result[0];
       $sortArray = $result[1];
@@ -3483,7 +4109,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
       $resArray = $result[4];
       //COMM COM
       $specificRequestCode = '%20AND%20proceedings_s:0';
-      $result = getReferences($infoArray,$resArray,$sortArray,"COMM",$collCode_s,"%20AND%20proceedings_s:0".$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+      $result = getReferences($infoArray,$resArray,$sortArray,"COMM",$collCode_s,"%20AND%20proceedings_s:0".$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
       //$result = getReferences($infoArray,$resArray,$sortArray,"COMM",$collCode_s,$specificRequestCode,$countries);
       $infoArray = $result[0];
       $sortArray = $result[1];
@@ -3491,7 +4117,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
       $bibArray = $result[3];
       $resArray = $result[4];
       //COMM POSTER
-      $result = getReferences($infoArray,$resArray,$sortArray,"POSTER",$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+      $result = getReferences($infoArray,$resArray,$sortArray,"POSTER",$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
       $infoArray = $result[0];
       $sortArray = $result[1];
       $rtfArray = $result[2];
@@ -3500,13 +4126,13 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
    } else {
       if ($docType_s=="VULG"){
       //Request on a union of HAL types
-         $result = getReferences($infoArray,$resArray,$sortArray,"COUV",$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+         $result = getReferences($infoArray,$resArray,$sortArray,"COUV",$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
          $infoArray = $result[0];
          $sortArray = $result[1];
          $rtfArray = $result[2];
          $bibArray = $result[3];
          $resArray = $result[4];
-         $result = getReferences($infoArray,$resArray,$sortArray,"OUV",$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+         $result = getReferences($infoArray,$resArray,$sortArray,"OUV",$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
          $infoArray = $result[0];
          $sortArray = $result[1];
          $rtfArray = $result[2];
@@ -3515,13 +4141,13 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
       } else {
          if ($docType_s=="OTHER"){
          //Request on a union of HAL types
-            $result = getReferences($infoArray,$resArray,$sortArray,"OTHER",$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+            $result = getReferences($infoArray,$resArray,$sortArray,"OTHER",$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
             $infoArray = $result[0];
             $sortArray = $result[1];
             $rtfArray = $result[2];
             $bibArray = $result[3];
             $resArray = $result[4];
-            $result = getReferences($infoArray,$resArray,$sortArray,"OTHERREPORT",$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+            $result = getReferences($infoArray,$resArray,$sortArray,"OTHERREPORT",$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
             $infoArray = $result[0];
             $sortArray = $result[1];
             $rtfArray = $result[2];
@@ -3529,7 +4155,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
             $resArray = $result[4];
          } else {
             //Request on a simple HAL type
-            $result = getReferences($infoArray,$resArray,$sortArray,$docType_s,$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+            $result = getReferences($infoArray,$resArray,$sortArray,$docType_s,$collCode_s,$specificRequestCode,$countries,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
             $infoArray = $result[0];
             $sortArray = $result[1];
             $rtfArray = $result[2];
@@ -3598,14 +4224,14 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
                if ($prefeq == "oui") {//Ecriture préfixe AERES
                  $sect->writeText($ind.". ".$rtf[13]." - ", $font);
                  if (strpos($rtfval, "~|~") !== false) {//Ordre à respecter
-                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4);
+                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7);
                  }else{
                    $sect->writeText($rtfval, $font);
                  }
                }else{
                  $sect->writeText($ind.". ", $font);
                  if (strpos($rtfval, "~|~") !== false) {//Ordre à respecter
-                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4);
+                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7);
                  }else{
                    $sect->writeText($rtfval, $font);
                  }
@@ -3613,33 +4239,36 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
              }else{
                $sect->writeText($ind.". ", $font);
                if (strpos($rtf[0], "~|~") !== false) {//Ordre à respecter
-                 mpcg($sect, $rtf[0], $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4);
+                 mpcg($sect, $rtf[0], $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7);
                }else{
                  $sect->writeText($rtf[0], $font);
                }
              }
            }else{
              echo "<p>";
+             if (isset($nmo) && $nmo == "sim") {$ind += 1; echo $ind.". "; $sect->writeText($ind.". ", $font);}
+             if (isset($nmo) && $nmo == "par") {$ind += 1; echo "(".$ind.") "; $sect->writeText("(".$ind.") ", $font);}
+             if (isset($nmo) && $nmo == "cro") {$ind += 1; echo "[".$ind."] "; $sect->writeText("[".$ind."] ", $font);}
              if ($prefeq == "oui") {echo $rtf[13]." - ";}
              echo $entryInfo."</p>";
              if (isset($collCode_s) && isset($gr) && (strpos($gr, $collCode_s) !== false)){//GR
                if ($prefeq == "oui") {//Ecriture préfixe AERES
                  $sect->writeText($rtf[13]." - ", $font);
                  if (strpos($rtfval, "~|~") !== false) {//Ordre à respecter
-                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4);
+                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7);
                  }else{
                    $sect->writeText($rtfval, $font);
                  }
                }else{
                  if (strpos($rtfval, "~|~") !== false) {//Ordre à respecter
-                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4);
+                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7);
                  }else{
                    $sect->writeText($rtfval, $font);
                  }
                }
              }else{
                if (strpos($rtf[0], "~|~") !== false) {//Ordre à respecter
-                 mpcg($sect, $rtf[0], $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4);
+                 mpcg($sect, $rtf[0], $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7);
                }else{
                  $sect->writeText($rtf[0], $font);
                }
@@ -3684,8 +4313,10 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
            if ($rtf[9] != "") {
               $sect->writeText(". Rang CNRS: ".$rtf[9], $font);
            }
-           if ($rtf[16] != "") {
-              $sect->writeText(". IF=".$rtf[16], $font);
+           if (isset($typif)) {
+             if ($rtf[16] != "") {
+                $sect->writeText(". IF=".$rtf[16], $font);
+             }
            }
            $sect->writeText("<br><br>", $font);
            $yearNumbers[substr($sortArray[$i],-4)]+=1;
@@ -3747,14 +4378,14 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
                if ($prefeq == "oui") {//Ecriture préfixe AERES
                  $sect->writeText($ind.". ".$rtf[13]." - ", $font);
                  if (strpos($rtfval, "~|~") !== false) {//Ordre à respecter
-                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4);
+                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7);
                  }else{
                    $sect->writeText($rtfval, $font);
                  }
                }else{
                  $sect->writeText($ind.". ", $font);
                  if (strpos($rtfval, "~|~") !== false) {//Ordre à respecter
-                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4);
+                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7);
                  }else{
                    $sect->writeText($rtfval, $font);
                  }
@@ -3762,33 +4393,36 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
              }else{
                $sect->writeText($ind.". ", $font);
                if (strpos($rtf[0], "~|~") !== false) {//Ordre à respecter
-                 mpcg($sect, $rtf[0], $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4);
+                 mpcg($sect, $rtf[0], $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7);
                }else{
                  $sect->writeText($rtf[0], $font);
                }
              }
            }else{
              echo "<p>";
+             if (isset($nmo) && $nmo == "sim") {$ind += 1; echo $ind.". "; $sect->writeText($ind.". ", $font);}
+             if (isset($nmo) && $nmo == "par") {$ind += 1; echo "(".$ind.") "; $sect->writeText("(".$ind.") ", $font);}
+             if (isset($nmo) && $nmo == "cro") {$ind += 1; echo "[".$ind."] "; $sect->writeText("[".$ind."] ", $font);}
              if ($prefeq == "oui") {echo $rtf[13]." - ";}
              echo $entryInfo."</p>";
              if (isset($collCode_s) && isset($gr) && (strpos($gr, $collCode_s) !== false)){//GR
                if ($prefeq == "oui") {//Ecriture préfixe AERES
                  $sect->writeText($rtf[13]." - ", $font);
                  if (strpos($rtfval, "~|~") !== false) {//Ordre à respecter
-                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4);
+                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7);
                  }else{
                    $sect->writeText($rtfval, $font);
                  }
                }else{
                  if (strpos($rtfval, "~|~") !== false) {//Ordre à respecter
-                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4);
+                   mpcg($sect, $rtfval, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7);
                  }else{
                    $sect->writeText($rtfval, $font);
                  }
                }
              }else{
                if (strpos($rtf[0], "~|~") !== false) {//Ordre à respecter
-                 mpcg($sect, $rtf[0], $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4);
+                 mpcg($sect, $rtf[0], $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $choix_cg5, $choix_cg6, $choix_cg7);
                }else{
                  $sect->writeText($rtf[0], $font);
                }
@@ -3833,8 +4467,10 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
            if ($rtf[9] != "") {
               $sect->writeText(". Rang CNRS: ".$rtf[9], $font);
            }
-           if ($rtf[16] != "") {
-              $sect->writeText(". IF=".$rtf[16], $font);
+           if (isset($typif)) {
+             if ($rtf[16] != "") {
+                $sect->writeText(". IF=".$rtf[16], $font);
+             }
            }
            $sect->writeText("<br><br>", $font);
            //export CSV
@@ -4157,7 +4793,7 @@ if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {
   $inF = fopen($Fnm1,"a+");
   fseek($inF, 0);
   fwrite($inF,"Tous les articles (sauf vulgarisation)".chr(13).chr(10));
-  list($numbers["TA"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"TA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["TA"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"TA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_publis) && strpos($choix_publis, "-ACL-") !== false) {
   echo "<a name=\"ACL\"></a><h2>Articles de revues à comité de lecture <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4166,7 +4802,7 @@ if (isset($choix_publis) && strpos($choix_publis, "-ACL-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Articles de revues à comité de lecture".chr(13).chr(10));
   $sect->writeText("<b>Articles de revues à comité de lecture</b><br><br>", $fonth2);
-  list($numbers["ACL"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20peerReviewing_s:1".$specificRequestCode,$countries,"ACL",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["ACL"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20peerReviewing_s:1".$specificRequestCode,$countries,"ACL",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_publis) && strpos($choix_publis, "-ASCL-") !== false) {
   echo "<a name=\"ASCL\"></a><h2>Articles de revues sans comité de lecture <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4175,7 +4811,7 @@ if (isset($choix_publis) && strpos($choix_publis, "-ASCL-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Articles de revues sans comité de lecture".chr(13).chr(10));
   $sect->writeText("<b>Articles de revues sans comité de lecture</b><br><br>", $fonth2);
-  list($numbers["ASCL"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20peerReviewing_s:0".$specificRequestCode,$countries,"ASCL",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["ASCL"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20peerReviewing_s:0".$specificRequestCode,$countries,"ASCL",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_publis) && strpos($choix_publis, "-ARI-") !== false) {
   echo "<a name=\"ARI\"></a><h2>Articles de revues internationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4184,7 +4820,7 @@ if (isset($choix_publis) && strpos($choix_publis, "-ARI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Articles de revues internationales".chr(13).chr(10));
   $sect->writeText("<b>Articles de revues internationales</b><br><br>", $fonth2);
-  list($numbers["ARI"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"ARI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["ARI"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"ARI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_publis) && strpos($choix_publis, "-ARN-") !== false) {
   echo "<a name=\"ARN\"></a><h2>Articles de revues nationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4193,7 +4829,7 @@ if (isset($choix_publis) && strpos($choix_publis, "-ARN-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Articles de revues nationales".chr(13).chr(10));
   $sect->writeText("<b>Articles de revues nationales</b><br><br>", $fonth2);
-  list($numbers["ARN"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:0%20OR%20audience_s:1)".$specificRequestCode,$countries,"ARN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["ARN"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:0%20OR%20audience_s:1)".$specificRequestCode,$countries,"ARN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_publis) && strpos($choix_publis, "-ACLRI-") !== false) {
   echo "<a name=\"ACLRI\"></a><h2>Articles de revues internationales à comité de lecture <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4202,7 +4838,7 @@ if (isset($choix_publis) && strpos($choix_publis, "-ACLRI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Articles de revues internationales à comité de lecture".chr(13).chr(10));
   $sect->writeText("<b>Articles de revues internationales à comité de lecture</b><br><br>", $fonth2);
-  list($numbers["ACLRI"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2%20AND%20peerReviewing_s:1".$specificRequestCode,$countries,"ACLRI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["ACLRI"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2%20AND%20peerReviewing_s:1".$specificRequestCode,$countries,"ACLRI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_publis) && strpos($choix_publis, "-ACLRN-") !== false) {
   echo "<a name=\"ACLRN\"></a><h2>Articles de revues nationales à comité de lecture <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4211,7 +4847,7 @@ if (isset($choix_publis) && strpos($choix_publis, "-ACLRN-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Articles de revues nationales à comité de lecture".chr(13).chr(10));
   $sect->writeText("<b>Articles de revues nationales à comité de lecture</b><br><br>", $fonth2);
-  list($numbers["ACLRN"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:0%20OR%20audience_s:1)%20AND%20peerReviewing_s:1".$specificRequestCode,$countries,"ACLRN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["ACLRN"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:0%20OR%20audience_s:1)%20AND%20peerReviewing_s:1".$specificRequestCode,$countries,"ACLRN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_publis) && strpos($choix_publis, "-ASCLRI-") !== false) {
   echo "<a name=\"ASCLRI\"></a><h2>Articles de revues internationales sans comité de lecture <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4220,7 +4856,7 @@ if (isset($choix_publis) && strpos($choix_publis, "-ASCLRI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Articles de revues internationales sans comité de lecture".chr(13).chr(10));
   $sect->writeText("<b>Articles de revues internationales sans comité de lecture</b><br><br>", $fonth2);
-  list($numbers["ASCLRI"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2%20AND%20peerReviewing_s:0".$specificRequestCode,$countries,"ASCLRI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["ASCLRI"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2%20AND%20peerReviewing_s:0".$specificRequestCode,$countries,"ASCLRI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_publis) && strpos($choix_publis, "-ASCLRN-") !== false) {
   echo "<a name=\"ASCLRN\"></a><h2>Articles de revues nationales sans comité de lecture <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4228,7 +4864,7 @@ if (isset($choix_publis) && strpos($choix_publis, "-ASCLRN-") !== false) {
   $inF = fopen($Fnm1,"a+");
   fseek($inF, 0);
   fwrite($inF,"Articles de revues nationales sans comité de lecture".chr(13).chr(10));
-  list($numbers["ASCLRN"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:0%20OR%20audience_s:1)%20AND%20peerReviewing_s:0".$specificRequestCode,$countries,"ASCLRN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["ASCLRN"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:0%20OR%20audience_s:1)%20AND%20peerReviewing_s:0".$specificRequestCode,$countries,"ASCLRN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
   $sect->writeText("<b>Articles de revues nationales sans comité de lecture</b><br><br>", $fonth2);
 }
 if (isset($choix_publis) && strpos($choix_publis, "-AV-") !== false) {
@@ -4238,7 +4874,7 @@ if (isset($choix_publis) && strpos($choix_publis, "-AV-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Articles de vulgarisation".chr(13).chr(10));
   $sect->writeText("<b>Articles de vulgarisation</b><br><br>", $fonth2);
-  list($numbers["AV"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:1".$specificRequestCode,$countries,"AV",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["AV"],$crores) = displayRefList("ART",$team,"%20AND%20popularLevel_s:1".$specificRequestCode,$countries,"AV",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-TC-") !== false) {
   echo "<a name=\"TC\"></a><h2>Toutes les communications (sauf grand public) <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4247,7 +4883,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-TC-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Toutes les communications (sauf grand public)".chr(13).chr(10));
   $sect->writeText("<b>Toutes les communications (sauf grand public)</b><br><br>", $fonth2);
-  list($numbers["TC"],$crores) = displayRefList("COMM+POST",$team,"%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"TC",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["TC"],$crores) = displayRefList("COMM+POST",$team,"%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"TC",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CA-") !== false) {
   echo "<a name=\"CA\"></a><h2>Communications avec actes <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4256,7 +4892,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CA-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications avec actes".chr(13).chr(10));
   $sect->writeText("<b>Communications avec actes</b><br><br>", $fonth2);
-  list($numbers["CA"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:1".$specificRequestCode,$countries,"CA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CA"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:1".$specificRequestCode,$countries,"CA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CSA-") !== false) {
   echo "<a name=\"CSA\"></a><h2>Communications sans actes <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4265,7 +4901,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CSA-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications sans actes".chr(13).chr(10));
   $sect->writeText("<b>Communications sans actes</b><br><br>", $fonth2);
-  list($numbers["CSA"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:0".$specificRequestCode,$countries,"CSA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CSA"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:0".$specificRequestCode,$countries,"CSA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CI-") !== false) {
   echo "<a name=\"CI\"></a><h2>Communications internationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4274,7 +4910,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications internationales".chr(13).chr(10));
   $sect->writeText("<b>Communications internationales</b><br><br>", $fonth2);
-  list($numbers["CI"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"CI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CI"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"CI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CN-") !== false) {
   echo "<a name=\"CN\"></a><h2>Communications nationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4283,7 +4919,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CN-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications nationales".chr(13).chr(10));
   $sect->writeText("<b>Communications nationales</b><br><br>", $fonth2);
-  list($numbers["CN"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"CN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CN"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"CN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CAI-") !== false) {
   echo "<a name=\"CAI\"></a><h2>Communications avec actes internationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4292,7 +4928,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CAI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications avec actes internationales".chr(13).chr(10));
   $sect->writeText("<b>Communications avec actes internationales</b><br><br>", $fonth2);
-  list($numbers["CAI"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:1%20AND%20audience_s:2".$specificRequestCode,$countries,"CAI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CAI"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:1%20AND%20audience_s:2".$specificRequestCode,$countries,"CAI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CSAI-") !== false) {
   echo "<a name=\"CSAI\"></a><h2>Communications sans actes internationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4301,7 +4937,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CSAI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications sans actes internationales".chr(13).chr(10));
   $sect->writeText("<b>Communications sans actes internationales</b><br><br>", $fonth2);
-  list($numbers["CSAI"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"CSAI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CSAI"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"CSAI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CAN-") !== false) {
   echo "<a name=\"CAN\"></a><h2>Communications avec actes nationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4310,7 +4946,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CAN-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications avec actes nationales".chr(13).chr(10));
   $sect->writeText("<b>Communications avec actes nationales</b><br><br>", $fonth2);
-  list($numbers["CAN"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:1%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"CAN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CAN"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:1%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"CAN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CSAN-") !== false) {
   echo "<a name=\"CSAN\"></a><h2>Communications sans actes nationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4319,7 +4955,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CSAN-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications sans actes nationales".chr(13).chr(10));
   $sect->writeText("<b>Communications sans actes nationales</b><br><br>", $fonth2);
-  list($numbers["CSAN"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"CSAN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CSAN"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"CSAN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CINVASANI-") !== false) {
   echo "<a name=\"CINVA\"></a><h2>Communications invitées avec ou sans actes, nationales ou internationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4328,7 +4964,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CINVASANI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications invitées avec ou sans actes, nationales ou internationales".chr(13).chr(10));
   $sect->writeText("<b>Communications invitées avec ou sans actes, nationales ou internationales</b><br><br>", $fonth2);
-  list($numbers["CINVASANI"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:1".$specificRequestCode,$countries,"CINVASANI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CINVASANI"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:1".$specificRequestCode,$countries,"CINVASANI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CINVA-") !== false) {
   echo "<a name=\"CINVA\"></a><h2>Communications invitées avec actes <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4337,7 +4973,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CINVA-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications invitées avec actes".chr(13).chr(10));
   $sect->writeText("<b>Communications invitées avec actes</b><br><br>", $fonth2);
-  list($numbers["CINVA"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:1%20AND%20proceedings_s:1".$specificRequestCode,$countries,"CINVA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CINVA"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:1%20AND%20proceedings_s:1".$specificRequestCode,$countries,"CINVA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CINVSA-") !== false) {
   echo "<a name=\"CINVSA\"></a><h2>Communications invitées sans actes <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4346,7 +4982,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CINVSA-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications invitées sans actes".chr(13).chr(10));
   $sect->writeText("<b>Communications invitées sans actes</b><br><br>", $fonth2);
-  list($numbers["CINVSA"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:1%20AND%20proceedings_s:0".$specificRequestCode,$countries,"CINVSA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CINVSA"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:1%20AND%20proceedings_s:0".$specificRequestCode,$countries,"CINVSA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CNONINVA-") !== false) {
   echo "<a name=\"CNONINVA\"></a><h2>Communications non invitées avec actes<a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4355,7 +4991,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CNONINVA-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications non invitées avec actes".chr(13).chr(10));
   $sect->writeText("<b>Communications non invitées avec actes</b><br><br>", $fonth2);
-  list($numbers["CNONINVA"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:0%20AND%20proceedings_s:1".$specificRequestCode,$countries,"CNONINVA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CNONINVA"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:0%20AND%20proceedings_s:1".$specificRequestCode,$countries,"CNONINVA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CNONINVSA-") !== false) {
   echo "<a name=\"CNONINVSA\"></a><h2>Communications non invitées sans actes<a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4364,7 +5000,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CNONINVSA-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications non invitées sans actes".chr(13).chr(10));
   $sect->writeText("<b>Communications non invitées sans actes</b><br><br>", $fonth2);
-  list($numbers["CNONINVSA"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:0%20AND%20proceedings_s:0".$specificRequestCode,$countries,"CNONINVSA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CNONINVSA"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:0%20AND%20proceedings_s:0".$specificRequestCode,$countries,"CNONINVSA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CINVI-") !== false) {
   echo "<a name=\"CINVI\"></a><h2>Communications invitées internationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4373,7 +5009,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CINVI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications invitées internationales".chr(13).chr(10));
   $sect->writeText("<b>Communications invitées internationales</b><br><br>", $fonth2);
-  list($numbers["CINVI"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:1%20AND%20audience_s:2".$specificRequestCode,$countries,"CINVI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CINVI"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:1%20AND%20audience_s:2".$specificRequestCode,$countries,"CINVI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CNONINVI-") !== false) {
   echo "<a name=\"CNONINVI\"></a><h2>Communications non invitées internationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4382,7 +5018,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CNONINVI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications non invitées internationales".chr(13).chr(10));
   $sect->writeText("<b>Communications non invitées internationales</b><br><br>", $fonth2);
-  list($numbers["CNONINVI"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"CNONINVI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CNONINVI"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"CNONINVI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CINVN-") !== false) {
   echo "<a name=\"CINVN\"></a><h2>Communications invitées nationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4391,7 +5027,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CINVN-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications invitées nationales".chr(13).chr(10));
   $sect->writeText("<b>Communications invitées nationales</b><br><br>", $fonth2);
-  list($numbers["CINVN"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:1%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"CINVN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CINVN"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:1%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"CINVN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CNONINVN-") !== false) {
   echo "<a name=\"CNONINVN\"></a><h2>Communications non invitées nationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4400,7 +5036,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CNONINVN-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications non invitées nationales".chr(13).chr(10));
   $sect->writeText("<b>Communications non invitées nationales</b><br><br>", $fonth2);
-  list($numbers["CNONINVN"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"CNONINVN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CNONINVN"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:0%20AND%20invitedCommunication_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"CNONINVN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CPASANI-") !== false) {
   echo "<a name=\"CPASANI\"></a><h2>Communications par affiches (posters) avec ou sans actes, nationales ou internationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4409,7 +5045,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CPASANI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications par affiches (posters) avec ou sans actes, nationales ou internationales".chr(13).chr(10));
   $sect->writeText("<b>Communications par affiches (posters) avec ou sans actes, nationales ou internationales</b><br><br>", $fonth2);
-  list($numbers["CPASANI"],$crores) = displayRefList("POSTER",$team,"%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"CPASANI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CPASANI"],$crores) = displayRefList("POSTER",$team,"%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"CPASANI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CPA-") !== false) {
   echo "<a name=\"CPA\"></a><h2>Communications par affiches (posters) avec actes <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4418,7 +5054,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CPA-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications pas affiches (posters)".chr(13).chr(10));
   $sect->writeText("<b>Communications par affiches (posters) avec actes</b><br><br>", $fonth2);
-  list($numbers["CPA"],$crores) = displayRefList("POSTER",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:1".$specificRequestCode,$countries,"CPA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CPA"],$crores) = displayRefList("POSTER",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:1".$specificRequestCode,$countries,"CPA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CPSA-") !== false) {
   echo "<a name=\"CPSA\"></a><h2>Communications par affiches (posters) sans actes <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4427,7 +5063,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CPSA-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications pas affiches (posters)".chr(13).chr(10));
   $sect->writeText("<b>Communications par affiches (posters) sans actes</b><br><br>", $fonth2);
-  list($numbers["CPSA"],$crores) = displayRefList("POSTER",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:0".$specificRequestCode,$countries,"CPSA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CPSA"],$crores) = displayRefList("POSTER",$team,"%20AND%20popularLevel_s:0%20AND%20proceedings_s:0".$specificRequestCode,$countries,"CPSA",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CPI-") !== false) {
   echo "<a name=\"CPI\"></a><h2>Communications par affiches internationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4436,7 +5072,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CPI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications par affiches internationales".chr(13).chr(10));
   $sect->writeText("<b>Communications par affiches internationales</b><br><br>", $fonth2);
-  list($numbers["CPI"],$crores) = displayRefList("POSTER",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"CPI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CPI"],$crores) = displayRefList("POSTER",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"CPI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CPN-") !== false) {
   echo "<a name=\"CPN\"></a><h2>Communications par affiches nationales <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4445,7 +5081,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CPN-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Communications par affiches nationales".chr(13).chr(10));
   $sect->writeText("<b>Communications par affiches nationales</b><br><br>", $fonth2);
-  list($numbers["CPN"],$crores) = displayRefList("POSTER",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"CPN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CPN"],$crores) = displayRefList("POSTER",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"CPN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_comm) && strpos($choix_comm, "-CGP-") !== false) {
   echo "<a name=\"CGP\"></a><h2>Conférences grand public <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4454,7 +5090,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CGP-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Conférences grand public".chr(13).chr(10));
   $sect->writeText("<b>Conférences grand public</b><br><br>", $fonth2);
-  list($numbers["CGP"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:1".$specificRequestCode,$countries,"CGP",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["CGP"],$crores) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:1".$specificRequestCode,$countries,"CGP",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-TO-") !== false) {
   echo "<a name=\"TO\"></a><h2>Tous les ouvrages (sauf vulgarisation) <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4463,7 +5099,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-TO-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Tous les ouvrages (sauf vulgarisation)".chr(13).chr(10));
   $sect->writeText("<b>Tous les ouvrages (sauf vulgarisation)</b><br><br>", $fonth2);
-  list($numbers["TO"],$crores) = displayRefList("OUV",$team,"%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"TO",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["TO"],$crores) = displayRefList("OUV",$team,"%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"TO",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-OSPI-") !== false) {
   echo "<a name=\"OSPI\"></a><h2>Ouvrages scientifiques de portée internationale <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4472,7 +5108,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-OSPI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Ouvrages scientifiques de portée internationale".chr(13).chr(10));
   $sect->writeText("<b>Ouvrages scientifiques de portée internationale</b><br><br>", $fonth2);
-  list($numbers["OSPI"],$crores) = displayRefList("OUV",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"OSPI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["OSPI"],$crores) = displayRefList("OUV",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"OSPI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-OSPN-") !== false) {
   echo "<a name=\"OSPN\"></a><h2>Ouvrages scientifiques de portée nationale <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4481,7 +5117,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-OSPN-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Ouvrages scientifiques de portée nationale".chr(13).chr(10));
   $sect->writeText("<b>Ouvrages scientifiques de portée nationale</b><br><br>", $fonth2);
-  list($numbers["OSPN"],$crores) = displayRefList("OUV",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"OSPN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["OSPN"],$crores) = displayRefList("OUV",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"OSPN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-COS-") !== false) {
   echo "<a name=\"COS\"></a><h2>Chapitres d’ouvrages scientifiques <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4490,7 +5126,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-COS-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Chapitres d'ouvrages scientifiques".chr(13).chr(10));
   $sect->writeText("<b>Chapitres d’ouvrages scientifiques</b><br><br>", $fonth2);
-  list($numbers["COS"],$crores) = displayRefList("COUV",$team,""."%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"COS",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["COS"],$crores) = displayRefList("COUV",$team,""."%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"COS",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-COSI-") !== false) {
   echo "<a name=\"COSI\"></a><h2>Chapitres d’ouvrages scientifiques de portée internationale <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4499,7 +5135,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-COSI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Chapitres d’ouvrages scientifiques de portée internationale".chr(13).chr(10));
   $sect->writeText("<b>Chapitres d’ouvrages scientifiques de portée internationale</b><br><br>", $fonth2);
-  list($numbers["COSI"],$crores) = displayRefList("COUV",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"COSI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["COSI"],$crores) = displayRefList("COUV",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"COSI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-COSN-") !== false) {
   echo "<a name=\"COSN\"></a><h2>Chapitres d’ouvrages scientifiques de portée nationale <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4508,7 +5144,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-COSN-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Chapitres d’ouvrages scientifiques de portée nationale".chr(13).chr(10));
   $sect->writeText("<b>Chapitres d’ouvrages scientifiques de portée nationale</b><br><br>", $fonth2);
-  list($numbers["COSN"],$crores) = displayRefList("COUV",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"COSN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["COSN"],$crores) = displayRefList("COUV",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"COSN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOS-") !== false) {
   echo "<a name=\"DOS\"></a><h2>Directions d’ouvrages scientifiques <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4517,7 +5153,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOS-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Directions d’ouvrages scientifiques".chr(13).chr(10));
   $sect->writeText("<b>Directions d’ouvrages scientifiques</b><br><br>", $fonth2);
-  list($numbers["DOS"],$crores) = displayRefList("DOUV",$team,""."%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"DOS",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["DOS"],$crores) = displayRefList("DOUV",$team,""."%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"DOS",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOSI-") !== false) {
   echo "<a name=\"DOSI\"></a><h2>Directions d’ouvrages scientifiques de portée internationale <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4526,7 +5162,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOSI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Directions d’ouvrages scientifiques de portée internationale".chr(13).chr(10));
   $sect->writeText("<b>Directions d’ouvrages scientifiques de portée internationale</b><br><br>", $fonth2);
-  list($numbers["DOSI"],$crores) = displayRefList("DOUV",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"DOSI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["DOSI"],$crores) = displayRefList("DOUV",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"DOSI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOSN-") !== false) {
@@ -4536,7 +5172,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOSN-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Directions d’ouvrages scientifiques de portée nationale".chr(13).chr(10));
   $sect->writeText("<b>Directions d’ouvrages scientifiques de porté nationale</b><br><br>", $fonth2);
-  list($numbers["DOSN"],$crores) = displayRefList("DOUV",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"DOSN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["DOSN"],$crores) = displayRefList("DOUV",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"DOSN",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCO-") !== false) {
   echo "<a name=\"OCO\"></a><h2>Ouvrages ou chapitres d’ouvrages <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4545,7 +5181,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCO-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Ouvrages ou chapitres d’ouvrages".chr(13).chr(10));
   $sect->writeText("<b>Ouvrages ou chapitres d’ouvrages</b><br><br>", $fonth2);
-  list($numbers["OCO"],$crores) = displayRefList("OUV+COUV",$team,""."%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"OCO",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["OCO"],$crores) = displayRefList("OUV+COUV",$team,""."%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"OCO",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCOI-") !== false) {
   echo "<a name=\"OCOI\"></a><h2>Ouvrages ou chapitres d’ouvrages de portée internationale <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4554,7 +5190,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCOI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Ouvrages ou chapitres d’ouvrages de portée internationale".chr(13).chr(10));
   $sect->writeText("<b>Ouvrages ou chapitres d’ouvrages de portée internationale</b><br><br>", $fonth2);
-  list($numbers["OCOI"],$crores) = displayRefList("OUV+COUV",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"OCOI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["OCOI"],$crores) = displayRefList("OUV+COUV",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"OCOI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCON-") !== false) {
   echo "<a name=\"OCON\"></a><h2>Ouvrages ou chapitres d’ouvrages de portée nationale <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4563,7 +5199,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCON-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Ouvrages ou chapitres d’ouvrages de portée nationale".chr(13).chr(10));
   $sect->writeText("<b>Ouvrages ou chapitres d’ouvrages de portée nationale</b><br><br>", $fonth2);
-  list($numbers["OCON"],$crores) = displayRefList("OUV+COUV",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"OCON",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["OCON"],$crores) = displayRefList("OUV+COUV",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"OCON",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODO-") !== false) {
   echo "<a name=\"ODO\"></a><h2>Ouvrages ou directions d’ouvrages <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4572,7 +5208,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODO-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Ouvrages ou directions d’ouvrages".chr(13).chr(10));
   $sect->writeText("<b>Ouvrages ou directions d’ouvrages</b><br><br>", $fonth2);
-  list($numbers["ODO"],$crores) = displayRefList("OUV+DOUV",$team,""."%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"ODO",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["ODO"],$crores) = displayRefList("OUV+DOUV",$team,""."%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"ODO",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODOI-") !== false) {
   echo "<a name=\"ODOI\"></a><h2>Ouvrages ou directions d’ouvrages de portée internationale <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4581,7 +5217,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODOI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Ouvrages ou directions d’ouvrages de portée internationale".chr(13).chr(10));
   $sect->writeText("<b>Ouvrages ou directions d’ouvrages de portée internationale</b><br><br>", $fonth2);
-  list($numbers["ODOI"],$crores) = displayRefList("OUV+DOUV",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"ODOI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["ODOI"],$crores) = displayRefList("OUV+DOUV",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"ODOI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODON-") !== false) {
   echo "<a name=\"ODON\"></a><h2>Ouvrages ou directions d’ouvrages de portée nationale <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4590,7 +5226,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODON-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Ouvrages ou directions d’ouvrages de portée nationale".chr(13).chr(10));
   $sect->writeText("<b>Ouvrages ou directions d’ouvrages de portée nationale</b><br><br>", $fonth2);
-  list($numbers["ODON"],$crores) = displayRefList("OUV+DOUV",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"ODON",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["ODON"],$crores) = displayRefList("OUV+DOUV",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"ODON",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDO-") !== false) {
   echo "<a name=\"OCDO\"></a><h2>Ouvrages ou chapitres ou directions d’ouvrages <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4599,7 +5235,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDO-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Ouvrages ou chapitres ou directions d’ouvrages".chr(13).chr(10));
   $sect->writeText("<b>Ouvrages ou chapitres ou directions d’ouvrages</b><br><br>", $fonth2);
-  list($numbers["OCDO"],$crores) = displayRefList("OUV+COUV+DOUV",$team,"%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"OCDO",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["OCDO"],$crores) = displayRefList("OUV+COUV+DOUV",$team,"%20AND%20popularLevel_s:0".$specificRequestCode,$countries,"OCDO",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDOI-") !== false) {
   echo "<a name=\"OCDOI\"></a><h2>Ouvrages ou chapitres ou directions d’ouvrages de portée internationale <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4608,7 +5244,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDOI-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Ouvrages ou chapitres ou directions d’ouvrages de portée internationale".chr(13).chr(10));
   $sect->writeText("<b>Ouvrages ou chapitres ou directions d’ouvrages de portée internationale</b><br><br>", $fonth2);
-  list($numbers["OCDOI"],$crores) = displayRefList("OUV+COUV+DOUV",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"OCDOI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["OCDOI"],$crores) = displayRefList("OUV+COUV+DOUV",$team,"%20AND%20popularLevel_s:0%20AND%20audience_s:2".$specificRequestCode,$countries,"OCDOI",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDON-") !== false) {
   echo "<a name=\"OCDON\"></a><h2>Ouvrages ou chapitres ou directions d’ouvrages de portée nationale <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4617,7 +5253,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDON-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Ouvrages ou chapitres ou directions d’ouvrages de portée nationale".chr(13).chr(10));
   $sect->writeText("<b>Ouvrages ou chapitres ou directions d’ouvrages de portée nationale</b><br><br>", $fonth2);
-  list($numbers["OCDON"],$crores) = displayRefList("OUV+COUV+DOUV",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"OCDON",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["OCDON"],$crores) = displayRefList("OUV+COUV+DOUV",$team,"%20AND%20popularLevel_s:0%20AND%20(audience_s:3%20OR%20audience_s:1%20OR%20audience_s:0)".$specificRequestCode,$countries,"OCDON",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCV-") !== false) {
   echo "<a name=\"OCV\"></a><h2>Ouvrages ou chapitres de vulgarisation <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4626,7 +5262,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCV-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Ouvrages ou chapitres de vulgarisation".chr(13).chr(10));
   $sect->writeText("<b>Ouvrages ou chapitres de vulgarisation</b><br><br>", $fonth2);
-  list($numbers["OCV"],$crores) = displayRefList("OUV+COUV",$team,"%20AND%20popularLevel_s:1".$specificRequestCode,$countries,"OCV",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["OCV"],$crores) = displayRefList("OUV+COUV",$team,"%20AND%20popularLevel_s:1".$specificRequestCode,$countries,"OCV",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_autr) && strpos($choix_autr, "-BRE-") !== false) {
   echo "<a name=\"BRE\"></a><h2>Brevets <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4635,7 +5271,7 @@ if (isset($choix_autr) && strpos($choix_autr, "-BRE-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Brevets".chr(13).chr(10));
   $sect->writeText("<b>Brevets</b><br><br>", $fonth2);
-  list($numbers["BRE"],$crores) = displayRefList("PATENT",$team,"".$specificRequestCode,$countries,"BRE",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["BRE"],$crores) = displayRefList("PATENT",$team,"".$specificRequestCode,$countries,"BRE",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_autr) && strpos($choix_autr, "-RAP-") !== false) {
   echo "<a name=\"RAP\"></a><h2>Rapports <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4644,7 +5280,7 @@ if (isset($choix_autr) && strpos($choix_autr, "-RAP-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Rapports".chr(13).chr(10));
   $sect->writeText("<b>Rapports</b><br><br>", $fonth2);
-  list($numbers["RAP"],$crores) = displayRefList("REPORT",$team,"".$specificRequestCode,$countries,"RAP",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["RAP"],$crores) = displayRefList("REPORT",$team,"".$specificRequestCode,$countries,"RAP",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_autr) && strpos($choix_autr, "-THE-") !== false) {
   echo "<a name=\"THE\"></a><h2>Thèses <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4653,7 +5289,7 @@ if (isset($choix_autr) && strpos($choix_autr, "-THE-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Thèses".chr(13).chr(10));
   $sect->writeText("<b>Thèses</b><br><br>", $fonth2);
-  list($numbers["THE"],$crores) = displayRefList("THESE",$team,"".$specificRequestCode,$countries,"THE",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["THE"],$crores) = displayRefList("THESE",$team,"".$specificRequestCode,$countries,"THE",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_autr) && strpos($choix_autr, "-HDR-") !== false) {
   echo "<a name=\"HDR\"></a><h2>HDR <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4662,7 +5298,7 @@ if (isset($choix_autr) && strpos($choix_autr, "-HDR-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"HDR".chr(13).chr(10));
   $sect->writeText("<b>HDR</b><br><br>", $fonth2);
-  list($numbers["HDR"],$crores) = displayRefList("HDR",$team,"".$specificRequestCode,$countries,"HDR",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["HDR"],$crores) = displayRefList("HDR",$team,"".$specificRequestCode,$countries,"HDR",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_autr) && strpos($choix_autr, "-PWM-") !== false) {
   echo "<a name=\"PWM\"></a><h2>Preprints, working papers, manuscrits non publiés <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4671,7 +5307,7 @@ if (isset($choix_autr) && strpos($choix_autr, "-PWM-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Preprints, working papers, manuscrits non publiés".chr(13).chr(10));
   $sect->writeText("<b>Preprints, working papers, manuscrits non publiés</b><br><br>", $fonth2);
-  list($numbers["PWM"],$crores) = displayRefList("UNDEF",$team,"".$specificRequestCode,$countries,"PWM",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["PWM"],$crores) = displayRefList("UNDEF",$team,"".$specificRequestCode,$countries,"PWM",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_autr) && strpos($choix_autr, "-AP-") !== false) {
   echo "<a name=\"AP\"></a><h2>Autres publications <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -4680,7 +5316,7 @@ if (isset($choix_autr) && strpos($choix_autr, "-AP-") !== false) {
   fseek($inF, 0);
   fwrite($inF,"Autres publications".chr(13).chr(10));
   $sect->writeText("<b>Autres publications</b><br><br>", $fonth2);
-  list($numbers["AP"],$crores) = displayRefList("OTHER",$team,"".$specificRequestCode,$countries,"AP",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typif,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$gp1,$gp2,$gp3,$gp4,$sep1,$sep2,$sep3,$sep4,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4);
+  list($numbers["AP"],$crores) = displayRefList("OTHER",$team,"".$specificRequestCode,$countries,"AP",$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$surdoi,$typidh,$racine,$typreva,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 
 echo "<a name=\"BILAN\"></a><h2>Bilan quantitatif <a href=\"#sommaire\">&#8683;</a></h2>";
@@ -5214,12 +5850,15 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
 
   function majapercu(){
   var selsep = [];
-  selsep.push('--');
+  selsep.push('- -');
   var selgrp = [];
-  selgrp.push('--');
-  var idmaxi = 5;
+  selgrp.push('- -');
+  var idmaxi = 8;
   var idtest = 1;
   var contApercu = "";
+  if (document.getElementById("nmo").options[2].selected) {contApercu += "x. ";}
+  if (document.getElementById("nmo").options[3].selected) {contApercu += "(x) ";}
+  if (document.getElementById("nmo").options[4].selected) {contApercu += "[x] ";}
   while (idtest < idmaxi) {
     var selcnt = document.getElementById("gp"+idtest);
     for (var i = 0; i < selcnt.length; i++) {
@@ -5231,13 +5870,31 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
     }
     idtest++;
   }
-  var idmaxi = 5;
+  //console.log(selsep);
+  var idmaxi = 8;
   var idtest = 1;
-  var contApercu = "";
   while (idtest < idmaxi) {
     switch(selgrp[idtest]) {
       case "auteurs":
-        contApercu += "<span id=\"listAut\"><?php echo($txtAut);?></span>";
+        select = document.getElementById("stpdf");
+        choix = select.selectedIndex;
+        valeur = document.getElementById("stpdf").options[choix].value;
+        if (valeur == "mla") {
+          var txtAut = "<?php echo $txtAutMla?>";
+          var txtAut2 = "<?php echo $txtAutMla?>";
+        }else{
+          if (valeur == "chi") {
+            var txtAut = "<?php echo $txtAutChi?>";
+            var txtAut2 = "<?php echo $txtAutChi?>";
+          }else{
+            var txtAut = "<?php echo $txtAut?>";
+            var txtAut2 = "<?php echo $txtAut?>";
+          }
+        }
+        if (document.getElementById("spa").options[1].selected) {txtAut2 = txtAut.replace(/.; /g, "., ");}
+        if (document.getElementById("spa").options[3].selected) {txtAut2 = txtAut.replace(/.; /g, ". ");}
+        if (document.getElementById("spa").options[4].selected) {txtAut2 = txtAut.replace(/.; /g, ". -  ");}
+        contApercu += "<span id=\"listAut\">"+txtAut2+"</span>";
         break;
       case "titre":
         contApercu += "<span id=\"listTit\"><?php echo($txtTit);?></span>";
@@ -5248,9 +5905,18 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
       case "revue":
         contApercu += "<span id=\"listRev\"><?php echo($txtRev);?></span>";
         break;
+      case "volume":
+        contApercu += "<span id=\"listVol\"><?php echo($txtVol);?></span>";
+        break;
+      case "numéro":
+        contApercu += "<span id=\"listNum\"><?php echo($txtNum);?></span>";
+        break;
+      case "pages":
+        contApercu += "<span id=\"listPag\"><?php echo($txtPag);?></span>";
+        break;
     }
-    if (selsep[idtest] == "--") {
-      contApercu += " ";
+    if (selsep[idtest] == "- -") {
+      contApercu += "";
     }else{
       contApercu += selsep[idtest];
     }
@@ -5261,15 +5927,21 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
   //contApercu += "<span id=\"listTit\"><?php echo($txtTit);?></span>";
   //contApercu += "<span id=\"listAnn\"><?php echo($txtAnn);?></span>";
   //contApercu += "<span id=\"listRev\"><?php echo($txtRev);?></span>";
+  //contApercu += "<span id=\"listVol\"><?php echo($txtVol);?></span>";
+  //contApercu += "<span id=\"listNum\"><?php echo($txtNum);?></span>";
+  //contApercu += "<span id=\"listPag\"><?php echo($txtPag);?></span>";
   document.getElementById("apercu").innerHTML = contApercu;
 
   var listgp = "~|~";
-  var idmaxi = 5;
+  var idmaxi = 8;
   var idtest = 1;
   var selmpgpAut = "";
   var selmpgpTit = "";
   var selmpgpAnn = "";
   var selmpgpRev = "";
+  var selmpgpVol = "";
+  var selmpgpNum = "";
+  var selmpgpPag = "";
   while (idtest < idmaxi) {
     selgp = document.getElementById("gp"+idtest);//Quel attribut de groupe ?
     var choixgp = selgp.selectedIndex;
@@ -5283,20 +5955,21 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
       }
       valcg = document.getElementById("cg"+idtest).value;//Quelle couleur de texte ?
       selmpgpAut += valcg + '~|~';
-      document.getElementById("listAut").innerHTML = "<?php echo $txtAut;?>";
-      if (selmpgpAut.indexOf("--") != -1) {//Réinitialisation
-        mp(selmpgpAut, "--", "listAut", "", "", "<?php echo $txtAut;?>");
+      document.getElementById("listAut").innerHTML = txtAut2;
+      if (selmpgpAut.indexOf("- -") != -1) {//Réinitialisation
+        mp(selmpgpAut, "- -", "listAut", "", "", txtAut2);
       }else{
-        mp(selmpgpAut, "norm", "listAut", "", "", "<?php echo $txtAut;?>");
-        mp(selmpgpAut, "emin", "listAut", "", "", "<?php echo $txtAut;?>");
-        mp(selmpgpAut, "emaj", "listAut", "", "", "<?php echo $txtAut;?>");
-        mp(selmpgpAut, "gras", "listAut", "<b>", "</b>", "<?php echo $txtAut;?>");
-        mp(selmpgpAut, "soul", "listAut", "<u>", "</u>", "<?php echo $txtAut;?>");
-        mp(selmpgpAut, "ital", "listAut", "<i>", "</i>", "<?php echo $txtAut;?>");
-        mp(selmpgpAut, "epar", "listAut", "(", ")", "<?php echo $txtAut;?>");
-        mp(selmpgpAut, "ecro", "listAut", "[", "]", "<?php echo $txtAut;?>");
-        mp(selmpgpAut, "egui", "listAut", "\"", "\"", "<?php echo $txtAut;?>");
-        mp(selmpgpAut, "ecol", "listAut", valcg, "", "<?php echo $txtAut;?>");
+        mp(selmpgpAut, "norm", "listAut", "", "", txtAut2);
+        mp(selmpgpAut, "emin", "listAut", "", "", txtAut2);
+        mp(selmpgpAut, "emaj", "listAut", "", "", txtAut2);
+        mp(selmpgpAut, "effa", "listAut", "", "", txtAut2);
+        mp(selmpgpAut, "gras", "listAut", "<b>", "</b>", txtAut2);
+        mp(selmpgpAut, "soul", "listAut", "<u>", "</u>", txtAut2);
+        mp(selmpgpAut, "ital", "listAut", "<i>", "</i>", txtAut2);
+        mp(selmpgpAut, "epar", "listAut", "(", ")", txtAut2);
+        mp(selmpgpAut, "ecro", "listAut", "[", "]", txtAut2);
+        mp(selmpgpAut, "egui", "listAut", "\"", "\"", txtAut2);
+        mp(selmpgpAut, "ecol", "listAut", valcg, "", txtAut2);
       }
     }
     if (listgp.indexOf("titre") != -1 && selmpgpTit == "") {
@@ -5308,12 +5981,13 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
       valcg = document.getElementById("cg"+idtest).value;//Quelle couleur de texte ?
       selmpgpTit += valcg + '~|~';
       document.getElementById("listTit").innerHTML = "<?php echo $txtTit;?>";
-      if (selmpgpTit.indexOf("--") != -1) {//Réinitialisation
-        mp(selmpgpTit, "--", "listTit", "", "", "<?php echo $txtTit;?>");
+      if (selmpgpTit.indexOf("- -") != -1) {//Réinitialisation
+        mp(selmpgpTit, "- -", "listTit", "", "", "<?php echo $txtTit;?>");
       }else{
         mp(selmpgpTit, "norm", "listTit", "", "", "<?php echo $txtTit;?>");
         mp(selmpgpTit, "emin", "listTit", "", "", "<?php echo $txtTit;?>");
         mp(selmpgpTit, "emaj", "listTit", "", "", "<?php echo $txtTit;?>");
+        mp(selmpgpTit, "effa", "listTit", "", "", "<?php echo $txtTit;?>");
         mp(selmpgpTit, "gras", "listTit", "<b>", "</b>", "<?php echo $txtTit;?>");
         mp(selmpgpTit, "soul", "listTit", "<u>", "</u>", "<?php echo $txtTit;?>");
         mp(selmpgpTit, "ital", "listTit", "<i>", "</i>", "<?php echo $txtTit;?>");
@@ -5332,12 +6006,13 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
       valcg = document.getElementById("cg"+idtest).value;//Quelle couleur de texte ?
       selmpgpAnn += valcg + '~|~';
       document.getElementById("listAnn").innerHTML = "<?php echo $txtAnn;?>";
-      if (selmpgpAnn.indexOf("--") != -1) {//Réinitialisation
-        mp(selmpgpAnn, "--", "listAnn", "", "", "<?php echo $txtAnn;?>");
+      if (selmpgpAnn.indexOf("- -") != -1) {//Réinitialisation
+        mp(selmpgpAnn, "- -", "listAnn", "", "", "<?php echo $txtAnn;?>");
       }else{
         mp(selmpgpAnn, "norm", "listAnn", "", "", "<?php echo $txtAnn;?>");
         mp(selmpgpAnn, "emin", "listAnn", "", "", "<?php echo $txtAnn;?>");
         mp(selmpgpAnn, "emaj", "listAnn", "", "", "<?php echo $txtAnn;?>");
+        mp(selmpgpAnn, "effa", "listAnn", "", "", "<?php echo $txtAnn;?>");
         mp(selmpgpAnn, "gras", "listAnn", "<b>", "</b>", "<?php echo $txtAnn;?>");
         mp(selmpgpAnn, "soul", "listAnn", "<u>", "</u>", "<?php echo $txtAnn;?>");
         mp(selmpgpAnn, "ital", "listAnn", "<i>", "</i>", "<?php echo $txtAnn;?>");
@@ -5356,12 +6031,13 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
       valcg = document.getElementById("cg"+idtest).value;//Quelle couleur de texte ?
       selmpgpRev += valcg + '~|~';
       document.getElementById("listRev").innerHTML = "<?php echo $txtRev;?>";
-      if (selmpgpRev.indexOf("--") != -1) {//Réinitialisation
-        mp(selmpgpRev, "--", "listRev", "", "", "<?php echo $txtRev;?>");
+      if (selmpgpRev.indexOf("- -") != -1) {//Réinitialisation
+        mp(selmpgpRev, "- -", "listRev", "", "", "<?php echo $txtRev;?>");
       }else{
         mp(selmpgpRev, "norm", "listRev", "", "", "<?php echo $txtRev;?>");
         mp(selmpgpRev, "emin", "listRev", "", "", "<?php echo $txtRev;?>");
         mp(selmpgpRev, "emaj", "listRev", "", "", "<?php echo $txtRev;?>");
+        mp(selmpgpRev, "effa", "listRev", "", "", "<?php echo $txtRev;?>");
         mp(selmpgpRev, "gras", "listRev", "<b>", "</b>", "<?php echo $txtRev;?>");
         mp(selmpgpRev, "soul", "listRev", "<u>", "</u>", "<?php echo $txtRev;?>");
         mp(selmpgpRev, "ital", "listRev", "<i>", "</i>", "<?php echo $txtRev;?>");
@@ -5369,6 +6045,81 @@ if (count($availableYears) != 0) {//Y-a-t-il au moins un résultat ?
         mp(selmpgpRev, "ecro", "listRev", "[", "]", "<?php echo $txtRev;?>");
         mp(selmpgpRev, "egui", "listRev", "\"", "\"", "<?php echo $txtRev;?>");
         mp(selmpgpRev, "ecol", "listRev", valcg, "", "<?php echo $txtRev;?>");
+      }
+    }
+    if (listgp.indexOf("volume") != -1 && selmpgpVol == "") {
+      var selmpgpVol = '~|~';
+      selmp = document.getElementById("mp"+idtest);//Quelles valeurs de mise en page ?
+      for (var i = 0; i < selmp.length; i++) {
+        if (selmp.options[i].selected) selmpgpVol += selmp.options[i].value + '~|~';
+      }
+      valcg = document.getElementById("cg"+idtest).value;//Quelle couleur de texte ?
+      selmpgpVol += valcg + '~|~';
+      document.getElementById("listVol").innerHTML = "<?php echo $txtVol;?>";
+      if (selmpgpVol.indexOf("- -") != -1) {//Réinitialisation
+        mp(selmpgpVol, "- -", "listVol", "", "", "<?php echo $txtVol;?>");
+      }else{
+        mp(selmpgpVol, "norm", "listVol", "", "", "<?php echo $txtVol;?>");
+        mp(selmpgpVol, "emin", "listVol", "", "", "<?php echo $txtVol;?>");
+        mp(selmpgpVol, "emaj", "listVol", "", "", "<?php echo $txtVol;?>");
+        mp(selmpgpVol, "effa", "listVol", "", "", "<?php echo $txtVol;?>");
+        mp(selmpgpVol, "gras", "listVol", "<b>", "</b>", "<?php echo $txtVol;?>");
+        mp(selmpgpVol, "soul", "listVol", "<u>", "</u>", "<?php echo $txtVol;?>");
+        mp(selmpgpVol, "ital", "listVol", "<i>", "</i>", "<?php echo $txtVol;?>");
+        mp(selmpgpVol, "epar", "listVol", "(", ")", "<?php echo $txtVol;?>");
+        mp(selmpgpVol, "ecro", "listVol", "[", "]", "<?php echo $txtVol;?>");
+        mp(selmpgpVol, "egui", "listVol", "\"", "\"", "<?php echo $txtVol;?>");
+        mp(selmpgpVol, "ecol", "listVol", valcg, "", "<?php echo $txtVol;?>");
+      }
+    }
+    if (listgp.indexOf("numéro") != -1 && selmpgpNum == "") {
+      var selmpgpNum = '~|~';
+      selmp = document.getElementById("mp"+idtest);//Quelles valeurs de mise en page ?
+      for (var i = 0; i < selmp.length; i++) {
+        if (selmp.options[i].selected) selmpgpNum += selmp.options[i].value + '~|~';
+      }
+      valcg = document.getElementById("cg"+idtest).value;//Quelle couleur de texte ?
+      selmpgpNum += valcg + '~|~';
+      document.getElementById("listNum").innerHTML = "<?php echo $txtNum;?>";
+      if (selmpgpNum.indexOf("- -") != -1) {//Réinitialisation
+        mp(selmpgpNum, "- -", "listNum", "", "", "<?php echo $txtNum;?>");
+      }else{
+        mp(selmpgpNum, "norm", "listNum", "", "", "<?php echo $txtNum;?>");
+        mp(selmpgpNum, "emin", "listNum", "", "", "<?php echo $txtNum;?>");
+        mp(selmpgpNum, "emaj", "listNum", "", "", "<?php echo $txtNum;?>");
+        mp(selmpgpNum, "effa", "listNum", "", "", "<?php echo $txtNum;?>");
+        mp(selmpgpNum, "gras", "listNum", "<b>", "</b>", "<?php echo $txtNum;?>");
+        mp(selmpgpNum, "soul", "listNum", "<u>", "</u>", "<?php echo $txtNum;?>");
+        mp(selmpgpNum, "ital", "listNum", "<i>", "</i>", "<?php echo $txtNum;?>");
+        mp(selmpgpNum, "epar", "listNum", "(", ")", "<?php echo $txtNum;?>");
+        mp(selmpgpNum, "ecro", "listNum", "[", "]", "<?php echo $txtNum;?>");
+        mp(selmpgpNum, "egui", "listNum", "\"", "\"", "<?php echo $txtNum;?>");
+        mp(selmpgpNum, "ecol", "listNum", valcg, "", "<?php echo $txtNum;?>");
+      }
+    }
+    if (listgp.indexOf("pages") != -1 && selmpgpPag == "") {
+      var selmpgpPag = '~|~';
+      selmp = document.getElementById("mp"+idtest);//Quelles valeurs de mise en page ?
+      for (var i = 0; i < selmp.length; i++) {
+        if (selmp.options[i].selected) selmpgpPag += selmp.options[i].value + '~|~';
+      }
+      valcg = document.getElementById("cg"+idtest).value;//Quelle couleur de texte ?
+      selmpgpPag += valcg + '~|~';
+      document.getElementById("listPag").innerHTML = "<?php echo $txtPag;?>";
+      if (selmpgpPag.indexOf("- -") != -1) {//Réinitialisation
+        mp(selmpgpPag, "- -", "listPag", "", "", "<?php echo $txtPag;?>");
+      }else{
+        mp(selmpgpPag, "norm", "listPag", "", "", "<?php echo $txtPag;?>");
+        mp(selmpgpPag, "emin", "listPag", "", "", "<?php echo $txtPag;?>");
+        mp(selmpgpPag, "emaj", "listPag", "", "", "<?php echo $txtPag;?>");
+        mp(selmpgpPag, "effa", "listPag", "", "", "<?php echo $txtPag;?>");
+        mp(selmpgpPag, "gras", "listPag", "<b>", "</b>", "<?php echo $txtPag;?>");
+        mp(selmpgpPag, "soul", "listPag", "<u>", "</u>", "<?php echo $txtPag;?>");
+        mp(selmpgpPag, "ital", "listPag", "<i>", "</i>", "<?php echo $txtPag;?>");
+        mp(selmpgpPag, "epar", "listPag", "(", ")", "<?php echo $txtPag;?>");
+        mp(selmpgpPag, "ecro", "listPag", "[", "]", "<?php echo $txtPag;?>");
+        mp(selmpgpPag, "egui", "listPag", "\"", "\"", "<?php echo $txtPag;?>");
+        mp(selmpgpPag, "ecol", "listPag", valcg, "", "<?php echo $txtPag;?>");
       }
     }
     idtest++;
