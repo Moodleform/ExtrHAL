@@ -4032,33 +4032,35 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 
       //Récupération du préfixe AERES pour affichage éventuel
       $affprefeq = "";
-      if ($entry->popularLevel_s == 1) {$affprefeq = "PV";}
-      if ($entry->popularLevel_s == 0) {
-        if ($docType_s == "ART") {
-          if ($entry->peerReviewing_s == 0) {
-            $affprefeq = "ASCL";
-          }else{
-            $affprefeq = "ACL";
-          }
-        }
-        if ($docType_s == "PATENT") {$affprefeq = "BRE";}
-        if ($docType_s == "COMM") {
-          if ($entry->invitedCommunication_s == 1) {$affprefeq = "C-INV";}
-          if ($entry->proceedings_s == 1) {
-            if ($entry->audience_s == 2) {
-              $affprefeq = "C-ACTI";
+      if (isset($entry->popularLevel_s)) {
+        if ($entry->popularLevel_s == 1) {$affprefeq = "PV";}
+        if ($entry->popularLevel_s == 0) {
+          if ($docType_s == "ART") {
+            if ($entry->peerReviewing_s == 0) {
+              $affprefeq = "ASCL";
             }else{
-              $affprefeq = "C-ACTN";
+              $affprefeq = "ACL";
             }
           }
-          if ($entry->proceedings_s == 0) {$affprefeq = "C-COM";}
+          if ($docType_s == "PATENT") {$affprefeq = "BRE";}
+          if ($docType_s == "COMM") {
+            if ($entry->invitedCommunication_s == 1) {$affprefeq = "C-INV";}
+            if ($entry->proceedings_s == 1) {
+              if ($entry->audience_s == 2) {
+                $affprefeq = "C-ACTI";
+              }else{
+                $affprefeq = "C-ACTN";
+              }
+            }
+            if ($entry->proceedings_s == 0) {$affprefeq = "C-COM";}
+          }
+          if ($docType_s == "POSTER") {$affprefeq = "C-AFF";}
+          if ($docType_s == "DOUV") {$affprefeq = "DO";}
+          if ($docType_s == "OUV" || $docType_s == "COUV") {$affprefeq = "OS";}
+          //$affprefeq = "Toto";
         }
-        if ($docType_s == "POSTER") {$affprefeq = "C-AFF";}
-        if ($docType_s == "DOUV") {$affprefeq = "DO";}
-        if ($docType_s == "OUV" || $docType_s == "COUV") {$affprefeq = "OS";}
-        //$affprefeq = "Toto";
+        if ($affprefeq == "") {$affprefeq = "AP";}
       }
-      if ($affprefeq == "") {$affprefeq = "AP";}
 
       array_push($rtfArray,$rtfInfo."^".$rtfdoi."^".$rtfpubmed."^".$rtflocref."^".$rtfarxiv."^".$rtfdescrip."^".$rtfalso."^".$rtfrefhal."^".$rtfaeres."^".$rtfcnrs."^".$chaine1."^".$chaine2."^".$rtfnnt."^".$affprefeq."^".$racine."^".$rtfhceres);
       //bibtex
@@ -4548,9 +4550,9 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
       $inF2 = fopen($Fnm2,"a+");
       fseek($inF2, 0);
       fwrite($inF2,$tex."\r\n");
+      fclose($inF2);
       $i++;
    }
-   fclose($inF2);
    if (isset($idhal) && $idhal != "") {$team = $idhal;}
    //$Fnm1 = "./HAL/extractionHAL_".$team.".csv";
    $inF1 = fopen($Fnm1,"a+");
@@ -4818,8 +4820,8 @@ $countries = array(
 "ye" => "Yémen",
 "zm" => "Zambie",
 "zw" => "Zimbabwe",
-// ?!?
-"xx" => "inconnu");
+"xx" => "inconnu",
+"zz" => "inconnu",);
 
 $numbers=array();
 //$team sert aussi bien à une collection qu'à un idhal
