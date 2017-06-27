@@ -2995,11 +2995,15 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 
       //Adding journalTitle_s:
       $chaine1 .= $delim."Titre journal";
-      $resArray[$iRA]["revue"] = $entry->journalTitle_s;
-      if ($docType_s == "ART"){
-        $entryInfo0 .= ". <i>".$entry->journalTitle_s."</i>";
-        $chaine2 .= $delim.$entry->journalTitle_s;
-        $JT = $entry->journalTitle_s;//for IF
+      if (isset($entry->journalTitle_s)) {
+        $resArray[$iRA]["revue"] = $entry->journalTitle_s;
+        if ($docType_s == "ART"){
+          $entryInfo0 .= ". <i>".$entry->journalTitle_s."</i>";
+          $chaine2 .= $delim.$entry->journalTitle_s;
+          $JT = $entry->journalTitle_s;//for IF
+        }else{
+          $chaine2 .= $delim;
+        }
       }else{
         $chaine2 .= $delim;
       }
@@ -3107,24 +3111,28 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       //Adding scientificEditor_s:
       $chaine1 .= $delim."Editeur scientifique";
       if ($docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV"){
-         if(count($entry->scientificEditor_s)>0){
-            $initial = 1;
-            foreach($entry->scientificEditor_s as $editor){
-               if ($initial==1){
-                  $entryInfo .= ", <i>in</i> ".$editor;
-                  $resArray[$iRA]["editor"] = $editor;
-                  $chaine2 .= $delim.$entry->scientificEditor_s;
-                  $initial=0;
-               } else {
-                  //$entryInfo .= ", <i>in</i> ".$editor;
-                  $entryInfo .= ", ".$editor;
-                  $resArray[$iRA]["editor"] .= "~ ".$editor;
-                  $chaine2 .= $delim.$entry->scientificEditor_s;
-               }
-            }
+         if (isset($entry->scientificEditor_s)) {
+           if(count($entry->scientificEditor_s)>0){
+              $initial = 1;
+              foreach($entry->scientificEditor_s as $editor){
+                 if ($initial==1){
+                    $entryInfo .= ", <i>in</i> ".$editor;
+                    $resArray[$iRA]["editor"] = $editor;
+                    $chaine2 .= $delim.$editor;
+                    $initial=0;
+                 } else {
+                    //$entryInfo .= ", <i>in</i> ".$editor;
+                    $entryInfo .= ", ".$editor;
+                    $resArray[$iRA]["editor"] .= "~ ".$editor;
+                    $chaine2 .= $delim.$editor;
+                 }
+              }
+           }else{
+            $chaine2 .= $delim;
+           }
          }else{
-          $chaine2 .= $delim;
-        }
+           $chaine2 .= $delim;
+         }
       }else{
         $chaine2 .= $delim;
       }
@@ -3239,9 +3247,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       //Adding isbn_s:
       $chaine1 .= $delim."ISBN";
       if ($docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV"){
-         $entryInfo .= ", ".$entry->isbn_s.".";
-         $resArray[$iRA]["isbn"] = $entry->isbn_s;
-         $chaine2 .= $delim.$entry->isbn_s;
+         if (isset($entry->isbn_s)) {
+           $entryInfo .= ", ".$entry->isbn_s.".";
+           $resArray[$iRA]["isbn"] = $entry->isbn_s;
+           $chaine2 .= $delim.$entry->isbn_s;
+         }else{
+          $chaine2 .= $delim;
+         }
       }else{
          $chaine2 .= $delim;
       }
@@ -3314,7 +3326,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
             $resArray[$iRA]["congressDates"] = ", ".$entry->conferenceStartDateD_i." ".$mois[$entry->conferenceStartDateM_i]." ".$entry->conferenceStartDateY_i;
             $chaine2 .= $delim.$entry->conferenceStartDateD_i." ".$mois[$entry->conferenceStartDateM_i]." ".$entry->conferenceStartDateY_i;
           }
-          if (isset($entry->conferenceEndDateY_i) && $entry->conferenceEndDateD_i != "" && $entry->conferenceEndDateM_i != "" && $entry->conferenceEndDateY_i != "") {
+          if (isset($entry->conferenceEndDateD_i) && $entry->conferenceEndDateD_i != "" && $entry->conferenceEndDateM_i != "" && $entry->conferenceEndDateY_i != "") {
             $entryInfo .= " - ".$entry->conferenceEndDateD_i." ".$mois[$entry->conferenceEndDateM_i]." ".$entry->conferenceEndDateY_i;
             $resArray[$iRA]["congressDates"] = " - ".$entry->conferenceEndDateD_i." ".$mois[$entry->conferenceEndDateM_i]." ".$entry->conferenceEndDateY_i;
             $chaine2 .= " - ".$entry->conferenceEndDateD_i." ".$mois[$entry->conferenceEndDateM_i]." ".$entry->conferenceEndDateY_i;
@@ -3331,7 +3343,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       //Adding city_s:
       $chaine1 .= $delim."Ville";
       if ($docType_s=="COMM" || $docType_s=="POSTER" || $docType_s == "COMM+POST"){
-         if($entry->city_s!=""){
+         if(isset($entry->city_s)){
             $entryInfo .= ", ".$entry->city_s;
             $resArray[$iRA]["city"] = $entry->city_s;
             $chaine2 .= $delim.$entry->city_s;
