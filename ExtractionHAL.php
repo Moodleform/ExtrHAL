@@ -4081,7 +4081,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
    array_push($result,$rtfArray);
    array_push($result,$bibArray);
    array_push($result,$resArray);
-   var_dump($bibArray);
+   //var_dump($bibArray);
    return $result;
 }
 
