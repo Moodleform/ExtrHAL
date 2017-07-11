@@ -1013,7 +1013,7 @@ if (isset($_GET["team"])) {
 
 <p>ExtrHAL permet d’afficher et d’exporter en RTF,CSV et/ou Bibtex des listes de publications HAL d’une unité, d'une équipe de recherche ou d'un auteur,
 à partir d’un script PHP créé par <a target="_blank" href="http://igm.univ-mlv.fr/~gambette/ExtractionHAL/ExtractionHAL.php?collection=UPEC-UPEM">
-Philippe Gambette</a>, repris et modifié par Olivier Troccaz (ECOBIO - OSUR) pour l’Université de Rennes 1.
+Philippe Gambette</a>, repris et modifié par <a target="_blank" href="https://ecobio.univ-rennes1.fr/personnel.php?qui=Olivier_Troccaz">Olivier Troccaz</a> (ECOBIO - OSUR) pour l’Université de Rennes 1.
 Si vous souhaitez utiliser et adapter ExtrHAL pour une autre institution, consultez
 <a target="_blank" href="https://wiki.ccsd.cnrs.fr/wikis/hal/index.php/Outils_et_services_d%C3%A9velopp%C3%A9s_localement_pour_am%C3%A9liorer_ou_faciliter_l%27utilisation_de_HAL#Extraction_et_mise_en_forme_des_publications">le wiki du CCSD</a>.</p>
 
