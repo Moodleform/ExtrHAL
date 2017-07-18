@@ -2681,56 +2681,56 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
    $numFound=$results->response->numFound;
 
    //Extracted fields depend on type of reference:
-   $fields="docid,authFirstName_s,authLastName_s,authFullName_s,title_s,files_s,label_s,seeAlso_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+   $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,title_s,files_s,label_s,seeAlso_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
    if ($docType_s=="ART"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,journalTitle_s,journalIssn_s,volume_s,issue_s,page_s,producedDateY_i,proceedings_s,files_s,label_s,doiId_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,journalTitle_s,journalIssn_s,volume_s,issue_s,page_s,producedDateY_i,proceedings_s,files_s,label_s,doiId_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
    }
    if ($docType_s=="COMM"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,collCode_s,source_s,bookTitle_s,volume_s,issue_s,page_s,doiId_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,collCode_s,source_s,bookTitle_s,volume_s,issue_s,page_s,doiId_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
    }
    if ($docType_s=="POSTER"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,conferenceEndDateY_i,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s,source_s,volume_s,page_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,conferenceEndDateY_i,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s,source_s,volume_s,page_s";
    }
    if ($docType_s=="OTHER" or $docType_s=="OTHERREPORT"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,files_s,label_s,description_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,files_s,label_s,description_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
    }
    if ($docType_s=="REPORT"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,files_s,label_s,description_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,reportType_s,number_s,authorityInstitution_s,page_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,files_s,label_s,description_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,reportType_s,number_s,authorityInstitution_s,page_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
    }
    if ($docType_s=="THESE"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,producedDateY_i,director_s,authorityInstitution_s,defenseDateY_i,nntId_id,nntId_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,reportType_s,number_s,authorityInstitution_s,page_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,producedDateY_i,director_s,authorityInstitution_s,defenseDateY_i,nntId_id,nntId_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,reportType_s,number_s,authorityInstitution_s,page_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
    }
    if ($docType_s=="HDR"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,producedDateY_i,director_s,authorityInstitution_s,defenseDateY_i,nntId_id,nntId_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,reportType_s,number_s,authorityInstitution_s,page_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,producedDateY_i,director_s,authorityInstitution_s,defenseDateY_i,nntId_id,nntId_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,reportType_s,number_s,authorityInstitution_s,page_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
    }
    if ($docType_s=="OUV" or $docType_s=="DOUV"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,seeAlso_s,scientificEditor_s,publisher_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,seeAlso_s,scientificEditor_s,publisher_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
    }
    if ($docType_s=="COUV" or $docType_s=="DOUV"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,seeAlso_s,bookTitle_s,scientificEditor_s,publisher_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,seeAlso_s,bookTitle_s,scientificEditor_s,publisher_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
    }
    if ($docType_s=="PATENT"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,number_s,producedDateY_i,producedDateY_i,seeAlso_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,number_s,producedDateY_i,producedDateY_i,seeAlso_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
    }
    //Cas particulierS pour combinaisons
    if ($docType_s=="COMM+POST"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,collCode_s,source_s,bookTitle_s,volume_s,issue_s,page_s,doiId_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,collCode_s,source_s,bookTitle_s,volume_s,issue_s,page_s,doiId_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
       $contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.":".$collCode_s."%20AND%20(docType_s:\"COMM\"%20OR%20docType_s:\"POSTER\")".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc");
    }
 	 if ($docType_s=="OUV+COUV"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,seeAlso_s,bookTitle_s,scientificEditor_s,publisher_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,seeAlso_s,bookTitle_s,scientificEditor_s,publisher_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
       $contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.":".$collCode_s."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"COUV\")".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc");
    }
    if ($docType_s=="OUV+DOUV"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,seeAlso_s,bookTitle_s,scientificEditor_s,publisher_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,seeAlso_s,bookTitle_s,scientificEditor_s,publisher_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
       $contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.":".$collCode_s."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"DOUV\")".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc");
    }
    if ($docType_s=="OUV+COUV+DOUV"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,seeAlso_s,bookTitle_s,scientificEditor_s,publisher_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,seeAlso_s,bookTitle_s,scientificEditor_s,publisher_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
       $contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.":".$collCode_s."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"COUV\"%20OR%20docType_s:\"DOUV\")".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc");
    }
    if ($docType_s=="UNDEF"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,journalTitle_s,volume_s,issue_s,page_s,producedDateY_i,proceedings_s,files_s,label_s,doiId_s,halId_s,pubmedId_s,arxivId_s,seeAlso_s,localReference_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
+      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,journalTitle_s,volume_s,issue_s,page_s,producedDateY_i,proceedings_s,files_s,label_s,doiId_s,halId_s,pubmedId_s,arxivId_s,seeAlso_s,localReference_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,label_bibtex,docType_s";
       $contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.":".$collCode_s."%20AND%20docType_s:\"UNDEFINED\"".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc");
    }
    if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST"){
@@ -2806,6 +2806,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
         //$nom = ucwords(mb_strtolower($nom, 'UTF-8'));
         $nom = nomCompEntier($nom);
         $prenom = ucfirst(mb_strtolower($entry->authFirstName_s[$i], 'UTF-8'));
+        $prenomPlus = "";
+        if (isset($entry->authMiddleName_s[$i])) {
+          $prenomPlus = ucfirst(mb_strtolower($entry->authMiddleName_s[$i], 'UTF-8'));//Champ HAL prévu pour complément prénom
+          //echo 'toto : '.$nom.' '.$prenom.' '.$prenomPlus.'<br>';
+        }
         //Si, Nom, initiale du prénom
         if ($typnom == "nominit") {
           //si prénom composé et initiales
@@ -2844,8 +2849,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
               if ($typcol == "aucun") {$deb = "";$fin = "";}
             }
           }
-          $authors .= $nom2."troliesp".$prenom2;
-          $authors = mise_en_evidence(wd_remove_accents($nom2."troliesp".$prenom2), $authors, $deb, $fin);
+          if ($prenomPlus != "") {
+            $authors .= $nom2."troliesp".$prenom2."troliesp".$prenomPlus;
+            $authors = mise_en_evidence(wd_remove_accents($nom2."troliesp".$prenom2."troliesp".$prenomPlus), $authors, $deb, $fin);
+          }else{
+            $authors .= $nom2."troliesp".$prenom2;
+            $authors = mise_en_evidence(wd_remove_accents($nom2."troliesp".$prenom2), $authors, $deb, $fin);
+          }
           $authors = str_replace(array("troliesp", "trolipoint", "trolitiret", "troliapos"), array(" ", ".", "-", "'") , $authors);
         }else{//Si nom/prénom complets
           if ($typnom == "nomcomp1") {//Nom Prénom
