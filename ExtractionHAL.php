@@ -1399,16 +1399,6 @@ if (isset($typfor) && $typfor == "typ2" || !isset($team )) {$typ2 = "checked";}e
 <input type="radio" name="typfor" value="typ2" <?php echo $typ2;?>>5(2):320
 <br>
 <?php
-if (isset($typdoi) && $typdoi == "vis" || !isset($team)) {$vis = "checked";}else{$vis = "";}
-if (isset($typdoi) && $typdoi == "inv") {$inv = "checked";}else{$inv = "";}
-?>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Lien DOI :
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="radio" name="typdoi" value="vis" <?php echo $vis;?>>visible
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="radio" name="typdoi" value="inv" <?php echo $inv;?>>invisible
-<br>
-<?php
 if (isset($typurl) && $typurl == "vis" || !isset($team)) {$vis = "checked";}else{$vis = "";}
 if (isset($typurl) && $typutl == "inv") {$inv = "checked";}else{$inv = "";}
 ?>
@@ -1417,6 +1407,16 @@ if (isset($typurl) && $typutl == "inv") {$inv = "checked";}else{$inv = "";}
 <input type="radio" name="typurl" value="vis" <?php echo $vis;?>>visible
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="radio" name="typurl" value="inv" <?php echo $inv;?>>invisible
+<br>
+<?php
+if (isset($typdoi) && $typdoi == "vis" || !isset($team)) {$vis = "checked";}else{$vis = "";}
+if (isset($typdoi) && $typdoi == "inv") {$inv = "checked";}else{$inv = "";}
+?>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Lien DOI :
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="typdoi" value="vis" <?php echo $vis;?>>visible
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="typdoi" value="inv" <?php echo $inv;?>>invisible
 <br>
 <?php
 if (isset($surdoi) && $surdoi == "inv" || !isset($team)) {$inv = "checked";}else{$inv = "";}
@@ -3880,6 +3880,29 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       //echo $rtfInfo.'<br>';
       //var_dump($rtfSep);
 
+      //Thesis - adding nntId_s
+      $rtfnnt = "";
+      $chaine1 .= $delim."NNT";
+      if ($docType_s=="THESE" && isset($entry->nntId_s)){
+        $entryInfo .= ". NNT: <a target='_blank' href='http://www.theses.fr/".$entry->nntId_s."'>".$entry->nntId_s."</a>";
+        $rtfnnt = $entry->nntId_s;
+        $chaine2 .= $delim.$entry->nntId_s;
+      }else{
+        $chaine2 .= $delim;
+      }
+      
+      //Adding URL
+      $rtfurl = "";
+      $chaine1 .= $delim."URL";
+      if (isset($entry->publisherLink_s[0]) && $typurl == "vis") {
+        $entryInfo .= ". url: <a target='_blank' href='".$entry->publisherLink_s[0]."'>".$entry->publisherLink_s[0]."</a>";
+        $entryInfo = str_replace(array(" . url", " , "), array(". url", ", "), $entryInfo);
+        $rtfurl = $entry->publisherLink_s[0];
+        $chaine2 .= $delim.$entry->publisherLink_s[0];
+      }else{
+        $chaine2 .= $delim;
+      }
+      
       //Adding DOI
       $rtfdoi = "";
       $chaine1 .= $delim."DOI";
@@ -3903,29 +3926,6 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
         $chaine2 .= $delim;
       }
       
-      //Adding URL
-      $rtfurl = "";
-      $chaine1 .= $delim."URL";
-      if (isset($entry->publisherLink_s[0]) && $typurl == "vis") {
-        $entryInfo .= ". url: <a target='_blank' href='".$entry->publisherLink_s[0]."'>".$entry->publisherLink_s[0]."</a>";
-        $entryInfo = str_replace(array(" . url", " , "), array(". url", ", "), $entryInfo);
-        $rtfurl = $entry->publisherLink_s[0];
-        $chaine2 .= $delim.$entry->publisherLink_s[0];
-      }else{
-        $chaine2 .= $delim;
-      }
-
-      //Thesis - adding nntId_s
-      $rtfnnt = "";
-      $chaine1 .= $delim."NNT";
-      if ($docType_s=="THESE" && isset($entry->nntId_s)){
-        $entryInfo .= ". NNT: <a target='_blank' href='http://www.theses.fr/".$entry->nntId_s."'>".$entry->nntId_s."</a>";
-        $rtfnnt = $entry->nntId_s;
-        $chaine2 .= $delim.$entry->nntId_s;
-      }else{
-        $chaine2 .= $delim;
-      }
-
       //Adding Pubmed ID
       $rtfpubmed = "";
       $chaine1 .= $delim."Pubmed";
@@ -4203,8 +4203,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       if (isset($entry->title_s[0])) {$bibLab .= "}";}
       if (isset($entry->volume_s)) {$bibLab .= ",".chr(13).chr(10)."	volume = {".$entry->volume_s."}";}
       if (isset($entry->journalIssn_s)) {$bibLab .= ",".chr(13).chr(10)."	issn = {".$entry->journalIssn_s."}";}
-      if (isset($entry->doiId_s)) {$bibLab .= ",".chr(13).chr(10)."	doi = {".$entry->doiId_s."}";}
       if (isset($entry->publisherLink_s[0])) {$bibLab .= ",".chr(13).chr(10)."	url = {".$entry->publisherLink_s[0]."}";}
+      if (isset($entry->doiId_s)) {$bibLab .= ",".chr(13).chr(10)."	doi = {".$entry->doiId_s."}";}
       if (isset($entry->abstract_s)) {$bibLab .= ",".chr(13).chr(10)."	abstract = {".str_replace(array("{", "}"), "_", $entry->abstract_s)."}";}
       if (isset($entry->journalTitle_s)) {$bibLab .= ",".chr(13).chr(10)."	journal = {".$entry->journalTitle_s."}";}
       if (isset($authors)) {
@@ -4491,13 +4491,13 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
                }
              }
            }
-           if ($rtf[1] != "") {
-              $sect->writeText(". doi: ", $font);
-              $sect->writeHyperLink("https://doi.org/".$rtf[1], "<u>https://doi.org/".$rtf[1]."</u>", $fontlien);
-           }
            if ($rtf[17] != "") {
               $sect->writeText(". url: ", $font);
               $sect->writeHyperLink($rtf[17], "<u>".$rtf[17]."</u>", $fontlien);
+           }
+           if ($rtf[1] != "") {
+              $sect->writeText(". doi: ", $font);
+              $sect->writeHyperLink("https://doi.org/".$rtf[1], "<u>https://doi.org/".$rtf[1]."</u>", $fontlien);
            }
            if ($rtf[12] != "") {
               $sect->writeText(". NNT: ", $font);
@@ -4649,13 +4649,13 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
                }
              }
            }
-           if ($rtf[1] != "") {
-              $sect->writeText(". doi: ", $font);
-              $sect->writeHyperLink("https://doi.org/".$rtf[1], "<u>https://doi.org/".$rtf[1]."</u>", $fontlien);
-           }
            if ($rtf[17] != "") {
               $sect->writeText(". url: ", $font);
               $sect->writeHyperLink($rtf[17], "<u>".$rtf[17]."</u>", $fontlien);
+           }
+           if ($rtf[1] != "") {
+              $sect->writeText(". doi: ", $font);
+              $sect->writeHyperLink("https://doi.org/".$rtf[1], "<u>https://doi.org/".$rtf[1]."</u>", $fontlien);
            }
            if ($rtf[12] != "") {
               $sect->writeText(". NNT: ", $font);
