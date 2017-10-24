@@ -1400,7 +1400,7 @@ if (isset($typfor) && $typfor == "typ2" || !isset($team )) {$typ2 = "checked";}e
 <br>
 <?php
 if (isset($typurl) && $typurl == "vis" || !isset($team)) {$vis = "checked";}else{$vis = "";}
-if (isset($typurl) && $typutl == "inv") {$inv = "checked";}else{$inv = "";}
+if (isset($typurl) && $typurl == "inv") {$inv = "checked";}else{$inv = "";}
 ?>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Lien URL :
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
