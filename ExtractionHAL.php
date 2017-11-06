@@ -6,7 +6,7 @@
   <meta name="Description" content="ExtrHAL : outil d’extraction des publications HAL d’une unité, d'une équipe de recherche ou d'un auteur">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <link rel="icon" type="type/ico" href="HAL_favicon.ico">
+  <link rel="icon" type="type/ico" href="favicon.ico">
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script type='text/x-mathjax-config'>
