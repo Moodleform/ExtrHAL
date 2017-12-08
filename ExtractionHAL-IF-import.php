@@ -44,7 +44,7 @@ $handle = utf8_fopen_read($temp);
 if ($handle) {
   $ligne = 0;
   $total = count(file($temp));
-  while($tab = fgetcsv($handle, 0, ',')) {
+  while($tab = fgetcsv($handle, 0, ';')) {
     if ($ligne != 0) {//Exclure les noms des colonnes
       $ind = $ligne - 1;
       $chaine = $ind.' => array("Rank"=>"'.$tab[0].'", ';
