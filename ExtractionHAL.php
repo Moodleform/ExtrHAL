@@ -371,7 +371,11 @@ if (isset($_POST["soumis"])) {
     $depotdeb = date('d/m/Y', mktime(0, 0, 0, 1, 1, $tabdepotfin[2]));
   }
   // si depotdeb est postérieur à depotfin, on inverse les deux
-  if ($depotfin < $depotdeb) {$depottemp = $depotdeb; $depotdeb = $depotfin; $depotfin = $depottemp;}
+  $tabdepotdeb = explode('/', $depotdeb);
+  $tabdepotfin = explode('/', $depotfin);
+  $timedeb = mktime(0, 0, 0, $tabdepotdeb[1], $tabdepotdeb[0], $tabdepotdeb[2]);
+  $timefin = mktime(0, 0, 0, $tabdepotfin[1], $tabdepotfin[0], $tabdepotfin[2]);
+  if ($timefin < $timedeb) {$depottemp = $depotdeb; $depotdeb = $depotfin; $depotfin = $depottemp;}
   $urlsauv .= "&depotdeb=".$depotdeb;
   $urlsauv .= "&depotfin=".$depotfin;
 
@@ -1757,7 +1761,7 @@ if (isset($dscp) && $dscp == "pee") {$pee = "selected";}else{$pee = "";}
 if (isset($typrevc) && $typrevc == "vis") {$vis = "checked";}else{$vis = "";}
 if (isset($typrevc) && $typrevc == "inv" || !isset($team)) {$inv = "checked";}else{$inv = "";}
 ?>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Rang revues CNRS :
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Rang revues CNRS (Economie-Gestion) :
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="radio" name="typrevc" value="vis" <?php echo $vis;?>>visible
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
