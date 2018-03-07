@@ -21,7 +21,7 @@ if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
   $ip = $_SERVER['REMOTE_ADDR'];
 }
 
-if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip == "129.20.30.5" OR $ip == "129.20.88.134" OR $ip == "129.20.88.135")
+if ($ip == "127.0.0.1" OR $ip == "129.20.88.55" OR $ip == "129.20.91.5" OR $ip == "129.20.30.54" OR $ip == "129.20.30.57" OR $ip == "129.20.88.134" OR $ip == "129.20.88.135" OR $ip == "129.20.88.54" OR $ip == "129.20.88.57")
 {
   //Déclaration des variables
   if (!isset($cehval)) {$cehval = "TouCol";}

@@ -360,8 +360,8 @@ if (isset($_POST["soumis"])) {
   // si depotdeb et depotfin non définis, on force depotdeb au 01/01/anneedeb et depotfin au 31/12/anneefin
   if ($depotdeb == '' && $depotfin == '') {
     $depotforce = "oui";
-    //$depotdeb = date('d/m/Y', mktime(0, 0, 0, 1, 1, $anneedeb));
-    //$depotfin = date('d/m/Y', mktime(0, 0, 0, 12, 31, $anneefin));
+    $depotdeb = date('d/m/Y', mktime(0, 0, 0, 1, 1, $anneedeb));
+    $depotfin = date('d/m/Y', mktime(0, 0, 0, 12, 31, $anneefin));
   }
   // si depotdeb défini mais pas depotfin, on force depotfin à aujourd'hui
   if ($depotdeb != '' && $depotfin == '') {$depotfin = date('d/m/Y', time());}
