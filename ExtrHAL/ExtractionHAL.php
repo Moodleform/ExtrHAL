@@ -3460,9 +3460,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
         //Adding source_s:
         $chaine1 .= $delim."Source";
         if(isset($entry->source_s) && $entry->source_s != ""){
-         $entryInfo .= " <i>".$entry->source_s."</i>,";
-         $resArray[$iRA]["source"] = $entry->source_s;
-         $chaine2 .= $delim.$entry->source_s;
+          $entryInfo .= " <i>".$entry->source_s."</i>,";
+          $resArray[$iRA]["source"] = $entry->source_s;
+          $chaine2 .= $delim.$entry->source_s;
         }else{
           if(isset($entry->bookTitle_s) && $entry->bookTitle_s != "") {
             $entryInfo .= " <i>".$entry->bookTitle_s."</i>,";
@@ -3473,12 +3473,12 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
           }
         }
         //Adding volume_s:
-		$vol = 0;
+        $vol = 0;
         $chaine1 .= $delim."Volume";
         if(isset($entry->volume_s) && $entry->volume_s != ""){
-		 $vol = 1;
-         $entryInfo .= " ".$entry->volume_s;
-         $chaine2 .= $delim.$entry->volume_s;
+          $vol = 1;
+          $entryInfo .= " ".$entry->volume_s;
+          $chaine2 .= $delim.$entry->volume_s;
         }else{
           $chaine2 .= $delim;
         }
@@ -4099,9 +4099,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $entryInfo =str_replace(" : ", ": ", $entryInfo);
       $entryInfo =str_replace(", No.,", ",", $entryInfo);
       $entryInfo =str_replace(", no.,", ",", $entryInfo);
+      $rtfInfo =str_replace("..", ".", $rtfInfo);
+      $rtfInfo =str_replace(", .", ".", $rtfInfo);
+      $rtfInfo =str_replace(", , ", ", ", $rtfInfo);
 
       if (!isset($entry->page_s)) {
         $entryInfo = str_replace(array(",  in press", " in press.", " in press", "; in press"), "", $entryInfo);
+        $rtfInfo = str_replace(array(",  in press", " in press.", " in press", "; in press"), "", $rtfInfo);
       }
 
       //Adding the reference to the array
@@ -4287,7 +4291,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
    array_push($result,$rtfArray);
    array_push($result,$bibArray);
    array_push($result,$resArray);
-   //var_dump($bibArray);
+   //var_dump($rtfArray);
    return $result;
 }
 
