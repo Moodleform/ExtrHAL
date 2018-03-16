@@ -321,6 +321,33 @@ function appst() {
     document.getElementById("mp7").options[1].selected = "selected";
     document.getElementById("sep7").options[3] = new Option("._", ". ", false, true);
   }
+  
+  //Zotero1
+  if (valeur == "zo1") {
+    document.getElementById("spa").options[1].selected = "selected";
+    document.getElementById("nmo").options[1].selected = "selected";
+    document.getElementById("gp1").options[1] = new Option("Auteurs", "auteurs", false, true);   
+    document.getElementById("mp1").options[9].selected = "selected";
+    document.getElementById("sep1").options[2] = new Option(",_", ", ", false, true);
+    document.getElementById("gp2").options[1] = new Option("Année", "année", false, true);
+    document.getElementById("mp2").options[1].selected = "selected";
+    document.getElementById("sep2").options[2] = new Option(",_", ", ", false, true);
+    document.getElementById("gp3").options[1] = new Option("Titre", "titre", false, true);
+    document.getElementById("mp3").options[7].selected = "selected";
+    document.getElementById("sep3").options[2] = new Option(",_", ", ", false, true);
+    document.getElementById("gp4").options[1] = new Option("Revue", "revue", false, true);
+    document.getElementById("mp4").options[4].selected = "selected";
+    document.getElementById("sep4").options[2] = new Option(",_", ", ", false, true);
+    document.getElementById("gp5").options[1] = new Option("Volume", "volume", false, true);
+    document.getElementById("mp5").options[1].selected = "selected";
+    document.getElementById("sep5").options[2] = new Option(",_", ", ", false, true);
+    document.getElementById("gp6").options[1] = new Option("Numéro", "numéro", false, true);
+    document.getElementById("mp6").options[1].selected = "selected";
+    document.getElementById("sep6").options[2] = new Option(",_", ", ", false, true);
+    document.getElementById("gp7").options[1] = new Option("Pages", "pages", false, true);
+    document.getElementById("mp7").options[1].selected = "selected";
+    document.getElementById("sep7").options[3] = new Option("._", ".", false, true);
+  }
 }
 
 function mise_en_ordre(id) {

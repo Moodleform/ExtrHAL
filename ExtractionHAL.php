@@ -1875,6 +1875,7 @@ if (isset($stpdf) && $stpdf == "nlm") {$st6 = "selected ";}else{$st6 = "";}
 if (isset($stpdf) && $stpdf == "nat") {$st7 = "selected ";}else{$st7 = "";}
 if (isset($stpdf) && $stpdf == "mla") {$st8 = "selected "; $typlim = "oui"; $limaff = 1; $typnom = "nomcomp1"; $nomcomp1 = "checked";}else{$st8 = "";}
 if (isset($stpdf) && $stpdf == "van") {$st9 = "selected ";}else{$st9 = "";}
+if (isset($stpdf) && $stpdf == "zo1") {$st10 = "selected ";}else{$st10 = "";}
 ?>
 <u>Styles prédéfinis :</u> <i>(l'adéquation avec le style demandé dépend des éléments qui ont été renseignés dans HAL)</i><br>
 <select id="stpdf" size="1" name="stpdf" onChange="appst();mise_en_ordre('1');mise_en_ordre('2');majapercu();">
@@ -1888,6 +1889,7 @@ if (isset($stpdf) && $stpdf == "van") {$st9 = "selected ";}else{$st9 = "";}
 <option <?php echo $st7;?>value="nat">Nature</option>
 <option <?php echo $st8;?>value="mla">Modern Language Association (MLA), 8th ed.</option>
 <option <?php echo $st9;?>value="van">Vancouver</option>
+<option <?php echo $st10;?>value="zo1">Zotero1</option>
 </select>
 <br><br>
 <u>Styles personnalisés :</u><br>
@@ -3293,14 +3295,15 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
               $chaine2 .= $delim."to appear";
            } else {
               if(!($page=="?" or $page=="-" or $page=="" or $page==" " or $page=="–")){
+                $resArray[$iRA]["page"] = $page;
                 if ($typfor == "typ2") {
                  if($hasVolumeOrNumber==1){
                     $entryInfo .= ":".$page;
-                    $resArray[$iRA]["page"] = ":".$page;
+                    //$resArray[$iRA]["page"] = ":".$page;
                     $chaine2 .= $delim.$page;
                  }else{
                     $entryInfo .= ", ".$page;
-                    $resArray[$iRA]["page"] = ", ".$page;
+                    //$resArray[$iRA]["page"] = ", ".$page;
                     $chaine2 .= $delim.$page;
                  }
                 }else{
@@ -3309,11 +3312,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
                     if ($page != "") {
                       if (is_numeric(substr($page,0,1))) {
                         $entryInfo .= ", pp. ".$page;
-                        $resArray[$iRA]["page"] = ", pp. ".$page;
+                        //$resArray[$iRA]["page"] = ", pp. ".$page;
                         $chaine2 .= ", pp. ".$page;
                       }else{
                         $entryInfo .= $page;
-                        $resArray[$iRA]["page"] = $page;
+                        //$resArray[$iRA]["page"] = $page;
                         $chaine2 .= $page;
                       }
                     }
@@ -3784,7 +3787,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
               break;
             case "volume":
               if (isset($resArray[$iRA]["volume"])) {
-                $entryVol = $resArray[$iRA]["volume"];
+                if ($_POST["stpdf"] = "zo1") {
+                  $entryVol = "vol.".$resArray[$iRA]["volume"];
+                }else{
+                  $entryVol = $resArray[$iRA]["volume"];
+                }
               }else{
                 $entryVol = "";
               }
@@ -3798,7 +3805,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
               break;
             case "numéro":
               if (isset($resArray[$iRA]["issue"])) {
-                $entryNum = $resArray[$iRA]["issue"];
+                if ($_POST["stpdf"] = "zo1") {
+                  $entryNum = "n°".$resArray[$iRA]["issue"];
+                }else{
+                  $entryNum = $resArray[$iRA]["issue"];
+                }
               }else{
                 $entryNum = "";
               }
@@ -4095,13 +4106,15 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       //Corrections diverses
       $entryInfo =str_replace("..", ".", $entryInfo);
       $entryInfo =str_replace(", .", ".", $entryInfo);
+      $entryInfo =str_replace(",,", ",", $entryInfo);
       $entryInfo =str_replace(", , ", ", ", $entryInfo);
       $entryInfo =str_replace(" : ", ": ", $entryInfo);
       $entryInfo =str_replace(", No.,", ",", $entryInfo);
       $entryInfo =str_replace(", no.,", ",", $entryInfo);
       $rtfInfo =str_replace("..", ".", $rtfInfo);
+      $rtfInfo =str_replace(",,", ",", $rtfInfo);
       $rtfInfo =str_replace(", .", ".", $rtfInfo);
-      $rtfInfo =str_replace(", , ", ", ", $rtfInfo);
+      $rtfInfo =str_replace("~|~, ~|~~|~, ~|~", "~|~, ~|~", $rtfInfo);
 
       if (!isset($entry->page_s)) {
         $entryInfo = str_replace(array(",  in press", " in press.", " in press", "; in press"), "", $entryInfo);
@@ -4314,21 +4327,21 @@ function mpcg($sect, $groupe, $choix_cg1, $choix_cg2, $choix_cg3, $choix_cg4, $c
    $fontgp5 = new PHPRtfLite_Font(9, 'Trebuchet', $choix_cg5, '#FFFFFF');
    $fontgp6 = new PHPRtfLite_Font(9, 'Trebuchet', $choix_cg6, '#FFFFFF');
    $fontgp7 = new PHPRtfLite_Font(9, 'Trebuchet', $choix_cg7, '#FFFFFF');
-   $sect->writeText($tabgp[3], $fontgp1);//1er groupe
-   $sect->writeText($tabgp[4], $font);//1er séparateur
-   $sect->writeText($tabgp[5], $fontgp2);//2ème groupe
-   $sect->writeText($tabgp[6], $font);//2ème séparateur
-   $sect->writeText($tabgp[7], $fontgp3);//3ème groupe
-   $sect->writeText($tabgp[8], $font);//3ème séparateur
-   $sect->writeText($tabgp[9], $fontgp4);//4ème groupe
-   $sect->writeText($tabgp[10], $font);//4ème séparateur
-   $sect->writeText($tabgp[11], $fontgp5);//5ème groupe
-   $sect->writeText($tabgp[12], $font);//5ème séparateur
-   $sect->writeText($tabgp[13], $fontgp6);//6ème groupe
-   $sect->writeText($tabgp[14], $font);//6ème séparateur
-   $sect->writeText($tabgp[15], $fontgp7);//7ème groupe
-   $sect->writeText($tabgp[16], $font);//7ème séparateur
-   $sect->writeText($tabgp[17], $font);//suite
+   if (isset($tabgp[3])) {$sect->writeText($tabgp[3], $fontgp1);}//1er groupe
+   if (isset($tabgp[4])) {$sect->writeText($tabgp[4], $font);}//1er séparateur
+   if (isset($tabgp[5])) {$sect->writeText($tabgp[5], $fontgp2);}//2ème groupe
+   if (isset($tabgp[6])) {$sect->writeText($tabgp[6], $font);}//2ème séparateur
+   if (isset($tabgp[7])) {$sect->writeText($tabgp[7], $fontgp3);}//3ème groupe
+   if (isset($tabgp[8])) {$sect->writeText($tabgp[8], $font);}//3ème séparateur
+   if (isset($tabgp[9])) {$sect->writeText($tabgp[9], $fontgp4);}//4ème groupe
+   if (isset($tabgp[10])) {$sect->writeText($tabgp[10], $font);}//4ème séparateur
+   if (isset($tabgp[11])) {$sect->writeText($tabgp[11], $fontgp5);}//5ème groupe
+   if (isset($tabgp[12])) {$sect->writeText($tabgp[12], $font);}//5ème séparateur
+   if (isset($tabgp[13])) {$sect->writeText($tabgp[13], $fontgp6);}//6ème groupe
+   if (isset($tabgp[14])) {$sect->writeText($tabgp[14], $font);}//6ème séparateur
+   if (isset($tabgp[15])) {$sect->writeText($tabgp[15], $fontgp7);}//7ème groupe
+   if (isset($tabgp[16])) {$sect->writeText($tabgp[16], $font);}//7ème séparateur
+   if (isset($tabgp[17])) {$sect->writeText($tabgp[17], $font);}//suite
 }
 
 function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$refType,$institut,$typnum,$typaut,$typnom,$typcol,$typlim,$limaff,$typtit,$team,$idhal,$typann,$typchr,$typtri,$typfor,$typdoi,$typurl,$surdoi,$sursou,$typidh,$racine,$typreva,$typif,$typrevh,$dscp,$typrevc,$typavsa,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7){
@@ -4434,6 +4447,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
    }
 
    $yearNumbers = array();
+
    foreach($infoArray as $entryInfo){
      if($typcro == "oui") {//afficher seulement les publications croisées
        $aff = "non";//critère d'affichage (ou non) des résultats
