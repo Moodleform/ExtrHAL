@@ -360,8 +360,8 @@ if (isset($_POST["soumis"])) {
   // si depotdeb et depotfin non définis, on force depotdeb au 01/01/anneedeb et depotfin au 31/12/anneefin
   if ($depotdeb == '' && $depotfin == '') {
     $depotforce = "oui";
-    $depotdeb = date('d/m/Y', mktime(0, 0, 0, 1, 1, $anneedeb));
-    $depotfin = date('d/m/Y', mktime(0, 0, 0, 12, 31, $anneefin));
+    //$depotdeb = date('d/m/Y', mktime(0, 0, 0, 1, 1, $anneedeb));
+    //$depotfin = date('d/m/Y', mktime(0, 0, 0, 12, 31, $anneefin));
   }
   // si depotdeb défini mais pas depotfin, on force depotfin à aujourd'hui
   if ($depotdeb != '' && $depotfin == '') {$depotfin = date('d/m/Y', time());}
@@ -371,11 +371,13 @@ if (isset($_POST["soumis"])) {
     $depotdeb = date('d/m/Y', mktime(0, 0, 0, 1, 1, $tabdepotfin[2]));
   }
   // si depotdeb est postérieur à depotfin, on inverse les deux
-  $tabdepotdeb = explode('/', $depotdeb);
-  $tabdepotfin = explode('/', $depotfin);
-  $timedeb = mktime(0, 0, 0, $tabdepotdeb[1], $tabdepotdeb[0], $tabdepotdeb[2]);
-  $timefin = mktime(0, 0, 0, $tabdepotfin[1], $tabdepotfin[0], $tabdepotfin[2]);
-  if ($timefin < $timedeb) {$depottemp = $depotdeb; $depotdeb = $depotfin; $depotfin = $depottemp;}
+  if ($depotdeb != '' && $depotfin != '') {
+    $tabdepotdeb = explode('/', $depotdeb);
+    $tabdepotfin = explode('/', $depotfin);
+    $timedeb = mktime(0, 0, 0, $tabdepotdeb[1], $tabdepotdeb[0], $tabdepotdeb[2]);
+    $timefin = mktime(0, 0, 0, $tabdepotfin[1], $tabdepotfin[0], $tabdepotfin[2]);
+    if ($timefin < $timedeb) {$depottemp = $depotdeb; $depotdeb = $depotfin; $depotfin = $depottemp;}
+  }
   $urlsauv .= "&depotdeb=".$depotdeb;
   $urlsauv .= "&depotfin=".$depotfin;
 
