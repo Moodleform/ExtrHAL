@@ -2646,17 +2646,8 @@ echo('<li><a href="#BILAN">Bilan quantitatif</a></li>');
 $specificRequestCode = '';
 
 //Période de recherche
-if (isset($anneedeb) && isset($anneefin) && $anneedeb != $anneefin) {
-  $iann = $anneedeb;
-  while ($iann <= $anneefin) {
-    if ($iann == $anneedeb) {$specificRequestCode .= "%20AND%20(";}else{$specificRequestCode .= "%20OR%20";}
-    $specificRequestCode .= 'producedDateY_i:"'.$iann.'"';
-    $iann++;
-  }
-  $specificRequestCode .= ')';
-}else{
-  if (!isset($anneedeb)) {$anneedeb = date('Y', time());}
-  $specificRequestCode .= '%20AND%20producedDateY_i:"'.$anneedeb.'"';
+if (isset($anneedeb) && isset($anneefin)) {
+  $specificRequestCode .= '%20AND%20producedDateY_i:["'.$anneedeb.'"%20TO%20"'.$anneefin.'"]';
 }
 
 //Date de dépôt
@@ -2681,6 +2672,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
    $contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.":".$collCode_s."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=0");
    //echo "http://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.":".$collCode_s."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=0";
 	 if ($docType_s=="COMM+POST"){
+      $anneeConf = str_replace("%20AND%20popularLevel_s:0%20AND%20producedDateY_i:", "", $specificRequestCode);
+      $specificRequestCode .= '%20AND%20conferenceStartDateY_i:'.$anneeConf;
       $contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.":".$collCode_s."%20AND%20(docType_s:\"COMM\"%20OR%20docType_s:\"POSTER\")".$specificRequestCode."&rows=0");
    }
 	 if ($docType_s=="OUV+COUV"){
