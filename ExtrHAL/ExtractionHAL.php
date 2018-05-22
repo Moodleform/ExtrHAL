@@ -3782,7 +3782,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
               break;
             case "volume":
               if (isset($resArray[$iRA]["volume"])) {
-                if ($_POST["stpdf"] = "zo1") {
+                if ($_POST["stpdf"] == "zo1") {
                   $entryVol = "vol.".$resArray[$iRA]["volume"];
                 }else{
                   $entryVol = $resArray[$iRA]["volume"];
@@ -3800,7 +3800,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
               break;
             case "numéro":
               if (isset($resArray[$iRA]["issue"])) {
-                if ($_POST["stpdf"] = "zo1") {
+                if ($_POST["stpdf"] == "zo1") {
                   $entryNum = "n°".$resArray[$iRA]["issue"];
                 }else{
                   $entryNum = $resArray[$iRA]["issue"];
@@ -3870,9 +3870,17 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
               $entryOrd .= ", vol. ";
               $rtfSep[$i] = ", vol. ";
               break;
+            case ", Vol. ":
+              $entryOrd .= ", Vol. ";
+              $rtfSep[$i] = ", Vol. ";
+              break;
             case ", no. ":
               $entryOrd .= ", no. ";
               $rtfSep[$i] = ", no. ";
+              break;
+            case ", No.":
+              $entryOrd .= " , No.";
+              $rtfSep[$i] = " , No.";
               break;
             case ", pp. ":
               $entryOrd .= ", pp. ";
