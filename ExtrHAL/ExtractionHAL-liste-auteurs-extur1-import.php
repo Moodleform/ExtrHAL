@@ -100,6 +100,8 @@ if ($handle)  {//Si on a réussi à ouvrir le fichier
     }
   $ligne ++;
   }
+}else{
+  die("<font color='red'><big><big>Votre fichier source est incorrect.</big></big></font>");
 }
 $chaine = ');'.chr(13);
 $chaine .= '?>';

@@ -111,17 +111,21 @@ $nom = array();
 $prenom = array();
 if (($handle = fopen("./depot_troli.csv", "r")) !== FALSE)
 {
-  while (($data = fgetcsv($handle, 1000, ";")) !== FALSE)
-  {
-    $imax = count($data);
-    //echo "<p> $imax champs à la ligne $row: <br /></p>\n";
-    $nom[$row] = $data[0];
-    $prenom[$row] = $data[1];
-    //for ($i = 0; $i <= $imax ; $i++)
-    //{
-      //echo $data[$i]." ";
-    //}
-    $row++;
+  if ($handle) {
+    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE)
+    {
+      $imax = count($data);
+      //echo "<p> $imax champs à la ligne $row: <br /></p>\n";
+      $nom[$row] = $data[0];
+      $prenom[$row] = $data[1];
+      //for ($i = 0; $i <= $imax ; $i++)
+      //{
+        //echo $data[$i]." ";
+      //}
+      $row++;
+    }
+  }else{
+    die("<font color='red'><big><big>Votre fichier source est incorrect.</big></big></font>");
   }
   fclose($handle);
 }

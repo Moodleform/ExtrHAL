@@ -63,6 +63,8 @@ if ($handle) {
   fwrite($inF,$chaine);
   fclose($inF);
   fclose($handle);
+}else{
+  die("<font color='red'><big><big>Votre fichier source est incorrect.</big></big></font>");
 }
 echo '<br><b>Le fichier nécessaire à l\'affichage des IF a été créé avec succès.<br><br>'
 ?>

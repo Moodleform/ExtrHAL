@@ -101,6 +101,8 @@ if ($complet != '') {// Import d'un fichier complet
       }
     $ligne++;
     }
+  }else{
+    die("<font color='red'><big><big>Votre fichier source est incorrect.</big></big></font>");
   }
   $chaine = ');'.chr(13);
   $chaine .= '?>';
